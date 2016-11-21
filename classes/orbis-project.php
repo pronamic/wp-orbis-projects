@@ -29,8 +29,28 @@ class Orbis_Project {
 			)
 		);
 
-		// Meta
+		// Update Project
 		update_post_meta( $this->post->ID, '_orbis_project_invoice_number', $invoice_number );
+
+		$wpdb->update(
+			$wpdb->orbis_projects,
+			// Data
+			array(
+				'invoice_number' => $invoice_number,
+			),
+			// Where
+			array(
+				'post_id' => $this->post->ID,
+			),
+			// Format
+			array(
+				'%s',
+			),
+			// Where format
+			array(
+				'%d',
+			)
+		);
 
 		return $result;
 	}

@@ -29,6 +29,7 @@ require_once 'includes/shortcodes.php';
  */
 function orbis_projects_bootstrap() {
 	// Classes
+	require_once 'classes/orbis-project.php';
 	require_once 'classes/orbis-projects-plugin.php';
 
 	// Initialize

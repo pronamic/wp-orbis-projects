@@ -5,7 +5,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		parent::__construct( $file );
 
 		$this->set_name( 'orbis_projects' );
-		$this->set_db_version( '1.0.0' );
+		$this->set_db_version( '1.1.0' );
 
 		// Actions
 		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
