@@ -17,6 +17,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 
 		// Tables
 		orbis_register_table( 'orbis_projects' );
+		orbis_register_table( 'orbis_projects_invoices' );
 	}
 
 	public function loaded() {
@@ -45,6 +46,16 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			finished BOOLEAN NOT NULL DEFAULT FALSE,
 			PRIMARY KEY  (id),
 			KEY principal_id (principal_id)
+		' );
+
+		orbis_install_table( 'orbis_projects_invoices', '
+			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+			project_id BIGINT(16) UNSIGNED NOT NULL,
+			invoice_number VARCHAR(8) NOT NULL,
+			amount FLOAT NOT NULL,
+			user_id BIGINT(20) UNSIGNED DEFAULT NULL,
+			create_date DATETIME DEFAULT NULL,
+			PRIMARY KEY  (id)
 		' );
 
 		// Install

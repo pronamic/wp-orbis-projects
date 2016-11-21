@@ -22,9 +22,9 @@ add_action( 'add_meta_boxes', 'orbis_project_add_meta_boxes' );
  * @param array $post
  */
 function orbis_project_meta_box() {
-	global $orbis_plugin;
+	global $orbis_projects_plugin;
 
-	$orbis_plugin->plugin_include( 'admin/meta-box-project-details.php' );
+	$orbis_projects_plugin->plugin_include( 'admin/meta-box-project-details.php' );
 }
 
 function orbis_enqueue_scripts() {
