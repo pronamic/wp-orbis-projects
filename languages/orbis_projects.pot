@@ -13,6 +13,261 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
+#: admin/meta-box-project-details.php:29
+#: templates/projects-without-agreement.php:35
+msgid "Orbis ID"
+msgstr ""
+
+#: admin/meta-box-project-details.php:37 templates/projects-table-view.php:7
+msgid "Client"
+msgstr ""
+
+#: admin/meta-box-project-details.php:40
+msgid "Select Client"
+msgstr ""
+
+#: admin/meta-box-project-details.php:45 includes/projects.php:367
+#: templates/projects-table-view.php:11
+msgid "Time"
+msgstr ""
+
+#: admin/meta-box-project-details.php:51
+msgid "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
+msgstr ""
+
+#: admin/meta-box-project-details.php:58
+msgid "Agreement ID"
+msgstr ""
+
+#: admin/meta-box-project-details.php:65 admin/meta-box-project-details.php:68
+msgid "Choose a Agreement"
+msgstr ""
+
+#: admin/meta-box-project-details.php:68
+msgid "Set as Agreement"
+msgstr ""
+
+#: admin/meta-box-project-details.php:71
+msgid "You can select an .PDF or .TXT file from the WordPress media library."
+msgstr ""
+
+#: admin/meta-box-project-details.php:72
+msgid ""
+"If you received the agreement by mail print the complete mail conversation "
+"with an PDF printer."
+msgstr ""
+
+#: admin/meta-box-project-details.php:79
+msgid "Finished"
+msgstr ""
+
+#: admin/meta-box-project-details.php:85
+msgid "Project is finished"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:33
+msgid "Involved Persons"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:34 includes/post.php:7 includes/post.php:9
+#: includes/post.php:21
+msgid "Projects"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:37 includes/post.php:10
+#: templates/projects-table-view.php:8
+msgid "Project"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:38
+msgid "Search project"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:39 includes/post.php:18
+msgid "No projects found."
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:40
+msgid "Add Project"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:41 includes/post.php:14
+msgid "New Project"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:42 includes/post.php:12
+msgid "Add New Project"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:45
+msgid "Person"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:46
+msgid "Search person"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:47
+msgid "No persons found."
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:48
+msgid "Add Person"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:49
+msgid "New Person"
+msgstr ""
+
+#: classes/orbis-projects-plugin.php:50
+msgid "Add New Person"
+msgstr ""
+
+#: includes/post.php:13
+msgid "Edit Project"
+msgstr ""
+
+#: includes/post.php:15
+msgid "All Projects"
+msgstr ""
+
+#: includes/post.php:16
+msgid "View Project"
+msgstr ""
+
+#: includes/post.php:17
+msgid "Search Projects"
+msgstr ""
+
+#: includes/post.php:19
+msgid "No projects found in Trash."
+msgstr ""
+
+#: includes/post.php:20
+msgid "Parent Project:"
+msgstr ""
+
+#: includes/post.php:43
+msgid "Search Categories"
+msgstr ""
+
+#: includes/post.php:44
+msgid "All Categories"
+msgstr ""
+
+#: includes/post.php:45
+msgid "Parent Category"
+msgstr ""
+
+#: includes/post.php:46
+msgid "Parent Category:"
+msgstr ""
+
+#: includes/post.php:47
+msgid "Edit Category"
+msgstr ""
+
+#: includes/post.php:48
+msgid "Update Category"
+msgstr ""
+
+#: includes/post.php:49
+msgid "Add New Category"
+msgstr ""
+
+#: includes/post.php:50
+msgid "New Category Name"
+msgstr ""
+
+#: includes/post.php:51
+msgid "Categories"
+msgstr ""
+
+#: includes/projects.php:9
+msgid "Project Information"
+msgstr ""
+
+#: includes/projects.php:248
+msgid "This \"%1$s\" project is just \"%2$s\" by %3$s."
+msgstr ""
+
+#: includes/projects.php:249 includes/projects.php:250
+msgid "opened"
+msgstr ""
+
+#: includes/projects.php:249 includes/projects.php:250
+msgid "completed"
+msgstr ""
+
+#: includes/projects.php:365 templates/projects-without-agreement.php:38
+msgid "Title"
+msgstr ""
+
+#: includes/projects.php:366 templates/projects-without-agreement.php:37
+msgid "Principal"
+msgstr ""
+
+#: includes/projects.php:368
+msgid "Author"
+msgstr ""
+
+#: includes/projects.php:369
+msgid "Comments"
+msgstr ""
+
+#: includes/projects.php:370 templates/projects-table-view.php:9
+msgid "Date"
+msgstr ""
+
+#: templates/projects-table-view.php:5
+msgid "Manager"
+msgstr ""
+
+#: templates/projects-table-view.php:6
+msgid "ID"
+msgstr ""
+
+#: templates/projects-table-view.php:10
+msgid "Comment"
+msgstr ""
+
+#: templates/projects-table-view.php:12
+msgid "Invoiceable"
+msgstr ""
+
+#: templates/projects-table-view.php:13
+msgid "Invoice Number"
+msgstr ""
+
+#: templates/projects-table-view.php:61
+msgid "%1$s says on %2$s:"
+msgstr ""
+
+#: templates/projects-table-view.php:94
+#: templates/projects-without-agreement.php:74
+msgid "Edit"
+msgstr ""
+
+#: templates/projects-without-agreement.php:36
+msgid "Project Manager"
+msgstr ""
+
+#: templates/projects-without-agreement.php:39
+msgid "Actions"
+msgstr ""
+
+#: templates/projects.php:86
+msgid "Order By:"
+msgstr ""
+
+#: templates/projects.php:86
+msgid "Name"
+msgstr ""
+
+#: templates/projects.php:86
+msgid "Number"
+msgstr ""
+
 #. Plugin Name of the plugin/theme
 msgid "Orbis Projects"
 msgstr ""
@@ -33,4 +288,29 @@ msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "https://www.pronamic.eu/"
+msgstr ""
+
+#: includes/post.php:11
+msgctxt "orbis_project"
+msgid "Add New"
+msgstr ""
+
+#: includes/post.php:30
+msgctxt "slug"
+msgid "projects"
+msgstr ""
+
+#: includes/post.php:56
+msgctxt "slug"
+msgid "project-category"
+msgstr ""
+
+#: includes/post.php:41
+msgctxt "taxonomy general name"
+msgid "Categories"
+msgstr ""
+
+#: includes/post.php:42
+msgctxt "taxonomy singular name"
+msgid "Category"
 msgstr ""

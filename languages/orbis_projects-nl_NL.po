@@ -5,15 +5,276 @@ msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
 "POT-Creation-Date: 2016-11-21 11:40:28+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-11-21 12:43+0100\n"
-"X-Generator: Poedit 1.8.11\n"
+"PO-Revision-Date: 2016-11-21 13:12+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#: admin/meta-box-project-details.php:29
+#: templates/projects-without-agreement.php:35
+msgid "Orbis ID"
+msgstr "Orbis ID"
+
+#: admin/meta-box-project-details.php:37 templates/projects-table-view.php:7
+msgid "Client"
+msgstr "Klant"
+
+#: admin/meta-box-project-details.php:40
+msgid "Select Client"
+msgstr "Selecteer klant"
+
+#: admin/meta-box-project-details.php:45 includes/projects.php:367
+#: templates/projects-table-view.php:11
+msgid "Time"
+msgstr "Tijd"
+
+#: admin/meta-box-project-details.php:51
+msgid ""
+"You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
+msgstr ""
+"Je kunt de tijd invoeren als 1.5 of 1:30 (beide zijn 1 uur en 30 minuten)."
+
+#: admin/meta-box-project-details.php:58
+msgid "Agreement ID"
+msgstr "Akkoord ID"
+
+#: admin/meta-box-project-details.php:65 admin/meta-box-project-details.php:68
+msgid "Choose a Agreement"
+msgstr "Kies een akkoord"
+
+#: admin/meta-box-project-details.php:68
+msgid "Set as Agreement"
+msgstr "Stel in als akkoord"
+
+#: admin/meta-box-project-details.php:71
+msgid "You can select an .PDF or .TXT file from the WordPress media library."
+msgstr ""
+"Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media "
+"bibliotheek."
+
+#: admin/meta-box-project-details.php:72
+msgid ""
+"If you received the agreement by mail print the complete mail conversation "
+"with an PDF printer."
+msgstr ""
+"Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail "
+"conversatie uit met een PDF-printer."
+
+#: admin/meta-box-project-details.php:79
+msgid "Finished"
+msgstr "Afgerond"
+
+#: admin/meta-box-project-details.php:85
+msgid "Project is finished"
+msgstr "Project is afgerond"
+
+#: classes/orbis-projects-plugin.php:33
+msgid "Involved Persons"
+msgstr "Betrokken personen"
+
+#: classes/orbis-projects-plugin.php:34 includes/post.php:7 includes/post.php:9
+#: includes/post.php:21
+msgid "Projects"
+msgstr "Projecten"
+
+#: classes/orbis-projects-plugin.php:37 includes/post.php:10
+#: templates/projects-table-view.php:8
+msgid "Project"
+msgstr "Project"
+
+#: classes/orbis-projects-plugin.php:38
+msgid "Search project"
+msgstr "Zoek project"
+
+#: classes/orbis-projects-plugin.php:39 includes/post.php:18
+msgid "No projects found."
+msgstr "Geen projecten gevonden."
+
+#: classes/orbis-projects-plugin.php:40
+msgid "Add Project"
+msgstr "Project toevoegen"
+
+#: classes/orbis-projects-plugin.php:41 includes/post.php:14
+msgid "New Project"
+msgstr "Nieuw project"
+
+#: classes/orbis-projects-plugin.php:42 includes/post.php:12
+msgid "Add New Project"
+msgstr "Nieuw project toevoegen"
+
+#: classes/orbis-projects-plugin.php:45
+msgid "Person"
+msgstr "Persoon"
+
+#: classes/orbis-projects-plugin.php:46
+msgid "Search person"
+msgstr "Zoek persoon"
+
+#: classes/orbis-projects-plugin.php:47
+msgid "No persons found."
+msgstr "Geen personen gevonden."
+
+#: classes/orbis-projects-plugin.php:48
+msgid "Add Person"
+msgstr "Persoon toevoegen"
+
+#: classes/orbis-projects-plugin.php:49
+msgid "New Person"
+msgstr "Nieuw persoon"
+
+#: classes/orbis-projects-plugin.php:50
+msgid "Add New Person"
+msgstr "Nieuw persoon toevoegen"
+
+#: includes/post.php:13
+msgid "Edit Project"
+msgstr "Project bewerken"
+
+#: includes/post.php:15
+msgid "All Projects"
+msgstr "Alle projecten"
+
+#: includes/post.php:16
+msgid "View Project"
+msgstr "Project bekijken"
+
+#: includes/post.php:17
+msgid "Search Projects"
+msgstr "Projecten zoeken"
+
+#: includes/post.php:19
+msgid "No projects found in Trash."
+msgstr "Geen projecten gevonden in prullenbak."
+
+#: includes/post.php:20
+msgid "Parent Project:"
+msgstr "Bovenliggend project:"
+
+#: includes/post.php:43
+msgid "Search Categories"
+msgstr "Zoek categorieën"
+
+#: includes/post.php:44
+msgid "All Categories"
+msgstr "Alle categorieën"
+
+#: includes/post.php:45
+msgid "Parent Category"
+msgstr "Bovenliggende categorie"
+
+#: includes/post.php:46
+msgid "Parent Category:"
+msgstr "Bovenliggende categorie:"
+
+#: includes/post.php:47
+msgid "Edit Category"
+msgstr "Categorie bewerken"
+
+#: includes/post.php:48
+msgid "Update Category"
+msgstr "Categorie bijgewerkt"
+
+#: includes/post.php:49
+msgid "Add New Category"
+msgstr "Nieuwe categorie"
+
+#: includes/post.php:50
+msgid "New Category Name"
+msgstr "Nieuwe categorie naam"
+
+#: includes/post.php:51
+msgid "Categories"
+msgstr "Categorieën"
+
+#: includes/projects.php:9
+msgid "Project Information"
+msgstr "Projectinformatie"
+
+#: includes/projects.php:248
+msgid "This \"%1$s\" project is just \"%2$s\" by %3$s."
+msgstr "Dit \"%1$s\" project is zojuist \"%2$s\" door %3$s."
+
+#: includes/projects.php:249 includes/projects.php:250
+msgid "opened"
+msgstr "geopend"
+
+#: includes/projects.php:249 includes/projects.php:250
+msgid "completed"
+msgstr "afgerond"
+
+#: includes/projects.php:365 templates/projects-without-agreement.php:38
+msgid "Title"
+msgstr "Titel"
+
+#: includes/projects.php:366 templates/projects-without-agreement.php:37
+msgid "Principal"
+msgstr "Opdrachtgever"
+
+#: includes/projects.php:368
+msgid "Author"
+msgstr "Auteur"
+
+#: includes/projects.php:369
+msgid "Comments"
+msgstr "Reacties"
+
+#: includes/projects.php:370 templates/projects-table-view.php:9
+msgid "Date"
+msgstr "Datum"
+
+#: templates/projects-table-view.php:5
+msgid "Manager"
+msgstr "Projectleider"
+
+#: templates/projects-table-view.php:6
+msgid "ID"
+msgstr "ID"
+
+#: templates/projects-table-view.php:10
+msgid "Comment"
+msgstr "Reactie"
+
+#: templates/projects-table-view.php:12
+msgid "Invoiceable"
+msgstr "Factureerbaar"
+
+#: templates/projects-table-view.php:13
+msgid "Invoice Number"
+msgstr "Factuurnummer"
+
+#: templates/projects-table-view.php:61
+msgid "%1$s says on %2$s:"
+msgstr "%1$s zegt op %2$s:"
+
+#: templates/projects-table-view.php:94
+#: templates/projects-without-agreement.php:74
+msgid "Edit"
+msgstr "Bewerken"
+
+#: templates/projects-without-agreement.php:36
+msgid "Project Manager"
+msgstr "Projectleider"
+
+#: templates/projects-without-agreement.php:39
+msgid "Actions"
+msgstr "Acties"
+
+#: templates/projects.php:86
+msgid "Order By:"
+msgstr "Sorteer op:"
+
+#: templates/projects.php:86
+msgid "Name"
+msgstr "Naam"
+
+#: templates/projects.php:86
+msgid "Number"
+msgstr "Nummer"
 
 #. Plugin Name of the plugin/theme
 msgid "Orbis Projects"
@@ -38,3 +299,28 @@ msgstr "Pronamic"
 #. Author URI of the plugin/theme
 msgid "https://www.pronamic.eu/"
 msgstr "https://www.pronamic.nl/"
+
+#: includes/post.php:11
+msgctxt "orbis_project"
+msgid "Add New"
+msgstr "Nieuw project"
+
+#: includes/post.php:30
+msgctxt "slug"
+msgid "projects"
+msgstr "projecten"
+
+#: includes/post.php:56
+msgctxt "slug"
+msgid "project-category"
+msgstr "project-categorie"
+
+#: includes/post.php:41
+msgctxt "taxonomy general name"
+msgid "Categories"
+msgstr "Categorieën"
+
+#: includes/post.php:42
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr "Categorie"

@@ -18,6 +18,15 @@ License: Copyright (c) Pronamic
 GitHub URI: https://github.com/wp-orbis/wp-orbis-projects
 */
 
+/**
+ * Includes
+ */
+require_once 'includes/projects.php';
+require_once 'includes/shortcodes.php';
+
+/**
+ * Bootstrap
+ */
 function orbis_projects_bootstrap() {
 	// Classes
 	require_once 'classes/orbis-projects-plugin.php';
