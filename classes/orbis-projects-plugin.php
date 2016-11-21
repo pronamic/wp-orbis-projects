@@ -19,6 +19,34 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		orbis_register_table( 'orbis_projects' );
 	}
 
+	/**
+	 * Install
+	 *
+	 * @mysql UPDATE wp_options SET option_value = 0 WHERE option_name = 'orbis_db_version';
+	 *
+	 * @see Orbis_Plugin::install()
+	 */
+	public function install() {
+		// Tables
+		orbis_install_table( 'orbis_projects', '
+			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+			post_id BIGINT(20) UNSIGNED DEFAULT NULL,
+			name VARCHAR(128) NOT NULL,
+			principal_id BIGINT(16) UNSIGNED DEFAULT NULL,
+			start_date DATE NOT NULL DEFAULT "0000-00-00",
+			number_seconds INT(16) NOT NULL DEFAULT 0,
+			invoicable BOOLEAN NOT NULL DEFAULT TRUE,
+			invoiced BOOLEAN NOT NULL DEFAULT FALSE,
+			invoice_number VARCHAR(128) DEFAULT NULL,
+			finished BOOLEAN NOT NULL DEFAULT FALSE,
+			PRIMARY KEY  (id),
+			KEY principal_id (principal_id)
+		' );
+
+		// Install
+		parent::install();
+	}
+
 	//////////////////////////////////////////////////
 
 	/**
