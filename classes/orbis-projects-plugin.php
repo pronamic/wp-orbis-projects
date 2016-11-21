@@ -19,6 +19,10 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		orbis_register_table( 'orbis_projects' );
 	}
 
+	public function loaded() {
+		$this->load_textdomain( 'orbis_projects', '/languages/' );
+	}
+
 	/**
 	 * Install
 	 *
