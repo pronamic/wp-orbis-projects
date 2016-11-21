@@ -9,7 +9,8 @@ $principal_id   = get_post_meta( $post->ID, '_orbis_project_principal_id', true 
 $is_finished    = filter_var( get_post_meta( $post->ID, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
 $seconds        = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
 $agreement_id   = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
-$is_finished    = filter_var( get_post_meta( $post->ID, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
+$is_invoicable  = filter_var( get_post_meta( $post->ID, '_orbis_project_is_invoicable', true ), FILTER_VALIDATE_BOOLEAN );
+$is_invoiced    = filter_var( get_post_meta( $post->ID, '_orbis_project_is_invoiced', true ), FILTER_VALIDATE_BOOLEAN );
 
 $project = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects WHERE post_id = %d;", $post->ID ) );
 
@@ -17,8 +18,10 @@ if ( $project ) {
 	$orbis_id	    = $project->id;
 	$principal_id   = $project->principal_id;
 	$is_finished    = $project->finished;
+	$is_invoicable  = $project->invoicable;
+	$is_invoiced    = $project->invoiced;
+	$invoice_number = $project->invoice_number;
 	$seconds        = $project->number_seconds;
-	$is_finished    = $project->finished;
 }
 
 ?>
@@ -84,6 +87,49 @@ if ( $project ) {
 					<input type="checkbox" value="yes" id="_orbis_project_is_finished" name="_orbis_project_is_finished" <?php checked( $is_finished ); ?> />
 					<?php _e( 'Project is finished', 'orbis_projects' ); ?>
 				</label>
+			</td>
+		</tr>
+
+		<tr valign="top">
+			<th scope="row">
+				<label for="_orbis_project_is_invoicable">
+					<?php _e( 'Invoicable', 'orbis_finance' ); ?>
+				</label>
+			</th>
+			<td>
+				<label for="_orbis_project_is_invoicable">
+					<input type="checkbox" value="yes" id="_orbis_project_is_invoicable" name="_orbis_project_is_invoicable" <?php checked( $is_invoicable ); ?> />
+					<?php _e( 'Project is invoicable', 'orbis_finance' ); ?>
+				</label>
+			</td>
+		</tr>
+
+		<?php if ( current_user_can( 'edit_orbis_project_administration' ) ) : ?>
+
+			<tr valign="top">
+				<th scope="row">
+					<label for="_orbis_project_is_invoiced">
+						<?php _e( 'Invoiced', 'orbis_finance' ); ?>
+					</label>
+				</th>
+				<td>
+					<label for="_orbis_project_is_invoiced">
+						<input type="checkbox" value="yes" id="_orbis_project_is_invoiced" name="_orbis_project_is_invoiced" <?php checked( $is_invoiced ); ?> />
+						<?php _e( 'Project is invoiced', 'orbis_finance' ); ?>
+					</label>
+				</td>
+			</tr>
+
+		<?php endif; ?>
+
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_project_invoice_number">
+					<?php _e( 'Invoice Number', 'orbis_finance' ); ?>
+				</label>
+			</th>
+			<td>
+				<input type="text" id="orbis_project_invoice_number" name="_orbis_project_invoice_number" value="<?php echo esc_attr( $invoice_number ); ?>" />
 			</td>
 		</tr>
 	</tbody>
