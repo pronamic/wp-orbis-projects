@@ -12,15 +12,14 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		orbis_register_table( 'orbis_projects_invoices' );
 
 		// Actions
+		add_action( 'the_post', array( $this, 'the_post' ) );
+
 		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
 
 		add_action( 'wp_ajax_project_id_suggest', array( $this, 'ajax_projects_suggest_project_id' ) );
 
 		// Load text domain
 		$this->load_textdomain( 'orbis-projects', '/languages/' );
-
-		// Includes
-		$this->plugin_include( 'includes/functions.php' );
 
 		// Content Types
 		$this->content_types = new Orbis_Projects_ContentTypes();
@@ -80,7 +79,20 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		parent::install();
 	}
 
-	//////////////////////////////////////////////////
+	/**
+	 * The post.
+	 *
+	 * @param mixed $post
+	 */
+	public function the_post( $post ) {
+		unset( $GLOBALS['orbis_project'] );
+
+		if ( 'orbis_project' !== get_post_type( $post ) ) {
+			return;
+		}
+
+		$GLOBALS['orbis_project'] = new Orbis_Project( $post );
+	}
 
 	/**
 	 * Posts to posts initialize

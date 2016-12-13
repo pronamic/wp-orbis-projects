@@ -54,11 +54,11 @@ if ( $query->have_posts() ) : ?>
 						<td>
 							<?php
 
-							if ( orbis_project_has_principal() ) {
+							if ( $orbis_project->has_principal() ) {
 								printf(
 									'<a href="%s">%s</a>',
-									esc_attr( orbis_project_principal_get_permalink() ),
-									orbis_project_principel_get_the_name()
+									esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
+									esc_html( $orbis_project->get_principal_name() )
 								);
 							}
 

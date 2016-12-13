@@ -17,10 +17,10 @@ class Orbis_Projects_Theme {
 	 * @param array $classes
 	 */
 	public function post_class( $classes ) {
-		global $post;
+		global $orbis_project;
 
-		if ( isset( $post->project_is_finished ) ) {
-			$classes[] = $post->project_is_finished ? 'orbis-status-finished' : 'orbis-status-open';
+		if ( is_object( $orbis_project ) ) {
+			$classes[] = $orbis_project->is_finished() ? 'orbis-status-finished' : 'orbis-status-open';
 		}
 
 		return $classes;

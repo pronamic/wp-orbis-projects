@@ -45,19 +45,21 @@ class Orbis_Projects_AdminProjectPostType {
 	 * @param string $column
 	 */
 	public function custom_columns( $column, $post_id ) {
+		$orbis_project = new Orbis_Project( $post_id );
+
 		switch ( $column ) {
 			case 'orbis_project_principal' :
-				if ( orbis_project_has_principal() ) {
+				if ( $orbis_project->has_principal() ) {
 					printf(
 						'<a href="%s">%s</a>',
-						esc_attr( orbis_project_principal_get_permalink() ),
-						orbis_project_principel_get_the_name()
+						esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
+						esc_html( $orbis_project->get_principal_name() )
 					);
 				}
 
 				break;
 			case 'orbis_project_time' :
-				orbis_project_the_time();
+				echo esc_html( $orbis_project->get_available_time()->format() );
 
 				break;
 		}
