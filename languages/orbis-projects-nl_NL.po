@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
 "POT-Creation-Date: 2016-11-21 11:40:28+00:00\n"
-"PO-Revision-Date: 2016-11-21 13:21+0100\n"
+"PO-Revision-Date: 2016-12-13 11:11+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: admin/meta-box-project-details.php:32
@@ -74,24 +74,20 @@ msgid "Project is finished"
 msgstr "Project is afgerond"
 
 #: admin/meta-box-project-details.php:96
-#, fuzzy
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
 #: admin/meta-box-project-details.php:102
-#, fuzzy
 msgid "Project is invoicable"
-msgstr "Project is afgerond"
+msgstr "Project is factureerbaar"
 
 #: admin/meta-box-project-details.php:112
-#, fuzzy
 msgid "Invoiced"
-msgstr "Factureerbaar"
+msgstr "Gefactureerd"
 
 #: admin/meta-box-project-details.php:118
-#, fuzzy
 msgid "Project is invoiced"
-msgstr "Project is afgerond"
+msgstr "Project is gefactureerd"
 
 #: admin/meta-box-project-details.php:128 templates/projects-table-view.php:13
 msgid "Invoice Number"
@@ -101,8 +97,8 @@ msgstr "Factuurnummer"
 msgid "Involved Persons"
 msgstr "Betrokken personen"
 
-#: classes/orbis-projects-plugin.php:78 includes/post.php:7 includes/post.php:9
-#: includes/post.php:21
+#: classes/orbis-projects-plugin.php:78 includes/post.php:7
+#: includes/post.php:9
 msgid "Projects"
 msgstr "Projecten"
 
@@ -160,12 +156,12 @@ msgid "Edit Project"
 msgstr "Project bewerken"
 
 #: includes/post.php:15
-msgid "All Projects"
-msgstr "Alle projecten"
-
-#: includes/post.php:16
 msgid "View Project"
 msgstr "Project bekijken"
+
+#: includes/post.php:16
+msgid "View Projects"
+msgstr "Toon projecten"
 
 #: includes/post.php:17
 msgid "Search Projects"
@@ -179,39 +175,71 @@ msgstr "Geen projecten gevonden in prullenbak."
 msgid "Parent Project:"
 msgstr "Bovenliggend project:"
 
-#: includes/post.php:43
+#: includes/post.php:21
+msgid "All Projects"
+msgstr "Alle projecten"
+
+#: includes/post.php:22
+msgid "Project Archives"
+msgstr "Projectenarchief"
+
+#: includes/post.php:23
+msgid "Project Attributes"
+msgstr "Projectattributen"
+
+#: includes/post.php:24
+msgid "Insert into project"
+msgstr "In project invoegen"
+
+#: includes/post.php:25
+msgid "Uploaded to this project"
+msgstr "Geüpload naar dit project"
+
+#: includes/post.php:26
+msgid "Filter projects list"
+msgstr "Projecten filteren"
+
+#: includes/post.php:27
+msgid "Projects list navigation"
+msgstr "Projectenlijst navigatie"
+
+#: includes/post.php:28
+msgid "Projects list"
+msgstr "Projectenlijst"
+
+#: includes/post.php:50
 msgid "Search Categories"
 msgstr "Zoek categorieën"
 
-#: includes/post.php:44
+#: includes/post.php:51
 msgid "All Categories"
 msgstr "Alle categorieën"
 
-#: includes/post.php:45
+#: includes/post.php:52
 msgid "Parent Category"
 msgstr "Bovenliggende categorie"
 
-#: includes/post.php:46
+#: includes/post.php:53
 msgid "Parent Category:"
 msgstr "Bovenliggende categorie:"
 
-#: includes/post.php:47
+#: includes/post.php:54
 msgid "Edit Category"
 msgstr "Categorie bewerken"
 
-#: includes/post.php:48
+#: includes/post.php:55
 msgid "Update Category"
 msgstr "Categorie bijgewerkt"
 
-#: includes/post.php:49
+#: includes/post.php:56
 msgid "Add New Category"
 msgstr "Nieuwe categorie"
 
-#: includes/post.php:50
+#: includes/post.php:57
 msgid "New Category Name"
 msgstr "Nieuwe categorie naam"
 
-#: includes/post.php:51
+#: includes/post.php:58
 msgid "Categories"
 msgstr "Categorieën"
 
@@ -233,7 +261,7 @@ msgstr "afgerond"
 
 #: includes/projects.php:305
 msgid "Invoice Number '%s' was registered on this project by %s."
-msgstr ""
+msgstr "Factuurnummer '%s' werd geregisteerd bij dit project door %s."
 
 #: includes/projects.php:421 templates/projects-without-agreement.php:38
 msgid "Title"
@@ -329,22 +357,22 @@ msgctxt "orbis_project"
 msgid "Add New"
 msgstr "Nieuw project"
 
-#: includes/post.php:30
+#: includes/post.php:37
 msgctxt "slug"
 msgid "projects"
 msgstr "projecten"
 
-#: includes/post.php:56
+#: includes/post.php:63
 msgctxt "slug"
 msgid "project-category"
 msgstr "project-categorie"
 
-#: includes/post.php:41
+#: includes/post.php:48
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr "Categorieën"
 
-#: includes/post.php:42
+#: includes/post.php:49
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr "Categorie"

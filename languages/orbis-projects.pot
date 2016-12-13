@@ -90,7 +90,6 @@ msgid "Involved Persons"
 msgstr ""
 
 #: classes/orbis-projects-plugin.php:78 includes/post.php:7 includes/post.php:9
-#: includes/post.php:21
 msgid "Projects"
 msgstr ""
 
@@ -148,11 +147,11 @@ msgid "Edit Project"
 msgstr ""
 
 #: includes/post.php:15
-msgid "All Projects"
+msgid "View Project"
 msgstr ""
 
 #: includes/post.php:16
-msgid "View Project"
+msgid "View Projects"
 msgstr ""
 
 #: includes/post.php:17
@@ -167,39 +166,71 @@ msgstr ""
 msgid "Parent Project:"
 msgstr ""
 
-#: includes/post.php:43
-msgid "Search Categories"
+#: includes/post.php:21
+msgid "All Projects"
 msgstr ""
 
-#: includes/post.php:44
-msgid "All Categories"
+#: includes/post.php:22
+msgid "Project Archives"
 msgstr ""
 
-#: includes/post.php:45
-msgid "Parent Category"
+#: includes/post.php:23
+msgid "Project Attributes"
 msgstr ""
 
-#: includes/post.php:46
-msgid "Parent Category:"
+#: includes/post.php:24
+msgid "Insert into project"
 msgstr ""
 
-#: includes/post.php:47
-msgid "Edit Category"
+#: includes/post.php:25
+msgid "Uploaded to this project"
 msgstr ""
 
-#: includes/post.php:48
-msgid "Update Category"
+#: includes/post.php:26
+msgid "Filter projects list"
 msgstr ""
 
-#: includes/post.php:49
-msgid "Add New Category"
+#: includes/post.php:27
+msgid "Projects list navigation"
+msgstr ""
+
+#: includes/post.php:28
+msgid "Projects list"
 msgstr ""
 
 #: includes/post.php:50
-msgid "New Category Name"
+msgid "Search Categories"
 msgstr ""
 
 #: includes/post.php:51
+msgid "All Categories"
+msgstr ""
+
+#: includes/post.php:52
+msgid "Parent Category"
+msgstr ""
+
+#: includes/post.php:53
+msgid "Parent Category:"
+msgstr ""
+
+#: includes/post.php:54
+msgid "Edit Category"
+msgstr ""
+
+#: includes/post.php:55
+msgid "Update Category"
+msgstr ""
+
+#: includes/post.php:56
+msgid "Add New Category"
+msgstr ""
+
+#: includes/post.php:57
+msgid "New Category Name"
+msgstr ""
+
+#: includes/post.php:58
 msgid "Categories"
 msgstr ""
 
@@ -315,22 +346,22 @@ msgctxt "orbis_project"
 msgid "Add New"
 msgstr ""
 
-#: includes/post.php:30
+#: includes/post.php:37
 msgctxt "slug"
 msgid "projects"
 msgstr ""
 
-#: includes/post.php:56
+#: includes/post.php:63
 msgctxt "slug"
 msgid "project-category"
 msgstr ""
 
-#: includes/post.php:41
+#: includes/post.php:48
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr ""
 
-#: includes/post.php:42
+#: includes/post.php:49
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr ""
