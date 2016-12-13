@@ -19,14 +19,14 @@ GitHub URI: https://github.com/wp-orbis/wp-orbis-projects
 */
 
 /**
+ * Autoload
+ */
+require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+
+/**
  * Bootstrap
  */
 function orbis_projects_bootstrap() {
-	// Classes
-	require_once 'classes/orbis-project.php';
-	require_once 'classes/orbis-projects-plugin.php';
-
-	// Initialize
 	global $orbis_projects_plugin;
 
 	$orbis_projects_plugin = new Orbis_Projects_Plugin( __FILE__ );
