@@ -59,3 +59,43 @@ function orbis_project_get_the_time( $format = 'HH:MM' ) {
 function orbis_project_the_time( $format = 'HH:MM' ) {
 	echo esc_html( orbis_project_get_the_time( $format ) );
 }
+
+/**
+ * Helper functions
+ */
+function orbis_project_is_finished() {
+	global $post;
+
+	$is_finished = false;
+
+	if ( isset( $post->project_is_finished ) ) {
+		$is_finished = (boolean) $post->project_is_finished;
+	}
+
+	return $is_finished;
+}
+
+function orbis_project_is_invoiced() {
+	global $post;
+
+	$is_invoiced = false;
+
+	if ( isset( $post->project_is_invoiced ) ) {
+		$is_invoiced = (boolean) $post->project_is_invoiced;
+	}
+
+	return $is_invoiced;
+}
+
+function orbis_project_is_invoicable() {
+	global $post;
+
+	$is_invoicable = false;
+
+	if ( get_post_meta( get_the_ID(), '_orbis_project_is_invoicable', true ) ) {
+		$is_invoicable = true;
+	}
+
+	return $is_invoicable;
+}
+

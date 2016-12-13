@@ -48,7 +48,7 @@ if ( $project ) {
 				<label for="_orbis_project_seconds_available"><?php _e( 'Time', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
-				<input size="5" id="_orbis_project_seconds_available" name="_orbis_project_seconds_available" value="<?php echo esc_attr( orbis_time( $seconds ) ); ?>" type="text"  class="small-text" />
+				<input size="5" id="_orbis_project_seconds_available" name="_orbis_project_seconds_available" value="<?php echo esc_attr( orbis_time( $seconds ) ); ?>" type="text" />
 
 				<p class="description">
 					<?php _e( 'You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes).', 'orbis-projects' ); ?>

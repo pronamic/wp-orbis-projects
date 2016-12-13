@@ -7,22 +7,39 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		$this->set_name( 'orbis_projects' );
 		$this->set_db_version( '1.1.0' );
 
+		// Tables
+		orbis_register_table( 'orbis_projects' );
+		orbis_register_table( 'orbis_projects_invoices' );
+
 		// Actions
 		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
+
+		add_action( 'wp_ajax_project_id_suggest', array( $this, 'ajax_projects_suggest_project_id' ) );
 
 		// Load text domain
 		$this->load_textdomain( 'orbis-projects', '/languages/' );
 
 		// Includes
-		$this->plugin_include( 'includes/project.php' );
-		$this->plugin_include( 'includes/project-template.php' );
-		$this->plugin_include( 'includes/post.php' );
-		$this->plugin_include( 'includes/projects.php' );
-		$this->plugin_include( 'includes/shortcodes.php' );
+		$this->plugin_include( 'includes/functions.php' );
 
-		// Tables
-		orbis_register_table( 'orbis_projects' );
-		orbis_register_table( 'orbis_projects_invoices' );
+		// Content Types
+		$this->content_types = new Orbis_Projects_ContentTypes();
+
+		// Query Processor
+		$this->query_processor = new Orbis_Projects_QueryProcessor();
+
+		// Shortcodes
+		$this->shortcodes = new Orbis_Projects_Shortcodes( $this );
+
+		// Commenter
+		$this->commenter = new Orbis_Projects_Commenter( $this );
+
+		// Admin
+		if ( is_admin() ) {
+			$this->admin = new Orbis_Projects_Admin( $this );
+		} else {
+			$this->theme = new Orbis_Projects_Theme( $this );
+		}
 	}
 
 	/**
@@ -94,5 +111,94 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 				'add_new_item'  => __( 'Add New Person', 'orbis-projects' ),
 			),
 		) );
+	}
+
+	/**
+	 * AJAX projects suggest project ID.
+	 */
+	public function ajax_projects_suggest_project_id() {
+		global $wpdb;
+
+		$term = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
+
+		$extra_select = '';
+		$extra_join   = '';
+
+		if ( isset( $wpdb->orbis_timesheets ) ) {
+			$extra_select .= ',
+				SUM( entry.number_seconds ) AS project_logged_time
+			';
+
+			$extra_join = "
+				LEFT JOIN
+					$wpdb->orbis_timesheets AS entry
+						ON entry.project_id = project.id
+			";
+		}
+
+		$query = "
+			SELECT
+				project.id AS project_id,
+				principal.name AS principal_name,
+				project.name AS project_name,
+				project.number_seconds AS project_time
+				$extra_select
+			FROM
+				$wpdb->orbis_projects AS project
+					LEFT JOIN
+				$wpdb->orbis_companies AS principal
+						ON project.principal_id = principal.id
+				$extra_join
+			WHERE
+				project.finished = 0
+					AND
+				(
+					project.name LIKE '%%%1\$s%%'
+						OR
+					principal.name LIKE '%%%1\$s%%'
+				)
+			GROUP BY
+				project.id
+			ORDER BY
+				project.id
+		";
+
+		$query = $wpdb->prepare( $query, $term ); // unprepared SQL
+
+		$projects = $wpdb->get_results( $query ); // unprepared SQL
+
+		$data = array();
+
+		foreach ( $projects as $project ) {
+			$result = new stdClass();
+			$result->id   = $project->project_id;
+
+			$text = sprintf(
+				'%s. %s - %s ( %s )',
+				$project->project_id,
+				$project->principal_name,
+				$project->project_name,
+				orbis_time( $project->project_time )
+			);
+
+			if ( isset( $project->project_logged_time ) ) {
+				$text = sprintf(
+					'%s. %s - %s ( %s / %s )',
+					$project->project_id,
+					$project->principal_name,
+					$project->project_name,
+					orbis_time( $project->project_logged_time ),
+					orbis_time( $project->project_time )
+				);
+			}
+
+			$result->text = $text;
+
+			$data[] = $result;
+		}
+
+		echo json_encode( $data );
+
+		die();
 	}
 }

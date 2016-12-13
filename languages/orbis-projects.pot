@@ -26,7 +26,8 @@ msgstr ""
 msgid "Select Client"
 msgstr ""
 
-#: admin/meta-box-project-details.php:48 includes/projects.php:423
+#: admin/meta-box-project-details.php:48
+#: classes/class-admin-project-post-type.php:33
 #: templates/projects-table-view.php:11
 msgid "Time"
 msgstr ""
@@ -85,193 +86,197 @@ msgstr ""
 msgid "Invoice Number"
 msgstr ""
 
-#: classes/orbis-projects-plugin.php:77
-msgid "Involved Persons"
+#: classes/class-admin-project-post-type.php:31
+#: templates/projects-without-agreement.php:38
+msgid "Title"
 msgstr ""
 
-#: classes/orbis-projects-plugin.php:78 includes/post.php:7 includes/post.php:9
+#: classes/class-admin-project-post-type.php:32
+#: templates/projects-without-agreement.php:37
+msgid "Principal"
+msgstr ""
+
+#: classes/class-admin-project-post-type.php:34
+msgid "Author"
+msgstr ""
+
+#: classes/class-admin-project-post-type.php:35
+msgid "Comments"
+msgstr ""
+
+#: classes/class-admin-project-post-type.php:36
+#: templates/projects-table-view.php:9
+msgid "Date"
+msgstr ""
+
+#: classes/class-admin-project-post-type.php:72
+msgid "Project Information"
+msgstr ""
+
+#: classes/class-commenter.php:28
+msgid "This \"%1$s\" project is just \"%2$s\" by %3$s."
+msgstr ""
+
+#: classes/class-commenter.php:29 classes/class-commenter.php:30
+msgid "opened"
+msgstr ""
+
+#: classes/class-commenter.php:29 classes/class-commenter.php:30
+msgid "completed"
+msgstr ""
+
+#: classes/class-commenter.php:68
+msgid "Invoice Number '%s' was registered on this project by %s."
+msgstr ""
+
+#: classes/class-content-types.php:18 classes/class-content-types.php:20
+#: classes/class-plugin.php:95
 msgid "Projects"
 msgstr ""
 
-#: classes/orbis-projects-plugin.php:81 includes/post.php:10
+#: classes/class-content-types.php:21 classes/class-plugin.php:98
 #: templates/projects-table-view.php:8
 msgid "Project"
 msgstr ""
 
-#: classes/orbis-projects-plugin.php:82
-msgid "Search project"
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:83 includes/post.php:18
-msgid "No projects found."
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:84
-msgid "Add Project"
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:85 includes/post.php:14
-msgid "New Project"
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:86 includes/post.php:12
+#: classes/class-content-types.php:23 classes/class-plugin.php:103
 msgid "Add New Project"
 msgstr ""
 
-#: classes/orbis-projects-plugin.php:89
-msgid "Person"
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:90
-msgid "Search person"
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:91
-msgid "No persons found."
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:92
-msgid "Add Person"
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:93
-msgid "New Person"
-msgstr ""
-
-#: classes/orbis-projects-plugin.php:94
-msgid "Add New Person"
-msgstr ""
-
-#: includes/post.php:13
+#: classes/class-content-types.php:24
 msgid "Edit Project"
 msgstr ""
 
-#: includes/post.php:15
+#: classes/class-content-types.php:25 classes/class-plugin.php:102
+msgid "New Project"
+msgstr ""
+
+#: classes/class-content-types.php:26
 msgid "View Project"
 msgstr ""
 
-#: includes/post.php:16
+#: classes/class-content-types.php:27
 msgid "View Projects"
 msgstr ""
 
-#: includes/post.php:17
+#: classes/class-content-types.php:28
 msgid "Search Projects"
 msgstr ""
 
-#: includes/post.php:19
+#: classes/class-content-types.php:29 classes/class-plugin.php:100
+msgid "No projects found."
+msgstr ""
+
+#: classes/class-content-types.php:30
 msgid "No projects found in Trash."
 msgstr ""
 
-#: includes/post.php:20
+#: classes/class-content-types.php:31
 msgid "Parent Project:"
 msgstr ""
 
-#: includes/post.php:21
+#: classes/class-content-types.php:32
 msgid "All Projects"
 msgstr ""
 
-#: includes/post.php:22
+#: classes/class-content-types.php:33
 msgid "Project Archives"
 msgstr ""
 
-#: includes/post.php:23
+#: classes/class-content-types.php:34
 msgid "Project Attributes"
 msgstr ""
 
-#: includes/post.php:24
+#: classes/class-content-types.php:35
 msgid "Insert into project"
 msgstr ""
 
-#: includes/post.php:25
+#: classes/class-content-types.php:36
 msgid "Uploaded to this project"
 msgstr ""
 
-#: includes/post.php:26
+#: classes/class-content-types.php:37
 msgid "Filter projects list"
 msgstr ""
 
-#: includes/post.php:27
+#: classes/class-content-types.php:38
 msgid "Projects list navigation"
 msgstr ""
 
-#: includes/post.php:28
+#: classes/class-content-types.php:39
 msgid "Projects list"
 msgstr ""
 
-#: includes/post.php:50
+#: classes/class-content-types.php:61
 msgid "Search Categories"
 msgstr ""
 
-#: includes/post.php:51
+#: classes/class-content-types.php:62
 msgid "All Categories"
 msgstr ""
 
-#: includes/post.php:52
+#: classes/class-content-types.php:63
 msgid "Parent Category"
 msgstr ""
 
-#: includes/post.php:53
+#: classes/class-content-types.php:64
 msgid "Parent Category:"
 msgstr ""
 
-#: includes/post.php:54
+#: classes/class-content-types.php:65
 msgid "Edit Category"
 msgstr ""
 
-#: includes/post.php:55
+#: classes/class-content-types.php:66
 msgid "Update Category"
 msgstr ""
 
-#: includes/post.php:56
+#: classes/class-content-types.php:67
 msgid "Add New Category"
 msgstr ""
 
-#: includes/post.php:57
+#: classes/class-content-types.php:68
 msgid "New Category Name"
 msgstr ""
 
-#: includes/post.php:58
+#: classes/class-content-types.php:69
 msgid "Categories"
 msgstr ""
 
-#: includes/projects.php:9
-msgid "Project Information"
+#: classes/class-plugin.php:94
+msgid "Involved Persons"
 msgstr ""
 
-#: includes/projects.php:263
-msgid "This \"%1$s\" project is just \"%2$s\" by %3$s."
+#: classes/class-plugin.php:99
+msgid "Search project"
 msgstr ""
 
-#: includes/projects.php:264 includes/projects.php:265
-msgid "opened"
+#: classes/class-plugin.php:101
+msgid "Add Project"
 msgstr ""
 
-#: includes/projects.php:264 includes/projects.php:265
-msgid "completed"
+#: classes/class-plugin.php:106
+msgid "Person"
 msgstr ""
 
-#: includes/projects.php:305
-msgid "Invoice Number '%s' was registered on this project by %s."
+#: classes/class-plugin.php:107
+msgid "Search person"
 msgstr ""
 
-#: includes/projects.php:421 templates/projects-without-agreement.php:38
-msgid "Title"
+#: classes/class-plugin.php:108
+msgid "No persons found."
 msgstr ""
 
-#: includes/projects.php:422 templates/projects-without-agreement.php:37
-msgid "Principal"
+#: classes/class-plugin.php:109
+msgid "Add Person"
 msgstr ""
 
-#: includes/projects.php:424
-msgid "Author"
+#: classes/class-plugin.php:110
+msgid "New Person"
 msgstr ""
 
-#: includes/projects.php:425
-msgid "Comments"
-msgstr ""
-
-#: includes/projects.php:426 templates/projects-table-view.php:9
-msgid "Date"
+#: classes/class-plugin.php:111
+msgid "Add New Person"
 msgstr ""
 
 #: templates/projects-table-view.php:5
@@ -341,27 +346,27 @@ msgstr ""
 msgid "https://www.pronamic.eu/"
 msgstr ""
 
-#: includes/post.php:11
+#: classes/class-content-types.php:22
 msgctxt "orbis_project"
 msgid "Add New"
 msgstr ""
 
-#: includes/post.php:37
+#: classes/class-content-types.php:48
 msgctxt "slug"
 msgid "projects"
 msgstr ""
 
-#: includes/post.php:63
+#: classes/class-content-types.php:74
 msgctxt "slug"
 msgid "project-category"
 msgstr ""
 
-#: includes/post.php:48
+#: classes/class-content-types.php:59
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr ""
 
-#: includes/post.php:49
+#: classes/class-content-types.php:60
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr ""
