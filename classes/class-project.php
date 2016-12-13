@@ -52,6 +52,21 @@ class Orbis_Project {
 	}
 
 	/**
+	 * Get price.
+	 *
+	 * @return float
+	 */
+	public function get_price() {
+		$value = get_post_meta( $this->post->ID, '_orbis_price', true );
+
+		if ( '' === $value ) {
+			return null;
+		}
+
+		return $value;
+	}
+
+	/**
 	 * Is finished.
 	 *
 	 * @return boolean

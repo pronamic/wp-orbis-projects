@@ -19,7 +19,7 @@ class Orbis_Projects_AdminProjectPostType {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 
 		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_project' ), 10, 2 );
-		add_action( 'save_post' . self::POST_TYPE, array( $this, 'save_project_sync' ), 500, 2 );
+		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_project_sync' ), 500, 2 );
 	}
 
 	/**
@@ -30,6 +30,7 @@ class Orbis_Projects_AdminProjectPostType {
 			'cb'                      => '<input type="checkbox" />',
 			'title'                   => __( 'Title', 'orbis-projects' ),
 			'orbis_project_principal' => __( 'Principal', 'orbis-projects' ),
+			'orbis_project_price'     => __( 'Price', 'orbis-projects' ),
 			'orbis_project_time'      => __( 'Time', 'orbis-projects' ),
 			'author'                  => __( 'Author', 'orbis-projects' ),
 			'comments'                => __( 'Comments', 'orbis-projects' ),
@@ -56,6 +57,10 @@ class Orbis_Projects_AdminProjectPostType {
 						esc_html( $orbis_project->get_principal_name() )
 					);
 				}
+
+				break;
+			case 'orbis_project_price' :
+				echo esc_html( orbis_price( $orbis_project->get_price() ) );
 
 				break;
 			case 'orbis_project_time' :
@@ -107,12 +112,19 @@ class Orbis_Projects_AdminProjectPostType {
 		}
 
 		// Check permissions
-		if ( current_user_can( 'edit_post', $post_id ) ) {
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 
 		// OK
+		global $wp_locale;
+
 		$definition = array(
+			'_orbis_price'                  => array(
+				'filter'  => FILTER_VALIDATE_FLOAT,
+				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
+				'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
+			),
 			'_orbis_project_principal_id'   => FILTER_VALIDATE_INT,
 			'_orbis_project_agreement_id'   => FILTER_VALIDATE_INT,
 			'_orbis_project_is_finished'    => FILTER_VALIDATE_BOOLEAN,

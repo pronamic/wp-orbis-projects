@@ -13,76 +13,81 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
-#: admin/meta-box-project-details.php:32
+#: admin/meta-box-project-details.php:30
 #: templates/projects-without-agreement.php:35
 msgid "Orbis ID"
 msgstr ""
 
-#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:7
+#: admin/meta-box-project-details.php:38 templates/projects-table-view.php:7
 msgid "Client"
 msgstr ""
 
-#: admin/meta-box-project-details.php:43
+#: admin/meta-box-project-details.php:41
 msgid "Select Client"
 msgstr ""
 
-#: admin/meta-box-project-details.php:48
+#: admin/meta-box-project-details.php:46
 #: classes/class-admin-project-post-type.php:33
+msgid "Price"
+msgstr ""
+
+#: admin/meta-box-project-details.php:54
+#: classes/class-admin-project-post-type.php:34
 #: templates/projects-table-view.php:11
 msgid "Time"
 msgstr ""
 
-#: admin/meta-box-project-details.php:54
+#: admin/meta-box-project-details.php:60
 msgid "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr ""
 
-#: admin/meta-box-project-details.php:61
+#: admin/meta-box-project-details.php:67
 msgid "Agreement ID"
 msgstr ""
 
-#: admin/meta-box-project-details.php:68 admin/meta-box-project-details.php:71
+#: admin/meta-box-project-details.php:74 admin/meta-box-project-details.php:77
 msgid "Choose a Agreement"
 msgstr ""
 
-#: admin/meta-box-project-details.php:71
+#: admin/meta-box-project-details.php:77
 msgid "Set as Agreement"
 msgstr ""
 
-#: admin/meta-box-project-details.php:74
+#: admin/meta-box-project-details.php:80
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 
-#: admin/meta-box-project-details.php:75
+#: admin/meta-box-project-details.php:81
 msgid ""
 "If you received the agreement by mail print the complete mail conversation "
 "with an PDF printer."
 msgstr ""
 
-#: admin/meta-box-project-details.php:82
+#: admin/meta-box-project-details.php:88
 msgid "Finished"
 msgstr ""
 
-#: admin/meta-box-project-details.php:88
+#: admin/meta-box-project-details.php:94
 msgid "Project is finished"
 msgstr ""
 
-#: admin/meta-box-project-details.php:96
+#: admin/meta-box-project-details.php:102
 msgid "Invoicable"
 msgstr ""
 
-#: admin/meta-box-project-details.php:102
+#: admin/meta-box-project-details.php:108
 msgid "Project is invoicable"
 msgstr ""
 
-#: admin/meta-box-project-details.php:112
+#: admin/meta-box-project-details.php:118
 msgid "Invoiced"
 msgstr ""
 
-#: admin/meta-box-project-details.php:118
+#: admin/meta-box-project-details.php:124
 msgid "Project is invoiced"
 msgstr ""
 
-#: admin/meta-box-project-details.php:128 templates/projects-table-view.php:13
+#: admin/meta-box-project-details.php:134 templates/projects-table-view.php:13
 msgid "Invoice Number"
 msgstr ""
 
@@ -96,20 +101,20 @@ msgstr ""
 msgid "Principal"
 msgstr ""
 
-#: classes/class-admin-project-post-type.php:34
+#: classes/class-admin-project-post-type.php:35
 msgid "Author"
 msgstr ""
 
-#: classes/class-admin-project-post-type.php:35
+#: classes/class-admin-project-post-type.php:36
 msgid "Comments"
 msgstr ""
 
-#: classes/class-admin-project-post-type.php:36
+#: classes/class-admin-project-post-type.php:37
 #: templates/projects-table-view.php:9
 msgid "Date"
 msgstr ""
 
-#: classes/class-admin-project-post-type.php:72
+#: classes/class-admin-project-post-type.php:79
 msgid "Project Information"
 msgstr ""
 
@@ -130,16 +135,16 @@ msgid "Invoice Number '%s' was registered on this project by %s."
 msgstr ""
 
 #: classes/class-content-types.php:18 classes/class-content-types.php:20
-#: classes/class-plugin.php:95
+#: classes/class-plugin.php:107
 msgid "Projects"
 msgstr ""
 
-#: classes/class-content-types.php:21 classes/class-plugin.php:98
+#: classes/class-content-types.php:21 classes/class-plugin.php:110
 #: templates/projects-table-view.php:8
 msgid "Project"
 msgstr ""
 
-#: classes/class-content-types.php:23 classes/class-plugin.php:103
+#: classes/class-content-types.php:23 classes/class-plugin.php:115
 msgid "Add New Project"
 msgstr ""
 
@@ -147,7 +152,7 @@ msgstr ""
 msgid "Edit Project"
 msgstr ""
 
-#: classes/class-content-types.php:25 classes/class-plugin.php:102
+#: classes/class-content-types.php:25 classes/class-plugin.php:114
 msgid "New Project"
 msgstr ""
 
@@ -163,7 +168,7 @@ msgstr ""
 msgid "Search Projects"
 msgstr ""
 
-#: classes/class-content-types.php:29 classes/class-plugin.php:100
+#: classes/class-content-types.php:29 classes/class-plugin.php:112
 msgid "No projects found."
 msgstr ""
 
@@ -243,39 +248,39 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: classes/class-plugin.php:94
+#: classes/class-plugin.php:106
 msgid "Involved Persons"
 msgstr ""
 
-#: classes/class-plugin.php:99
+#: classes/class-plugin.php:111
 msgid "Search project"
 msgstr ""
 
-#: classes/class-plugin.php:101
+#: classes/class-plugin.php:113
 msgid "Add Project"
 msgstr ""
 
-#: classes/class-plugin.php:106
+#: classes/class-plugin.php:118
 msgid "Person"
 msgstr ""
 
-#: classes/class-plugin.php:107
+#: classes/class-plugin.php:119
 msgid "Search person"
 msgstr ""
 
-#: classes/class-plugin.php:108
+#: classes/class-plugin.php:120
 msgid "No persons found."
 msgstr ""
 
-#: classes/class-plugin.php:109
+#: classes/class-plugin.php:121
 msgid "Add Person"
 msgstr ""
 
-#: classes/class-plugin.php:110
+#: classes/class-plugin.php:122
 msgid "New Person"
 msgstr ""
 
-#: classes/class-plugin.php:111
+#: classes/class-plugin.php:123
 msgid "Add New Person"
 msgstr ""
 

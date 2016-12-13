@@ -11,6 +11,8 @@ $principal_id   = get_post_meta( $post->ID, '_orbis_project_principal_id', true 
 $seconds        = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
 $agreement_id   = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
 
+$price = $orbis_project->get_price();
+
 $project = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects WHERE post_id = %d;", $post->ID ) );
 
 if ( $project ) {
@@ -37,6 +39,14 @@ if ( $project ) {
 			</th>
 			<td>
 				<input type="text" id="_orbis_project_principal_id" name="_orbis_project_principal_id" value="<?php echo esc_attr( $principal_id ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $principal_id ); ?>" placeholder="<?php _e( 'Select Client', 'orbis-projects' ); ?>" />
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_project_price"><?php esc_html_e( 'Price', 'orbis-projects' ); ?></label>
+			</th>
+			<td>
+				<input type="text" id="orbis_project_price" name="_orbis_price" value="<?php echo esc_attr( empty( $price ) ? '' : number_format_i18n( $price, 2 ) ); ?>" class="regular-text" />
 			</td>
 		</tr>
 		<tr valign="top">
