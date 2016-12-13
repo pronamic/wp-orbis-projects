@@ -29,7 +29,7 @@ if ( $project ) {
 	<tbody>
 		<tr valign="top">
 			<th scope="row">
-				<label for="orbis_project_id"><?php _e( 'Orbis ID', 'orbis_projects' ); ?></label>
+				<label for="orbis_project_id"><?php _e( 'Orbis ID', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
 				<input id="orbis_project_id" name="_orbis_project_id" value="<?php echo esc_attr( $orbis_id ); ?>" type="text" class="regular-text" readonly="readonly" />
@@ -37,55 +37,55 @@ if ( $project ) {
 		</tr>
 		<tr valign="top">
 			<th scope="row">
-				<label for="_orbis_project_principal_id"><?php _e( 'Client', 'orbis_projects' ); ?></label>
+				<label for="_orbis_project_principal_id"><?php _e( 'Client', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
-				<input type="text" id="_orbis_project_principal_id" name="_orbis_project_principal_id" value="<?php echo esc_attr( $principal_id ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $principal_id ); ?>" placeholder="<?php _e( 'Select Client', 'orbis_projects' ); ?>" />
+				<input type="text" id="_orbis_project_principal_id" name="_orbis_project_principal_id" value="<?php echo esc_attr( $principal_id ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $principal_id ); ?>" placeholder="<?php _e( 'Select Client', 'orbis-projects' ); ?>" />
 			</td>
 		</tr>
 		<tr valign="top">
 			<th scope="row">
-				<label for="_orbis_project_seconds_available"><?php _e( 'Time', 'orbis_projects' ); ?></label>
+				<label for="_orbis_project_seconds_available"><?php _e( 'Time', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
 				<input size="5" id="_orbis_project_seconds_available" name="_orbis_project_seconds_available" value="<?php echo esc_attr( orbis_time( $seconds ) ); ?>" type="text"  class="small-text" />
 
 				<p class="description">
-					<?php _e( 'You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes).', 'orbis_projects' ); ?>
+					<?php _e( 'You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes).', 'orbis-projects' ); ?>
 				</p>
 			</td>
 		</tr>
 		<tr valign="top">
 			<th scope="row">
 				<label for="_orbis_project_agreement_id">
-					<?php _e( 'Agreement ID', 'orbis_projects' ); ?>
+					<?php _e( 'Agreement ID', 'orbis-projects' ); ?>
 				</label>
 			</th>
 			<td>
 				<input size="5" type="text" id="_orbis_project_agreement_id" name="_orbis_project_agreement_id" value="<?php echo esc_attr( $agreement_id ); ?>" />
 
 				<a id="choose-from-library-link" class="button"
-					data-choose="<?php esc_attr_e( 'Choose a Agreement', 'orbis_projects' ); ?>"
+					data-choose="<?php esc_attr_e( 'Choose a Agreement', 'orbis-projects' ); ?>"
 					data-type="<?php echo esc_attr( 'application/pdf, plain/text' ); ?>"
 					data-element="<?php echo esc_attr( '_orbis_project_agreement_id' ); ?>"
-					data-update="<?php esc_attr_e( 'Set as Agreement', 'orbis_projects' ); ?>"><?php _e( 'Choose a Agreement', 'orbis_projects' ); ?></a>
+					data-update="<?php esc_attr_e( 'Set as Agreement', 'orbis-projects' ); ?>"><?php _e( 'Choose a Agreement', 'orbis-projects' ); ?></a>
 
 				<p class="description">
-					<?php _e( 'You can select an .PDF or .TXT file from the WordPress media library.', 'orbis_projects' ); ?><br />
-					<?php _e( 'If you received the agreement by mail print the complete mail conversation with an PDF printer.', 'orbis_projects' ); ?>
+					<?php _e( 'You can select an .PDF or .TXT file from the WordPress media library.', 'orbis-projects' ); ?><br />
+					<?php _e( 'If you received the agreement by mail print the complete mail conversation with an PDF printer.', 'orbis-projects' ); ?>
 				</p>
 			</td>
 		</tr>
 		<tr valign="top">
 			<th scope="row">
 				<label for="_orbis_project_is_finished">
-					<?php _e( 'Finished', 'orbis_projects' ); ?>
+					<?php _e( 'Finished', 'orbis-projects' ); ?>
 				</label>
 			</th>
 			<td>
 				<label for="_orbis_project_is_finished">
 					<input type="checkbox" value="yes" id="_orbis_project_is_finished" name="_orbis_project_is_finished" <?php checked( $is_finished ); ?> />
-					<?php _e( 'Project is finished', 'orbis_projects' ); ?>
+					<?php _e( 'Project is finished', 'orbis-projects' ); ?>
 				</label>
 			</td>
 		</tr>
@@ -93,13 +93,13 @@ if ( $project ) {
 		<tr valign="top">
 			<th scope="row">
 				<label for="_orbis_project_is_invoicable">
-					<?php _e( 'Invoicable', 'orbis_finance' ); ?>
+					<?php _e( 'Invoicable', 'orbis-projects' ); ?>
 				</label>
 			</th>
 			<td>
 				<label for="_orbis_project_is_invoicable">
 					<input type="checkbox" value="yes" id="_orbis_project_is_invoicable" name="_orbis_project_is_invoicable" <?php checked( $is_invoicable ); ?> />
-					<?php _e( 'Project is invoicable', 'orbis_finance' ); ?>
+					<?php _e( 'Project is invoicable', 'orbis-projects' ); ?>
 				</label>
 			</td>
 		</tr>
@@ -109,13 +109,13 @@ if ( $project ) {
 			<tr valign="top">
 				<th scope="row">
 					<label for="_orbis_project_is_invoiced">
-						<?php _e( 'Invoiced', 'orbis_finance' ); ?>
+						<?php _e( 'Invoiced', 'orbis-projects' ); ?>
 					</label>
 				</th>
 				<td>
 					<label for="_orbis_project_is_invoiced">
 						<input type="checkbox" value="yes" id="_orbis_project_is_invoiced" name="_orbis_project_is_invoiced" <?php checked( $is_invoiced ); ?> />
-						<?php _e( 'Project is invoiced', 'orbis_finance' ); ?>
+						<?php _e( 'Project is invoiced', 'orbis-projects' ); ?>
 					</label>
 				</td>
 			</tr>
@@ -125,7 +125,7 @@ if ( $project ) {
 		<tr valign="top">
 			<th scope="row">
 				<label for="orbis_project_invoice_number">
-					<?php _e( 'Invoice Number', 'orbis_finance' ); ?>
+					<?php _e( 'Invoice Number', 'orbis-projects' ); ?>
 				</label>
 			</th>
 			<td>

@@ -15,49 +15,49 @@ msgstr ""
 "X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: admin/meta-box-project-details.php:29
+#: admin/meta-box-project-details.php:32
 #: templates/projects-without-agreement.php:35
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:37 templates/projects-table-view.php:7
+#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:7
 msgid "Client"
 msgstr "Klant"
 
-#: admin/meta-box-project-details.php:40
+#: admin/meta-box-project-details.php:43
 msgid "Select Client"
 msgstr "Selecteer klant"
 
-#: admin/meta-box-project-details.php:45 includes/projects.php:367
+#: admin/meta-box-project-details.php:48 includes/projects.php:423
 #: templates/projects-table-view.php:11
 msgid "Time"
 msgstr "Tijd"
 
-#: admin/meta-box-project-details.php:51
+#: admin/meta-box-project-details.php:54
 msgid ""
 "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr ""
 "Je kunt de tijd invoeren als 1.5 of 1:30 (beide zijn 1 uur en 30 minuten)."
 
-#: admin/meta-box-project-details.php:58
+#: admin/meta-box-project-details.php:61
 msgid "Agreement ID"
 msgstr "Akkoord ID"
 
-#: admin/meta-box-project-details.php:65 admin/meta-box-project-details.php:68
+#: admin/meta-box-project-details.php:68 admin/meta-box-project-details.php:71
 msgid "Choose a Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-project-details.php:68
+#: admin/meta-box-project-details.php:71
 msgid "Set as Agreement"
 msgstr "Stel in als akkoord"
 
-#: admin/meta-box-project-details.php:71
+#: admin/meta-box-project-details.php:74
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 "Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media "
 "bibliotheek."
 
-#: admin/meta-box-project-details.php:72
+#: admin/meta-box-project-details.php:75
 msgid ""
 "If you received the agreement by mail print the complete mail conversation "
 "with an PDF printer."
@@ -65,69 +65,93 @@ msgstr ""
 "Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail "
 "conversatie uit met een PDF-printer."
 
-#: admin/meta-box-project-details.php:79
+#: admin/meta-box-project-details.php:82
 msgid "Finished"
 msgstr "Afgerond"
 
-#: admin/meta-box-project-details.php:85
+#: admin/meta-box-project-details.php:88
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: classes/orbis-projects-plugin.php:33
+#: admin/meta-box-project-details.php:96
+#, fuzzy
+msgid "Invoicable"
+msgstr "Factureerbaar"
+
+#: admin/meta-box-project-details.php:102
+#, fuzzy
+msgid "Project is invoicable"
+msgstr "Project is afgerond"
+
+#: admin/meta-box-project-details.php:112
+#, fuzzy
+msgid "Invoiced"
+msgstr "Factureerbaar"
+
+#: admin/meta-box-project-details.php:118
+#, fuzzy
+msgid "Project is invoiced"
+msgstr "Project is afgerond"
+
+#: admin/meta-box-project-details.php:128 templates/projects-table-view.php:13
+msgid "Invoice Number"
+msgstr "Factuurnummer"
+
+#: classes/orbis-projects-plugin.php:77
 msgid "Involved Persons"
 msgstr "Betrokken personen"
 
-#: classes/orbis-projects-plugin.php:34 includes/post.php:7 includes/post.php:9
+#: classes/orbis-projects-plugin.php:78 includes/post.php:7 includes/post.php:9
 #: includes/post.php:21
 msgid "Projects"
 msgstr "Projecten"
 
-#: classes/orbis-projects-plugin.php:37 includes/post.php:10
+#: classes/orbis-projects-plugin.php:81 includes/post.php:10
 #: templates/projects-table-view.php:8
 msgid "Project"
 msgstr "Project"
 
-#: classes/orbis-projects-plugin.php:38
+#: classes/orbis-projects-plugin.php:82
 msgid "Search project"
 msgstr "Zoek project"
 
-#: classes/orbis-projects-plugin.php:39 includes/post.php:18
+#: classes/orbis-projects-plugin.php:83 includes/post.php:18
 msgid "No projects found."
 msgstr "Geen projecten gevonden."
 
-#: classes/orbis-projects-plugin.php:40
+#: classes/orbis-projects-plugin.php:84
 msgid "Add Project"
 msgstr "Project toevoegen"
 
-#: classes/orbis-projects-plugin.php:41 includes/post.php:14
+#: classes/orbis-projects-plugin.php:85 includes/post.php:14
 msgid "New Project"
 msgstr "Nieuw project"
 
-#: classes/orbis-projects-plugin.php:42 includes/post.php:12
+#: classes/orbis-projects-plugin.php:86 includes/post.php:12
 msgid "Add New Project"
 msgstr "Nieuw project toevoegen"
 
-#: classes/orbis-projects-plugin.php:45
+#: classes/orbis-projects-plugin.php:89
 msgid "Person"
 msgstr "Persoon"
 
-#: classes/orbis-projects-plugin.php:46
+#: classes/orbis-projects-plugin.php:90
 msgid "Search person"
 msgstr "Zoek persoon"
 
-#: classes/orbis-projects-plugin.php:47
+#: classes/orbis-projects-plugin.php:91
 msgid "No persons found."
 msgstr "Geen personen gevonden."
 
-#: classes/orbis-projects-plugin.php:48
+#: classes/orbis-projects-plugin.php:92
 msgid "Add Person"
 msgstr "Persoon toevoegen"
 
-#: classes/orbis-projects-plugin.php:49
+#: classes/orbis-projects-plugin.php:93
 msgid "New Person"
 msgstr "Nieuw persoon"
 
-#: classes/orbis-projects-plugin.php:50
+#: classes/orbis-projects-plugin.php:94
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
@@ -195,35 +219,39 @@ msgstr "Categorieën"
 msgid "Project Information"
 msgstr "Projectinformatie"
 
-#: includes/projects.php:248
+#: includes/projects.php:263
 msgid "This \"%1$s\" project is just \"%2$s\" by %3$s."
 msgstr "Dit \"%1$s\" project is zojuist \"%2$s\" door %3$s."
 
-#: includes/projects.php:249 includes/projects.php:250
+#: includes/projects.php:264 includes/projects.php:265
 msgid "opened"
 msgstr "geopend"
 
-#: includes/projects.php:249 includes/projects.php:250
+#: includes/projects.php:264 includes/projects.php:265
 msgid "completed"
 msgstr "afgerond"
 
-#: includes/projects.php:365 templates/projects-without-agreement.php:38
+#: includes/projects.php:305
+msgid "Invoice Number '%s' was registered on this project by %s."
+msgstr ""
+
+#: includes/projects.php:421 templates/projects-without-agreement.php:38
 msgid "Title"
 msgstr "Titel"
 
-#: includes/projects.php:366 templates/projects-without-agreement.php:37
+#: includes/projects.php:422 templates/projects-without-agreement.php:37
 msgid "Principal"
 msgstr "Opdrachtgever"
 
-#: includes/projects.php:368
+#: includes/projects.php:424
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/projects.php:369
+#: includes/projects.php:425
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/projects.php:370 templates/projects-table-view.php:9
+#: includes/projects.php:426 templates/projects-table-view.php:9
 msgid "Date"
 msgstr "Datum"
 
@@ -242,10 +270,6 @@ msgstr "Reactie"
 #: templates/projects-table-view.php:12
 msgid "Invoiceable"
 msgstr "Factureerbaar"
-
-#: templates/projects-table-view.php:13
-msgid "Invoice Number"
-msgstr "Factuurnummer"
 
 #: templates/projects-table-view.php:61
 msgid "%1$s says on %2$s:"

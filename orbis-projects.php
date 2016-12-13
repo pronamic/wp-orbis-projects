@@ -10,19 +10,13 @@ Requires at least: 3.5
 Author: Pronamic
 Author URI: https://www.pronamic.eu/
 
-Text Domain: orbis_projects
+Text Domain: orbis-projects
 Domain Path: /languages/
 
 License: Copyright (c) Pronamic
 
 GitHub URI: https://github.com/wp-orbis/wp-orbis-projects
 */
-
-/**
- * Includes
- */
-require_once 'includes/projects.php';
-require_once 'includes/shortcodes.php';
 
 /**
  * Bootstrap
@@ -38,4 +32,4 @@ function orbis_projects_bootstrap() {
 	$orbis_projects_plugin = new Orbis_Projects_Plugin( __FILE__ );
 }
 
-add_action( 'orbis_bootstrap', 'orbis_projects_bootstrap' );
+add_action( 'plugins_loaded', 'orbis_projects_bootstrap' );

@@ -53,7 +53,7 @@ module.exports = function( grunt ) {
 		// Check textdomain errors
 		checktextdomain: {
 			options:{
-				text_domain: 'orbis_projects',
+				text_domain: 'orbis-projects',
 				keywords: [
 					'__:1,2d',
 					'_e:1,2d',

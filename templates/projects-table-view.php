@@ -2,15 +2,15 @@
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th scope="col"><?php _e( 'Manager', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php _e( 'ID', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php _e( 'Client', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php _e( 'Project', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php _e( 'Date', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php _e( 'Comment', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php _e( 'Time', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php _e( 'Invoiceable', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php _e( 'Invoice Number', 'orbis_projects' ); ?></th>
+				<th scope="col"><?php _e( 'Manager', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'ID', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'Client', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'Project', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'Date', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'Comment', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'Time', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'Invoiceable', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'Invoice Number', 'orbis-projects' ); ?></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -58,7 +58,7 @@
 
 							foreach ( $comments as $comment ) {
 								$title = sprintf(
-									__( '%1$s says on %2$s:', 'orbis_projects' ),
+									__( '%1$s says on %2$s:', 'orbis-projects' ),
 									'<strong>' . $comment->comment_author . '</strong>',
 									'<strong>' . date_i18n( 'j M Y', strtotime( $comment->comment_date ) ) . '</strong>'
 								);
@@ -91,7 +91,7 @@
 							$text .= '<i class="fa fa-pencil" aria-hidden="true"></i>';
 							$text .= sprintf(
 								'<span class="sr-only sr-only-focusable">%s</span>',
-								__( 'Edit', 'orbis_projects' )
+								__( 'Edit', 'orbis-projects' )
 							);
 
 							edit_post_link( $text, '', '', $project->project_post_id );

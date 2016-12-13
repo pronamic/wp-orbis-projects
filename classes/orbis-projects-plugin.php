@@ -10,18 +10,19 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		// Actions
 		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
 
+		// Load text domain
+		$this->load_textdomain( 'orbis-projects', '/languages/' );
+
 		// Includes
 		$this->plugin_include( 'includes/project.php' );
 		$this->plugin_include( 'includes/project-template.php' );
 		$this->plugin_include( 'includes/post.php' );
+		$this->plugin_include( 'includes/projects.php' );
+		$this->plugin_include( 'includes/shortcodes.php' );
 
 		// Tables
 		orbis_register_table( 'orbis_projects' );
 		orbis_register_table( 'orbis_projects_invoices' );
-	}
-
-	public function loaded() {
-		$this->load_textdomain( 'orbis_projects', '/languages/' );
 	}
 
 	/**
@@ -73,24 +74,24 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			'from'        => 'orbis_project',
 			'to'          => 'orbis_person',
 			'title'       => array(
-				'from' => __( 'Involved Persons', 'orbis_projects' ),
-				'to'   => __( 'Projects', 'orbis_projects' ),
+				'from' => __( 'Involved Persons', 'orbis-projects' ),
+				'to'   => __( 'Projects', 'orbis-projects' ),
 			),
 			'from_labels' => array(
-				'singular_name' => __( 'Project', 'orbis_projects' ),
-				'search_items'  => __( 'Search project', 'orbis_projects' ),
-				'not_found'     => __( 'No projects found.', 'orbis_projects' ),
-				'create'        => __( 'Add Project', 'orbis_projects' ),
-				'new_item'      => __( 'New Project', 'orbis_projects' ),
-				'add_new_item'  => __( 'Add New Project', 'orbis_projects' ),
+				'singular_name' => __( 'Project', 'orbis-projects' ),
+				'search_items'  => __( 'Search project', 'orbis-projects' ),
+				'not_found'     => __( 'No projects found.', 'orbis-projects' ),
+				'create'        => __( 'Add Project', 'orbis-projects' ),
+				'new_item'      => __( 'New Project', 'orbis-projects' ),
+				'add_new_item'  => __( 'Add New Project', 'orbis-projects' ),
 			),
 			'to_labels'   => array(
-				'singular_name' => __( 'Person', 'orbis_projects' ),
-				'search_items'  => __( 'Search person', 'orbis_projects' ),
-				'not_found'     => __( 'No persons found.', 'orbis_projects' ),
-				'create'        => __( 'Add Person', 'orbis_projects' ),
-				'new_item'      => __( 'New Person', 'orbis_projects' ),
-				'add_new_item'  => __( 'Add New Person', 'orbis_projects' ),
+				'singular_name' => __( 'Person', 'orbis-projects' ),
+				'search_items'  => __( 'Search person', 'orbis-projects' ),
+				'not_found'     => __( 'No persons found.', 'orbis-projects' ),
+				'create'        => __( 'Add Person', 'orbis-projects' ),
+				'new_item'      => __( 'New Person', 'orbis-projects' ),
+				'add_new_item'  => __( 'Add New Person', 'orbis-projects' ),
 			),
 		) );
 	}

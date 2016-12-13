@@ -6,7 +6,7 @@
 function orbis_project_add_meta_boxes() {
 	add_meta_box(
 		'orbis_project',
-		__( 'Project Information', 'orbis_projects' ),
+		__( 'Project Information', 'orbis-projects' ),
 		'orbis_project_meta_box',
 		'orbis_project',
 		'normal',
@@ -260,9 +260,9 @@ function orbis_project_finished_update( $post_id, $is_finished ) {
 	$user = wp_get_current_user();
 
 	$comment_content = sprintf(
-		__( 'This "%1$s" project is just "%2$s" by %3$s.', 'orbis_projects' ),
-		$is_finished ? __( 'opened', 'orbis_projects' ) : __( 'completed', 'orbis_projects' ),
-		$is_finished ? __( 'completed', 'orbis_projects' ) : __( 'opened', 'orbis_projects' ),
+		__( 'This "%1$s" project is just "%2$s" by %3$s.', 'orbis-projects' ),
+		$is_finished ? __( 'opened', 'orbis-projects' ) : __( 'completed', 'orbis-projects' ),
+		$is_finished ? __( 'completed', 'orbis-projects' ) : __( 'opened', 'orbis-projects' ),
 		$user->display_name
 	);
 
@@ -302,7 +302,7 @@ function orbis_project_invoice_number_update( $post_id, $invoice_number_old, $in
 	}
 	
 	$comment_content = sprintf(
-		__( "Invoice Number '%s' was registered on this project by %s.", 'orbis_finance' ),
+		__( "Invoice Number '%s' was registered on this project by %s.", 'orbis-projects' ),
 		$text,
 		$user->display_name
 	);
@@ -418,12 +418,12 @@ add_action( 'save_post', 'orbis_save_project_sync', 500, 2 );
 function orbis_project_edit_columns( $columns ) {
 	$columns = array(
 		'cb'                      => '<input type="checkbox" />',
-		'title'                   => __( 'Title', 'orbis_projects' ),
-		'orbis_project_principal' => __( 'Principal', 'orbis_projects' ),
-		'orbis_project_time'      => __( 'Time', 'orbis_projects' ),
-		'author'                  => __( 'Author', 'orbis_projects' ),
-		'comments'                => __( 'Comments', 'orbis_projects' ),
-		'date'                    => __( 'Date', 'orbis_projects' ),
+		'title'                   => __( 'Title', 'orbis-projects' ),
+		'orbis_project_principal' => __( 'Principal', 'orbis-projects' ),
+		'orbis_project_time'      => __( 'Time', 'orbis-projects' ),
+		'author'                  => __( 'Author', 'orbis-projects' ),
+		'comments'                => __( 'Comments', 'orbis-projects' ),
+		'date'                    => __( 'Date', 'orbis-projects' ),
 	);
 
 	return $columns;
