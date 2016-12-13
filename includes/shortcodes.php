@@ -7,13 +7,13 @@
  * @return string
  */
 function orbis_shortcode_projects_active() {
-	global $orbis_plugin;
+	global $orbis_projects_plugin;
 
 	$return  = '';
 
 	ob_start();
 
-	$orbis_plugin->plugin_include( 'templates/projects.php' );
+	$orbis_projects_plugin->plugin_include( 'templates/projects.php' );
 
 	$return = ob_get_contents();
 
@@ -31,13 +31,13 @@ add_shortcode( 'orbis_projects_active', 'orbis_shortcode_projects_active' );
 * @return string
 */
 function orbis_shortcode_projects_without_agreement() {
-	global $orbis_plugin;
+	global $orbis_projects_plugin;
 
 	$return  = '';
 
 	ob_start();
 
-	$orbis_plugin->plugin_include( 'templates/projects-without-agreement.php' );
+	$orbis_projects_plugin->plugin_include( 'templates/projects-without-agreement.php' );
 
 	$return = ob_get_contents();
 
@@ -55,13 +55,13 @@ add_shortcode( 'orbis_projects_without_agreement', 'orbis_shortcode_projects_wit
  * @return string
  */
 function orbis_shortcode_projects_to_invoice() {
-	global $orbis_plugin;
+	global $orbis_projects_plugin;
 
 	$return  = '';
 
 	ob_start();
 
-	$orbis_plugin->plugin_include( 'templates/projects-to-invoice.php' );
+	$orbis_projects_plugin->plugin_include( 'templates/projects-to-invoice.php' );
 
 	$return = ob_get_contents();
 
