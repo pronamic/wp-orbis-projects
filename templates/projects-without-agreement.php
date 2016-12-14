@@ -54,6 +54,8 @@ if ( $query->have_posts() ) : ?>
 						<td>
 							<?php
 
+							global $orbis_project;
+
 							if ( $orbis_project->has_principal() ) {
 								printf(
 									'<a href="%s">%s</a>',
