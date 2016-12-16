@@ -8,6 +8,7 @@
 				<th scope="col"><?php _e( 'Project', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php _e( 'Date', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php _e( 'Comment', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php _e( 'Price', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php _e( 'Time', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php _e( 'Invoiceable', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php _e( 'Invoice Number', 'orbis-projects' ); ?></th>
@@ -73,6 +74,9 @@
 							}
 
 							?>
+						</td>
+						<td>
+							<?php echo esc_html( orbis_price( get_post_meta( $project->project_post_id, '_orbis_price', true ) ) ); ?>
 						</td>
 						<td style="white-space: nowrap;">
 							<span style="color: <?php echo esc_attr( $project->failed ? 'Red' : 'Green' ); ?>;"><?php echo esc_html( orbis_time( $project->registered_seconds ) ); ?></span>
