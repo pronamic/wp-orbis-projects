@@ -1,4 +1,4 @@
-# Copyright (C) 2016 Pronamic
+# Copyright (C) 2017 Pronamic
 # This file is distributed under the Copyright (c) Pronamic.
 msgid ""
 msgstr ""
@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
@@ -28,12 +28,13 @@ msgstr ""
 
 #: admin/meta-box-project-details.php:46
 #: classes/class-admin-project-post-type.php:33
+#: templates/projects-table-view.php:11
 msgid "Price"
 msgstr ""
 
 #: admin/meta-box-project-details.php:54
 #: classes/class-admin-project-post-type.php:34
-#: templates/projects-table-view.php:11
+#: templates/projects-table-view.php:12
 msgid "Time"
 msgstr ""
 
@@ -87,8 +88,16 @@ msgstr ""
 msgid "Project is invoiced"
 msgstr ""
 
-#: admin/meta-box-project-details.php:134 templates/projects-table-view.php:13
+#: admin/meta-box-project-details.php:134 templates/projects-table-view.php:14
 msgid "Invoice Number"
+msgstr ""
+
+#: admin/meta-box-project-details.php:143
+msgid "Payment Method"
+msgstr ""
+
+#: admin/meta-box-project-details.php:154
+msgid "— Select Payment Method —"
 msgstr ""
 
 #: classes/class-admin-project-post-type.php:31
@@ -296,16 +305,16 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: templates/projects-table-view.php:12
+#: templates/projects-table-view.php:13
 msgid "Invoiceable"
 msgstr ""
 
-#: templates/projects-table-view.php:61
+#: templates/projects-table-view.php:62
 msgid "%1$s says on %2$s:"
 msgstr ""
 
-#: templates/projects-table-view.php:94
-#: templates/projects-without-agreement.php:74
+#: templates/projects-table-view.php:98
+#: templates/projects-without-agreement.php:76
 msgid "Edit"
 msgstr ""
 

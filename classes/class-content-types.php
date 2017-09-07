@@ -75,5 +75,7 @@ class Orbis_Projects_ContentTypes {
 				),
 			)
 		);
+
+		register_taxonomy_for_object_type( 'orbis_payment_method', 'orbis_project' );
 	}
 }

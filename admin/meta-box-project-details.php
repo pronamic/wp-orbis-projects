@@ -138,6 +138,28 @@ if ( $project ) {
 				<input type="text" id="orbis_project_invoice_number" name="_orbis_project_invoice_number" value="<?php echo esc_attr( $invoice_number ); ?>" />
 			</td>
 		</tr>
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_project_payment_method"><?php _e( 'Payment Method', 'orbis-projects' ); ?></label>
+			</th>
+			<td>
+				<?php
+
+				$terms = wp_get_post_terms( $post->ID, 'orbis_payment_method' );
+
+				$term = array_shift( $terms );
+
+				wp_dropdown_categories( array(
+					'name'             => 'tax_input[orbis_payment_method]',
+					'show_option_none' => __( '— Select Payment Method —', 'orbis-projects' ),
+					'hide_empty'       => false,
+					'selected'         => is_object( $term ) ? $term->term_id : false,
+					'taxonomy'         => 'orbis_payment_method',
+				) );
+
+				?>
+			</td>
+		</tr>
 	</tbody>
 </table>
 

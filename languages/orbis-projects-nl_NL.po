@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
 "POT-Creation-Date: 2016-11-21 11:40:28+00:00\n"
-"PO-Revision-Date: 2016-12-13 15:28+0100\n"
+"PO-Revision-Date: 2017-09-07 14:13+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -30,12 +30,13 @@ msgstr "Selecteer klant"
 
 #: admin/meta-box-project-details.php:46
 #: classes/class-admin-project-post-type.php:33
+#: templates/projects-table-view.php:11
 msgid "Price"
 msgstr "Prijs"
 
 #: admin/meta-box-project-details.php:54
 #: classes/class-admin-project-post-type.php:34
-#: templates/projects-table-view.php:11
+#: templates/projects-table-view.php:12
 msgid "Time"
 msgstr "Tijd"
 
@@ -97,9 +98,17 @@ msgid "Project is invoiced"
 msgstr "Project is gefactureerd"
 
 #: admin/meta-box-project-details.php:134
-#: templates/projects-table-view.php:13
+#: templates/projects-table-view.php:14
 msgid "Invoice Number"
 msgstr "Factuurnummer"
+
+#: admin/meta-box-project-details.php:143
+msgid "Payment Method"
+msgstr "Betaalmethode"
+
+#: admin/meta-box-project-details.php:154
+msgid "— Select Payment Method —"
+msgstr "— Selecteer betaalmethode —"
 
 #: classes/class-admin-project-post-type.php:31
 #: templates/projects-without-agreement.php:38
@@ -306,16 +315,16 @@ msgstr "ID"
 msgid "Comment"
 msgstr "Reactie"
 
-#: templates/projects-table-view.php:12
+#: templates/projects-table-view.php:13
 msgid "Invoiceable"
 msgstr "Factureerbaar"
 
-#: templates/projects-table-view.php:61
+#: templates/projects-table-view.php:62
 msgid "%1$s says on %2$s:"
 msgstr "%1$s zegt op %2$s:"
 
-#: templates/projects-table-view.php:94
-#: templates/projects-without-agreement.php:74
+#: templates/projects-table-view.php:98
+#: templates/projects-without-agreement.php:76
 msgid "Edit"
 msgstr "Bewerken"
 
