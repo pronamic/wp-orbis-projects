@@ -165,9 +165,9 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 				project.finished = 0
 					AND
 				(
-					project.name LIKE '%%%1\$s%%'
+					project.name LIKE %s
 						OR
-					principal.name LIKE '%%%1\$s%%'
+					principal.name LIKE %s
 				)
 			GROUP BY
 				project.id
@@ -175,7 +175,9 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 				project.id
 		";
 
-		$query = $wpdb->prepare( $query, $term ); // unprepared SQL
+		$like = '%' . $wpdb->esc_like( $term ) . '%';
+
+		$query = $wpdb->prepare( $query, $like, $like ); // unprepared SQL
 
 		$projects = $wpdb->get_results( $query ); // unprepared SQL
 
