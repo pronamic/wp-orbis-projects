@@ -6,6 +6,10 @@
 
 		<exclude name="WordPress.VIP.DirectDatabaseQuery.DirectQuery" />
 		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
+		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />
+		<exclude name="WordPress.VIP.RestrictedVariables.user_meta" />
+
+		<exclude name="WordPress.WP.PreparedSQL.NotPrepared" />
 	</rule>
 
 	<rule ref="WordPress.XSS.EscapeOutput">
