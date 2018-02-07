@@ -211,7 +211,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			$data[] = $result;
 		}
 
-		echo json_encode( $data );
+		echo wp_json_encode( $data );
 
 		die();
 	}

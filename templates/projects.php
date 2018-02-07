@@ -83,7 +83,7 @@ $parameters = $_GET;
 
 ?>
 <p>
-	<?php _e( 'Order By:', 'orbis-projects' ); ?> <a href="?order=name"><?php _e( 'Name', 'orbis-projects' ); ?></a> | <a href="?order=id"><?php _e( 'Number', 'orbis-projects' ); ?></a><br />
+	<?php esc_html_e( 'Order By:', 'orbis-projects' ); ?> <a href="?order=name"><?php esc_html_e( 'Name', 'orbis-projects' ); ?></a> | <a href="?order=id"><?php esc_html_e( 'Number', 'orbis-projects' ); ?></a><br />
 </p>
 
 <?php

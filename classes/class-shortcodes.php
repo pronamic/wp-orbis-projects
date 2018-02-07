@@ -70,5 +70,5 @@ class Orbis_Projects_Shortcodes {
 		ob_end_clean();
 
 		return $return;
-	}	
+	}
 }

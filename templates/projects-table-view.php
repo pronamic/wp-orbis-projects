@@ -2,16 +2,16 @@
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th scope="col"><?php _e( 'Manager', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'ID', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'Client', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'Project', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'Date', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'Comment', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'Price', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'Time', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'Invoiceable', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php _e( 'Invoice Number', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Manager', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'ID', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Project', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Comment', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Price', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Time', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Invoiceable', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
 				<th></th>
 			</tr>
 		</thead>

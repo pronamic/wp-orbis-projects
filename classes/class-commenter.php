@@ -54,7 +54,7 @@ class Orbis_Projects_Commenter {
 		$user = wp_get_current_user();
 
 		$text = $invoice_number_new;
-		
+
 		$invoice_link = orbis_get_invoice_link( $invoice_number_new );
 		if ( ! empty( $invoice_link ) ) {
 			$text = sprintf(
@@ -63,7 +63,7 @@ class Orbis_Projects_Commenter {
 				$invoice_number_new
 			);
 		}
-		
+
 		$comment_content = sprintf(
 			__( "Invoice Number '%s' was registered on this project by %s.", 'orbis-projects' ),
 			$text,

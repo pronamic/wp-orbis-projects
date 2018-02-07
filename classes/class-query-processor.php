@@ -37,12 +37,12 @@ class Orbis_Projects_QueryProcessor {
 	public function pre_get_posts_custom_invoicable( $query ) {
 		$orderby = $query->get( 'orderby' );
 
-		if ( 'project_invoice_number_modified' == $orderby ) {
+		if ( 'project_invoice_number_modified' === $orderby ) {
 			$query->set( 'orderby', 'meta_value_num' );
 			$query->set( 'meta_key', '_orbis_project_invoice_number_modified' );
 		}
 
-		if ( 'project_invoice_number' == $orderby ) {
+		if ( 'project_invoice_number' === $orderby ) {
 			$query->set( 'orderby', 'meta_value_num' );
 			$query->set( 'meta_key', '_orbis_project_invoice_number' );
 		}
@@ -96,6 +96,7 @@ class Orbis_Projects_QueryProcessor {
 	/**
 	 * Posts clauses
 	 *
+	 * Links:
 	 * http://codex.wordpress.org/WordPress_Query_Vars
 	 * http://codex.wordpress.org/Custom_Queries
 	 *
