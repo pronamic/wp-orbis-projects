@@ -41,7 +41,6 @@ class Orbis_Projects_ContentTypes {
 				'public'          => true,
 				'menu_position'   => 30,
 				'menu_icon'       => 'dashicons-portfolio',
-				'capability_type' => 'orbis_project',
 				'supports'        => array( 'title', 'editor', 'author', 'comments', 'custom-fields', 'revisions' ),
 				'has_archive'     => true,
 				'rewrite'         => array(

@@ -82,6 +82,15 @@ class Orbis_Projects_AdminProjectPostType {
 			'normal',
 			'high'
 		);
+
+		add_meta_box(
+			'orbis_project_invoices',
+			__( 'Project Invoices', 'orbis-projects' ),
+			array( $this, 'invoices_meta_box' ),
+			'orbis_project',
+			'normal',
+			'high'
+		);
 	}
 
 	/**
@@ -91,6 +100,15 @@ class Orbis_Projects_AdminProjectPostType {
 	 */
 	public function meta_box( $post ) {
 		$this->plugin->plugin_include( 'admin/meta-box-project-details.php' );
+	}
+
+	/**
+	 * Invoices meta box.
+	 *
+	 * @param mixed $post
+	 */
+	public function invoices_meta_box( $post ) {
+		$this->plugin->plugin_include( 'admin/meta-box-project-invoices.php' );
 	}
 
 	/**

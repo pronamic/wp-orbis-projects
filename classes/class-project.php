@@ -108,7 +108,7 @@ class Orbis_Project {
 	 * @param float  $amount
 	 * @return boolean
 	 */
-	public function register_invoice( $invoice_number, $amount ) {
+	public function register_invoice( $invoice_number, $amount, $hours ) {
 		global $wpdb;
 
 		// Insert subscription invoice
@@ -119,6 +119,7 @@ class Orbis_Project {
 				'invoice_number' => $invoice_number,
 				'amount'         => $amount,
 				'user_id'        => get_current_user_id(),
+				'hours'			 => $hours,
 				'create_date'    => date( 'Y-m-d H:i:s' ),
 			),
 			array(
@@ -126,6 +127,7 @@ class Orbis_Project {
 				'%s',
 				'%s',
 				'%d',
+				'%s',
 				'%s',
 			)
 		);
