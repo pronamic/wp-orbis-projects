@@ -73,7 +73,7 @@ if ( $project_invoices ) : ?>
 			<label for="_orbis_project_seconds_available"><?php esc_html_e( 'Invoice Time', 'orbis-projects' ); ?></label>
 		</th>
 		<td>
-			<input size="5" id="_orbis_project_seconds_available" name="_orbis_project_invoice_seconds_available" value="<?php echo esc_attr( orbis_time( $seconds ) ); ?>" type="text" />
+			<input size="5" id="_orbis_project_invoice_seconds_available" name="_orbis_project_invoice_seconds_available" value="<?php echo esc_attr( orbis_time( $seconds ) ); ?>" type="text" />
 
 			<p class="description">
 				<?php esc_html_e( 'You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes).', 'orbis-projects' ); ?>
