@@ -28,6 +28,8 @@ if ( $project_invoices ) : ?>
 			<th scope="col"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
+			<th scope="col"></th>
+			<th scope="col"></th>
 		</thead>
 
 		<?php foreach ( $project_invoices as $invoice ) : ?>
@@ -37,16 +39,26 @@ if ( $project_invoices ) : ?>
 					<span><?php echo esc_html( date_format( new DateTime( $invoice->create_date ), 'd-m-Y' ) ) ?></span>
 				</td>
 				<td>
-					<span><?php echo esc_html( orbis_price( $invoice->amount ) ) ?></span>
+					<input type="text" size="5" name="_orbis_project_invoice_amount_edit_<?php echo esc_html( $invoice->id ) ?>" value="<?php echo esc_html( $invoice->amount ) ?>"/>
 				</td>
 				<td>
-					<span><?php echo esc_html( orbis_time( $invoice->hours ) ) ?></span>
+					<input type="text" size="5" name="_orbis_project_invoice_seconds_available_edit_<?php echo esc_html( $invoice->id ) ?>" value="<?php echo esc_html( orbis_time( $invoice->hours ) ) ?>"/>
 				</td>
 				<td>
-					<span><?php echo esc_html( $invoice->invoice_number ) ?></span>
+					<input type="text" name="_orbis_project_invoice_number_edit_<?php echo esc_html( $invoice->id ) ?>" value="<?php echo esc_html( $invoice->invoice_number ) ?>"/>
 				</td>
 				<td>
 					<span><?php echo esc_html( $invoice->display_name ) ?></span>
+				</td>
+				<td>
+					<span style="float: right;">
+						<?php submit_button( __( 'Edit Invoice', 'orbis-projects' ), 'secondary', $invoice->id, false );?>
+					</span>
+				</td>
+				<td>
+					<span style="float: right;">
+						<?php submit_button( __( 'Delete Invoice', 'orbis-projects' ), 'secondary', $invoice->id, false );?>
+					</span>
 				</td>
 			</tr>
 
@@ -61,10 +73,19 @@ if ( $project_invoices ) : ?>
 <table class="widefat table">
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_project_invoice_number"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></label>
+			<label for="orbis_project_invoice_number_"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_project_invoice_number" name="_orbis_project_invoice_number" type="text" class="regular-text" />
+			<input id="orbis_project_invoice_number_" name="_orbis_project_invoice_number_" type="text" class="regular-text" />
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_project_invoice_amount"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_project_invoice_amount" name="_orbis_project_invoice_amount" type="text" class="regular-text" />
 		</td>
 	</tr>
 
@@ -80,12 +101,12 @@ if ( $project_invoices ) : ?>
 		</td>
 	</tr>
 
-	<tr valign="top">
+	<tr>
 		<th scope="row">
-			<label for="orbis_project_invoice_amount"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></label>
+			<label for="_orbis_project_is_final_invoice"><?php esc_html_e( 'Is Final Invoice', 'orbis-projects' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_project_invoice_amount" name="_orbis_project_invoice_amount" type="text" class="regular-text" />
+			<input type="checkbox" name="_orbis_project_is_final_invoice">
 		</td>
 	</tr>
 
