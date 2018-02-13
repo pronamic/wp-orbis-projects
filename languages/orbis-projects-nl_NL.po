@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
 "POT-Creation-Date: 2016-11-21 11:40:28+00:00\n"
-"PO-Revision-Date: 2018-02-12 14:10+0100\n"
+"PO-Revision-Date: 2018-02-13 15:49+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -41,7 +41,7 @@ msgid "Time"
 msgstr "Tijd"
 
 #: admin/meta-box-project-details.php:60
-#: admin/meta-box-project-invoices.php:79
+#: admin/meta-box-project-invoices.php:100
 msgid ""
 "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr ""
@@ -99,7 +99,7 @@ msgstr "Project is gefactureerd"
 
 #: admin/meta-box-project-details.php:134
 #: admin/meta-box-project-invoices.php:29
-#: admin/meta-box-project-invoices.php:64 templates/projects-table-view.php:14
+#: admin/meta-box-project-invoices.php:76 templates/projects-table-view.php:14
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
@@ -130,11 +130,23 @@ msgstr "Uren"
 msgid "User"
 msgstr "Gebruiker"
 
-#: admin/meta-box-project-invoices.php:73
+#: admin/meta-box-project-invoices.php:55
+msgid "Edit Invoice"
+msgstr "Factuur bewerken"
+
+#: admin/meta-box-project-invoices.php:60
+msgid "Delete Invoice"
+msgstr "Factuur verwijderen"
+
+#: admin/meta-box-project-invoices.php:94
 msgid "Invoice Time"
 msgstr "Factuur tijd"
 
-#: admin/meta-box-project-invoices.php:96
+#: admin/meta-box-project-invoices.php:106
+msgid "Is Final Invoice"
+msgstr "Is eindfactuur"
+
+#: admin/meta-box-project-invoices.php:117
 msgid "Add Invoice"
 msgstr "Factuur toevoegen"
 
