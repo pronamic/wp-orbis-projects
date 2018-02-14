@@ -30,6 +30,7 @@ class Orbis_Projects_Admin {
 	public function save_post( $post_id ) {
 
 		$inputs = filter_input_array( INPUT_POST );
+		$post_id = filter_input( INPUT_POST, 'post_ID', FILTER_SANITIZE_STRING );
 
 		// add a new invoice
 		if ( filter_has_var( INPUT_POST, 'orbis_projects_invoice_add' ) ) {
@@ -38,6 +39,7 @@ class Orbis_Projects_Admin {
 
 			$is_final_invoice = (filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING )) ? 1 : 0;
 
+			// check if it is a final invoice, set others to zero, then store the number to the project and update meta.
 			if ( $is_final_invoice ) {
 				$wpdb->update(
 					$wpdb->orbis_projects_invoices,
@@ -46,8 +48,21 @@ class Orbis_Projects_Admin {
 					),
 					array( 
 						'project_id' => filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
+						'is_final_invoice' => 1,
 					)
 				);
+
+				$wpdb->update(
+					$wpdb->orbis_projects,
+					array(
+						'invoice_number' => filter_input( INPUT_POST, '_orbis_project_invoice_number_', FILTER_SANITIZE_STRING ),
+					),
+					array(
+						'id' => filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
+					)
+				);
+
+				update_post_meta( $post_id, '_orbis_project_invoice_number', filter_input( INPUT_POST, '_orbis_project_invoice_number_', FILTER_SANITIZE_STRING ) );
 			}
 
 			$result = $wpdb->insert(
@@ -85,8 +100,21 @@ class Orbis_Projects_Admin {
 					),
 					array( 
 						'project_id' => filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
+						'is_final_invoice' => 1,
 					)
 				);
+
+				$wpdb->update(
+					$wpdb->orbis_projects,
+					array(
+						'invoice_number' => filter_input( INPUT_POST, $invoice_number_name, FILTER_SANITIZE_STRING ),
+					),
+					array(
+						'id' => filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
+					)
+				);
+
+				update_post_meta( $post_id, '_orbis_project_invoice_number', filter_input( INPUT_POST, $invoice_number_name, FILTER_SANITIZE_STRING ) );
 			}
 
 			$wpdb->update(

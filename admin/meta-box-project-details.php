@@ -128,16 +128,6 @@ if ( $project ) {
 
 		<?php endif; ?>
 
-		<tr valign="top">
-			<th scope="row">
-				<label for="orbis_project_invoice_number">
-					<?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?>
-				</label>
-			</th>
-			<td>
-				<input type="text" id="orbis_project_invoice_number" name="_orbis_project_invoice_number" value="<?php echo esc_attr( $invoice_number ); ?>" />
-			</td>
-		</tr>
 		<?php
 		$terms = get_the_terms( $post->ID, 'orbis_payment_method' );
 
