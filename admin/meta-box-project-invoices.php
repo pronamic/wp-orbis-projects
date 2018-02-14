@@ -28,6 +28,7 @@ if ( $project_invoices ) : ?>
 			<th scope="col"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
+			<th scope="col"><?php esc_html_e( 'Is Final Invoice', 'orbis-projects' ); ?></th>
 			<th scope="col"></th>
 			<th scope="col"></th>
 		</thead>
@@ -51,6 +52,13 @@ if ( $project_invoices ) : ?>
 					<span><?php echo esc_html( $invoice->display_name ) ?></span>
 				</td>
 				<td>
+					<?php if ( 1 <= $invoice->is_final_invoice ) : ?>
+						<input type="radio" name="_is_final_invoice_edit" value="<?php echo esc_html( $invoice->id ) ?>" checked>
+					<?php else : ?>
+						<input type="radio" name="_is_final_invoice_edit" value="<?php echo esc_html( $invoice->id ) ?>">
+					<?php endif; ?>
+				</td>
+				<td>
 					<span style="float: right;">
 						<?php submit_button( __( 'Edit Invoice', 'orbis-projects' ), 'secondary', $invoice->id, false );?>
 					</span>
@@ -68,7 +76,7 @@ if ( $project_invoices ) : ?>
 <?php endif; ?>
 
 <p>
-	<strong>Add new invoice:</strong>
+	<strong><?php esc_html_e( 'Add New Invoice:', 'orbis-projects' ); ?></strong>
 </p>
 <table class="widefat table">
 	<tr valign="top">
@@ -106,7 +114,7 @@ if ( $project_invoices ) : ?>
 			<label for="_orbis_project_is_final_invoice"><?php esc_html_e( 'Is Final Invoice', 'orbis-projects' ); ?></label>
 		</th>
 		<td>
-			<input type="checkbox" name="_orbis_project_is_final_invoice">
+			<input type="checkbox" name="_orbis_project_is_final_invoice" value="1">
 		</td>
 	</tr>
 
