@@ -134,6 +134,11 @@ class Orbis_Projects_Admin {
 			global $wpdb;
 
 			$invoice_id = array_search( __( 'Delete Invoice', 'orbis-projects' ), $inputs, true );
+			$invoice_final_id = intval( filter_input( INPUT_POST, '_is_final_invoice_edit', FILTER_SANITIZE_STRING ) );
+
+			if ( $invoice_final_id == $invoice_id ) {
+				delete_post_meta( $post_id, '_orbis_project_invoice_number' );
+			}
 
 			$result = $wpdb->delete(
 				$wpdb->orbis_projects_invoices,
