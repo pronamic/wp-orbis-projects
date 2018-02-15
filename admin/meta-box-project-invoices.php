@@ -21,7 +21,7 @@ $project_invoices = $wpdb->get_results( $wpdb->prepare( "
 
 if ( $project_invoices ) : ?>
 
-	<table class="widefat table">
+	<table class="widefat table" style="background: #f9f9f9;">
 		<thead>
 			<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
@@ -59,12 +59,12 @@ if ( $project_invoices ) : ?>
 					<?php endif; ?>
 				</td>
 				<td>
-					<span style="float: right;">
+					<span>
 						<?php submit_button( __( 'Edit Invoice', 'orbis-projects' ), 'secondary', $invoice->id, false );?>
 					</span>
 				</td>
 				<td>
-					<span style="float: right;">
+					<span>
 						<?php submit_button( __( 'Delete Invoice', 'orbis-projects' ), 'delete', $invoice->id, false );?>
 					</span>
 				</td>
@@ -78,7 +78,7 @@ if ( $project_invoices ) : ?>
 <p>
 	<strong><?php esc_html_e( 'Add New Invoice:', 'orbis-projects' ); ?></strong>
 </p>
-<table class="widefat table">
+<table class="widefat table" style="background: #f9f9f9;">
 	<tr valign="top">
 		<th scope="row">
 			<label for="orbis_project_invoice_number"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></label>
