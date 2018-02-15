@@ -127,3 +127,19 @@ if ( $project_invoices ) : ?>
 		</td>
 	</tr>
 </table>
+
+<script type="text/javascript">
+	( function( $ ) {
+		$( document ).ready( function() {
+			$( '.delete' ).on( 'click', function( e ) {
+				if ( ! confirm( '<?php _e( 'Are you sure you want to delete this invoice?', 'orbis-projects' ) ?>' )) {
+					if ( e.preventDefault ) {
+						e.preventDefault();
+					}
+
+				return false;
+				}
+			} );
+		} );
+	} )( jQuery );
+</script>
