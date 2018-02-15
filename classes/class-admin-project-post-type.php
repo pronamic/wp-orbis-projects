@@ -158,13 +158,19 @@ class Orbis_Projects_AdminProjectPostType {
 
 		$data['_orbis_project_seconds_available'] = orbis_filter_time_input( INPUT_POST, '_orbis_project_seconds_available' );
 
+		$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING )) ? 1 : 0;
+
+		if ( ! $is_final_invoice ) {
+			$data['_orbis_project_invoice_number'] = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
+		}
+
 		// Finished
 		$is_finished_old = filter_var( get_post_meta( $post_id, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
 		$is_finished_new = filter_var( $data['_orbis_project_is_finished'], FILTER_VALIDATE_BOOLEAN );
 
 		// Invoice number
 		$invoice_number_old = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
-		$invoice_number_new = $data['_orbis_project_invoice_number'] ;
+		$invoice_number_new = $data['_orbis_project_invoice_number'];
 
 		foreach ( $data as $key => $value ) {
 			if ( empty( $value ) ) {

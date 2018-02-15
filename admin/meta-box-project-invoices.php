@@ -65,7 +65,7 @@ if ( $project_invoices ) : ?>
 				</td>
 				<td>
 					<span style="float: right;">
-						<?php submit_button( __( 'Delete Invoice', 'orbis-projects' ), 'secondary', $invoice->id, false );?>
+						<?php submit_button( __( 'Delete Invoice', 'orbis-projects' ), 'delete', $invoice->id, false );?>
 					</span>
 				</td>
 			</tr>
@@ -81,10 +81,10 @@ if ( $project_invoices ) : ?>
 <table class="widefat table">
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_project_invoice_number_"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></label>
+			<label for="orbis_project_invoice_number"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_project_invoice_number_" name="_orbis_project_invoice_number_" type="text" class="regular-text" />
+			<input id="orbis_project_invoice_number" name="_orbis_project_invoice_number" type="text" class="regular-text" />
 		</td>
 	</tr>
 
