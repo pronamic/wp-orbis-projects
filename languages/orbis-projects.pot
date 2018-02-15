@@ -39,7 +39,7 @@ msgid "Time"
 msgstr ""
 
 #: admin/meta-box-project-details.php:60
-#: admin/meta-box-project-invoices.php:100
+#: admin/meta-box-project-invoices.php:108
 msgid "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr ""
 
@@ -89,17 +89,11 @@ msgstr ""
 msgid "Project is invoiced"
 msgstr ""
 
-#: admin/meta-box-project-details.php:134
-#: admin/meta-box-project-invoices.php:29
-#: admin/meta-box-project-invoices.php:76 templates/projects-table-view.php:14
-msgid "Invoice Number"
-msgstr ""
-
-#: admin/meta-box-project-details.php:148
+#: admin/meta-box-project-details.php:138
 msgid "Payment Method"
 msgstr ""
 
-#: admin/meta-box-project-details.php:154
+#: admin/meta-box-project-details.php:144
 msgid "— Select Payment Method —"
 msgstr ""
 
@@ -110,7 +104,7 @@ msgid "Date"
 msgstr ""
 
 #: admin/meta-box-project-invoices.php:27
-#: admin/meta-box-project-invoices.php:85
+#: admin/meta-box-project-invoices.php:93
 msgid "Amount"
 msgstr ""
 
@@ -118,28 +112,44 @@ msgstr ""
 msgid "Hours"
 msgstr ""
 
+#: admin/meta-box-project-invoices.php:29
+#: admin/meta-box-project-invoices.php:84 templates/projects-table-view.php:14
+msgid "Invoice Number"
+msgstr ""
+
 #: admin/meta-box-project-invoices.php:30
 msgid "User"
 msgstr ""
 
-#: admin/meta-box-project-invoices.php:55
-msgid "Edit Invoice"
-msgstr ""
-
-#: admin/meta-box-project-invoices.php:60
-msgid "Delete Invoice"
-msgstr ""
-
-#: admin/meta-box-project-invoices.php:94
-msgid "Invoice Time"
-msgstr ""
-
-#: admin/meta-box-project-invoices.php:106
+#: admin/meta-box-project-invoices.php:31
+#: admin/meta-box-project-invoices.php:114
 msgid "Is Final Invoice"
 msgstr ""
 
-#: admin/meta-box-project-invoices.php:117
+#: admin/meta-box-project-invoices.php:63 classes/class-admin.php:83
+#: classes/class-admin.php:86
+msgid "Edit Invoice"
+msgstr ""
+
+#: admin/meta-box-project-invoices.php:68 classes/class-admin.php:133
+#: classes/class-admin.php:136
+msgid "Delete Invoice"
+msgstr ""
+
+#: admin/meta-box-project-invoices.php:79
+msgid "Add New Invoice:"
+msgstr ""
+
+#: admin/meta-box-project-invoices.php:102
+msgid "Invoice Time"
+msgstr ""
+
+#: admin/meta-box-project-invoices.php:125
 msgid "Add Invoice"
+msgstr ""
+
+#: admin/meta-box-project-invoices.php:135
+msgid "Are you sure you want to delete this invoice?"
 msgstr ""
 
 #: classes/class-admin-project-post-type.php:31
