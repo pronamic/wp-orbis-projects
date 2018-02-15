@@ -191,7 +191,7 @@ msgid "completed"
 msgstr ""
 
 #: classes/class-commenter.php:68
-msgid "Invoice Number '%s' was registered on this project by %s."
+msgid "Invoice Number '%s' was registered as final invoice on this project by %s."
 msgstr ""
 
 #: classes/class-content-types.php:18 classes/class-content-types.php:20

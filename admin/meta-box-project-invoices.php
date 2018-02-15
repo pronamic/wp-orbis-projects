@@ -22,7 +22,7 @@ $project_invoices = $wpdb->get_results( $wpdb->prepare( "
 if ( $project_invoices ) : ?>
 
 	<table class="widefat table" style="background: #f9f9f9;">
-		<thead>
+		<thead style="background: #f1f1f1;">
 			<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>

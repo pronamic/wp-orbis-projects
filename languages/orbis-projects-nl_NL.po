@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
 "POT-Creation-Date: 2016-11-21 11:40:28+00:00\n"
-"PO-Revision-Date: 2018-02-15 10:02+0100\n"
+"PO-Revision-Date: 2018-02-15 10:41+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -199,8 +199,10 @@ msgid "completed"
 msgstr "afgerond"
 
 #: classes/class-commenter.php:68
-msgid "Invoice Number '%s' was registered on this project by %s."
-msgstr "Factuurnummer '%s' werd geregisteerd bij dit project door %s."
+msgid ""
+"Invoice Number '%s' was registered as final invoice on this project by %s."
+msgstr ""
+"Factuurnummer '%s' werd geregisteerd als eindfactuur bij dit project door %s."
 
 #: classes/class-content-types.php:18 classes/class-content-types.php:20
 #: classes/class-plugin.php:107

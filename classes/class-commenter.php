@@ -65,7 +65,7 @@ class Orbis_Projects_Commenter {
 		}
 
 		$comment_content = sprintf(
-			__( "Invoice Number '%s' was registered on this project by %s.", 'orbis-projects' ),
+			__( "Invoice Number '%s' was registered as final invoice on this project by %s.", 'orbis-projects' ),
 			$text,
 			$user->display_name
 		);
