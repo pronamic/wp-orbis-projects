@@ -38,6 +38,8 @@ class Orbis_Projects_Admin {
 			global $wpdb;
 
 			$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING )) ? 1 : 0;
+			$hours = orbis_filter_time_input( INPUT_POST, '_orbis_project_invoice_seconds_available', FILTER_SANITIZE_STRING );
+			$hours = ( ! $hours ) ? null : $hours;
 
 			// check if it is a final invoice, set others to zero, then store the number to the project and update meta.
 			if ( $is_final_invoice ) {
@@ -71,7 +73,7 @@ class Orbis_Projects_Admin {
 					'project_id'	 	=> filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
 					'invoice_number' 	=> filter_input( INPUT_POST, '_orbis_project_invoice_number', FILTER_SANITIZE_STRING ),
 					'amount'  			=> filter_input( INPUT_POST, '_orbis_project_invoice_amount', FILTER_SANITIZE_STRING ),
-					'hours'    			=> orbis_filter_time_input( INPUT_POST, '_orbis_project_invoice_seconds_available', FILTER_SANITIZE_STRING ),
+					'hours'    			=> $hours,
 					'is_final_invoice'  => $is_final_invoice,
 					'user_id'    		=> get_current_user_id(),
 					'create_date'    	=> filter_input( INPUT_POST, '_orbis_project_invoice_date', FILTER_SANITIZE_STRING ),
