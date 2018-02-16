@@ -40,7 +40,7 @@ if ( $project_invoices ) : ?>
 					<input id="orbis_project_invoice_date" name="_orbis_project_invoice_date_edit_<?php echo esc_html( $invoice->id ) ?>" type="date" value="<?php echo esc_html( date_format( new DateTime( $invoice->create_date ), 'Y-m-d' ) ) ?>" />
 				</td>
 				<td>
-					<input type="text" size="5" name="_orbis_project_invoice_amount_edit_<?php echo esc_html( $invoice->id ) ?>" value="<?php echo esc_html( $invoice->amount ) ?>"/>
+					<input type="text" size="10" name="_orbis_project_invoice_amount_edit_<?php echo esc_html( $invoice->id ) ?>" value="<?php echo esc_attr( empty( $invoice->amount ) ? '' : number_format_i18n( $invoice->amount, 2 ) ); ?>"/>
 				</td>
 				<td>
 					<input type="text" size="5" name="_orbis_project_invoice_seconds_available_edit_<?php echo esc_html( $invoice->id ) ?>" value="<?php echo esc_html( orbis_time( $invoice->hours ) ) ?>"/>
