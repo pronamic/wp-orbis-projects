@@ -55,6 +55,14 @@ class Orbis_Projects_Admin {
 					'hours'    			=> $hours,
 					'user_id'    		=> get_current_user_id(),
 					'create_date'    	=> filter_input( INPUT_POST, '_orbis_project_invoice_date', FILTER_SANITIZE_STRING ),
+				),
+				array(
+					'%d',
+					'%s',
+					'%f',
+					'%d',
+					'%d',
+					'%s',
 				)
 			);
 		}
@@ -90,7 +98,13 @@ class Orbis_Projects_Admin {
 						'hours'    			=> $hours,
 						'create_date'    	=> filter_input( INPUT_POST, $invoice_date_name, FILTER_SANITIZE_STRING ),
 					),
-					array( 'id' => $invoice_id )
+					array( 'id' => $invoice_id ),
+					array(
+						'%s',
+						'%f',
+						'%d',
+						'%s',
+					)
 				);
 			}
 
