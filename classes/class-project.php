@@ -111,66 +111,9 @@ class Orbis_Project {
 	}
 
 	/**
-	 * Register invoice.
-	 *
-	 * @param string $invoice_number
-	 * @param float  $amount
-	 * @return boolean
-	 */
-	public function register_invoice( $invoice_number, $amount, $hours ) {
-		global $wpdb;
-
-		// Insert subscription invoice
-		$result = $wpdb->insert(
-			$wpdb->orbis_projects_invoices,
-			array(
-				'project_id'     => $this->post->ID,
-				'invoice_number' => $invoice_number,
-				'amount'         => $amount,
-				'user_id'        => get_current_user_id(),
-				'hours'			 => $hours,
-				'create_date'    => date( 'Y-m-d H:i:s' ),
-			),
-			array(
-				'%d',
-				'%s',
-				'%s',
-				'%d',
-				'%s',
-				'%s',
-			)
-		);
-
-		// Update Project
-		update_post_meta( $this->post->ID, '_orbis_project_invoice_number', $invoice_number );
-
-		$wpdb->update(
-			$wpdb->orbis_projects,
-			// Data
-			array(
-				'invoice_number' => $invoice_number,
-			),
-			// Where
-			array(
-				'post_id' => $this->post->ID,
-			),
-			// Format
-			array(
-				'%s',
-			),
-			// Where format
-			array(
-				'%d',
-			)
-		);
-
-		return $result;
-	}
-
-	/**
 	 * Get invoices.
 	 *
-	 * @param integer $project_id
+	 * @param integer $post_id
 	 * @return boolean
 	 */
 	public function get_invoices( $post_id ) {
