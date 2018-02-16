@@ -21,8 +21,8 @@ $project_invoices = $wpdb->get_results( $wpdb->prepare( "
 
 if ( $project_invoices ) : ?>
 
-	<table class="widefat table" style="background: #f9f9f9;">
-		<thead style="background: #f1f1f1;">
+	<table class="widefat table orbis-admin-table">
+		<thead>
 			<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>
@@ -78,7 +78,7 @@ if ( $project_invoices ) : ?>
 <p>
 	<strong><?php esc_html_e( 'Add New Invoice:', 'orbis-projects' ); ?></strong>
 </p>
-<table class="widefat table" style="background: #f9f9f9;">
+<table class="widefat table orbis-admin-table">
 	<tr valign="top">
 		<th scope="row">
 			<label for="orbis_project_invoice_date"><?php esc_html_e( 'Invoice Date', 'orbis-projects' ); ?></label>
