@@ -102,6 +102,20 @@ class Orbis_Project {
 	}
 
 	/**
+	 * Compare final invoice.
+	 *
+	 * @return boolean
+	 */
+	public function compare_final_invoice( $invoice_number ) {
+		if ( get_post_meta( $this->post->ID, '_orbis_project_invoice_number', true ) === $invoice_number ){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	/**
 	 * Register invoice.
 	 *
 	 * @param string $invoice_number
