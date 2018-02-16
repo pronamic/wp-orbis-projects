@@ -5,7 +5,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		parent::__construct( $file );
 
 		$this->set_name( 'orbis_projects' );
-		$this->set_db_version( '1.1.0' );
+		$this->set_db_version( '1.1.1' );
 
 		// Tables
 		orbis_register_table( 'orbis_projects' );
@@ -68,7 +68,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		orbis_install_table( 'orbis_projects_invoices', '
 			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 			project_id BIGINT(16) UNSIGNED NOT NULL,
-			invoice_number VARCHAR(8) NOT NULL,
+			invoice_number VARCHAR(32) NOT NULL,
 			amount FLOAT NOT NULL,
 			user_id BIGINT(20) UNSIGNED DEFAULT NULL,
 			create_date DATETIME DEFAULT NULL,

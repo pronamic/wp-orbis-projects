@@ -37,7 +37,7 @@ if ( $project_invoices ) : ?>
 
 			<tr valign="top">
 				<td>
-					<span><?php echo esc_html( date_format( new DateTime( $invoice->create_date ), 'd-m-Y' ) ) ?></span>
+					<input id="orbis_project_invoice_date" name="_orbis_project_invoice_date_edit_<?php echo esc_html( $invoice->id ) ?>" type="date" value="<?php echo esc_html( date_format( new DateTime( $invoice->create_date ), 'Y-m-d' ) ) ?>" />
 				</td>
 				<td>
 					<input type="text" size="5" name="_orbis_project_invoice_amount_edit_<?php echo esc_html( $invoice->id ) ?>" value="<?php echo esc_html( $invoice->amount ) ?>"/>
@@ -79,6 +79,15 @@ if ( $project_invoices ) : ?>
 	<strong><?php esc_html_e( 'Add New Invoice:', 'orbis-projects' ); ?></strong>
 </p>
 <table class="widefat table" style="background: #f9f9f9;">
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_project_invoice_date"><?php esc_html_e( 'Invoice Date', 'orbis-projects' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_project_invoice_date" name="_orbis_project_invoice_date" type="date" value="<?php echo date("Y-m-d"); ?>" />
+		</td>
+	</tr>
+
 	<tr valign="top">
 		<th scope="row">
 			<label for="orbis_project_invoice_number"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></label>
