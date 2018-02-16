@@ -43,27 +43,6 @@ class Orbis_Projects_Admin {
 
 			// check if it is a final invoice, set others to zero, then store the number to the project and update meta.
 			if ( $is_final_invoice ) {
-				$wpdb->update(
-					$wpdb->orbis_projects_invoices,
-					array(
-						'is_final_invoice'  => 0,
-					),
-					array( 
-						'project_id' => filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
-						'is_final_invoice' => 1,
-					)
-				);
-
-				$wpdb->update(
-					$wpdb->orbis_projects,
-					array(
-						'invoice_number' => filter_input( INPUT_POST, '_orbis_project_invoice_number', FILTER_SANITIZE_STRING ),
-					),
-					array(
-						'id' => filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
-					)
-				);
-
 				update_post_meta( $post_id, '_orbis_project_invoice_number', filter_input( INPUT_POST, '_orbis_project_invoice_number', FILTER_SANITIZE_STRING ) );
 			}
 
@@ -97,27 +76,6 @@ class Orbis_Projects_Admin {
 				$is_final_invoice = (filter_input( INPUT_POST, '_is_final_invoice_edit', FILTER_SANITIZE_STRING )) ? 1 : 0;
 
 				if ( $invoice_final_id == $invoice_id ) {
-					$wpdb->update(
-						$wpdb->orbis_projects_invoices,
-						array(
-							'is_final_invoice'  => 0,
-						),
-						array( 
-							'project_id' => filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
-							'is_final_invoice' => 1,
-						)
-					);
-
-					$wpdb->update(
-						$wpdb->orbis_projects,
-						array(
-							'invoice_number' => filter_input( INPUT_POST, $invoice_number_name, FILTER_SANITIZE_STRING ),
-						),
-						array(
-							'id' => filter_input( INPUT_POST, '_project_id', FILTER_SANITIZE_STRING ),
-						)
-					);
-
 					update_post_meta( $post_id, '_orbis_project_invoice_number', filter_input( INPUT_POST, $invoice_number_name, FILTER_SANITIZE_STRING ) );
 				}
 

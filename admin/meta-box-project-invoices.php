@@ -52,7 +52,7 @@ if ( $project_invoices ) : ?>
 					<span><?php echo esc_html( $invoice->display_name ) ?></span>
 				</td>
 				<td>
-					<?php if ( 1 <= $invoice->is_final_invoice ) : ?>
+					<?php if ( get_post_meta( $post->ID, '_orbis_project_invoice_number', true ) === $invoice->invoice_number ) : ?>
 						<input type="radio" name="_is_final_invoice_edit" value="<?php echo esc_html( $invoice->id ) ?>" checked>
 					<?php else : ?>
 						<input type="radio" name="_is_final_invoice_edit" value="<?php echo esc_html( $invoice->id ) ?>">
