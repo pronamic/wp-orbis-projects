@@ -7,17 +7,7 @@ $orbis_project = new Orbis_Project( $post );
 wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_nonce' );
 
 $project = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects WHERE post_id = %d;", $post->ID ) );
-$project_invoices = $wpdb->get_results( $wpdb->prepare( "
-	SELECT
-		*
-	FROM
-		$wpdb->orbis_projects_invoices AS invoices
-			LEFT JOIN
-		$wpdb->users AS users
-			ON invoices.user_id = users.ID
-	WHERE
-		project_id = %d;
-", $project->id ) );
+$project_invoices = $orbis_project->get_invoices( $post->ID );
 
 if ( $project_invoices ) : ?>
 
