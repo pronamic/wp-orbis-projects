@@ -13,7 +13,7 @@ module.exports = function( grunt ) {
 		// PHP Code Sniffer
 		phpcs: {
 			application: {
-				dir: [ '.' ],
+				src: [ 'templates/**/*.php' ],
 			},
 			options: {
 				bin: 'vendor/bin/phpcs',
