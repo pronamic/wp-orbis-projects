@@ -166,7 +166,7 @@ class Orbis_Projects_AdminProjectPostType {
 		$invoice_number_old = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
 		$invoice_number_new = $data['_orbis_project_invoice_number'];
 
-		$is_final_invoice = ( 1 === filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
+		$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
 
 		if ( ! $is_final_invoice ) {
 			$data['_orbis_project_invoice_number'] = get_post_meta( $post_id, '_orbis_project_invoice_number', true );

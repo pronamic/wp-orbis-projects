@@ -37,7 +37,7 @@ class Orbis_Projects_Admin {
 
 			global $wpdb;
 
-			$is_final_invoice = ( 1 === filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
+			$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
 
 			$hours = orbis_filter_time_input( INPUT_POST, '_orbis_project_invoice_seconds_available', FILTER_SANITIZE_STRING );
 			$hours = ( ! $hours ) ? null : $hours;
