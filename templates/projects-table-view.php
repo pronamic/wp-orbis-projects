@@ -69,7 +69,7 @@
 									esc_attr( get_comment_link( $comment ) ),
 									esc_attr( $title ),
 									esc_attr( $comment->comment_content ),
-									date_i18n( 'j M Y', strtotime( $comment->comment_date ) ) . ' <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>'
+									esc_attr( date_i18n( 'j M Y', strtotime( $comment->comment_date ) ) ) . ' <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>'
 								);
 							}
 
@@ -90,7 +90,7 @@
 						<td>
 							<?php
 
-							$text  = '';
+							$text = '';
 
 							$text .= '<i class="fa fa-pencil" aria-hidden="true"></i>';
 							$text .= sprintf(

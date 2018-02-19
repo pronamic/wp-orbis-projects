@@ -24,6 +24,7 @@ class Orbis_Projects_Commenter {
 		// Comment
 		$user = wp_get_current_user();
 
+		// translators: first and second placeholder is the state of the project, opened or completed, and the third is the user name.
 		$comment_content = sprintf(
 			__( 'This "%1$s" project is just "%2$s" by %3$s.', 'orbis-projects' ),
 			$is_finished ? __( 'opened', 'orbis-projects' ) : __( 'completed', 'orbis-projects' ),
@@ -64,6 +65,7 @@ class Orbis_Projects_Commenter {
 			);
 		}
 
+		// translators: first placeholder is the invoice number, second is the user name.
 		$comment_content = sprintf(
 			__( "Invoice Number '%s' was registered as final invoice on this project by %s.", 'orbis-projects' ),
 			$text,

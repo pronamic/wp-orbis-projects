@@ -43,7 +43,7 @@ $sql = "
 $order_by = 'principal.name , project.name';
 if ( isset( $_GET['order'] ) ) {
 	switch ( $_GET['order'] ) {
-		case 'id' :
+		case 'id':
 			$order_by = 'project.id DESC';
 			break;
 	}

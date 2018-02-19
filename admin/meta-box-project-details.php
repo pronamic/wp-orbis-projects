@@ -6,17 +6,17 @@ $orbis_project = new Orbis_Project( $post );
 
 wp_nonce_field( 'orbis_save_project_details', 'orbis_project_details_meta_box_nonce' );
 
-$orbis_id       = get_post_meta( $post->ID, '_orbis_project_id', true );
-$principal_id   = get_post_meta( $post->ID, '_orbis_project_principal_id', true );
-$seconds        = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
-$agreement_id   = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
+$orbis_id     = get_post_meta( $post->ID, '_orbis_project_id', true );
+$principal_id = get_post_meta( $post->ID, '_orbis_project_principal_id', true );
+$seconds      = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
+$agreement_id = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
 
 $price = $orbis_project->get_price();
 
 $project = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects WHERE post_id = %d;", $post->ID ) );
 
 if ( $project ) {
-	$orbis_id	    = $project->id;
+	$orbis_id       = $project->id;
 	$principal_id   = $project->principal_id;
 	$invoice_number = $project->invoice_number;
 	$seconds        = $project->number_seconds;
@@ -132,7 +132,8 @@ if ( $project ) {
 		$terms = get_the_terms( $post->ID, 'orbis_payment_method' );
 
 		if ( ! is_wp_error( $terms ) ) :
-			$term = (false !== $terms) ? array_shift( $terms ) : $terms;?>
+			$term = ( false !== $terms ) ? array_shift( $terms ) : $terms;
+		?>
 			<tr valign="top">
 				<th scope="row">
 					<label for="orbis_project_payment_method"><?php esc_html_e( 'Payment Method', 'orbis-projects' ); ?></label>

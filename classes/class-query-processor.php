@@ -137,7 +137,7 @@ class Orbis_Projects_QueryProcessor {
 
 			if ( ! empty( $principal ) ) {
 				$wildcard = '%';
-				$term = esc_sql( like_escape( $principal ) );
+				$term     = esc_sql( esc_like( $principal ) );
 
 				$where .= " AND principal.name LIKE '{$wildcard}{$term}{$wildcard}' ";
 			}
@@ -152,7 +152,7 @@ class Orbis_Projects_QueryProcessor {
 
 			if ( ! empty( $invoice_number ) ) {
 				$wildcard = '%';
-				$term = esc_sql( like_escape( $invoice_number ) );
+				$term     = esc_sql( esc_like( $invoice_number ) );
 
 				$where .= " AND project.invoice_number LIKE '{$wildcard}{$term}{$wildcard}' ";
 			}

@@ -106,7 +106,7 @@ class Orbis_Project {
 	 *
 	 * @return boolean
 	 */
-	public function compare_final_invoice( $invoice_number ) {
+	public function is_final_invoice( $invoice_number ) {
 		return ( get_post_meta( $this->post->ID, '_orbis_project_invoice_number', true ) === $invoice_number );
 	}
 

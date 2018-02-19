@@ -184,8 +184,8 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		$data = array();
 
 		foreach ( $projects as $project ) {
-			$result = new stdClass();
-			$result->id   = $project->project_id;
+			$result     = new stdClass();
+			$result->id = $project->project_id;
 
 			$text = sprintf(
 				'%s. %s - %s ( %s )',

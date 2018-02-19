@@ -12,7 +12,7 @@ class Orbis_Projects_AdminProjectPostType {
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
 
-		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns' , array( $this, 'edit_columns' ) );
+		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', array( $this, 'edit_columns' ) );
 
 		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', array( $this, 'custom_columns' ), 10, 2 );
 
@@ -49,7 +49,7 @@ class Orbis_Projects_AdminProjectPostType {
 		$orbis_project = new Orbis_Project( $post_id );
 
 		switch ( $column ) {
-			case 'orbis_project_principal' :
+			case 'orbis_project_principal':
 				if ( $orbis_project->has_principal() ) {
 					printf(
 						'<a href="%s">%s</a>',
@@ -59,11 +59,11 @@ class Orbis_Projects_AdminProjectPostType {
 				}
 
 				break;
-			case 'orbis_project_price' :
+			case 'orbis_project_price':
 				echo esc_html( orbis_price( $orbis_project->get_price() ) );
 
 				break;
-			case 'orbis_project_time' :
+			case 'orbis_project_time':
 				echo esc_html( $orbis_project->get_available_time()->format() );
 
 				break;
@@ -166,7 +166,7 @@ class Orbis_Projects_AdminProjectPostType {
 		$invoice_number_old = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
 		$invoice_number_new = $data['_orbis_project_invoice_number'];
 
-		$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING )) ? 1 : 0;
+		$is_final_invoice = ( 1 === filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
 
 		if ( ! $is_final_invoice ) {
 			$data['_orbis_project_invoice_number'] = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
@@ -195,7 +195,7 @@ class Orbis_Projects_AdminProjectPostType {
 	/**
 	 * Sync project with Orbis tables
 	 */
-	function save_project_sync( $post_id, $post ) {
+	public function save_project_sync( $post_id, $post ) {
 		// Doing autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
@@ -220,8 +220,8 @@ class Orbis_Projects_AdminProjectPostType {
 		global $wpdb;
 
 		// Orbis project ID
-		$orbis_id       = get_post_meta( $post_id, '_orbis_project_id', true );
-		$orbis_id       = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_projects WHERE post_id = %d;", $post_id ) );
+		$orbis_id = get_post_meta( $post_id, '_orbis_project_id', true );
+		$orbis_id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_projects WHERE post_id = %d;", $post_id ) );
 
 		$principal_id   = get_post_meta( $post_id, '_orbis_project_principal_id', true );
 		$is_invoicable  = get_post_meta( $post_id, '_orbis_project_is_invoicable', true );
