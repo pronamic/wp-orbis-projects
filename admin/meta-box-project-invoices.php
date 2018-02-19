@@ -9,7 +9,8 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 $project          = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects WHERE post_id = %d;", $post->ID ) );
 $project_invoices = $orbis_project->get_invoices( $post->ID );
 
-if ( $project_invoices ) : ?>
+// check if an invoice is actually connected
+if ( $project_invoices && $project_invoices[0]->id ) : ?>
 
 	<table class="widefat table orbis-admin-table">
 		<thead>
