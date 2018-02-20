@@ -15,8 +15,8 @@ class Orbis_Projects_ContentTypes {
 		register_post_type(
 			'orbis_project',
 			array(
-				'label'           => __( 'Projects', 'orbis-projects' ),
-				'labels'          => array(
+				'label'         => __( 'Projects', 'orbis-projects' ),
+				'labels'        => array(
 					'name'                  => __( 'Projects', 'orbis-projects' ),
 					'singular_name'         => __( 'Project', 'orbis-projects' ),
 					'add_new'               => _x( 'Add New', 'orbis_project', 'orbis-projects' ),
@@ -38,13 +38,12 @@ class Orbis_Projects_ContentTypes {
 					'items_list_navigation' => __( 'Projects list navigation', 'orbis-projects' ),
 					'items_list'            => __( 'Projects list', 'orbis-projects' ),
 				),
-				'public'          => true,
-				'menu_position'   => 30,
-				'menu_icon'       => 'dashicons-portfolio',
-				'capability_type' => 'orbis_project',
-				'supports'        => array( 'title', 'editor', 'author', 'comments', 'custom-fields', 'revisions' ),
-				'has_archive'     => true,
-				'rewrite'         => array(
+				'public'        => true,
+				'menu_position' => 30,
+				'menu_icon'     => 'dashicons-portfolio',
+				'supports'      => array( 'title', 'editor', 'author', 'comments', 'custom-fields', 'revisions' ),
+				'has_archive'   => true,
+				'rewrite'       => array(
 					'slug' => _x( 'projects', 'slug', 'orbis-projects' ),
 				),
 			)

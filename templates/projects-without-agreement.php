@@ -32,11 +32,11 @@ if ( $query->have_posts() ) : ?>
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th scope="col"><?php _e( 'Orbis ID', 'orbis-projects' ); ?></th>
-					<th scope="col"><?php _e( 'Project Manager', 'orbis-projects' ); ?></th>
-					<th scope="col"><?php _e( 'Principal', 'orbis-projects' ); ?></th>
-					<th scope="col"><?php _e( 'Title', 'orbis-projects' ); ?></th>
-					<th scope="col"><?php _e( 'Actions', 'orbis-projects' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Orbis ID', 'orbis-projects' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Project Manager', 'orbis-projects' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Title', 'orbis-projects' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Actions', 'orbis-projects' ); ?></th>
 				</tr>
 			</thead>
 
@@ -73,7 +73,7 @@ if ( $query->have_posts() ) : ?>
 						</td>
 						<td>
 							<a href="<?php echo esc_attr( get_edit_post_link( get_the_ID() ) ); ?>">
-								<?php _e( 'Edit', 'orbis-projects' ); ?>
+								<?php esc_html_e( 'Edit', 'orbis-projects' ); ?>
 							</a>
 						</td>
 					</tr>

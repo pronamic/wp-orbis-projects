@@ -37,12 +37,12 @@ class Orbis_Projects_QueryProcessor {
 	public function pre_get_posts_custom_invoicable( $query ) {
 		$orderby = $query->get( 'orderby' );
 
-		if ( 'project_invoice_number_modified' == $orderby ) {
+		if ( 'project_invoice_number_modified' === $orderby ) {
 			$query->set( 'orderby', 'meta_value_num' );
 			$query->set( 'meta_key', '_orbis_project_invoice_number_modified' );
 		}
 
-		if ( 'project_invoice_number' == $orderby ) {
+		if ( 'project_invoice_number' === $orderby ) {
 			$query->set( 'orderby', 'meta_value_num' );
 			$query->set( 'meta_key', '_orbis_project_invoice_number' );
 		}
@@ -96,6 +96,7 @@ class Orbis_Projects_QueryProcessor {
 	/**
 	 * Posts clauses
 	 *
+	 * Links:
 	 * http://codex.wordpress.org/WordPress_Query_Vars
 	 * http://codex.wordpress.org/Custom_Queries
 	 *
@@ -136,7 +137,7 @@ class Orbis_Projects_QueryProcessor {
 
 			if ( ! empty( $principal ) ) {
 				$wildcard = '%';
-				$term = esc_sql( like_escape( $principal ) );
+				$term     = esc_sql( esc_like( $principal ) );
 
 				$where .= " AND principal.name LIKE '{$wildcard}{$term}{$wildcard}' ";
 			}
@@ -151,7 +152,7 @@ class Orbis_Projects_QueryProcessor {
 
 			if ( ! empty( $invoice_number ) ) {
 				$wildcard = '%';
-				$term = esc_sql( like_escape( $invoice_number ) );
+				$term     = esc_sql( esc_like( $invoice_number ) );
 
 				$where .= " AND project.invoice_number LIKE '{$wildcard}{$term}{$wildcard}' ";
 			}

@@ -102,56 +102,37 @@ class Orbis_Project {
 	}
 
 	/**
-	 * Register invoice.
+	 * Compare final invoice.
 	 *
-	 * @param string $invoice_number
-	 * @param float  $amount
 	 * @return boolean
 	 */
-	public function register_invoice( $invoice_number, $amount ) {
+	public function is_final_invoice( $invoice_number ) {
+		return ( get_post_meta( $this->post->ID, '_orbis_project_invoice_number', true ) === $invoice_number );
+	}
+
+	/**
+	 * Get invoices.
+	 *
+	 * @param integer $post_id
+	 * @return boolean
+	 */
+	public function get_invoices( $post_id ) {
 		global $wpdb;
 
-		// Insert subscription invoice
-		$result = $wpdb->insert(
-			$wpdb->orbis_projects_invoices,
-			array(
-				'project_id'     => $this->post->ID,
-				'invoice_number' => $invoice_number,
-				'amount'         => $amount,
-				'user_id'        => get_current_user_id(),
-				'create_date'    => date( 'Y-m-d H:i:s' ),
-			),
-			array(
-				'%d',
-				'%s',
-				'%s',
-				'%d',
-				'%s',
-			)
-		);
-
-		// Update Project
-		update_post_meta( $this->post->ID, '_orbis_project_invoice_number', $invoice_number );
-
-		$wpdb->update(
-			$wpdb->orbis_projects,
-			// Data
-			array(
-				'invoice_number' => $invoice_number,
-			),
-			// Where
-			array(
-				'post_id' => $this->post->ID,
-			),
-			// Format
-			array(
-				'%s',
-			),
-			// Where format
-			array(
-				'%d',
-			)
-		);
+		$result = $wpdb->get_results( $wpdb->prepare( "
+			SELECT
+				*
+			FROM
+				$wpdb->orbis_projects AS projects
+					LEFT JOIN
+				$wpdb->orbis_projects_invoices AS invoices
+						ON projects.id = invoices.project_id
+					LEFT JOIN
+				$wpdb->users AS user
+						ON invoices.user_id = user.ID
+			WHERE
+				post_id = %d;
+		", $post_id ) );
 
 		return $result;
 	}
