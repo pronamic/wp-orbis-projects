@@ -86,7 +86,25 @@
 						<td>
 							<?php echo esc_html( $project->invoicable ? 'Ja' : 'Nee' ); ?>
 						</td>
-						<td><?php echo esc_html( $project->invoice_number ); ?></td>
+						<td>
+							<?php
+
+							$invoice_number = $project->invoice_number;
+
+							$invoice_link = orbis_get_invoice_link( $invoice_number );
+
+							if ( ! empty( $invoice_link ) ) {
+								printf(
+									'<a href="%s" target="_blank">%s</a>',
+									esc_attr( $invoice_link ),
+									esc_html( $invoice_number )
+								);
+							} else {
+								echo esc_html( $invoice_number );
+							}
+
+							?>
+						</td>
 						<td>
 							<?php
 
