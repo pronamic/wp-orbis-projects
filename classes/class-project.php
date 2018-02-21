@@ -116,7 +116,7 @@ class Orbis_Project {
 	 * @param integer $post_id
 	 * @return boolean
 	 */
-	public function get_invoices( $post_id ) {
+	public function get_invoices() {
 		global $wpdb;
 
 		$result = $wpdb->get_results( $wpdb->prepare( "
@@ -132,7 +132,7 @@ class Orbis_Project {
 						ON invoices.user_id = user.ID
 			WHERE
 				post_id = %d;
-		", $post_id ) );
+		", $this->post->ID ) );
 
 		return $result;
 	}

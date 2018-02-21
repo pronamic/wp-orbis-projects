@@ -7,7 +7,7 @@ $orbis_project = new Orbis_Project( $post );
 wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_nonce' );
 
 $project          = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects WHERE post_id = %d;", $post->ID ) );
-$project_invoices = $orbis_project->get_invoices( $post->ID );
+$project_invoices = $orbis_project->get_invoices();
 
 // check if an invoice is actually connected
 if ( $project_invoices && $project_invoices[0]->id ) : ?>
@@ -34,7 +34,7 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 					<input type="text" size="10" name="_orbis_project_invoice_amount_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_attr( empty( $invoice->amount ) ? '' : number_format_i18n( $invoice->amount, 2 ) ); ?>"/>
 				</td>
 				<td>
-					<input type="text" size="5" name="_orbis_project_invoice_seconds_available_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_html( orbis_time( $invoice->hours ) ); ?>"/>
+					<input type="text" size="5" name="_orbis_project_invoice_seconds_available_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_html( orbis_time( $invoice->seconds ) ); ?>"/>
 				</td>
 				<td>
 					<input type="text" name="_orbis_project_invoice_number_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_html( $invoice->invoice_number ); ?>"/>
