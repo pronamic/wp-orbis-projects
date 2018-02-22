@@ -21,9 +21,9 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 			<th scope="col"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Is Final Invoice', 'orbis-projects' ); ?></th>
 			<th scope="col"></th>
-			<th scope="col"></th>
 		</thead>
 
+		<?php $invoice_list = array(); ?>
 		<?php foreach ( $project_invoices as $invoice ) : ?>
 
 			<tr valign="top">
@@ -47,17 +47,13 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 				</td>
 				<td>
 					<span>
-						<?php submit_button( __( 'Edit Invoice', 'orbis-projects' ), 'secondary', $invoice->id, false ); ?>
-					</span>
-				</td>
-				<td>
-					<span>
 						<?php submit_button( __( 'Delete Invoice', 'orbis-projects' ), 'delete', $invoice->id, false ); ?>
 					</span>
 				</td>
+				<?php array_push($invoice_list, $invoice->id) ?>
 			</tr>
-
 		<?php endforeach; ?>
+		<input type="hidden" name="_orbis_project_invoice_list" value="<?php foreach ( $invoice_list as $invoice_id) : echo $invoice_id.','; endforeach; ?>">
 	</table>
 
 <?php endif; ?>
