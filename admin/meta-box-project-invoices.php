@@ -106,7 +106,7 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 
 	<tr valign="top">
 		<th scope="row">
-			<label for="_orbis_project_seconds_available"><?php esc_html_e( 'Invoice Time', 'orbis-projects' ); ?></label>
+			<label for="_orbis_project_invoice_seconds_available"><?php esc_html_e( 'Invoice Time', 'orbis-projects' ); ?></label>
 		</th>
 		<td>
 			<input size="5" id="_orbis_project_invoice_seconds_available" name="_orbis_project_invoice_seconds_available" value="<?php echo esc_attr( orbis_time( $seconds ) ); ?>" type="text" />
