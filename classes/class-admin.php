@@ -10,8 +10,6 @@ class Orbis_Projects_Admin {
 		// Actions
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-		add_action( 'save_post', array( $this, 'save_post' ) );
-
 		// Project post type
 		$this->project_post_type = new Orbis_Projects_AdminProjectPostType( $plugin );
 	}
