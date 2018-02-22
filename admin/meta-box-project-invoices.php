@@ -52,7 +52,22 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 				</td>
 				<?php array_push($invoice_list, $invoice->id) ?>
 			</tr>
+
 		<?php endforeach; ?>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>
+					<input type="radio" name="_is_final_invoice_edit" value="0" <?php checked( $orbis_project->is_final_invoice( '0' ) ); ?>>
+					<strong><?php esc_html_e( 'No final invoices', 'orbis-projects' ); ?></strong>
+				</td>
+				<td></td>
+			</tr>
+
 		<input type="hidden" name="_orbis_project_invoice_list" value="<?php foreach ( $invoice_list as $invoice_id) : echo $invoice_id.','; endforeach; ?>">
 	</table>
 

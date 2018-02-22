@@ -414,6 +414,10 @@ class Orbis_Projects_AdminProjectPostType {
 					array( 'id' => $invoice_id )
 				);
 			}
+
+			if ( filter_input( INPUT_POST, '_is_final_invoice_edit', FILTER_SANITIZE_STRING ) == 0 ) {
+				delete_post_meta( $post_id, '_orbis_project_invoice_number' );
+			}
 		}
 	}
 }
