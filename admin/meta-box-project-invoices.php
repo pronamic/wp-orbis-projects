@@ -62,7 +62,7 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 				<td></td>
 				<td>
 					<input type="radio" id="is_final_invoice_edit" name="_is_final_invoice_edit" value="0" <?php checked( $orbis_project->is_final_invoice( '0' ) ); ?>>
-					<strong><label for="is_final_invoice_edit" ><?php esc_html_e( 'No final invoices', 'orbis-projects' ); ?></label></strong>
+					<strong><label for="is_final_invoice_edit" ><?php esc_html_e( 'No final invoice', 'orbis-projects' ); ?></label></strong>
 				</td>
 				<td></td>
 			</tr>
