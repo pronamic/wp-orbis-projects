@@ -18,9 +18,9 @@ class Orbis_Projects_AdminProjectPostType {
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 
+		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_invoices' ), 500, 2 );
 		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_project' ), 10, 2 );
 		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_project_sync' ), 500, 2 );
-		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_invoices' ), 500, 2 );
 	}
 
 	/**
@@ -290,56 +290,6 @@ class Orbis_Projects_AdminProjectPostType {
 		$inputs  = filter_input_array( INPUT_POST );
 		$post_id = filter_input( INPUT_POST, 'post_ID', FILTER_SANITIZE_STRING );
 
-		// add a new invoice
-		if ( filter_has_var( INPUT_POST, 'orbis_projects_invoice_add' ) ) {
-
-			global $wpdb;
-			global $wp_locale;
-
-			$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
-
-			$hours = orbis_filter_time_input( INPUT_POST, '_orbis_project_invoice_seconds_available', FILTER_SANITIZE_STRING );
-			$hours = ( ! $hours ) ? null : $hours;
-
-			// check if it is a final invoice, set others to zero, then store the number to the project and update meta.
-			if ( $is_final_invoice ) {
-				update_post_meta( $post_id, '_orbis_project_invoice_number', filter_input( INPUT_POST, '_orbis_project_invoice_number', FILTER_SANITIZE_STRING ) );
-			}
-
-			$definition = array(
-				'_orbis_project_invoice_amount' => array(
-					'filter'  => FILTER_VALIDATE_FLOAT,
-					'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-					'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
-				),
-				'_project_id'                   => FILTER_VALIDATE_INT,
-				'_orbis_project_invoice_number' => FILTER_SANITIZE_STRING,
-				'_orbis_project_invoice_date'   => FILTER_SANITIZE_STRING,
-			);
-
-			$data = filter_input_array( INPUT_POST, $definition );
-
-			$result = $wpdb->insert(
-				$wpdb->orbis_projects_invoices,
-				array(
-					'project_id'     => $data[ '_project_id' ],
-					'invoice_number' => $data[ '_orbis_project_invoice_number' ],
-					'amount'         => $data[ '_orbis_project_invoice_amount' ],
-					'seconds'        => $hours,
-					'user_id'        => get_current_user_id(),
-					'create_date'    => $data[ '_orbis_project_invoice_date' ],
-				),
-				array(
-					'%d',
-					'%s',
-					'%f',
-					'%d',
-					'%d',
-					'%s',
-				)
-			);
-		}
-
 		if ( $inputs ) {
 			// edit an existing invoice
 			global $wpdb;
@@ -410,9 +360,60 @@ class Orbis_Projects_AdminProjectPostType {
 				);
 			}
 
-			if ( filter_input( INPUT_POST, '_is_final_invoice_edit', FILTER_SANITIZE_STRING ) == 0 ) {
+			if ( filter_input( INPUT_POST, '_is_final_invoice_edit', FILTER_SANITIZE_STRING ) === 0 ) {
 				delete_post_meta( $post_id, '_orbis_project_invoice_number' );
 			}
+		}
+
+		// add a new invoice
+		if ( filter_has_var( INPUT_POST, 'orbis_projects_invoice_add' ) ) {
+
+			global $wpdb;
+			global $wp_locale;
+
+			$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
+			$invoice_number = filter_input( INPUT_POST, '_orbis_project_invoice_number', FILTER_SANITIZE_STRING );
+
+			$hours = orbis_filter_time_input( INPUT_POST, '_orbis_project_invoice_seconds_available', FILTER_SANITIZE_STRING );
+			$hours = ( ! $hours ) ? null : $hours;
+
+			// check if it is a final invoice, set others to zero, then store the number to the project and update meta.
+			if ( $is_final_invoice ) {
+				update_post_meta( $post_id, '_orbis_project_invoice_number', $invoice_number );
+			}
+
+			$definition = array(
+				'_orbis_project_invoice_amount' => array(
+					'filter'  => FILTER_VALIDATE_FLOAT,
+					'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
+					'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
+				),
+				'_project_id'                   => FILTER_VALIDATE_INT,
+				'_orbis_project_invoice_number' => FILTER_SANITIZE_STRING,
+				'_orbis_project_invoice_date'   => FILTER_SANITIZE_STRING,
+			);
+
+			$data = filter_input_array( INPUT_POST, $definition );
+
+			$result = $wpdb->insert(
+				$wpdb->orbis_projects_invoices,
+				array(
+					'project_id'     => $data[ '_project_id' ],
+					'invoice_number' => $data[ '_orbis_project_invoice_number' ],
+					'amount'         => $data[ '_orbis_project_invoice_amount' ],
+					'seconds'        => $hours,
+					'user_id'        => get_current_user_id(),
+					'create_date'    => $data[ '_orbis_project_invoice_date' ],
+				),
+				array(
+					'%d',
+					'%s',
+					'%f',
+					'%d',
+					'%d',
+					'%s',
+				)
+			);
 		}
 	}
 }
