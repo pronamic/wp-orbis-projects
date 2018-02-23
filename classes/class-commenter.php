@@ -41,44 +41,4 @@ class Orbis_Projects_Commenter {
 
 		wp_insert_comment( $data );
 	}
-
-	/**
-	 * Project finished update
-	 *
-	 * @param int $post_id
-	 */
-	public function project_invoice_number_update( $post_id, $invoice_number_old, $invoice_number_new ) {
-		// Date
-		update_post_meta( $post_id, '_orbis_project_invoice_number_modified', time() );
-
-		// Comment
-		$user = wp_get_current_user();
-
-		$text = $invoice_number_new;
-
-		$invoice_link = orbis_get_invoice_link( $invoice_number_new );
-		if ( ! empty( $invoice_link ) ) {
-			$text = sprintf(
-				'<a href="%s">%s</a>',
-				esc_attr( $invoice_link ),
-				$invoice_number_new
-			);
-		}
-
-		// translators: first placeholder is the invoice number, second is the user name.
-		$comment_content = sprintf(
-			__( "Invoice Number '%s' was registered as final invoice on this project by %s.", 'orbis-projects' ),
-			$text,
-			$user->display_name
-		);
-
-		$data = array(
-			'comment_post_ID' => $post_id,
-			'comment_content' => $comment_content,
-			'comment_author'  => 'Orbis',
-			'comment_type'    => 'orbis_comment',
-		);
-
-		$comment_id = wp_insert_comment( $data );
-	}
 }

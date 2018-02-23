@@ -186,11 +186,6 @@ class Orbis_Projects_AdminProjectPostType {
 			// @see https://github.com/woothemes/woocommerce/blob/v2.1.4/includes/class-wc-order.php#L1274
 			do_action( 'orbis_project_finished_update', $post_id, $is_finished_new );
 		}
-
-		if ( 'publish' === $post->post_status && $invoice_number_old !== $invoice_number_new ) {
-			// @see https://github.com/woothemes/woocommerce/blob/v2.1.4/includes/class-wc-order.php#L1274
-			do_action( 'orbis_project_invoice_number_update', $post_id, $invoice_number_old, $invoice_number_new );
-		}
 	}
 
 	/**
