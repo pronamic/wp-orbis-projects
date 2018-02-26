@@ -316,7 +316,7 @@ class Orbis_Projects_AdminProjectPostType {
 
 				$data = filter_input_array( INPUT_POST, $definition );
 
-				$invoice_final_id = intval( filter_input( INPUT_POST, '_is_final_invoice_edit', FILTER_SANITIZE_STRING ) );
+				$invoice_final_id = intval( filter_input( INPUT_POST, '_is_final_invoice', FILTER_SANITIZE_STRING ) );
 
 				$hours = orbis_filter_time_input( INPUT_POST, $invoice_time_name, FILTER_SANITIZE_STRING );
 				$hours = ( ! $hours ) ? null : $hours;
@@ -371,7 +371,7 @@ class Orbis_Projects_AdminProjectPostType {
 			global $wpdb;
 			global $wp_locale;
 
-			$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
+			$is_final_invoice = ( 'new_invoice' == filter_input( INPUT_POST, '_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
 			$invoice_number = filter_input( INPUT_POST, '_orbis_project_invoice_number', FILTER_SANITIZE_STRING );
 
 			$hours = orbis_filter_time_input( INPUT_POST, '_orbis_project_invoice_seconds_available', FILTER_SANITIZE_STRING );
