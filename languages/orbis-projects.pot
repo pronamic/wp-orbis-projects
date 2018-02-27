@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-02-23 08:02:59+00:00\n"
+"POT-Creation-Date: 2018-02-26 14:29:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -97,55 +97,46 @@ msgid "— Select Payment Method —"
 msgstr ""
 
 #: admin/meta-box-project-invoices.php:17
-#: admin/meta-box-project-invoices.php:83
 #: classes/class-admin-project-post-type.php:38
 #: templates/projects-table-view.php:9
 msgid "Date"
 msgstr ""
 
 #: admin/meta-box-project-invoices.php:18
-#: admin/meta-box-project-invoices.php:84
 msgid "Amount"
 msgstr ""
 
 #: admin/meta-box-project-invoices.php:19
-#: admin/meta-box-project-invoices.php:85
 msgid "Hours"
 msgstr ""
 
-#: admin/meta-box-project-invoices.php:20
-#: admin/meta-box-project-invoices.php:86 templates/projects-table-view.php:14
+#: admin/meta-box-project-invoices.php:20 templates/projects-table-view.php:14
 msgid "Invoice Number"
 msgstr ""
 
 #: admin/meta-box-project-invoices.php:21
-msgid "User"
+msgid "Final Invoice"
 msgstr ""
 
 #: admin/meta-box-project-invoices.php:22
-#: admin/meta-box-project-invoices.php:87
-msgid "Is Final Invoice"
+msgid "User"
 msgstr ""
 
 #: admin/meta-box-project-invoices.php:50
-#: classes/class-admin-project-post-type.php:397
-#: classes/class-admin-project-post-type.php:400
+#: classes/class-admin-project-post-type.php:347
+#: classes/class-admin-project-post-type.php:350
 msgid "Delete Invoice"
 msgstr ""
 
-#: admin/meta-box-project-invoices.php:65
+#: admin/meta-box-project-invoices.php:64
 msgid "No final invoice"
 msgstr ""
 
-#: admin/meta-box-project-invoices.php:78
-msgid "Add New Invoice:"
-msgstr ""
-
-#: admin/meta-box-project-invoices.php:109
+#: admin/meta-box-project-invoices.php:92
 msgid "Add Invoice"
 msgstr ""
 
-#: admin/meta-box-project-invoices.php:120
+#: admin/meta-box-project-invoices.php:105
 msgid "Are you sure you want to delete this invoice?"
 msgstr ""
 
