@@ -4,6 +4,8 @@
 	<rule ref="WordPress">
 		<exclude name="Squiz.Commenting" />
 
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+
 		<exclude name="WordPress.VIP.DirectDatabaseQuery.DirectQuery" />
 		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
 		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />

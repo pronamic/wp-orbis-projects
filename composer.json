@@ -39,7 +39,7 @@
 		"sabre/xml": "^1"
 	},
 	"require-dev": {
-		"squizlabs/php_codesniffer": "^3.2.2",
+		"squizlabs/php_codesniffer": "^3.2",
 		"wp-coding-standards/wpcs": "^0.14.1"
 	},
 	"scripts": {
