@@ -12,7 +12,7 @@ $project_invoices = $orbis_project->get_invoices();
 // check if an invoice is actually connected
 if ( $project_invoices && $project_invoices[0]->id ) : ?>
 
-	<table class="widefat table orbis-admin-table">
+	<table class="orbis-admin-table">
 		<thead>
 			<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
@@ -63,6 +63,17 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 					<input type="radio" id="is_final_invoice_edit" name="_is_final_invoice" value="0" <?php checked( $orbis_project->is_final_invoice( '0' ) ); ?>>
 					<strong><label for="is_final_invoice_edit" ><?php esc_html_e( 'No final invoice', 'orbis-projects' ); ?></label></strong>
 				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+					<strong><?php esc_html_e( 'Add a new invoice:', 'orbis-projects' ); ?></strong>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
