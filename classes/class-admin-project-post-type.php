@@ -167,7 +167,7 @@ class Orbis_Projects_AdminProjectPostType {
 		$invoice_number_old = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
 		$invoice_number_new = $data['_orbis_project_invoice_number'];
 
-		$is_final_invoice = ( 1 == filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
+		$is_final_invoice = ( 1 === filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
 
 		if ( ! $is_final_invoice ) {
 			$data['_orbis_project_invoice_number'] = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
@@ -296,7 +296,7 @@ class Orbis_Projects_AdminProjectPostType {
 			global $wp_locale;
 
 			$invoice_inputs = explode( ',', filter_input( INPUT_POST, '_orbis_project_invoice_list', FILTER_SANITIZE_STRING ) );
-			
+
 			foreach ( $invoice_inputs as $invoice_id ) {
 
 				$invoice_number_name = '_orbis_project_invoice_number_edit_' . $invoice_id;
@@ -321,7 +321,7 @@ class Orbis_Projects_AdminProjectPostType {
 				$hours = orbis_filter_time_input( INPUT_POST, $invoice_time_name, FILTER_SANITIZE_STRING );
 				$hours = ( ! $hours ) ? null : $hours;
 
-				if ( $invoice_final_id == $invoice_id ) {
+				if ( $invoice_final_id === $invoice_id ) {
 					update_post_meta( $post_id, '_orbis_project_invoice_number', filter_input( INPUT_POST, $invoice_number_name, FILTER_SANITIZE_STRING ) );
 				}
 
@@ -371,13 +371,12 @@ class Orbis_Projects_AdminProjectPostType {
 			global $wpdb;
 			global $wp_locale;
 
-			$is_final_invoice = ( 'new_invoice' == filter_input( INPUT_POST, '_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
-			$invoice_number = filter_input( INPUT_POST, '_orbis_project_invoice_number', FILTER_SANITIZE_STRING );
+			$is_final_invoice = ( 'new_invoice' === filter_input( INPUT_POST, '_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
+			$invoice_number   = filter_input( INPUT_POST, '_orbis_project_invoice_number', FILTER_SANITIZE_STRING );
 
 			$hours = orbis_filter_time_input( INPUT_POST, '_orbis_project_invoice_seconds_available', FILTER_SANITIZE_STRING );
 			$hours = ( ! $hours ) ? null : $hours;
 
-			// check if it is a final invoice, set others to zero, then store the number to the project and update meta.
 			if ( $is_final_invoice ) {
 				update_post_meta( $post_id, '_orbis_project_invoice_number', $invoice_number );
 			}
@@ -398,12 +397,12 @@ class Orbis_Projects_AdminProjectPostType {
 			$result = $wpdb->insert(
 				$wpdb->orbis_projects_invoices,
 				array(
-					'project_id'     => $data[ '_project_id' ],
-					'invoice_number' => $data[ '_orbis_project_invoice_number' ],
-					'amount'         => $data[ '_orbis_project_invoice_amount' ],
+					'project_id'     => $data['_project_id'],
+					'invoice_number' => $data['_orbis_project_invoice_number'],
+					'amount'         => $data['_orbis_project_invoice_amount'],
 					'seconds'        => $hours,
 					'user_id'        => get_current_user_id(),
-					'create_date'    => $data[ '_orbis_project_invoice_date' ],
+					'create_date'    => $data['_orbis_project_invoice_date'],
 				),
 				array(
 					'%d',

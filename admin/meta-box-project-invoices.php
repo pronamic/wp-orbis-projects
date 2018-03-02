@@ -49,7 +49,7 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 				<td>
 					<span><?php submit_button( __( 'Delete Invoice', 'orbis-projects' ), 'delete', $invoice->id, false ); ?></span>
 				</td>
-				<?php array_push($invoice_list, $invoice->id) ?>
+				<?php array_push( $invoice_list, $invoice->id ); ?>
 			</tr>
 
 		<?php endforeach; ?>
@@ -78,7 +78,13 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 				<td></td>
 			</tr>
 
-		<input type="hidden" name="_orbis_project_invoice_list" value="<?php foreach ( $invoice_list as $invoice_id) : echo $invoice_id.','; endforeach; ?>">
+		<input type="hidden" name="_orbis_project_invoice_list" value="
+		<?php
+		foreach ( $invoice_list as $invoice_id ) :
+			echo esc_attr( $invoice_id ) . ',';
+		endforeach;
+		?>
+		">
 		<tfoot>
 			<tr valign="top">
 				<td>
