@@ -38,7 +38,7 @@ if ( $project ) {
 				<label for="_orbis_project_principal_id"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
-				<input type="text" id="_orbis_project_principal_id" name="_orbis_project_principal_id" value="<?php echo esc_attr( $principal_id ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $principal_id ); ?>" placeholder="<?php esc_html_e( 'Select Client', 'orbis-projects' ); ?>" />
+				<select type="text" id="_orbis_project_principal_id" name="_orbis_project_principal_id" value="<?php echo esc_attr( $principal_id ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $principal_id ); ?>" placeholder="<?php esc_html_e( 'Select Client', 'orbis-projects' ); ?>" />
 			</td>
 		</tr>
 		<tr valign="top">
