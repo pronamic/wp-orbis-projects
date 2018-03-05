@@ -85,6 +85,11 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 		endforeach;
 		?>
 		">
+
+<?php else : ?>
+	<table>
+<?php endif; ?>
+
 		<tfoot>
 			<tr valign="top">
 				<td>
@@ -113,7 +118,7 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 		</tfoot>
 	</table>
 
-<?php endif; ?>
+
 
 <script type="text/javascript">
 	( function( $ ) {
