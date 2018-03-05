@@ -99,7 +99,7 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 					<input id="orbis_project_invoice_amount" size="10" name="_orbis_project_invoice_amount" type="text" />
 				</td>
 				<td>
-					<input id="_orbis_project_invoice_seconds_available" name="_orbis_project_invoice_seconds_available" size="5" value="<?php echo esc_attr( orbis_time( $seconds ) ); ?>" type="text" />
+					<input id="_orbis_project_invoice_seconds_available" name="_orbis_project_invoice_seconds_available" size="5" type="text" />
 				</td>
 				<td>
 					<input id="orbis_project_invoice_number" name="_orbis_project_invoice_number" type="text"/>
