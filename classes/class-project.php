@@ -107,12 +107,7 @@ class Orbis_Project {
 	 * @return boolean
 	 */
 	public function is_final_invoice( $invoice_number ) {
-		if ( 0 !== $invoice_number ) {
-			return ( get_post_meta( $this->post->ID, '_orbis_project_invoice_number', true ) === $invoice_number );
-		}
-		else {
-			return ( get_post_meta( $this->post->ID, '_orbis_project_invoice_number', true ) === null );
-		}
+		return get_post_meta( $this->post->ID, '_orbis_project_invoice_number', true ) === $invoice_number;
 	}
 
 	/**

@@ -167,12 +167,6 @@ class Orbis_Projects_AdminProjectPostType {
 		$invoice_number_old = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
 		$invoice_number_new = $data['_orbis_project_invoice_number'];
 
-		$is_final_invoice = ( 1 === filter_input( INPUT_POST, '_orbis_project_is_final_invoice', FILTER_SANITIZE_STRING ) ) ? 1 : 0;
-
-		if ( ! $is_final_invoice ) {
-			$data['_orbis_project_invoice_number'] = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
-		}
-
 		foreach ( $data as $key => $value ) {
 			if ( empty( $value ) ) {
 				delete_post_meta( $post_id, $key );
@@ -298,6 +292,8 @@ class Orbis_Projects_AdminProjectPostType {
 			$invoice_inputs = explode( ',', filter_input( INPUT_POST, '_orbis_project_invoice_list', FILTER_SANITIZE_STRING ) );
 
 			foreach ( $invoice_inputs as $invoice_id ) {
+
+				$invoice_id = intval( $invoice_id );
 
 				$invoice_number_name = '_orbis_project_invoice_number_edit_' . $invoice_id;
 				$invoice_amount_name = '_orbis_project_invoice_amount_edit_' . $invoice_id;
