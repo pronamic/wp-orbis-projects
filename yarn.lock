@@ -380,14 +380,14 @@ grunt-phplint@0.1.0:
     cache-swap "~0.3.0"
     grunt "~0.4.1"
 
-grunt-wp-i18n@~1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/grunt-wp-i18n/-/grunt-wp-i18n-1.0.1.tgz#d5f3ebad3bb117dbfdf1c64ef885f769e4d668bf"
+grunt-wp-i18n@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/grunt-wp-i18n/-/grunt-wp-i18n-1.0.2.tgz#e1cc27c3f6f188f6d432fd0306af7b17fb83cb54"
   dependencies:
-    grunt "^1.0.1"
-    node-wp-i18n "^1.0.4"
+    grunt "^1.0.2"
+    node-wp-i18n "^1.0.5"
 
-grunt@^1.0.1, grunt@~1.0.2:
+grunt@^1.0.2, grunt@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.0.2.tgz#4e6a5e695b70472fd5304f5fa9e34236836a73bc"
   dependencies:
@@ -630,7 +630,7 @@ multimatch@^2.0.0:
     arrify "^1.0.0"
     minimatch "^3.0.0"
 
-node-wp-i18n@^1.0.4:
+node-wp-i18n@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/node-wp-i18n/-/node-wp-i18n-1.0.5.tgz#9517d33b70dd6ba6e1519e4b3ec6a82dab653a4e"
   dependencies:
