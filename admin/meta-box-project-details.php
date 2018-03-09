@@ -22,7 +22,7 @@ if ( $project ) {
 	$seconds        = $project->number_seconds;
 }
 
-$principal = $wpdb->get_var( "SELECT name FROM $wpdb->orbis_companies WHERE id=$principal_id" );
+$principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_companies WHERE id= %d;", $principal_id ) );
 
 ?>
 <table class="form-table">
@@ -41,7 +41,7 @@ $principal = $wpdb->get_var( "SELECT name FROM $wpdb->orbis_companies WHERE id=$
 			</th>
 			<td>
 				<select id="_orbis_project_principal_id" name="_orbis_project_principal_id" class="orbis-id-control orbis_company_id_field regular-text" placeholder="<?php esc_html_e( 'Select Client', 'orbis-projects' ); ?>">
-					<option id="orbis_select2_default" value="<?php echo esc_attr( $principal_id ); ?>">
+					<option id="orbis_select2_default" selected="selected" value="<?php echo esc_attr( $principal_id ); ?>">
 						<?php echo esc_attr( $principal ); ?>
 					</option>
 				</select>

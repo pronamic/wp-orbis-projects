@@ -59,16 +59,16 @@
         },
         {
             "name": "sabre/vobject",
-            "version": "4.1.4",
+            "version": "4.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sabre-io/vobject.git",
-                "reference": "6484b9d660822c5e221c76122ce8ea658ecc9c5b"
+                "reference": "0928660e92d46d2d24336a6db320636aa3a75414"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/vobject/zipball/6484b9d660822c5e221c76122ce8ea658ecc9c5b",
-                "reference": "6484b9d660822c5e221c76122ce8ea658ecc9c5b",
+                "url": "https://api.github.com/repos/sabre-io/vobject/zipball/0928660e92d46d2d24336a6db320636aa3a75414",
+                "reference": "0928660e92d46d2d24336a6db320636aa3a75414",
                 "shasum": ""
             },
             "require": {
@@ -152,7 +152,7 @@
                 "xCal",
                 "xCard"
             ],
-            "time": "2017-12-22T14:16:56+00:00"
+            "time": "2018-03-08T21:06:39+00:00"
         },
         {
             "name": "sabre/xml",
