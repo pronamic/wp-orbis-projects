@@ -119,21 +119,29 @@ class Orbis_Project {
 	public function get_invoices() {
 		global $wpdb;
 
-		$result = $wpdb->get_results( $wpdb->prepare( "
+		$project_id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_projects WHERE post_id = %d;", $this->post->ID ) );
+
+		if ( empty( $project_id ) ) {
+			return array();
+		}
+
+		$results = $wpdb->get_results( $wpdb->prepare( "
 			SELECT
 				*
 			FROM
-				$wpdb->orbis_projects AS projects
-					LEFT JOIN
-				$wpdb->orbis_projects_invoices AS invoices
-						ON projects.id = invoices.project_id
+				$wpdb->orbis_projects_invoices AS invoice
 					LEFT JOIN
 				$wpdb->users AS user
-						ON invoices.user_id = user.ID
+						ON invoice.user_id = user.ID
 			WHERE
-				post_id = %d;
-		", $this->post->ID ) );
+				invoice.project_id = %d
+			;
+		", $project_id ) );
 
-		return $result;
+		if ( ! is_array( $results ) ) {
+			return array();
+		}
+
+		return $results;
 	}
 }

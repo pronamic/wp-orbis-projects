@@ -25,19 +25,23 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 
 			<tr valign="top">
 				<td>
-					<input id="orbis_project_invoice_date" name="_orbis_project_invoice_date_edit_<?php echo esc_html( $invoice->id ); ?>" type="date" value="<?php echo esc_html( empty( $invoice->create_date ) ? '' : date_format( new DateTime( $invoice->create_date ), 'Y-m-d' ) ); ?>" />
+					<input name="_orbis_project_invoice_date_edit_<?php echo esc_html( $invoice->id ); ?>" type="date" value="<?php echo esc_html( empty( $invoice->create_date ) ? '' : date_format( new DateTime( $invoice->create_date ), 'Y-m-d' ) ); ?>" />
 				</td>
 				<td>
-					<input type="text" size="10" name="_orbis_project_invoice_amount_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_attr( empty( $invoice->amount ) ? '' : number_format_i18n( $invoice->amount, 2 ) ); ?>"/>
+					<input type="text" size="10" name="_orbis_project_invoice_amount_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_attr( empty( $invoice->amount ) ? '' : number_format_i18n( $invoice->amount, 2 ) ); ?>" placeholder="0" />
 				</td>
 				<td>
-					<input type="text" size="5" name="_orbis_project_invoice_seconds_available_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_html( orbis_time( $invoice->seconds ) ); ?>"/>
+					<input type="text" size="5" name="_orbis_project_invoice_seconds_available_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_html( orbis_time( $invoice->seconds ) ); ?>" placeholder="00:00" />
 				</td>
 				<td>
-					<input type="text" name="_orbis_project_invoice_number_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_html( $invoice->invoice_number ); ?>"/>
+					<input type="text" name="_orbis_project_invoice_number_edit_<?php echo esc_html( $invoice->id ); ?>" value="<?php echo esc_html( $invoice->invoice_number ); ?>" />
 				</td>
 				<td>
-					<input type="radio" name="_is_final_invoice" value="<?php echo esc_html( $invoice->id ); ?>" <?php checked( $orbis_project->is_final_invoice( $invoice->invoice_number ) ); ?>>
+					<label>
+						<input id="" type="radio" name="_is_final_invoice" value="<?php echo esc_html( $invoice->id ); ?>" <?php checked( $orbis_project->is_final_invoice( $invoice->invoice_number ) ); ?> />
+
+						<?php esc_html_e( 'Final Invoice', 'orbis-projects' ); ?>
+					</label>
 				</td>
 				<td>
 					<span><?php echo esc_html( $invoice->display_name ); ?></span>
@@ -54,15 +58,17 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 	<tfoot>
 		<tr>
 			<td>
-				<strong><?php esc_html_e( 'Add a new invoice:', 'orbis-projects' ); ?></strong>
+				<strong><?php esc_html_e( 'Register New Ivoice', 'orbis-projects' ); ?></strong>
 			</td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td>
-				<input type="radio" id="is_final_invoice_edit" name="_is_final_invoice" value="null" <?php checked( $orbis_project->is_final_invoice( null ) ); ?> />
+				<label>
+					<input type="radio" name="_is_final_invoice" value="null" <?php checked( $orbis_project->is_final_invoice( null ) ); ?> />
 
-				<strong><label for="is_final_invoice_edit" ><?php esc_html_e( 'No final invoice', 'orbis-projects' ); ?></label></strong>
+					<?php esc_html_e( 'No final invoice', 'orbis-projects' ); ?>
+				</label>
 			</td>
 			<td></td>
 			<td></td>
@@ -70,19 +76,23 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 
 		<tr valign="top">
 			<td>
-				<input id="orbis_project_invoice_date" name="_orbis_project_invoice_date" type="date" value="<?php echo esc_html( date( 'Y-m-d' ) ); ?>" />
+				<input name="_orbis_project_invoice_date" type="date" value="<?php echo esc_html( date( 'Y-m-d' ) ); ?>" />
 			</td>
 			<td>
-				<input id="orbis_project_invoice_amount" size="10" name="_orbis_project_invoice_amount" type="text" />
+				<input id="orbis_project_invoice_amount" size="10" name="_orbis_project_invoice_amount" type="text" placeholder="0" />
 			</td>
 			<td>
-				<input id="_orbis_project_invoice_seconds_available" name="_orbis_project_invoice_seconds_available" size="5" type="text" />
+				<input id="_orbis_project_invoice_seconds_available" name="_orbis_project_invoice_seconds_available" size="5" type="text" placeholder="00:00" />
 			</td>
 			<td>
 				<input id="orbis_project_invoice_number" name="_orbis_project_invoice_number" type="text" />
 			</td>
 			<td>
-				<input type="radio" name="_is_final_invoice" value="new_invoice" />
+				<label>
+					<input type="radio" name="_is_final_invoice" value="new_invoice" />
+
+					<?php esc_html_e( 'Final Invoice', 'orbis-projects' ); ?>
+				</label>
 			</td>
 			<td>
 				<?php echo esc_html( wp_get_current_user()->display_name ); ?>
