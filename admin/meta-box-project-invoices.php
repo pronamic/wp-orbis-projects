@@ -9,8 +9,7 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 $project          = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects WHERE post_id = %d;", $post->ID ) );
 $project_invoices = $orbis_project->get_invoices();
 
-// check if an invoice is actually connected
-if ( $project_invoices && $project_invoices[0]->id ) : ?>
+?>
 
 	<table class="orbis-admin-table">
 		<thead>
@@ -22,6 +21,8 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 			<th scope="col"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
 			<th scope="col"></th>
 		</thead>
+
+<?php if ( $project_invoices && $project_invoices[0]->id ) : ?>
 
 		<!-- list of invoices -->
 		<?php foreach ( $project_invoices as $invoice ) : ?>
@@ -78,8 +79,6 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 
 		<input type="hidden" name="_orbis_project_invoice_list" value="<?php echo esc_attr( implode( ',', wp_list_pluck( $project_invoices, 'id' ) ) ); ?>">
 
-<?php else : ?>
-	<table>
 <?php endif; ?>
 
 		<tfoot>
@@ -99,7 +98,9 @@ if ( $project_invoices && $project_invoices[0]->id ) : ?>
 				<td>
 					<input type="radio" name="_is_final_invoice" value="new_invoice">
 				</td>
-				<td></td>
+				<td>
+					<?php echo esc_html( wp_get_current_user()->display_name ); ?>
+				</td>
 				<td>
 					<input type="hidden" name="_project_id" value="<?php echo esc_html( $project->id ); ?>">
 					<?php
