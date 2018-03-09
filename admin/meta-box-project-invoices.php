@@ -4,6 +4,8 @@ $orbis_project = new Orbis_Project( get_post() );
 
 wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_nonce' );
 
+// @see https://github.com/woocommerce/woocommerce/blob/3.3.3/assets/js/admin/settings-views-html-settings-tax.js#L207-L257
+
 ?>
 
 <input type="hidden" name="_orbis_project_invoice_list" value="<?php echo esc_attr( implode( ',', wp_list_pluck( $project_invoices, 'id' ) ) ); ?>" />
