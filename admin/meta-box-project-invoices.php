@@ -1,29 +1,26 @@
 <?php
 
-global $wpdb, $post;
-
-$orbis_project = new Orbis_Project( $post );
+$orbis_project = new Orbis_Project( get_post() );
 
 wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_nonce' );
 
-$project          = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects WHERE post_id = %d;", $post->ID ) );
 $project_invoices = $orbis_project->get_invoices();
 
 ?>
 
-	<table class="orbis-admin-table">
-		<thead>
-			<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
-			<th scope="col"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
-			<th scope="col"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>
-			<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
-			<th scope="col"><?php esc_html_e( 'Final Invoice', 'orbis-projects' ); ?></th>
-			<th scope="col"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
-			<th scope="col"></th>
-		</thead>
+<input type="hidden" name="_orbis_project_invoice_list" value="<?php echo esc_attr( implode( ',', wp_list_pluck( $project_invoices, 'id' ) ) ); ?>">
+<table class="orbis-admin-table">
+	<thead>
+		<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
+		<th scope="col"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
+		<th scope="col"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>
+		<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
+		<th scope="col"><?php esc_html_e( 'Final Invoice', 'orbis-projects' ); ?></th>
+		<th scope="col"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
+		<th scope="col"></th>
+	</thead>
 
-<?php if ( $project_invoices && $project_invoices[0]->id ) : ?>
-
+	<tbody>
 		<!-- list of invoices -->
 		<?php foreach ( $project_invoices as $invoice ) : ?>
 
@@ -52,66 +49,52 @@ $project_invoices = $orbis_project->get_invoices();
 			</tr>
 
 		<?php endforeach; ?>
+	</tbody>
 
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td>
-					<input type="radio" id="is_final_invoice_edit" name="_is_final_invoice" value="null" <?php checked( $orbis_project->is_final_invoice( null ) ); ?>>
-					<strong><label for="is_final_invoice_edit" ><?php esc_html_e( 'No final invoice', 'orbis-projects' ); ?></label></strong>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>
-					<strong><?php esc_html_e( 'Add a new invoice:', 'orbis-projects' ); ?></strong>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+	<tfoot>
+		<tr>
+			<td>
+				<strong><?php esc_html_e( 'Add a new invoice:', 'orbis-projects' ); ?></strong>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+				<input type="radio" id="is_final_invoice_edit" name="_is_final_invoice" value="null" <?php checked( $orbis_project->is_final_invoice( null ) ); ?>>
+				<strong><label for="is_final_invoice_edit" ><?php esc_html_e( 'No final invoice', 'orbis-projects' ); ?></label></strong>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
 
-		<input type="hidden" name="_orbis_project_invoice_list" value="<?php echo esc_attr( implode( ',', wp_list_pluck( $project_invoices, 'id' ) ) ); ?>">
-
-<?php endif; ?>
-
-		<tfoot>
-			<tr valign="top">
-				<td>
-					<input id="orbis_project_invoice_date" name="_orbis_project_invoice_date" type="date" value="<?php echo esc_html( date( 'Y-m-d' ) ); ?>" />
-				</td>
-				<td>
-					<input id="orbis_project_invoice_amount" size="10" name="_orbis_project_invoice_amount" type="text" />
-				</td>
-				<td>
-					<input id="_orbis_project_invoice_seconds_available" name="_orbis_project_invoice_seconds_available" size="5" type="text" />
-				</td>
-				<td>
-					<input id="orbis_project_invoice_number" name="_orbis_project_invoice_number" type="text"/>
-				</td>
-				<td>
-					<input type="radio" name="_is_final_invoice" value="new_invoice">
-				</td>
-				<td>
-					<?php echo esc_html( wp_get_current_user()->display_name ); ?>
-				</td>
-				<td>
-					<input type="hidden" name="_project_id" value="<?php echo esc_html( $project->id ); ?>">
-					<?php
-					submit_button( __( 'Add Invoice', 'orbis-projects' ), 'secondary', 'orbis_projects_invoice_add', false );
-					?>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-
-
+		<tr valign="top">
+			<td>
+				<input id="orbis_project_invoice_date" name="_orbis_project_invoice_date" type="date" value="<?php echo esc_html( date( 'Y-m-d' ) ); ?>" />
+			</td>
+			<td>
+				<input id="orbis_project_invoice_amount" size="10" name="_orbis_project_invoice_amount" type="text" />
+			</td>
+			<td>
+				<input id="_orbis_project_invoice_seconds_available" name="_orbis_project_invoice_seconds_available" size="5" type="text" />
+			</td>
+			<td>
+				<input id="orbis_project_invoice_number" name="_orbis_project_invoice_number" type="text"/>
+			</td>
+			<td>
+				<input type="radio" name="_is_final_invoice" value="new_invoice">
+			</td>
+			<td>
+				<?php echo esc_html( wp_get_current_user()->display_name ); ?>
+			</td>
+			<td>
+				<input type="hidden" name="_project_id" value="<?php echo esc_html( $project->id ); ?>">
+				<?php
+				submit_button( __( 'Add Invoice', 'orbis-projects' ), 'secondary', 'orbis_projects_invoice_add', false );
+				?>
+			</td>
+		</tr>
+	</tfoot>
+</table>
 
 <script type="text/javascript">
 	( function( $ ) {

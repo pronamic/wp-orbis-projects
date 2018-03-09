@@ -44,11 +44,8 @@ if ( $query->have_posts() ) : ?>
 
 			<tbody>
 
-				<?php
-					// @codingStandardsIgnoreStart
-					while ( $query->have_posts() ) : $query->the_post();
-					// @codingStandardsIgnoreEnd
-				?>
+				<?php while ( $query->have_posts() ) : ?>
+					<?php $query->the_post(); ?>
 
 					<tr>
 						<td>
@@ -62,13 +59,13 @@ if ( $query->have_posts() ) : ?>
 
 							global $orbis_project;
 
-						if ( $orbis_project->has_principal() ) {
-							printf(
-								'<a href="%s">%s</a>',
-								esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
-								esc_html( $orbis_project->get_principal_name() )
-							);
-						}
+							if ( $orbis_project->has_principal() ) {
+								printf(
+									'<a href="%s">%s</a>',
+									esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
+									esc_html( $orbis_project->get_principal_name() )
+								);
+							}
 
 							?>
 						</td>
