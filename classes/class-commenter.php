@@ -24,8 +24,8 @@ class Orbis_Projects_Commenter {
 		// Comment
 		$user = wp_get_current_user();
 
-		// translators: first and second placeholder is the state of the project, opened or completed, and the third is the user name.
 		$comment_content = sprintf(
+			/* translators: first and second placeholder is the state of the project, opened or completed, and the third is the user name. */
 			__( 'This "%1$s" project is just "%2$s" by %3$s.', 'orbis-projects' ),
 			$is_finished ? __( 'opened', 'orbis-projects' ) : __( 'completed', 'orbis-projects' ),
 			$is_finished ? __( 'completed', 'orbis-projects' ) : __( 'opened', 'orbis-projects' ),

@@ -10,8 +10,10 @@
 		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
 		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />
 		<exclude name="WordPress.VIP.RestrictedVariables.user_meta" />
-
 		<exclude name="WordPress.WP.PreparedSQL.NotPrepared" />
+
+		<exclude name="WordPress.VIP.RestrictedVariables.user_meta__wpdb__users" />
+		<exclude name="WordPress.VIP.SuperGlobalInputUsage.AccessDetected" />
 	</rule>
 
 	<rule ref="WordPress.XSS.EscapeOutput">

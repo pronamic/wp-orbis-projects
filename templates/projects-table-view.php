@@ -59,6 +59,7 @@
 
 							foreach ( $comments as $comment ) {
 								$title = sprintf(
+									/* translators: 1st placeholder is the comment author, 2nd is the date */
 									__( '%1$s says on %2$s:', 'orbis-projects' ),
 									'<strong>' . $comment->comment_author . '</strong>',
 									'<strong>' . date_i18n( 'j M Y', strtotime( $comment->comment_date ) ) . '</strong>'

@@ -39,6 +39,7 @@ $sql = "
 		%s ;
 ";
 
+// @codingStandardsIgnoreStart
 // Order by
 $order_by = 'principal.name , project.name';
 if ( isset( $_GET['order'] ) ) {
@@ -48,6 +49,7 @@ if ( isset( $_GET['order'] ) ) {
 			break;
 	}
 }
+// @codingStandardsIgnoreEnd
 
 // Build query
 $sql = sprintf( $sql, $order_by );
@@ -79,7 +81,9 @@ foreach ( $projects as $project ) {
 
 ksort( $managers );
 
+// @codingStandardsIgnoreStart
 $parameters = $_GET;
+// @codingStandardsIgnoreEnd
 
 ?>
 <p>
@@ -88,4 +92,4 @@ $parameters = $_GET;
 
 <?php
 
-include 'projects-table-view.php';
+require 'projects-table-view.php';

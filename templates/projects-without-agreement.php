@@ -9,6 +9,7 @@ function filter_where( $where = '' ) {
 
 add_filter( 'posts_where', 'filter_where' );
 
+// @codingStandardsIgnoreStart
 $query = new WP_Query( array(
 	'post_type'      => 'orbis_project',
 	'posts_per_page' => 50,
@@ -23,6 +24,7 @@ $query = new WP_Query( array(
 		),
 	),
 ) );
+// @codingStandardsIgnoreEnd
 
 remove_filter( 'posts_where', 'filter_where' );
 
@@ -42,7 +44,11 @@ if ( $query->have_posts() ) : ?>
 
 			<tbody>
 
-				<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+				<?php
+					// @codingStandardsIgnoreStart
+					while ( $query->have_posts() ) : $query->the_post();
+					// @codingStandardsIgnoreEnd
+				?>
 
 					<tr>
 						<td>
@@ -56,13 +62,13 @@ if ( $query->have_posts() ) : ?>
 
 							global $orbis_project;
 
-							if ( $orbis_project->has_principal() ) {
-								printf(
-									'<a href="%s">%s</a>',
-									esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
-									esc_html( $orbis_project->get_principal_name() )
-								);
-							}
+						if ( $orbis_project->has_principal() ) {
+							printf(
+								'<a href="%s">%s</a>',
+								esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
+								esc_html( $orbis_project->get_principal_name() )
+							);
+						}
 
 							?>
 						</td>

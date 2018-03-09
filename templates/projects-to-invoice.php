@@ -80,4 +80,4 @@ foreach ( $projects as $project ) {
 
 ksort( $managers );
 
-include 'projects-table-view.php';
+require 'projects-table-view.php';
