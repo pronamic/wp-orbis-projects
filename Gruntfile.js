@@ -29,12 +29,17 @@ module.exports = function( grunt ) {
 
 		// PHPLint
 		phplint: {
+			core: [
+				'*.php',
+				'admin/**/*.php',
+				'classes/**/*.php',
+				'templates/**/*.php'
+			],
 			options: {
 				phpArgs: {
 					'-lf': null
 				}
 			},
-			all: [ 'classes/**/*.php' ]
 		},
 		
 		// Check WordPress version
