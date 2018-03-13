@@ -60,7 +60,7 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 	<tfoot>
 		<tr>
 			<td>
-				<strong><?php esc_html_e( 'Register New Ivoice', 'orbis-projects' ); ?></strong>
+				<strong><?php esc_html_e( 'Register New Invoice', 'orbis-projects' ); ?></strong>
 			</td>
 			<td></td>
 			<td></td>
