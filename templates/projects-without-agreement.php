@@ -9,11 +9,10 @@ function filter_where( $where = '' ) {
 
 add_filter( 'posts_where', 'filter_where' );
 
-// @codingStandardsIgnoreStart
 $query = new WP_Query( array(
 	'post_type'      => 'orbis_project',
 	'posts_per_page' => 50,
-	'meta_query'     => array(
+	'meta_query'     => array( // WPCS: slow query ok.
 		array(
 			'key'     => '_orbis_project_agreement_id',
 			'compare' => 'NOT EXISTS',
@@ -24,7 +23,6 @@ $query = new WP_Query( array(
 		),
 	),
 ) );
-// @codingStandardsIgnoreEnd
 
 remove_filter( 'posts_where', 'filter_where' );
 

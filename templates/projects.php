@@ -39,17 +39,15 @@ $sql = "
 		%s ;
 ";
 
-// @codingStandardsIgnoreStart
 // Order by
 $order_by = 'principal.name , project.name';
-if ( isset( $_GET['order'] ) ) {
-	switch ( $_GET['order'] ) {
+if ( isset( $_GET['order'] ) ) { // WPCS: CSRF ok.
+	switch ( $_GET['order'] ) { // WPCS: CSRF ok.
 		case 'id':
 			$order_by = 'project.id DESC';
 			break;
 	}
 }
-// @codingStandardsIgnoreEnd
 
 // Build query
 $sql = sprintf( $sql, $order_by );
@@ -81,9 +79,7 @@ foreach ( $projects as $project ) {
 
 ksort( $managers );
 
-// @codingStandardsIgnoreStart
-$parameters = $_GET;
-// @codingStandardsIgnoreEnd
+$parameters = $_GET; // WPCS: CSRF ok.
 
 ?>
 <p>
