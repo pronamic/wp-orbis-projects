@@ -111,6 +111,8 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 <script type="text/javascript">
 	( function( $ ) {
 		$( document ).ready( function() {
+			$( '.inside' ).has( '.orbis-admin-table' ).addClass( 'horizontal-scrollable' );
+			// when deleting invoices
 			$( '.delete' ).on( 'click', function( e ) {
 				if ( ! confirm( '<?php esc_html_e( 'Are you sure you want to delete this invoice?', 'orbis-projects' ); ?>' )) {
 					if ( e.preventDefault ) {
