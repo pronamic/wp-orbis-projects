@@ -319,18 +319,18 @@ class Orbis_Projects_AdminProjectPostType {
 				'delete'         => false,
 			) );
 
-			$date     = $invoice_data['date'];
-			$amount   = filter_var( $invoice_data['amount'], FILTER_VALIDATE_FLOAT, array(
+			$date    = $invoice_data['date'];
+			$amount  = filter_var( $invoice_data['amount'], FILTER_VALIDATE_FLOAT, array(
 				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
 				'options' => array(
 					'decimal' => $wp_locale->number_format['decimal_point'],
 				),
 			) );
-			$seconds  = orbis_parse_time( $invoice_data['seconds'] );
-			$number   = $invoice_data['number'];
-			$delete   = $invoice_data['delete'];
+			$seconds = orbis_parse_time( $invoice_data['seconds'] );
+			$number  = $invoice_data['number'];
+			$delete  = $invoice_data['delete'];
 
-			if ( $id == $final_invoice_id ) {
+			if ( $id == $final_invoice_id ) { // WPCS: loose comparison ok.
 				$final_invoice_number = $number;
 			}
 
@@ -357,7 +357,7 @@ class Orbis_Projects_AdminProjectPostType {
 
 				$wpdb->insert( $wpdb->orbis_projects_invoices, $data, $format );
 			} elseif ( $delete ) {
-				if ( $number == $final_invoice_number ) {
+				if ( $number == $final_invoice_number ) { // WPCS: loose comparison ok.
 					$final_invoice_number = null;
 				}
 
