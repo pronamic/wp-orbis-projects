@@ -76,9 +76,9 @@ class Orbis_Projects_AdminProjectPostType {
 	 */
 	public function add_meta_boxes() {
 		add_meta_box(
-			'orbis_project',
+			'orbis_project_details',
 			__( 'Project Information', 'orbis-projects' ),
-			array( $this, 'meta_box' ),
+			array( $this, 'meta_box_details' ),
 			'orbis_project',
 			'normal',
 			'high'
@@ -87,7 +87,7 @@ class Orbis_Projects_AdminProjectPostType {
 		add_meta_box(
 			'orbis_project_invoices',
 			__( 'Project Invoices', 'orbis-projects' ),
-			array( $this, 'invoices_meta_box' ),
+			array( $this, 'meta_box_invoices' ),
 			'orbis_project',
 			'normal',
 			'high'
@@ -99,7 +99,7 @@ class Orbis_Projects_AdminProjectPostType {
 	 *
 	 * @param mixed $post
 	 */
-	public function meta_box( $post ) {
+	public function meta_box_details( $post ) {
 		$this->plugin->plugin_include( 'admin/meta-box-project-details.php' );
 	}
 
@@ -108,7 +108,7 @@ class Orbis_Projects_AdminProjectPostType {
 	 *
 	 * @param mixed $post
 	 */
-	public function invoices_meta_box( $post ) {
+	public function meta_box_invoices( $post ) {
 		wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_nonce' );
 
 		$this->plugin->plugin_include( 'admin/meta-box-project-invoices.php' );
