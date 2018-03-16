@@ -245,10 +245,8 @@ class Orbis_Projects_AdminProjectPostType {
 		$data['invoiced'] = $is_invoiced;
 		$form['invoiced'] = '%d';
 
-		if ( ! empty( $invoice_number ) ) {
-			$data['invoice_number'] = $invoice_number;
-			$form['invoice_number'] = '%s';
-		}
+		$data['invoice_number'] = empty( $invoice_number ) ? null : $invoice_number;
+		$form['invoice_number'] = '%s';
 
 		$data['finished'] = $is_finished;
 		$form['finished'] = '%d';
