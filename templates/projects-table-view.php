@@ -81,7 +81,7 @@
 							$invoice_link   = orbis_get_invoice_link( $invoice_number );
 
 							if ( empty( $invoice_number ) ) {
-								$invoice_number = __( 'Invoicable', 'orbis-projects' );
+								$invoice_number = esc_html__( 'Invoicable', 'orbis-projects' );
 							} elseif ( ! empty( $invoice_link ) ) {
 								$invoice_number = sprintf(
 									'<a href="%s" target="_blank">%s</a>',
@@ -92,7 +92,7 @@
 								$invoice_number = esc_html( $invoice_number );
 							}
 
-							echo $project->invoicable ? $invoice_number : __( 'Not invoicable', 'orbis-projects' );
+							echo $project->invoicable ? wp_kses_post( $invoice_number ) : esc_html__( 'Not invoicable', 'orbis-projects' );
 
 							?>
 						</td>
