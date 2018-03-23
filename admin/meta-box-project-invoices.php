@@ -11,9 +11,9 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 	<table class="orbis-admin-table">
 		<thead>
 			<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
+			<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>
-			<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Final Invoice', 'orbis-projects' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
 			<th scope="col"></th>
@@ -33,13 +33,13 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 						<input name="<?php echo esc_attr( sprintf( $name, 'date' ) ); ?>" type="date" value="<?php echo esc_html( empty( $invoice->create_date ) ? '' : date_format( new DateTime( $invoice->create_date ), 'Y-m-d' ) ); ?>" />
 					</td>
 					<td>
+						<input type="text" name="<?php echo esc_attr( sprintf( $name, 'number' ) ); ?>" value="<?php echo esc_html( $invoice->invoice_number ); ?>" />
+					</td>
+					<td>
 						<input type="text" size="10" name="<?php echo esc_attr( sprintf( $name, 'amount' ) ); ?>" value="<?php echo esc_attr( empty( $invoice->amount ) ? '' : number_format_i18n( $invoice->amount, 2 ) ); ?>" placeholder="0" />
 					</td>
 					<td>
 						<input type="text" size="5" name="<?php echo esc_attr( sprintf( $name, 'seconds' ) ); ?>" value="<?php echo esc_html( orbis_time( $invoice->seconds ) ); ?>" placeholder="00:00" />
-					</td>
-					<td>
-						<input type="text" name="<?php echo esc_attr( sprintf( $name, 'number' ) ); ?>" value="<?php echo esc_html( $invoice->invoice_number ); ?>" />
 					</td>
 					<td>
 						<label>
@@ -89,13 +89,13 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 					<input name="<?php echo esc_attr( sprintf( $name, 'date' ) ); ?>" type="date" value="<?php echo esc_html( date( 'Y-m-d' ) ); ?>" />
 				</td>
 				<td>
+					<input name="<?php echo esc_attr( sprintf( $name, 'number' ) ); ?>" type="text" />
+				</td>
+				<td>
 					<input size="10" name="<?php echo esc_attr( sprintf( $name, 'amount' ) ); ?>" type="text" placeholder="0" />
 				</td>
 				<td>
 					<input name="<?php echo esc_attr( sprintf( $name, 'seconds' ) ); ?>" size="5" type="text" placeholder="00:00" />
-				</td>
-				<td>
-					<input name="<?php echo esc_attr( sprintf( $name, 'number' ) ); ?>" type="text" />
 				</td>
 				<td>
 					<label>
