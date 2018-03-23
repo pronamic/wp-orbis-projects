@@ -2,16 +2,12 @@
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th scope="col"><?php esc_html_e( 'Manager', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'ID', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Project', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Comment', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Price', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Time', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Invoiceable', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Budget', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Invoice', 'orbis-projects' ); ?></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -21,7 +17,7 @@
 			<?php foreach ( $managers as $manager ) : ?>
 
 				<tr>
-					<th rowspan="<?php echo esc_attr( count( $manager->projects ) + 1 ); ?>">
+					<th colspan="8">
 						<?php echo esc_html( $manager->name ); ?>
 					</th>
 				</tr>
@@ -29,11 +25,6 @@
 				<?php foreach ( $manager->projects as $project ) : ?>
 
 					<tr>
-						<td>
-							<a href="<?php echo esc_attr( get_permalink( $project->project_post_id ) ); ?>" style="color: #000;">
-								<?php echo esc_html( $project->id ); ?>
-							</a>
-						</td>
 						<td>
 							<a href="<?php echo esc_attr( get_permalink( $project->principal_post_id ) ); ?>" style="color: #000;">
 								<?php echo esc_html( $project->principal_name ); ?>
@@ -76,33 +67,32 @@
 
 							?>
 						</td>
-						<td>
-							<?php echo esc_html( orbis_price( get_post_meta( $project->project_post_id, '_orbis_price', true ) ) ); ?>
-						</td>
 						<td style="white-space: nowrap;">
 							<span style="color: <?php echo esc_attr( $project->failed ? 'Red' : 'Green' ); ?>;"><?php echo esc_html( orbis_time( $project->registered_seconds ) ); ?></span>
 							/
 							<?php echo esc_html( orbis_time( $project->available_seconds ) ); ?>
-						</td>
-						<td>
-							<?php echo esc_html( $project->invoicable ? 'Ja' : 'Nee' ); ?>
+							<br />
+							<?php echo esc_html( orbis_price( get_post_meta( $project->project_post_id, '_orbis_price', true ) ) ); ?>
 						</td>
 						<td>
 							<?php
 
 							$invoice_number = $project->invoice_number;
+							$invoice_link   = orbis_get_invoice_link( $invoice_number );
 
-							$invoice_link = orbis_get_invoice_link( $invoice_number );
-
-							if ( ! empty( $invoice_link ) ) {
-								printf(
+							if ( empty( $invoice_number ) ) {
+								$invoice_number = __( 'Invoicable', 'orbis-projects' );
+							} elseif ( ! empty( $invoice_link ) ) {
+								$invoice_number = sprintf(
 									'<a href="%s" target="_blank">%s</a>',
 									esc_attr( $invoice_link ),
 									esc_html( $invoice_number )
 								);
 							} else {
-								echo esc_html( $invoice_number );
+								$invoice_number = esc_html( $invoice_number );
 							}
+
+							echo $project->invoicable ? $invoice_number : __( 'Not invoicable', 'orbis-projects' );
 
 							?>
 						</td>
