@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-03-23 11:04:47+00:00\n"
-"PO-Revision-Date: 2018-03-23 12:05+0100\n"
+"POT-Creation-Date: 2018-03-23 11:17:03+00:00\n"
+"PO-Revision-Date: 2018-03-23 12:17+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -48,13 +48,17 @@ msgstr ""
 msgid "Agreement ID"
 msgstr "Akkoord ID"
 
-#: admin/meta-box-project-details.php:80 admin/meta-box-project-details.php:83
-msgid "Choose a Agreement"
+#: admin/meta-box-project-details.php:80
+msgid "Choose an Agreement"
 msgstr "Kies een akkoord"
 
 #: admin/meta-box-project-details.php:83
 msgid "Set as Agreement"
 msgstr "Stel in als akkoord"
+
+#: admin/meta-box-project-details.php:83
+msgid "Choose a Agreement"
+msgstr "Kies een akkoord"
 
 #: admin/meta-box-project-details.php:86
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
