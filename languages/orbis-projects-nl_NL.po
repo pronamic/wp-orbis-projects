@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-03-16 10:06:25+00:00\n"
-"PO-Revision-Date: 2018-03-16 11:09+0100\n"
+"POT-Creation-Date: 2018-03-23 11:04:47+00:00\n"
+"PO-Revision-Date: 2018-03-23 12:05+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: admin/meta-box-project-details.php:32
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:7
+#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:5
 msgid "Client"
 msgstr "Klant"
 
@@ -30,13 +30,11 @@ msgstr "Selecteer klant"
 
 #: admin/meta-box-project-details.php:52
 #: classes/class-admin-project-post-type.php:34
-#: templates/projects-table-view.php:11
 msgid "Price"
 msgstr "Prijs"
 
 #: admin/meta-box-project-details.php:60
 #: classes/class-admin-project-post-type.php:35
-#: templates/projects-table-view.php:12
 msgid "Time"
 msgstr "Tijd"
 
@@ -80,7 +78,7 @@ msgstr "Afgerond"
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:108
+#: admin/meta-box-project-details.php:108 templates/projects-table-view.php:84
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
@@ -106,21 +104,21 @@ msgstr "— Selecteer betaalmethode —"
 
 #: admin/meta-box-project-invoices.php:13
 #: classes/class-admin-project-post-type.php:38
-#: templates/projects-table-view.php:9
+#: templates/projects-table-view.php:7
 msgid "Date"
 msgstr "Datum"
 
 #: admin/meta-box-project-invoices.php:14
+msgid "Invoice Number"
+msgstr "Factuurnummer"
+
+#: admin/meta-box-project-invoices.php:15
 msgid "Amount"
 msgstr "Bedrag"
 
-#: admin/meta-box-project-invoices.php:15
+#: admin/meta-box-project-invoices.php:16
 msgid "Hours"
 msgstr "Uren"
-
-#: admin/meta-box-project-invoices.php:16 templates/projects-table-view.php:14
-msgid "Invoice Number"
-msgstr "Factuurnummer"
 
 #: admin/meta-box-project-invoices.php:17
 #: admin/meta-box-project-invoices.php:48
@@ -198,7 +196,7 @@ msgid "Projects"
 msgstr "Projecten"
 
 #: classes/class-content-types.php:21 classes/class-plugin.php:111
-#: templates/projects-table-view.php:8
+#: templates/projects-table-view.php:6
 msgid "Project"
 msgstr "Project"
 
@@ -342,28 +340,28 @@ msgstr "Nieuw persoon"
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
-#: templates/projects-table-view.php:5
-msgid "Manager"
-msgstr "Projectleider"
-
-#: templates/projects-table-view.php:6
-msgid "ID"
-msgstr "ID"
-
-#: templates/projects-table-view.php:10
+#: templates/projects-table-view.php:8
 msgid "Comment"
 msgstr "Reactie"
 
-#: templates/projects-table-view.php:13
-msgid "Invoiceable"
-msgstr "Factureerbaar"
+#: templates/projects-table-view.php:9
+msgid "Budget"
+msgstr "Budget"
+
+#: templates/projects-table-view.php:10
+msgid "Invoice"
+msgstr "Factuur"
 
 #. translators: 1st placeholder is the comment author, 2nd is the date
-#: templates/projects-table-view.php:63
+#: templates/projects-table-view.php:54
 msgid "%1$s says on %2$s:"
 msgstr "%1$s zegt op %2$s:"
 
-#: templates/projects-table-view.php:117
+#: templates/projects-table-view.php:95
+msgid "Not invoicable"
+msgstr "Niet factureerbaar"
+
+#: templates/projects-table-view.php:107
 #: templates/projects-without-agreement.php:77
 msgid "Edit"
 msgstr "Bewerken"
@@ -436,6 +434,15 @@ msgstr "Categorieën"
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr "Categorie"
+
+#~ msgid "Manager"
+#~ msgstr "Projectleider"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Invoiceable"
+#~ msgstr "Factureerbaar"
 
 #, fuzzy
 #~ msgid "Final invoice"
