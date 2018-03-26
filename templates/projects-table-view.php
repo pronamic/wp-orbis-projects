@@ -66,6 +66,7 @@
 							}
 
 							?>
+
 						</td>
 						<td style="white-space: nowrap;">
 							<span style="color: <?php echo esc_attr( $project->failed ? 'Red' : 'Green' ); ?>;">
@@ -84,19 +85,16 @@
 							$invoice_number = $project->invoice_number;
 							$invoice_link   = orbis_get_invoice_link( $invoice_number );
 
-							if ( empty( $invoice_number ) ) {
-								$invoice_number = esc_html__( 'Invoicable', 'orbis-projects' );
-							} elseif ( ! empty( $invoice_link ) ) {
-								$invoice_number = sprintf(
-									'<a href="%s" target="_blank">%s</a>',
-									esc_attr( $invoice_link ),
-									esc_html( $invoice_number )
-								);
-							} else {
-								$invoice_number = esc_html( $invoice_number );
-							}
+							$invoice_number = sprintf(
+								'<a href="%s" target="_blank">%s</a>',
+								esc_attr( $invoice_link ),
+								esc_html( $invoice_number )
+							);
 
-							echo $project->invoicable ? wp_kses_post( $invoice_number ) : esc_html__( 'Not invoicable', 'orbis-projects' );
+							$invoicable     = '<span class="badge badge-pill badge-success">' . esc_html__( 'Invoicable', 'orbis-projects' ) . '</span> ';
+							$not_invoicable = '<span class="badge badge-pill badge-danger">' . esc_html__( 'Not invoicable', 'orbis-projects' ) . '</span>';
+
+							echo $project->invoicable ? $invoicable . wp_kses_post( $invoice_number ) : $not_invoicable;
 
 							?>
 						</td>
