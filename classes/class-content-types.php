@@ -75,6 +75,32 @@ class Orbis_Projects_ContentTypes {
 			)
 		);
 
+		register_taxonomy(
+			'orbis_project_status',
+			array( 'orbis_project' ),
+			array(
+				'hierarchical' => true,
+				'labels'       => array(
+					'name'              => _x( 'Statuses', 'taxonomy general name', 'orbis-projects' ),
+					'singular_name'     => _x( 'Status', 'taxonomy singular name', 'orbis-projects' ),
+					'search_items'      => __( 'Search Statuses', 'orbis-projects' ),
+					'all_items'         => __( 'All Statuses', 'orbis-projects' ),
+					'parent_item'       => __( 'Parent Status', 'orbis-projects' ),
+					'parent_item_colon' => __( 'Parent Status:', 'orbis-projects' ),
+					'edit_item'         => __( 'Edit Status', 'orbis-projects' ),
+					'update_item'       => __( 'Update Status', 'orbis-projects' ),
+					'add_new_item'      => __( 'Add New Status', 'orbis-projects' ),
+					'new_item_name'     => __( 'New Status Name', 'orbis-projects' ),
+					'menu_name'         => __( 'Statuses', 'orbis-projects' ),
+				),
+				'show_ui'      => true,
+				'query_var'    => true,
+				'rewrite'      => array(
+					'slug' => _x( 'project-status', 'slug', 'orbis-projects' ),
+				),
+			)
+		);
+
 		register_taxonomy_for_object_type( 'orbis_payment_method', 'orbis_project' );
 	}
 }
