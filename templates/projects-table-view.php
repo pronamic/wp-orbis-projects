@@ -68,7 +68,11 @@
 							?>
 						</td>
 						<td style="white-space: nowrap;">
-							<span style="color: <?php echo esc_attr( $project->failed ? 'Red' : 'Green' ); ?>;"><?php echo esc_html( orbis_time( $project->registered_seconds ) ); ?></span>
+							<span style="color: <?php echo esc_attr( $project->failed ? 'Red' : 'Green' ); ?>;">
+								<?php
+								echo $project->registered_seconds ? esc_html( orbis_time( $project->registered_seconds ) ) : '00:00';
+								?>
+							</span>
 							/
 							<?php echo esc_html( orbis_time( $project->available_seconds ) ); ?>
 							<br />
