@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-03-23 11:17:03+00:00\n"
-"PO-Revision-Date: 2018-03-23 12:17+0100\n"
+"POT-Creation-Date: 2018-03-28 13:09:39+00:00\n"
+"PO-Revision-Date: 2018-03-28 15:15+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:5
+#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:20
 msgid "Client"
 msgstr "Klant"
 
@@ -82,7 +82,8 @@ msgstr "Afgerond"
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:108 templates/projects-table-view.php:84
+#: admin/meta-box-project-details.php:108 templates/projects-table-view.php:25
+#: templates/projects-table-view.php:134
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
@@ -108,7 +109,7 @@ msgstr "— Selecteer betaalmethode —"
 
 #: admin/meta-box-project-invoices.php:13
 #: classes/class-admin-project-post-type.php:38
-#: templates/projects-table-view.php:7
+#: templates/projects-table-view.php:22
 msgid "Date"
 msgstr "Datum"
 
@@ -195,16 +196,16 @@ msgid "completed"
 msgstr "afgerond"
 
 #: classes/class-content-types.php:18 classes/class-content-types.php:20
-#: classes/class-plugin.php:108
+#: classes/class-plugin.php:110
 msgid "Projects"
 msgstr "Projecten"
 
-#: classes/class-content-types.php:21 classes/class-plugin.php:111
-#: templates/projects-table-view.php:6
+#: classes/class-content-types.php:21 classes/class-plugin.php:113
+#: templates/projects-table-view.php:21
 msgid "Project"
 msgstr "Project"
 
-#: classes/class-content-types.php:23 classes/class-plugin.php:116
+#: classes/class-content-types.php:23 classes/class-plugin.php:118
 msgid "Add New Project"
 msgstr "Nieuw project toevoegen"
 
@@ -212,7 +213,7 @@ msgstr "Nieuw project toevoegen"
 msgid "Edit Project"
 msgstr "Project bewerken"
 
-#: classes/class-content-types.php:25 classes/class-plugin.php:115
+#: classes/class-content-types.php:25 classes/class-plugin.php:117
 msgid "New Project"
 msgstr "Nieuw project"
 
@@ -228,7 +229,7 @@ msgstr "Toon projecten"
 msgid "Search Projects"
 msgstr "Projecten zoeken"
 
-#: classes/class-content-types.php:29 classes/class-plugin.php:113
+#: classes/class-content-types.php:29 classes/class-plugin.php:115
 msgid "No projects found."
 msgstr "Geen projecten gevonden."
 
@@ -272,100 +273,136 @@ msgstr "Projectenlijst navigatie"
 msgid "Projects list"
 msgstr "Projectenlijst"
 
-#: classes/class-content-types.php:60
+#: classes/class-content-types.php:62
 msgid "Search Categories"
 msgstr "Zoek categorieën"
 
-#: classes/class-content-types.php:61
+#: classes/class-content-types.php:63
 msgid "All Categories"
 msgstr "Alle categorieën"
 
-#: classes/class-content-types.php:62
+#: classes/class-content-types.php:64
 msgid "Parent Category"
 msgstr "Bovenliggende categorie"
 
-#: classes/class-content-types.php:63
+#: classes/class-content-types.php:65
 msgid "Parent Category:"
 msgstr "Bovenliggende categorie:"
 
-#: classes/class-content-types.php:64
+#: classes/class-content-types.php:66
 msgid "Edit Category"
 msgstr "Categorie bewerken"
 
-#: classes/class-content-types.php:65
+#: classes/class-content-types.php:67
 msgid "Update Category"
 msgstr "Categorie bijgewerkt"
 
-#: classes/class-content-types.php:66
+#: classes/class-content-types.php:68
 msgid "Add New Category"
 msgstr "Nieuwe categorie"
 
-#: classes/class-content-types.php:67
+#: classes/class-content-types.php:69
 msgid "New Category Name"
 msgstr "Nieuwe categorie naam"
 
-#: classes/class-content-types.php:68
+#: classes/class-content-types.php:70
 msgid "Categories"
 msgstr "Categorieën"
 
-#: classes/class-plugin.php:107
+#: classes/class-content-types.php:88
+msgid "Search Statuses"
+msgstr "Zoek statussen"
+
+#: classes/class-content-types.php:89
+msgid "All Statuses"
+msgstr "Alle statussen"
+
+#: classes/class-content-types.php:90
+msgid "Parent Status"
+msgstr "Bovenliggende status"
+
+#: classes/class-content-types.php:91
+msgid "Parent Status:"
+msgstr "Bovenliggende status:"
+
+#: classes/class-content-types.php:92
+msgid "Edit Status"
+msgstr "Bewerkt status"
+
+#: classes/class-content-types.php:93
+msgid "Update Status"
+msgstr "Status bijgewerkt"
+
+#: classes/class-content-types.php:94
+msgid "Add New Status"
+msgstr "Nieuwe status"
+
+#: classes/class-content-types.php:95
+msgid "New Status Name"
+msgstr "Nieuwe status naam"
+
+#: classes/class-content-types.php:96
+msgid "Statuses"
+msgstr "Statussen"
+
+#: classes/class-plugin.php:109
 msgid "Involved Persons"
 msgstr "Betrokken personen"
 
-#: classes/class-plugin.php:112
+#: classes/class-plugin.php:114
 msgid "Search project"
 msgstr "Zoek project"
 
-#: classes/class-plugin.php:114
+#: classes/class-plugin.php:116
 msgid "Add Project"
 msgstr "Project toevoegen"
 
-#: classes/class-plugin.php:119
+#: classes/class-plugin.php:121
 msgid "Person"
 msgstr "Persoon"
 
-#: classes/class-plugin.php:120
+#: classes/class-plugin.php:122
 msgid "Search person"
 msgstr "Zoek persoon"
 
-#: classes/class-plugin.php:121
+#: classes/class-plugin.php:123
 msgid "No persons found."
 msgstr "Geen personen gevonden."
 
-#: classes/class-plugin.php:122
+#: classes/class-plugin.php:124
 msgid "Add Person"
 msgstr "Persoon toevoegen"
 
-#: classes/class-plugin.php:123
+#: classes/class-plugin.php:125
 msgid "New Person"
 msgstr "Nieuw persoon"
 
-#: classes/class-plugin.php:124
+#: classes/class-plugin.php:126
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
-#: templates/projects-table-view.php:8
+#: templates/projects-table-view.php:23
 msgid "Comment"
 msgstr "Reactie"
 
-#: templates/projects-table-view.php:9
+#: templates/projects-table-view.php:24
 msgid "Budget"
 msgstr "Budget"
 
-#: templates/projects-table-view.php:10
-msgid "Invoice"
-msgstr "Factuur"
-
 #. translators: 1st placeholder is the comment author, 2nd is the date
-#: templates/projects-table-view.php:54
+#: templates/projects-table-view.php:69
 msgid "%1$s says on %2$s:"
 msgstr "%1$s zegt op %2$s:"
 
-#: templates/projects-table-view.php:95
+#: templates/projects-table-view.php:100
+msgid "Add status"
+msgstr "Voeg status toe"
+
+#: templates/projects-table-view.php:145
 msgid "Not invoicable"
 msgstr "Niet factureerbaar"
 
-#: templates/projects-table-view.php:107
+#: templates/projects-table-view.php:157
 #: templates/projects-without-agreement.php:77
 msgid "Edit"
 msgstr "Bewerken"
@@ -419,25 +456,43 @@ msgctxt "orbis_project"
 msgid "Add New"
 msgstr "Nieuw project"
 
-#: classes/class-content-types.php:47
+#: classes/class-content-types.php:49
 msgctxt "slug"
 msgid "projects"
 msgstr "projecten"
 
-#: classes/class-content-types.php:73
+#: classes/class-content-types.php:75
 msgctxt "slug"
 msgid "project-category"
 msgstr "project-categorie"
 
-#: classes/class-content-types.php:58
+#: classes/class-content-types.php:103
+msgctxt "slug"
+msgid "project-status"
+msgstr "Project-status"
+
+#: classes/class-content-types.php:60
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr "Categorieën"
 
-#: classes/class-content-types.php:59
+#: classes/class-content-types.php:86
+msgctxt "taxonomy general name"
+msgid "Statuses"
+msgstr "Statussen"
+
+#: classes/class-content-types.php:61
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr "Categorie"
+
+#: classes/class-content-types.php:87
+msgctxt "taxonomy singular name"
+msgid "Status"
+msgstr "Status"
+
+#~ msgid "Invoice"
+#~ msgstr "Factuur"
 
 #~ msgid "Manager"
 #~ msgstr "Projectleider"
