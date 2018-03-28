@@ -1,3 +1,19 @@
+<?php
+
+wp_enqueue_script( 'wp-api' );
+
+wp_localize_script( 'wp-api', 'wpApiSettings', array(
+	'root'  => esc_url_raw( rest_url() ),
+	'nonce' => wp_create_nonce( 'wp_rest' ),
+) );
+
+$statuses = get_terms( array(
+	'taxonomy'   => 'orbis_project_status',
+	'hide_empty' => false,
+) );
+
+?>
+
 <div class="panel">
 	<table class="table table-striped table-bordered">
 		<thead>
@@ -7,7 +23,7 @@
 				<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Comment', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Budget', 'orbis-projects' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Invoice', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Invoicable', 'orbis-projects' ); ?></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -63,9 +79,43 @@
 									esc_attr( $comment->comment_content ),
 									esc_attr( date_i18n( 'j M Y', strtotime( $comment->comment_date ) ) ) . ' <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>'
 								);
+								echo '<br />';
+							}
+
+							$project_statuses = wp_get_post_terms( $project->project_post_id, 'orbis_project_status' );
+
+							foreach ( $project_statuses as $project_status ) {
+								printf(
+									'<span class="badge badge-pill badge-primary orbis-status" data-projectid="%s" data-statusid="%s">%s</span>',
+									esc_attr( $project->project_post_id ),
+									esc_attr( $project_status->term_id ),
+									esc_attr( $project_status->name )
+								);
+								echo '<br />';
 							}
 
 							?>
+
+							<?php if ( $statuses ) : ?>
+
+								<div class="dropdown show">
+									<a class="badge badge-pill badge-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<?php esc_html_e( 'Add status', 'orbis-projects' ); ?>
+									</a>
+
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+										<?php
+
+										foreach ( $statuses as $status ) {
+											$option = '<a class="dropdown-item orbis-js-add-status" data-projectID="' . $project->project_post_id . '" href="' . $status->term_id . '">' . $status->name . '</a>';
+											echo $option; // wpcs: XSS ok.
+										}
+
+										?>
+									</div>
+								</div>
+
+							<?php endif; ?>
 
 						</td>
 						<td style="white-space: nowrap;">
@@ -85,16 +135,19 @@
 							$invoice_number = $project->invoice_number;
 							$invoice_link   = orbis_get_invoice_link( $invoice_number );
 
-							$invoice_number = sprintf(
-								'<a href="%s" target="_blank">%s</a>',
-								esc_attr( $invoice_link ),
-								esc_html( $invoice_number )
-							);
+							if ( empty( $invoice_number ) ) {
+								$invoice_number = esc_html__( 'Yes', 'orbis-projects' );
+							} elseif ( ! empty( $invoice_link ) ) {
+								$invoice_number = sprintf(
+									'<a href="%s" target="_blank">%s</a>',
+									esc_attr( $invoice_link ),
+									esc_html( $invoice_number )
+								);
+							} else {
+								$invoice_number = esc_html( $invoice_number );
+							}
 
-							$invoicable     = '<span class="badge badge-pill badge-success">' . esc_html__( 'Invoicable', 'orbis-projects' ) . '</span> ';
-							$not_invoicable = '<span class="badge badge-pill badge-danger">' . esc_html__( 'Not invoicable', 'orbis-projects' ) . '</span>';
-
-							echo $project->invoicable ? $invoicable . wp_kses_post( $invoice_number ) : $not_invoicable;
+							echo $project->invoicable ? wp_kses_post( $invoice_number ) : esc_html__( 'No', 'orbis-projects' );
 
 							?>
 						</td>
@@ -125,6 +178,107 @@
 
 <script>
 	jQuery( document ).ready( function( $ ) {
-		$( '[data-toggle="popover"]' ).popover(); 
+		$( '[data-toggle="popover"]' ).popover();
+
+		function addStatusToProject( projectID, status, statusID, addStatusObject ){
+			$.ajax( {
+				type: 'GET',
+				url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
+				dataType: 'json',
+				success: function( data ) {
+					if ( !isValueInObject( statusID, data.orbis_project_status ) ) {
+						drawStatusHTML( projectID, status, statusID, addStatusObject );
+
+						var statuses = data.orbis_project_status;
+						statuses.push( Number( statusID ) );
+
+						$.ajax( {
+							type: 'PUT',
+							cache: false,
+							beforeSend: function ( xhr ) {
+								xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
+							},
+							url: 'http://orbis.local' + '/wp-json/wp/v2/orbis-projects/' + projectID,
+							dataType: 'json',
+							data: {orbis_project_status: statuses},
+						} );
+					}
+				}
+			} );
+		}
+
+		function removeStatusFromProject( projectID, statusID ){
+			$.ajax( {
+				type: 'GET',
+				url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
+				dataType: 'json',
+				success: function( data ) {
+
+					var statuses = data.orbis_project_status;
+					var index = statuses.indexOf( Number( statusID ) );
+
+					statuses.splice( index, 1 );
+					console.log(statuses.length);
+					if ( statuses.length == 0 ) {
+						statuses = -1;
+					}
+
+					$.ajax( {
+						type: 'PUT',
+						cache: false,
+						beforeSend: function ( xhr ) {
+							xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
+						},
+						url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
+						dataType: 'json',
+						data: {orbis_project_status: statuses},
+					} );
+				}
+			} );
+		}
+
+		function drawStatusHTML( projectID, status, statusID, addStatusObject ){
+			var classes = 'class="badge badge-pill badge-primary orbis-status" ';
+			var dataProjectID = 'data-projectID="' + projectID + '" ';
+			var dataStatusID = 'data-statusID="' + statusID + '" ';
+			var html = '<span ' + classes + dataProjectID + dataStatusID + '>' + status + '</span><br />';
+			$( addStatusObject ).parent().parent().prepend( html );
+		}
+
+		function isValueInObject( val, obj ){
+			var inObject = false;
+
+			Object.keys( obj ).forEach( function( key ) {
+				if ( obj[key] == val ) {
+					inObject = true;
+				}
+			});
+			return inObject;
+		}
+
+		$( '.orbis-js-add-status' ).click( function( event ) {
+			event.preventDefault();
+
+			var href = this.href;
+			if ( href.substr(-1) == '/' ) {
+				href = href.substr( 0, href.length - 1 );
+			}
+
+			// get values from status
+			var statusID = href.split( '/' ).pop();
+			var status = $( this ).text();
+			var projectID = $( this ).attr( 'data-projectID' );
+			var addStatusObject = this;
+
+			addStatusToProject( projectID, status, statusID, addStatusObject );
+		} );
+
+		$( document ).on( 'click', '.orbis-status', function() {
+			var projectID = $( this ).attr( 'data-projectID' );
+			var statusID = $( this ).attr( 'data-statusID' );
+			$( this ).next( "br" ).remove();
+			$( this ).remove();
+			removeStatusFromProject( projectID, statusID );
+		} );
 	} );
 </script>

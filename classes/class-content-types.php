@@ -43,6 +43,8 @@ class Orbis_Projects_ContentTypes {
 				'menu_icon'     => 'dashicons-portfolio',
 				'supports'      => array( 'title', 'editor', 'author', 'comments', 'custom-fields', 'revisions' ),
 				'has_archive'   => true,
+				'show_in_rest'  => true,
+				'rest_base'     => 'orbis-projects',
 				'rewrite'       => array(
 					'slug' => _x( 'projects', 'slug', 'orbis-projects' ),
 				),
@@ -94,6 +96,8 @@ class Orbis_Projects_ContentTypes {
 					'menu_name'         => __( 'Statuses', 'orbis-projects' ),
 				),
 				'show_ui'      => true,
+				'public'       => true,
+				'show_in_rest' => true,
 				'query_var'    => true,
 				'rewrite'      => array(
 					'slug' => _x( 'project-status', 'slug', 'orbis-projects' ),
