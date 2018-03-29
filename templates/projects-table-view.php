@@ -85,8 +85,10 @@ $statuses = get_terms( array(
 							$project_statuses = wp_get_post_terms( $project->project_post_id, 'orbis_project_status' );
 
 							foreach ( $project_statuses as $project_status ) {
+								$status_type = get_term_meta( $project_status->term_id, 'orbis_status_type', true ) ? get_term_meta( $project_status->term_id, 'orbis_status_type', true ) : 'primary';
 								printf(
-									'<span class="badge badge-pill badge-primary orbis-status" data-projectid="%s" data-statusid="%s">%s</span>',
+									'<span class="badge badge-pill badge-%s orbis-status" data-projectid="%s" data-statusid="%s">%s</span>',
+									esc_attr( $status_type ),
 									esc_attr( $project->project_post_id ),
 									esc_attr( $project_status->term_id ),
 									esc_attr( $project_status->name )
@@ -107,8 +109,14 @@ $statuses = get_terms( array(
 										<?php
 
 										foreach ( $statuses as $status ) {
-											$option = '<a class="dropdown-item orbis-js-add-status" data-projectID="' . $project->project_post_id . '" href="' . $status->term_id . '">' . $status->name . '</a>';
-											echo $option; // wpcs: XSS ok.
+											$status_type = get_term_meta( $status->term_id, 'orbis_status_type', true ) ? get_term_meta( $status->term_id, 'orbis_status_type', true ) : 'primary';
+											printf(
+												'<a class="dropdown-item orbis-js-add-status" data-statusType="%s" data-projectID="%s" href="%s">%s</a>',
+												esc_attr( $status_type ),
+												esc_attr( $project->project_post_id ),
+												esc_attr( $status->term_id ),
+												esc_attr( $status->name )
+											);
 										}
 
 										?>
@@ -180,17 +188,17 @@ $statuses = get_terms( array(
 	jQuery( document ).ready( function( $ ) {
 		$( '[data-toggle="popover"]' ).popover();
 
-		function addStatusToProject( projectID, status, statusID, addStatusObject ){
+		function addStatusToProject( projectID, status, addStatusObject ){
 			$.ajax( {
 				type: 'GET',
 				url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
 				dataType: 'json',
 				success: function( data ) {
-					if ( !isValueInObject( statusID, data.orbis_project_status ) ) {
-						drawStatusHTML( projectID, status, statusID, addStatusObject );
+					if ( !isValueInObject( status.id, data.orbis_project_status ) ) {
+						drawStatusHTML( projectID, status, addStatusObject );
 
 						var statuses = data.orbis_project_status;
-						statuses.push( Number( statusID ) );
+						statuses.push( Number( status.id ) );
 
 						$.ajax( {
 							type: 'PUT',
@@ -218,7 +226,6 @@ $statuses = get_terms( array(
 					var index = statuses.indexOf( Number( statusID ) );
 
 					statuses.splice( index, 1 );
-					console.log(statuses.length);
 					if ( statuses.length == 0 ) {
 						statuses = -1;
 					}
@@ -237,11 +244,12 @@ $statuses = get_terms( array(
 			} );
 		}
 
-		function drawStatusHTML( projectID, status, statusID, addStatusObject ){
-			var classes = 'class="badge badge-pill badge-primary orbis-status" ';
+		function drawStatusHTML( projectID, status, addStatusObject ){
+			var classes       = 'class="badge badge-pill badge-' + status.type + ' orbis-status" ';
 			var dataProjectID = 'data-projectID="' + projectID + '" ';
-			var dataStatusID = 'data-statusID="' + statusID + '" ';
-			var html = '<span ' + classes + dataProjectID + dataStatusID + '>' + status + '</span><br />';
+			var dataStatusID  = 'data-statusID="' + status.id + '" ';
+
+			var html = '<span ' + classes + dataProjectID + dataStatusID + '>' + status.text + '</span><br />';
 			$( addStatusObject ).parent().parent().prepend( html );
 		}
 
@@ -265,12 +273,15 @@ $statuses = get_terms( array(
 			}
 
 			// get values from status
+			var statusType = $( this ).attr( 'data-statusType' );
 			var statusID = href.split( '/' ).pop();
-			var status = $( this ).text();
+			var statusText = $( this ).text();
+			var status = { type: statusType, id: statusID, text: statusText };
+
 			var projectID = $( this ).attr( 'data-projectID' );
 			var addStatusObject = this;
 
-			addStatusToProject( projectID, status, statusID, addStatusObject );
+			addStatusToProject( projectID, status, addStatusObject );
 		} );
 
 		$( document ).on( 'click', '.orbis-status', function() {
