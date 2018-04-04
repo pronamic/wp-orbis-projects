@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-03-28 13:09:39+00:00\n"
-"PO-Revision-Date: 2018-03-28 15:15+0100\n"
+"POT-Creation-Date: 2018-04-04 13:08:38+00:00\n"
+"PO-Revision-Date: 2018-04-04 15:09+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:20
+#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:21
 msgid "Client"
 msgstr "Klant"
 
@@ -82,8 +82,7 @@ msgstr "Afgerond"
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:108 templates/projects-table-view.php:25
-#: templates/projects-table-view.php:134
+#: admin/meta-box-project-details.php:108 templates/projects-table-view.php:26
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
@@ -109,7 +108,7 @@ msgstr "— Selecteer betaalmethode —"
 
 #: admin/meta-box-project-invoices.php:13
 #: classes/class-admin-project-post-type.php:38
-#: templates/projects-table-view.php:22
+#: templates/projects-table-view.php:23
 msgid "Date"
 msgstr "Datum"
 
@@ -196,16 +195,16 @@ msgid "completed"
 msgstr "afgerond"
 
 #: classes/class-content-types.php:18 classes/class-content-types.php:20
-#: classes/class-plugin.php:110
+#: classes/class-plugin.php:108
 msgid "Projects"
 msgstr "Projecten"
 
-#: classes/class-content-types.php:21 classes/class-plugin.php:113
-#: templates/projects-table-view.php:21
+#: classes/class-content-types.php:21 classes/class-plugin.php:111
+#: templates/projects-table-view.php:22
 msgid "Project"
 msgstr "Project"
 
-#: classes/class-content-types.php:23 classes/class-plugin.php:118
+#: classes/class-content-types.php:23 classes/class-plugin.php:116
 msgid "Add New Project"
 msgstr "Nieuw project toevoegen"
 
@@ -213,7 +212,7 @@ msgstr "Nieuw project toevoegen"
 msgid "Edit Project"
 msgstr "Project bewerken"
 
-#: classes/class-content-types.php:25 classes/class-plugin.php:117
+#: classes/class-content-types.php:25 classes/class-plugin.php:115
 msgid "New Project"
 msgstr "Nieuw project"
 
@@ -229,7 +228,7 @@ msgstr "Toon projecten"
 msgid "Search Projects"
 msgstr "Projecten zoeken"
 
-#: classes/class-content-types.php:29 classes/class-plugin.php:115
+#: classes/class-content-types.php:29 classes/class-plugin.php:113
 msgid "No projects found."
 msgstr "Geen projecten gevonden."
 
@@ -345,64 +344,68 @@ msgstr "Nieuwe status naam"
 msgid "Statuses"
 msgstr "Statussen"
 
-#: classes/class-plugin.php:109
+#: classes/class-plugin.php:107
 msgid "Involved Persons"
 msgstr "Betrokken personen"
 
-#: classes/class-plugin.php:114
+#: classes/class-plugin.php:112
 msgid "Search project"
 msgstr "Zoek project"
 
-#: classes/class-plugin.php:116
+#: classes/class-plugin.php:114
 msgid "Add Project"
 msgstr "Project toevoegen"
 
-#: classes/class-plugin.php:121
+#: classes/class-plugin.php:119
 msgid "Person"
 msgstr "Persoon"
 
-#: classes/class-plugin.php:122
+#: classes/class-plugin.php:120
 msgid "Search person"
 msgstr "Zoek persoon"
 
-#: classes/class-plugin.php:123
+#: classes/class-plugin.php:121
 msgid "No persons found."
 msgstr "Geen personen gevonden."
 
-#: classes/class-plugin.php:124
+#: classes/class-plugin.php:122
 msgid "Add Person"
 msgstr "Persoon toevoegen"
 
-#: classes/class-plugin.php:125
+#: classes/class-plugin.php:123
 msgid "New Person"
 msgstr "Nieuw persoon"
 
-#: classes/class-plugin.php:126
+#: classes/class-plugin.php:124
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
-#: templates/projects-table-view.php:23
+#: templates/projects-table-view.php:24
 msgid "Comment"
 msgstr "Reactie"
 
-#: templates/projects-table-view.php:24
+#: templates/projects-table-view.php:25
 msgid "Budget"
 msgstr "Budget"
 
 #. translators: 1st placeholder is the comment author, 2nd is the date
-#: templates/projects-table-view.php:69
+#: templates/projects-table-view.php:70
 msgid "%1$s says on %2$s:"
 msgstr "%1$s zegt op %2$s:"
 
-#: templates/projects-table-view.php:100
+#: templates/projects-table-view.php:105
 msgid "Add status"
 msgstr "Voeg status toe"
 
-#: templates/projects-table-view.php:145
-msgid "Not invoicable"
-msgstr "Niet factureerbaar"
+#: templates/projects-table-view.php:147
+msgid "Yes"
+msgstr "Ja"
 
-#: templates/projects-table-view.php:157
+#: templates/projects-table-view.php:158
+msgid "No"
+msgstr "Nee"
+
+#: templates/projects-table-view.php:170
 #: templates/projects-without-agreement.php:77
 msgid "Edit"
 msgstr "Bewerken"
@@ -490,6 +493,9 @@ msgstr "Categorie"
 msgctxt "taxonomy singular name"
 msgid "Status"
 msgstr "Status"
+
+#~ msgid "Not invoicable"
+#~ msgstr "Niet factureerbaar"
 
 #~ msgid "Invoice"
 #~ msgstr "Factuur"

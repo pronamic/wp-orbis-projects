@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-03-28 13:09:39+00:00\n"
+"POT-Creation-Date: 2018-04-04 13:08:38+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Orbis ID"
 msgstr ""
 
-#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:20
+#: admin/meta-box-project-details.php:40 templates/projects-table-view.php:21
 msgid "Client"
 msgstr ""
 
@@ -74,8 +74,7 @@ msgstr ""
 msgid "Project is finished"
 msgstr ""
 
-#: admin/meta-box-project-details.php:108 templates/projects-table-view.php:25
-#: templates/projects-table-view.php:134
+#: admin/meta-box-project-details.php:108 templates/projects-table-view.php:26
 msgid "Invoicable"
 msgstr ""
 
@@ -101,7 +100,7 @@ msgstr ""
 
 #: admin/meta-box-project-invoices.php:13
 #: classes/class-admin-project-post-type.php:38
-#: templates/projects-table-view.php:22
+#: templates/projects-table-view.php:23
 msgid "Date"
 msgstr ""
 
@@ -188,16 +187,16 @@ msgid "completed"
 msgstr ""
 
 #: classes/class-content-types.php:18 classes/class-content-types.php:20
-#: classes/class-plugin.php:110
+#: classes/class-plugin.php:108
 msgid "Projects"
 msgstr ""
 
-#: classes/class-content-types.php:21 classes/class-plugin.php:113
-#: templates/projects-table-view.php:21
+#: classes/class-content-types.php:21 classes/class-plugin.php:111
+#: templates/projects-table-view.php:22
 msgid "Project"
 msgstr ""
 
-#: classes/class-content-types.php:23 classes/class-plugin.php:118
+#: classes/class-content-types.php:23 classes/class-plugin.php:116
 msgid "Add New Project"
 msgstr ""
 
@@ -205,7 +204,7 @@ msgstr ""
 msgid "Edit Project"
 msgstr ""
 
-#: classes/class-content-types.php:25 classes/class-plugin.php:117
+#: classes/class-content-types.php:25 classes/class-plugin.php:115
 msgid "New Project"
 msgstr ""
 
@@ -221,7 +220,7 @@ msgstr ""
 msgid "Search Projects"
 msgstr ""
 
-#: classes/class-content-types.php:29 classes/class-plugin.php:115
+#: classes/class-content-types.php:29 classes/class-plugin.php:113
 msgid "No projects found."
 msgstr ""
 
@@ -337,64 +336,68 @@ msgstr ""
 msgid "Statuses"
 msgstr ""
 
-#: classes/class-plugin.php:109
+#: classes/class-plugin.php:107
 msgid "Involved Persons"
 msgstr ""
 
-#: classes/class-plugin.php:114
+#: classes/class-plugin.php:112
 msgid "Search project"
 msgstr ""
 
-#: classes/class-plugin.php:116
+#: classes/class-plugin.php:114
 msgid "Add Project"
 msgstr ""
 
-#: classes/class-plugin.php:121
+#: classes/class-plugin.php:119
 msgid "Person"
 msgstr ""
 
-#: classes/class-plugin.php:122
+#: classes/class-plugin.php:120
 msgid "Search person"
 msgstr ""
 
-#: classes/class-plugin.php:123
+#: classes/class-plugin.php:121
 msgid "No persons found."
 msgstr ""
 
-#: classes/class-plugin.php:124
+#: classes/class-plugin.php:122
 msgid "Add Person"
 msgstr ""
 
-#: classes/class-plugin.php:125
+#: classes/class-plugin.php:123
 msgid "New Person"
 msgstr ""
 
-#: classes/class-plugin.php:126
+#: classes/class-plugin.php:124
 msgid "Add New Person"
 msgstr ""
 
-#: templates/projects-table-view.php:23
+#: templates/projects-table-view.php:24
 msgid "Comment"
 msgstr ""
 
-#: templates/projects-table-view.php:24
+#: templates/projects-table-view.php:25
 msgid "Budget"
 msgstr ""
 
-#: templates/projects-table-view.php:69
+#: templates/projects-table-view.php:70
 #. translators: 1st placeholder is the comment author, 2nd is the date
 msgid "%1$s says on %2$s:"
 msgstr ""
 
-#: templates/projects-table-view.php:100
+#: templates/projects-table-view.php:105
 msgid "Add status"
 msgstr ""
 
-#: templates/projects-table-view.php:145
-msgid "Not invoicable"
+#: templates/projects-table-view.php:147
+msgid "Yes"
 msgstr ""
 
-#: templates/projects-table-view.php:157
+#: templates/projects-table-view.php:158
+msgid "No"
+msgstr ""
+
+#: templates/projects-table-view.php:170
 #: templates/projects-without-agreement.php:77
 msgid "Edit"
 msgstr ""
