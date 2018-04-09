@@ -70,6 +70,10 @@ foreach ( $projects as $project ) {
 		$managers[ $manager->id ] = $manager;
 	}
 
+	$orbis_project = new Orbis_Project( get_post( $project->project_post_id ) );
+
+	$project->registered_seconds = $orbis_project->get_registered_seconds();
+
 	$project->failed = $project->registered_seconds > $project->available_seconds;
 
 	$manager = $managers[ $project->project_manager_id ];

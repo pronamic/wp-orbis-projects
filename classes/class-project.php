@@ -144,4 +144,19 @@ class Orbis_Project {
 
 		return $results;
 	}
+
+	/**
+	 * Get registered time.
+	 *
+	 * @return int
+	 */
+	public function get_registered_seconds() {
+		if ( ! get_post_meta( $this->post->ID, 'orbis_project_registered_time', true ) ) {
+			return false;
+		}
+
+		$registered_time = get_post_meta( $this->post->ID, 'orbis_project_registered_time', true );
+
+		return $registered_time;
+	}
 }
