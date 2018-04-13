@@ -47,6 +47,8 @@ $statuses = get_terms( array(
 							</a>
 						</td>
 						<td>
+							<code><?php echo esc_html( $project->id ); ?></code> -  
+
 							<a href="<?php echo esc_attr( get_permalink( $project->project_post_id ) ); ?>" style="color: #000;">
 								<?php echo esc_html( $project->name ); ?>
 							</a>
