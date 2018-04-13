@@ -16,7 +16,7 @@ $sql = "
 		principal.id AS principal_id,
 		principal.name AS principal_name,
 		principal.post_id AS principal_post_id,
-		SUM(registration.number_seconds) AS registered_seconds
+		SUM( registration.number_seconds ) AS registered_seconds
 	FROM
 		$wpdb->orbis_projects AS project
 			LEFT JOIN

@@ -264,6 +264,7 @@ $statuses = get_terms( array(
 			return inObject;
 		}
 
+		// add status when clicking option
 		$( '.orbis-js-add-status' ).click( function( event ) {
 			event.preventDefault();
 
@@ -284,6 +285,7 @@ $statuses = get_terms( array(
 			addStatusToProject( projectID, status, addStatusObject );
 		} );
 
+		// remove status when clicking on status
 		$( document ).on( 'click', '.orbis-status', function() {
 			var projectID = $( this ).attr( 'data-projectID' );
 			var statusID = $( this ).attr( 'data-statusID' );
