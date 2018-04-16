@@ -123,7 +123,7 @@ $statuses = get_terms( array(
 
 										?>
 									</div>
-									<i class="fa fa-spinner fa-spin fa-1x fa-fw d-none orbis-saving-<?php echo esc_attr( $project->project_post_id ) ?>"></i>
+									<i class="fa fa-spinner fa-spin fa-1x fa-fw d-none orbis-saving-<?php echo esc_attr( $project->project_post_id ); ?>"></i>
 								</div>
 
 							<?php endif; ?>
