@@ -123,6 +123,7 @@ $statuses = get_terms( array(
 
 										?>
 									</div>
+									<i class="fa fa-spinner fa-spin fa-1x fa-fw d-none orbis-saving-<?php echo esc_attr( $project->project_post_id ) ?>"></i>
 								</div>
 
 							<?php endif; ?>
@@ -197,6 +198,7 @@ $statuses = get_terms( array(
 				dataType: 'json',
 				success: function( data ) {
 					if ( !isValueInObject( status.id, data.orbis_project_status ) ) {
+						$( ".orbis-saving-" + projectID ).removeClass( 'd-none' );
 						drawStatusHTML( projectID, status, addStatusObject );
 
 						var statuses = data.orbis_project_status;
@@ -211,6 +213,9 @@ $statuses = get_terms( array(
 							url: 'http://orbis.local' + '/wp-json/wp/v2/orbis-projects/' + projectID,
 							dataType: 'json',
 							data: {orbis_project_status: statuses},
+							success: function() {
+								$( ".orbis-saving-" + projectID ).addClass( 'd-none' );
+							}
 						} );
 					}
 				}
@@ -218,6 +223,7 @@ $statuses = get_terms( array(
 		}
 
 		function removeStatusFromProject( projectID, statusID ){
+			$( ".orbis-saving-" + projectID ).removeClass( 'd-none' );
 			$.ajax( {
 				type: 'GET',
 				url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
@@ -241,6 +247,9 @@ $statuses = get_terms( array(
 						url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
 						dataType: 'json',
 						data: {orbis_project_status: statuses},
+						success: function() {
+							$( ".orbis-saving-" + projectID ).addClass( 'd-none' );
+						}
 					} );
 				}
 			} );
