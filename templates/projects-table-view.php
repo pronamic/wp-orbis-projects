@@ -123,7 +123,7 @@ $statuses = get_terms( array(
 
 										?>
 									</div>
-									<i class="fa fa-spinner fa-spin fa-1x fa-fw d-none orbis-saving-<?php echo esc_attr( $project->project_post_id ); ?>"></i>
+									<i class="fa fa-spinner fa-spin fa-fw d-none orbis-saving-<?php echo esc_attr( $project->project_post_id ); ?>"></i>
 								</div>
 
 							<?php endif; ?>
@@ -192,13 +192,14 @@ $statuses = get_terms( array(
 		$( '[data-toggle="popover"]' ).popover();
 
 		function addStatusToProject( projectID, status, addStatusObject ){
+			var icon = $( ".orbis-saving-" + projectID );
 			$.ajax( {
 				type: 'GET',
 				url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
 				dataType: 'json',
 				success: function( data ) {
 					if ( !isValueInObject( status.id, data.orbis_project_status ) ) {
-						$( ".orbis-saving-" + projectID ).removeClass( 'd-none' );
+						icon.removeClass( 'd-none' );
 						drawStatusHTML( projectID, status, addStatusObject );
 
 						var statuses = data.orbis_project_status;
@@ -210,11 +211,18 @@ $statuses = get_terms( array(
 							beforeSend: function ( xhr ) {
 								xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
 							},
-							url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
+							url: window.location.origin + '/wp-json/wp/v2/orbis-prddojects/' + projectID,
 							dataType: 'json',
 							data: {orbis_project_status: statuses},
 							success: function() {
-								$( ".orbis-saving-" + projectID ).addClass( 'd-none' );
+								icon.addClass( 'd-none' );
+							},
+							error: function( errorThrown ) {
+								icon.removeClass( 'fa-spin' );
+								icon.removeClass( 'fa-spinner' );
+								icon.addClass( 'fa-exclamation-triangle' );
+								icon.addClass( 'text-danger' );
+								icon.prop( 'title', errorThrown.responseJSON.message );
 							}
 						} );
 					}
@@ -223,7 +231,8 @@ $statuses = get_terms( array(
 		}
 
 		function removeStatusFromProject( projectID, statusID ){
-			$( ".orbis-saving-" + projectID ).removeClass( 'd-none' );
+			var icon = $( ".orbis-saving-" + projectID );
+			icon.removeClass( 'd-none' );
 			$.ajax( {
 				type: 'GET',
 				url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
@@ -248,7 +257,14 @@ $statuses = get_terms( array(
 						dataType: 'json',
 						data: {orbis_project_status: statuses},
 						success: function() {
-							$( ".orbis-saving-" + projectID ).addClass( 'd-none' );
+							icon.addClass( 'd-none' );
+						},
+						error: function() {
+							icon.removeClass( 'fa-spin' );
+							icon.removeClass( 'fa-spinner' );
+							icon.addClass( 'fa-exclamation-triangle' );
+							icon.addClass( 'text-danger' );
+							icon.prop( 'title', '<?php esc_html_e( 'Your status could not be saved', 'orbis' ); ?>' );
 						}
 					} );
 				}
