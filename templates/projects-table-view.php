@@ -222,7 +222,10 @@ $statuses = get_terms( array(
 								icon.removeClass( 'fa-spinner' );
 								icon.addClass( 'fa-exclamation-triangle' );
 								icon.addClass( 'text-danger' );
-								icon.prop( 'title', errorThrown.responseJSON.message );
+								icon.data( "toggle", 'popover' );
+								icon.data( "content", errorThrown.responseJSON.message );
+								icon.data( "trigger", 'hover' );
+								icon.popover();
 							}
 						} );
 					}
@@ -264,7 +267,10 @@ $statuses = get_terms( array(
 							icon.removeClass( 'fa-spinner' );
 							icon.addClass( 'fa-exclamation-triangle' );
 							icon.addClass( 'text-danger' );
-							icon.prop( 'title', errorThrown.responseJSON.message );
+							icon.data( "toggle", 'popover' );
+							icon.data( "content", errorThrown.responseJSON.message );
+							icon.data( "trigger", 'hover' );
+							icon.popover();
 						}
 					} );
 				}
