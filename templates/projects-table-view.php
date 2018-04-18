@@ -259,12 +259,12 @@ $statuses = get_terms( array(
 						success: function() {
 							icon.addClass( 'd-none' );
 						},
-						error: function() {
+						error: function( errorThrown ) {
 							icon.removeClass( 'fa-spin' );
 							icon.removeClass( 'fa-spinner' );
 							icon.addClass( 'fa-exclamation-triangle' );
 							icon.addClass( 'text-danger' );
-							icon.prop( 'title', '<?php esc_html_e( 'Your status could not be saved', 'orbis' ); ?>' );
+							icon.prop( 'title', errorThrown.responseJSON.message );
 						}
 					} );
 				}
