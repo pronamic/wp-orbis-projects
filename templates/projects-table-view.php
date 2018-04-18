@@ -211,7 +211,7 @@ $statuses = get_terms( array(
 							beforeSend: function ( xhr ) {
 								xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
 							},
-							url: window.location.origin + '/wp-json/wp/v2/orbis-prddojects/' + projectID,
+							url: window.location.origin + '/wp-json/wp/v2/orbis-projects/' + projectID,
 							dataType: 'json',
 							data: {orbis_project_status: statuses},
 							success: function() {
