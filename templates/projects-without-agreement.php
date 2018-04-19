@@ -34,7 +34,9 @@ if ( $query->have_posts() ) : ?>
 				<tr>
 					<th scope="col"><?php esc_html_e( 'Orbis ID', 'orbis-projects' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Project Manager', 'orbis-projects' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
+					<?php if ( orbis_plugin_activated( 'companies' ) ) : ?>
+						<th scope="col"><?php esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
+					<?php endif ?>
 					<th scope="col"><?php esc_html_e( 'Title', 'orbis-projects' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Actions', 'orbis-projects' ); ?></th>
 				</tr>
@@ -52,21 +54,24 @@ if ( $query->have_posts() ) : ?>
 						<td>
 							<?php the_author(); ?>
 						</td>
-						<td>
-							<?php
+						<?php if ( orbis_plugin_activated( 'companies' ) ) : ?>
+							<td>
+								<?php
 
-							global $orbis_project;
+								global $orbis_project;
 
-							if ( $orbis_project->has_principal() ) {
-								printf(
-									'<a href="%s">%s</a>',
-									esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
-									esc_html( $orbis_project->get_principal_name() )
-								);
-							}
+								if ( $orbis_project->has_principal() ) {
+									printf(
+										'<a href="%s">%s</a>',
+										esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
+										esc_html( $orbis_project->get_principal_name() )
+									);
+								}
 
-							?>
-						</td>
+								?>
+							</td>
+						<?php endif ?>
+						
 						<td>
 							<a href="<?php the_permalink(); ?>">
 								<?php the_title(); ?>

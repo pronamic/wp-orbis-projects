@@ -114,10 +114,7 @@ class Orbis_Projects_QueryProcessor {
 			$fields = ',
 				project.number_seconds AS project_number_seconds,
 				project.finished AS project_is_finished,
-				project.invoiced AS project_is_invoiced,
-				principal.id AS principal_id,
-				principal.name AS principal_name,
-				principal.post_id AS principal_post_id
+				project.invoiced AS project_is_invoiced
 			';
 
 			// Join
@@ -125,10 +122,21 @@ class Orbis_Projects_QueryProcessor {
 				LEFT JOIN
 					$wpdb->orbis_projects AS project
 						ON $wpdb->posts.ID = project.post_id
-				LEFT JOIN
-					$wpdb->orbis_companies AS principal
-						ON project.principal_id = principal.id
 			";
+
+			if ( orbis_plugin_activated( 'companies' ) ) {
+				$fields .= ',
+				principal.id AS principal_id,
+				principal.name AS principal_name,
+				principal.post_id AS principal_post_id
+			';
+
+				$join .= "
+					LEFT JOIN
+						$wpdb->orbis_companies AS principal
+							ON project.principal_id = principal.id
+				";
+			}
 
 			// Where
 			$where = '';
