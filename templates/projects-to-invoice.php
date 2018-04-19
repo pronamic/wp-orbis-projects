@@ -4,6 +4,7 @@ global $wpdb;
 
 $extra_select  = '';
 $extra_join    = '';
+
 $orderby = '';
 
 if ( orbis_plugin_activated( 'companies' ) ) {
@@ -28,9 +29,9 @@ $sql = "
 	SELECT
 		project.id ,
 		project.name ,
-		project.number_seconds AS available_seconds ,
-		project.invoice_number AS invoice_number ,
-		project.invoicable ,
+		project.number_seconds AS available_seconds,
+		project.invoice_number AS invoice_number,
+		project.invoicable,
 		project.post_id AS project_post_id,
 		manager.ID AS project_manager_id,
 		manager.display_name AS project_manager_name,
