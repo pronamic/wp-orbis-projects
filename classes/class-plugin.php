@@ -136,6 +136,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 
 		$extra_select = '';
 		$extra_join   = '';
+		$extra_where  = '';
 
 		if ( isset( $wpdb->orbis_timesheets ) ) {
 			$extra_select .= ',
@@ -149,26 +150,38 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			";
 		}
 
+		if ( orbis_plugin_activated( 'companies' ) ) {
+			$extra_select .= ",
+				principal.name AS principal_name
+			";
+
+			$extra_join .= "
+				LEFT JOIN
+					$wpdb->orbis_companies AS principal
+						ON project.principal_id = principal.id
+			";
+
+			$extra_where .= "
+					OR
+				principal.name LIKE %s
+			";
+		}
+
 		$query = "
 			SELECT
 				project.id AS project_id,
-				principal.name AS principal_name,
 				project.name AS project_name,
 				project.number_seconds AS project_time
 				$extra_select
 			FROM
 				$wpdb->orbis_projects AS project
-					LEFT JOIN
-				$wpdb->orbis_companies AS principal
-						ON project.principal_id = principal.id
 				$extra_join
 			WHERE
 				project.finished = 0
 					AND
 				(
 					project.name LIKE %s
-						OR
-					principal.name LIKE %s
+						$extra_where
 				)
 			GROUP BY
 				project.id
@@ -188,19 +201,21 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			$result     = new stdClass();
 			$result->id = $project->project_id;
 
+			$principal_name = ( isset( $project->principal_name ) ) ? $project->principal_name . ' -' : '';
+
 			$text = sprintf(
-				'%s. %s - %s ( %s )',
+				'%s. %s %s ( %s )',
 				$project->project_id,
-				$project->principal_name,
+				$principal_name,
 				$project->project_name,
 				orbis_time( $project->project_time )
 			);
 
 			if ( isset( $project->project_logged_time ) ) {
 				$text = sprintf(
-					'%s. %s - %s ( %s / %s )',
+					'%s. %s %s ( %s / %s )',
 					$project->project_id,
-					$project->principal_name,
+					$principal_name,
 					$project->project_name,
 					orbis_time( $project->project_logged_time ),
 					orbis_time( $project->project_time )
