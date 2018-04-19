@@ -25,6 +25,18 @@ if ( orbis_plugin_activated( 'companies' ) ) {
 	";
 }
 
+if ( orbis_plugin_activated( 'timesheets' ) ) {
+	$extra_select .= "
+	, SUM( registration.number_seconds ) AS registered_seconds
+	";
+
+	$extra_join .= "
+	LEFT JOIN
+		$wpdb->orbis_timesheets AS registration
+			ON project.id = registration.project_id
+	";
+}
+
 $sql = "
 	SELECT
 		project.id ,
@@ -34,8 +46,7 @@ $sql = "
 		project.invoicable,
 		project.post_id AS project_post_id,
 		manager.ID AS project_manager_id,
-		manager.display_name AS project_manager_name,
-		SUM(registration.number_seconds) AS registered_seconds
+		manager.display_name AS project_manager_name
 		$extra_select
 	FROM
 		$wpdb->orbis_projects AS project
@@ -45,9 +56,6 @@ $sql = "
 			LEFT JOIN
 		$wpdb->users AS manager
 				ON post.post_author = manager.ID
-			LEFT JOIN
-		$wpdb->orbis_timesheets AS registration
-				ON project.id = registration.project_id
 			$extra_join
 	WHERE
 		(
@@ -88,6 +96,8 @@ foreach ( $projects as $project ) {
 
 		$managers[ $manager->id ] = $manager;
 	}
+
+	$project->registered_seconds = isset( $project->registered_seconds ) ? $project->registered_second : 0;
 
 	$project->failed = $project->registered_seconds > $project->available_seconds;
 
