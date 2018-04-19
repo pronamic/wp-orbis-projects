@@ -13,13 +13,27 @@ if ( orbis_plugin_activated( 'companies' ) ) {
 	principal.name AS principal_name,
 	principal.post_id AS principal_post_id
 	";
+
 	$extra_join .= "
 	LEFT JOIN
 		$wpdb->orbis_companies AS principal
 			ON project.principal_id = principal.id
 	";
+
 	$extra_orderby .= "
 	, principal.name
+	";
+}
+
+if ( orbis_plugin_activated( 'timesheets' ) ) {
+	$extra_select .= "
+	, SUM( registration.number_seconds ) AS registered_seconds
+	";
+
+	$extra_join .= "
+	LEFT JOIN
+		$wpdb->orbis_timesheets AS registration
+			ON project.id = registration.project_id
 	";
 }
 
@@ -33,8 +47,7 @@ $sql = "
 		project.invoicable,
 		project.post_id AS project_post_id,
 		manager.ID AS project_manager_id,
-		manager.display_name AS project_manager_name,
-		SUM( registration.number_seconds ) AS registered_seconds
+		manager.display_name AS project_manager_name
 		$extra_select
 	FROM
 		$wpdb->orbis_projects AS project
@@ -44,9 +57,6 @@ $sql = "
 			LEFT JOIN
 		$wpdb->users AS manager
 				ON	post.post_author = manager.ID
-			LEFT JOIN
-		$wpdb->orbis_timesheets AS registration
-				ON project.id = registration.project_id
 			$extra_join
 	WHERE
 		NOT project.finished
