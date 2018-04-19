@@ -151,9 +151,9 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		}
 
 		if ( orbis_plugin_activated( 'companies' ) ) {
-			$extra_select .= ",
+			$extra_select .= ',
 				principal.name AS principal_name
-			";
+			';
 
 			$extra_join .= "
 				LEFT JOIN
@@ -161,10 +161,10 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 						ON project.principal_id = principal.id
 			";
 
-			$extra_where .= "
+			$extra_where .= '
 					OR
 				principal.name LIKE %s
-			";
+			';
 		}
 
 		$query = "

@@ -18,7 +18,7 @@ $statuses = get_terms( array(
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<?php if ( orbis_plugin_activated( 'companies' ) ): ?>
+				<?php if ( orbis_plugin_activated( 'companies' ) ) : ?>
 					<th scope="col"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></th>
 				<?php endif ?>
 				<th scope="col"><?php esc_html_e( 'Project', 'orbis-projects' ); ?></th>
@@ -43,7 +43,7 @@ $statuses = get_terms( array(
 				<?php foreach ( $manager->projects as $project ) : ?>
 
 					<tr>
-						<?php if ( orbis_plugin_activated( 'companies' ) ): ?>
+						<?php if ( orbis_plugin_activated( 'companies' ) ) : ?>
 							<td>
 								<a href="<?php echo esc_attr( get_permalink( $project->principal_post_id ) ); ?>" style="color: #000;">
 									<?php echo esc_html( $project->principal_name ); ?>

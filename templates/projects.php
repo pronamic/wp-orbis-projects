@@ -7,12 +7,12 @@ $extra_join    = '';
 $extra_orderby = '';
 
 if ( orbis_plugin_activated( 'companies' ) ) {
-	$extra_select .= "
+	$extra_select .= '
 	,
 	principal.id AS principal_id,
 	principal.name AS principal_name,
 	principal.post_id AS principal_post_id
-	";
+	';
 
 	$extra_join .= "
 	LEFT JOIN
@@ -20,15 +20,15 @@ if ( orbis_plugin_activated( 'companies' ) ) {
 			ON project.principal_id = principal.id
 	";
 
-	$extra_orderby .= "
+	$extra_orderby .= '
 	, principal.name
-	";
+	';
 }
 
 if ( orbis_plugin_activated( 'timesheets' ) ) {
-	$extra_select .= "
+	$extra_select .= '
 	, SUM( registration.number_seconds ) AS registered_seconds
-	";
+	';
 
 	$extra_join .= "
 	LEFT JOIN

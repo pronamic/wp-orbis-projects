@@ -71,7 +71,7 @@ if ( $query->have_posts() ) : ?>
 								?>
 							</td>
 						<?php endif ?>
-						
+
 						<td>
 							<a href="<?php the_permalink(); ?>">
 								<?php the_title(); ?>

@@ -2,33 +2,35 @@
 
 global $wpdb;
 
-$extra_select  = '';
-$extra_join    = '';
+$extra_select = '';
+$extra_join   = '';
 
 $orderby = '';
 
 if ( orbis_plugin_activated( 'companies' ) ) {
-	$extra_select .= "
+	$extra_select .= '
 	,
 	principal.id AS principal_id,
 	principal.name AS principal_name,
 	principal.post_id AS principal_post_id
-	";
+	';
+
 	$extra_join .= "
 	LEFT JOIN
 		$wpdb->orbis_companies AS principal
 			ON project.principal_id = principal.id
 	";
-	$orderby .= "
+
+	$orderby .= '
 	ORDER BY
 		principal.name
-	";
+	';
 }
 
 if ( orbis_plugin_activated( 'timesheets' ) ) {
-	$extra_select .= "
+	$extra_select .= '
 	, SUM( registration.number_seconds ) AS registered_seconds
-	";
+	';
 
 	$extra_join .= "
 	LEFT JOIN
