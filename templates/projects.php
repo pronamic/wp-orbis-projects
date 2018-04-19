@@ -2,6 +2,27 @@
 
 global $wpdb;
 
+$extra_select  = '';
+$extra_join    = '';
+$extra_orderby = '';
+
+if ( orbis_plugin_activated( 'companies' ) ) {
+	$extra_select .= "
+	,
+	principal.id AS principal_id,
+	principal.name AS principal_name,
+	principal.post_id AS principal_post_id
+	";
+	$extra_join .= "
+	LEFT JOIN
+		$wpdb->orbis_companies AS principal
+			ON project.principal_id = principal.id
+	";
+	$extra_orderby .= "
+	, principal.name
+	";
+}
+
 // Managers
 $sql = "
 	SELECT
@@ -13,10 +34,8 @@ $sql = "
 		project.post_id AS project_post_id,
 		manager.ID AS project_manager_id,
 		manager.display_name AS project_manager_name,
-		principal.id AS principal_id,
-		principal.name AS principal_name,
-		principal.post_id AS principal_post_id,
 		SUM( registration.number_seconds ) AS registered_seconds
+		$extra_select
 	FROM
 		$wpdb->orbis_projects AS project
 			LEFT JOIN
@@ -26,11 +45,9 @@ $sql = "
 		$wpdb->users AS manager
 				ON	post.post_author = manager.ID
 			LEFT JOIN
-		$wpdb->orbis_companies AS principal
-				ON project.principal_id = principal.id
-			LEFT JOIN
 		$wpdb->orbis_timesheets AS registration
 				ON project.id = registration.project_id
+			$extra_join
 	WHERE
 		NOT project.finished
 	GROUP BY
@@ -40,7 +57,8 @@ $sql = "
 ";
 
 // Order by
-$order_by = 'principal.name , project.name';
+$order_by = 'project.name' . $extra_orderby;
+
 if ( isset( $_GET['order'] ) ) { // WPCS: CSRF ok.
 	switch ( $_GET['order'] ) { // WPCS: CSRF ok.
 		case 'id':
