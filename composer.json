@@ -34,6 +34,7 @@
 		"classmap": ["classes/"]
 	},
 	"require": {
+		"pronamic/wp-money": "dev-develop as 1.0.0",
 		"sabre/vobject": "^4.1",
 		"sabre/uri": "^1",
 		"sabre/xml": "^1"

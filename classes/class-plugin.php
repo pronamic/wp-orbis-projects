@@ -20,6 +20,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 
 		// Load text domain
 		$this->load_textdomain( 'orbis-projects', '/languages/' );
+		$this->load_textdomain( 'pronamic-money', '/vendor/pronamic/wp-money/languages/' );
 
 		// Content Types
 		$this->content_types = new Orbis_Projects_ContentTypes();

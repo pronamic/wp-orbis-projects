@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Money\Money;
 
 wp_enqueue_script( 'wp-api' );
 
