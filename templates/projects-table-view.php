@@ -143,7 +143,13 @@ $statuses = get_terms( array(
 							/
 							<?php echo esc_html( orbis_time( $project->available_seconds ) ); ?>
 							<br />
-							<?php echo esc_html( orbis_price( get_post_meta( $project->project_post_id, '_orbis_price', true ) ) ); ?>
+							<?php
+							if ( get_post_meta( $project->project_post_id, '_orbis_price', true ) ) {
+								$price = new Money( get_post_meta( $project->project_post_id, '_orbis_price', true ), 'EUR' );
+								$price = $price->format_i18n();
+								echo esc_html( $price );
+							}
+							?>
 						</td>
 						<td>
 							<?php
