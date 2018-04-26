@@ -1,5 +1,7 @@
 <?php
 
+use Pronamic\WordPress\Money\Money;
+
 class Orbis_Projects_AdminProjectPostType {
 	/**
 	 * Post type.
@@ -61,7 +63,8 @@ class Orbis_Projects_AdminProjectPostType {
 
 				break;
 			case 'orbis_project_price':
-				echo esc_html( orbis_price( $orbis_project->get_price() ) );
+				$price = new Money( $orbis_project->get_price(), 'EUR' );
+				echo esc_html( $price->format_i18n() );
 
 				break;
 			case 'orbis_project_time':
