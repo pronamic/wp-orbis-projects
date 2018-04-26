@@ -63,6 +63,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			invoice_number VARCHAR(128) DEFAULT NULL,
 			finished BOOLEAN NOT NULL DEFAULT FALSE,
 			PRIMARY KEY  (id),
+			KEY post_id (post_id)
 			KEY principal_id (principal_id)
 		' );
 
@@ -74,7 +75,8 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			seconds BIGINT(16) DEFAULT NULL,
 			user_id BIGINT(20) UNSIGNED DEFAULT NULL,
 			create_date DATETIME DEFAULT NULL,
-			PRIMARY KEY  (id)
+			PRIMARY KEY  (id),
+			KEY project_id (project_id)
 		' );
 
 		// Install
