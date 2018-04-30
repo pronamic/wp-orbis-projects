@@ -151,12 +151,16 @@ class Orbis_Project {
 	 * @return int
 	 */
 	public function get_registered_seconds() {
-		if ( ! get_post_meta( $this->post->ID, '_orbis_project_registered_time', true ) ) {
-			return false;
+		if ( isset( $this->post->project_logged_time ) ) {
+			return $this->post->project_logged_time;
 		}
 
-		$registered_time = get_post_meta( $this->post->ID, '_orbis_project_registered_time', true );
+		$value = get_post_meta( $this->post->ID, '_orbis_project_registered_time', true );
 
-		return $registered_time;
+		if ( is_numeric( $value ) ) {
+			return $value;
+		}
+
+		return false;
 	}
 }
