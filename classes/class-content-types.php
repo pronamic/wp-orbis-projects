@@ -44,7 +44,7 @@ class Orbis_Projects_ContentTypes {
 				'supports'      => array( 'title', 'editor', 'author', 'comments', 'custom-fields', 'revisions' ),
 				'has_archive'   => true,
 				'show_in_rest'  => true,
-				'rest_base'     => 'orbis-projects',
+				'rest_base'     => 'orbis/projects',
 				'rewrite'       => array(
 					'slug' => _x( 'projects', 'slug', 'orbis-projects' ),
 				),
