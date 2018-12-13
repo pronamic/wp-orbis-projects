@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-12-13 08:49:00+00:00\n"
+"POT-Creation-Date: 2018-12-13 09:45:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Orbis ID"
 msgstr ""
 
-#: admin/meta-box-project-details.php:44 templates/projects-table-view.php:23
+#: admin/meta-box-project-details.php:44 templates/projects-table-view.php:22
 msgid "Client"
 msgstr ""
 
@@ -74,7 +74,7 @@ msgstr ""
 msgid "Project is finished"
 msgstr ""
 
-#: admin/meta-box-project-details.php:112 templates/projects-table-view.php:29
+#: admin/meta-box-project-details.php:112 templates/projects-table-view.php:34
 msgid "Invoicable"
 msgstr ""
 
@@ -112,7 +112,7 @@ msgstr ""
 
 #: admin/meta-box-project-invoices.php:13
 #: classes/class-admin-project-post-type.php:40
-#: templates/projects-table-view.php:26
+#: templates/projects-table-view.php:31
 msgid "Date"
 msgstr ""
 
@@ -204,7 +204,7 @@ msgid "Projects"
 msgstr ""
 
 #: classes/class-content-types.php:21 classes/class-plugin.php:114
-#: templates/projects-table-view.php:25
+#: templates/projects-table-view.php:23
 msgid "Project"
 msgstr ""
 
@@ -385,31 +385,47 @@ msgid "Add New Person"
 msgstr ""
 
 #: templates/projects-table-view.php:27
+msgid "Invoice"
+msgstr ""
+
+#: templates/projects-table-view.php:32
 msgid "Comment"
 msgstr ""
 
-#: templates/projects-table-view.php:28
+#: templates/projects-table-view.php:33
 msgid "Budget"
 msgstr ""
 
-#: templates/projects-table-view.php:77
+#: templates/projects-table-view.php:98
+msgid "Header Text"
+msgstr ""
+
+#: templates/projects-table-view.php:103
+msgid "Footer Text"
+msgstr ""
+
+#: templates/projects-table-view.php:108
+msgid "Line Description"
+msgstr ""
+
+#: templates/projects-table-view.php:133
 #. translators: 1st placeholder is the comment author, 2nd is the date
 msgid "%1$s says on %2$s:"
 msgstr ""
 
-#: templates/projects-table-view.php:112
+#: templates/projects-table-view.php:168
 msgid "Add status"
 msgstr ""
 
-#: templates/projects-table-view.php:161
+#: templates/projects-table-view.php:217
 msgid "Yes"
 msgstr ""
 
-#: templates/projects-table-view.php:172
+#: templates/projects-table-view.php:228
 msgid "No"
 msgstr ""
 
-#: templates/projects-table-view.php:184
+#: templates/projects-table-view.php:240
 #: templates/projects-without-agreement.php:82
 msgid "Edit"
 msgstr ""

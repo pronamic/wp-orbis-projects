@@ -19,10 +19,15 @@ $statuses = get_terms( array(
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<?php if ( orbis_plugin_activated( 'companies' ) ) : ?>
-					<th scope="col"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></th>
-				<?php endif ?>
+				<th scope="col"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Project', 'orbis-projects' ); ?></th>
+				
+				<?php if ( isset( $orbis_is_projects_to_invoice ) ) : ?>
+
+					<th scope="col"><?php esc_html_e( 'Invoice', 'orbis-projects' ); ?></th>
+
+				<?php endif; ?>
+
 				<th scope="col"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Comment', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Budget', 'orbis-projects' ); ?></th>
@@ -44,20 +49,73 @@ $statuses = get_terms( array(
 				<?php foreach ( $manager->projects as $project ) : ?>
 
 					<tr>
-						<?php if ( orbis_plugin_activated( 'companies' ) ) : ?>
-							<td>
-								<a href="<?php echo esc_attr( get_permalink( $project->principal_post_id ) ); ?>" style="color: #000;">
-									<?php echo esc_html( $project->principal_name ); ?>
-								</a>
-							</td>
-						<?php endif ?>
 						<td>
-							<code><?php echo esc_html( $project->id ); ?></code> -  
-
+							<a href="<?php echo esc_attr( get_permalink( $project->principal_post_id ) ); ?>" style="color: #000;">
+								<?php echo esc_html( $project->principal_name ); ?>
+							</a>
+						</td>
+						<td>
 							<a href="<?php echo esc_attr( get_permalink( $project->project_post_id ) ); ?>" style="color: #000;">
 								<?php echo esc_html( $project->name ); ?>
 							</a>
 						</td>
+
+						<?php if ( isset( $orbis_is_projects_to_invoice ) ) : ?>
+
+							<td>
+								<?php
+
+								$invoice_header_texts = array(
+									get_post_meta( $project->principal_post_id, '_orbis_invoice_header_text', true ),
+									get_post_meta( $project->project_post_id, '_orbis_invoice_header_text', true ),
+									get_option( 'orbis_invoice_header_text' ),
+								);
+
+								$invoice_header_texts = array_filter( $invoice_header_texts );
+								$invoice_header_texts = array_unique( $invoice_header_texts );
+
+								$invoice_footer_texts = array(
+									get_post_meta( $project->principal_post_id, '_orbis_invoice_footer_text', true ),
+									get_post_meta( $project->project_post_id, '_orbis_invoice_footer_text', true ),
+									get_option( 'orbis_invoice_footer_text' ),
+								);
+
+								$invoice_footer_texts = array_filter( $invoice_footer_texts );
+								$invoice_footer_texts = array_unique( $invoice_footer_texts );
+
+								$invoice_line_description = get_post_meta( $project->project_post_id, '_orbis_invoice_line_description', true );
+
+								if ( empty( $invoice_line_description ) ) {
+									$invoice_line_description = $project->name;
+								}
+
+								$invoice_line_description = sprintf(
+									'%1$s - %2$s',
+									$project->id,
+									$invoice_line_description
+								);
+
+								?>
+								<dl>
+									<dt><?php esc_html_e( 'Header Text', 'orbis-projects' ); ?></dt>
+									<dd>
+										<?php echo nl2br( esc_html( implode( "\r\n", $invoice_header_texts ) ) ); ?>
+									</dd>
+
+									<dt><?php esc_html_e( 'Footer Text', 'orbis-projects' ); ?></dt>
+									<dd>
+										<?php echo nl2br( esc_html( implode( "\r\n", $invoice_footer_texts ) ) ); ?>
+									</dd>
+
+									<dt><?php esc_html_e( 'Line Description', 'orbis-projects' ); ?></dt>
+									<dd>
+										<?php echo nl2br( esc_html( $invoice_line_description ) ); ?>
+									</dd>
+								</dl>
+							</td>
+
+						<?php endif; ?>
+
 						<td style="white-space: nowrap;">
 							<?php echo esc_html( get_the_time( 'j M Y', $project->project_post_id ) ); ?>
 						</td>

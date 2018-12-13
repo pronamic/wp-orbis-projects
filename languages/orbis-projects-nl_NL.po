@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-12-13 08:47:55+00:00\n"
-"PO-Revision-Date: 2018-12-13 09:59+0100\n"
+"POT-Creation-Date: 2018-12-13 09:45:39+00:00\n"
+"PO-Revision-Date: 2018-12-13 10:46+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:44 templates/projects-table-view.php:23
+#: admin/meta-box-project-details.php:44 templates/projects-table-view.php:22
 msgid "Client"
 msgstr "Klant"
 
@@ -82,7 +82,7 @@ msgstr "Afgerond"
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:112 templates/projects-table-view.php:29
+#: admin/meta-box-project-details.php:112 templates/projects-table-view.php:34
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
@@ -120,7 +120,7 @@ msgstr "— Selecteer betaalmethode —"
 
 #: admin/meta-box-project-invoices.php:13
 #: classes/class-admin-project-post-type.php:40
-#: templates/projects-table-view.php:26
+#: templates/projects-table-view.php:31
 msgid "Date"
 msgstr "Datum"
 
@@ -212,7 +212,7 @@ msgid "Projects"
 msgstr "Projecten"
 
 #: classes/class-content-types.php:21 classes/class-plugin.php:114
-#: templates/projects-table-view.php:25
+#: templates/projects-table-view.php:23
 msgid "Project"
 msgstr "Project"
 
@@ -393,31 +393,47 @@ msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
 #: templates/projects-table-view.php:27
+msgid "Invoice"
+msgstr "Factuur"
+
+#: templates/projects-table-view.php:32
 msgid "Comment"
 msgstr "Reactie"
 
-#: templates/projects-table-view.php:28
+#: templates/projects-table-view.php:33
 msgid "Budget"
 msgstr "Budget"
 
+#: templates/projects-table-view.php:98
+msgid "Header Text"
+msgstr "Koptekst"
+
+#: templates/projects-table-view.php:103
+msgid "Footer Text"
+msgstr "Voettekst"
+
+#: templates/projects-table-view.php:108
+msgid "Line Description"
+msgstr "Regelbeschrijving"
+
 #. translators: 1st placeholder is the comment author, 2nd is the date
-#: templates/projects-table-view.php:77
+#: templates/projects-table-view.php:133
 msgid "%1$s says on %2$s:"
 msgstr "%1$s zegt op %2$s:"
 
-#: templates/projects-table-view.php:112
+#: templates/projects-table-view.php:168
 msgid "Add status"
 msgstr "Voeg status toe"
 
-#: templates/projects-table-view.php:161
+#: templates/projects-table-view.php:217
 msgid "Yes"
 msgstr "Ja"
 
-#: templates/projects-table-view.php:172
+#: templates/projects-table-view.php:228
 msgid "No"
 msgstr "Nee"
 
-#: templates/projects-table-view.php:184
+#: templates/projects-table-view.php:240
 #: templates/projects-without-agreement.php:82
 msgid "Edit"
 msgstr "Bewerken"
@@ -508,9 +524,6 @@ msgstr "Status"
 
 #~ msgid "Not invoicable"
 #~ msgstr "Niet factureerbaar"
-
-#~ msgid "Invoice"
-#~ msgstr "Factuur"
 
 #~ msgid "Manager"
 #~ msgstr "Projectleider"

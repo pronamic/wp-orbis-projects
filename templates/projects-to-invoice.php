@@ -1,6 +1,9 @@
 <?php
 
 global $wpdb;
+global $orbis_is_projects_to_invoice;
+
+$orbis_is_projects_to_invoice = true;
 
 $extra = 'AND invoice_number IS NULL';
 
@@ -23,7 +26,7 @@ $sql = "
 		principal.post_id AS principal_post_id,
 		SUM(registration.number_seconds) AS registered_seconds
 	FROM
-		orbis_projects AS project
+		$wpdb->orbis_projects AS project
 			LEFT JOIN
 		$wpdb->posts AS post
 				ON project.post_id = post.ID
@@ -31,10 +34,10 @@ $sql = "
 		$wpdb->users AS manager
 				ON post.post_author = manager.ID
 			LEFT JOIN
-		orbis_companies AS principal
+		$wpdb->orbis_companies AS principal
 				ON project.principal_id = principal.id
 			LEFT JOIN
-		orbis_hours_registration AS registration
+		$wpdb->orbis_timesheets AS registration
 				ON project.id = registration.project_id
 	WHERE
 		(
