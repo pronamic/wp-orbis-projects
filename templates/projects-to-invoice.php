@@ -2,6 +2,12 @@
 
 global $wpdb;
 
+$extra = 'AND invoice_number IS NULL';
+
+if ( filter_input( INPUT_GET, 'all', FILTER_VALIDATE_BOOLEAN ) ) {
+	$extra = '';
+}
+
 $sql = "
 	SELECT
 		project.id ,
@@ -46,6 +52,7 @@ $sql = "
 		NOT project.invoiced
 			AND
 		project.start_date > '2011-01-01'
+		$extra
 	GROUP BY
 		project.id
 	ORDER BY
