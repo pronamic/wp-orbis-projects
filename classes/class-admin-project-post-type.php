@@ -149,13 +149,14 @@ class Orbis_Projects_AdminProjectPostType {
 				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
 				'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
 			),
-			'_orbis_project_principal_id'   => FILTER_VALIDATE_INT,
-			'_orbis_project_agreement_id'   => FILTER_VALIDATE_INT,
-			'_orbis_project_is_finished'    => FILTER_VALIDATE_BOOLEAN,
-			'_orbis_project_is_invoicable'  => FILTER_VALIDATE_BOOLEAN,
-			'_orbis_project_invoice_number' => FILTER_SANITIZE_STRING,
-			'_orbis_invoice_header_text'    => FILTER_SANITIZE_STRING,
-			'_orbis_invoice_footer_text'    => FILTER_SANITIZE_STRING,
+			'_orbis_project_principal_id'     => FILTER_VALIDATE_INT,
+			'_orbis_project_agreement_id'     => FILTER_VALIDATE_INT,
+			'_orbis_project_is_finished'      => FILTER_VALIDATE_BOOLEAN,
+			'_orbis_project_is_invoicable'    => FILTER_VALIDATE_BOOLEAN,
+			'_orbis_project_invoice_number'   => FILTER_SANITIZE_STRING,
+			'_orbis_invoice_header_text'      => FILTER_SANITIZE_STRING,
+			'_orbis_invoice_footer_text'      => FILTER_SANITIZE_STRING,
+			'_orbis_invoice_line_description' => FILTER_SANITIZE_STRING,
 		);
 
 		if ( current_user_can( 'edit_orbis_project_administration' ) ) {

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2018-12-13 08:21:15+00:00\n"
-"PO-Revision-Date: 2018-12-13 09:22+0100\n"
+"POT-Creation-Date: 2018-12-13 08:47:55+00:00\n"
+"PO-Revision-Date: 2018-12-13 09:59+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -15,58 +15,58 @@ msgstr ""
 "X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: admin/meta-box-project-details.php:35
+#: admin/meta-box-project-details.php:36
 #: templates/projects-without-agreement.php:35
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:43 templates/projects-table-view.php:23
+#: admin/meta-box-project-details.php:44 templates/projects-table-view.php:23
 msgid "Client"
 msgstr "Klant"
 
-#: admin/meta-box-project-details.php:46
+#: admin/meta-box-project-details.php:47
 msgid "Select Client"
 msgstr "Selecteer klant"
 
-#: admin/meta-box-project-details.php:55
+#: admin/meta-box-project-details.php:56
 #: classes/class-admin-project-post-type.php:36
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/meta-box-project-details.php:63
+#: admin/meta-box-project-details.php:64
 #: classes/class-admin-project-post-type.php:37
 msgid "Time"
 msgstr "Tijd"
 
-#: admin/meta-box-project-details.php:69
+#: admin/meta-box-project-details.php:70
 msgid ""
 "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr ""
 "Je kunt de tijd invoeren als 1.5 of 1:30 (beide zijn 1 uur en 30 minuten)."
 
-#: admin/meta-box-project-details.php:76
+#: admin/meta-box-project-details.php:77
 msgid "Agreement ID"
 msgstr "Akkoord ID"
 
-#: admin/meta-box-project-details.php:83
+#: admin/meta-box-project-details.php:84
 msgid "Choose an Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-project-details.php:86
+#: admin/meta-box-project-details.php:87
 msgid "Set as Agreement"
 msgstr "Stel in als akkoord"
 
-#: admin/meta-box-project-details.php:86
+#: admin/meta-box-project-details.php:87
 msgid "Choose a Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-project-details.php:89
+#: admin/meta-box-project-details.php:90
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 "Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media "
 "bibliotheek."
 
-#: admin/meta-box-project-details.php:90
+#: admin/meta-box-project-details.php:91
 msgid ""
 "If you received the agreement by mail print the complete mail conversation "
 "with an PDF printer."
@@ -74,43 +74,47 @@ msgstr ""
 "Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail "
 "conversatie uit met een PDF-printer."
 
-#: admin/meta-box-project-details.php:97
+#: admin/meta-box-project-details.php:98
 msgid "Finished"
 msgstr "Afgerond"
 
-#: admin/meta-box-project-details.php:103
+#: admin/meta-box-project-details.php:104
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:111 templates/projects-table-view.php:29
+#: admin/meta-box-project-details.php:112 templates/projects-table-view.php:29
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
-#: admin/meta-box-project-details.php:117
+#: admin/meta-box-project-details.php:118
 msgid "Project is invoicable"
 msgstr "Project is factureerbaar"
 
-#: admin/meta-box-project-details.php:127
+#: admin/meta-box-project-details.php:128
 msgid "Invoiced"
 msgstr "Gefactureerd"
 
-#: admin/meta-box-project-details.php:133
+#: admin/meta-box-project-details.php:134
 msgid "Project is invoiced"
 msgstr "Project is gefactureerd"
 
-#: admin/meta-box-project-details.php:142
+#: admin/meta-box-project-details.php:143
 msgid "Invoice Header Text"
 msgstr "Factuur koptekst"
 
-#: admin/meta-box-project-details.php:150
+#: admin/meta-box-project-details.php:151
 msgid "Invoice Footer Text"
 msgstr "Factuur voettekst"
 
-#: admin/meta-box-project-details.php:165
+#: admin/meta-box-project-details.php:159
+msgid "Invoice Line Description"
+msgstr "Factuurregelbeschrijving"
+
+#: admin/meta-box-project-details.php:174
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
-#: admin/meta-box-project-details.php:171
+#: admin/meta-box-project-details.php:180
 msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
 

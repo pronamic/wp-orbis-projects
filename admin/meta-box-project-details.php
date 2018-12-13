@@ -11,8 +11,9 @@ $principal_id = get_post_meta( $post->ID, '_orbis_project_principal_id', true );
 $seconds      = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
 $agreement_id = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
 
-$invoice_header_text = get_post_meta( $post->ID, '_orbis_invoice_header_text', true );
-$invoice_footer_text = get_post_meta( $post->ID, '_orbis_invoice_footer_text', true );
+$invoice_header_text      = get_post_meta( $post->ID, '_orbis_invoice_header_text', true );
+$invoice_footer_text      = get_post_meta( $post->ID, '_orbis_invoice_footer_text', true );
+$invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
 
 $price = $orbis_project->get_price();
 
@@ -151,6 +152,14 @@ $principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_comp
 			</th>
 			<td>
 				<textarea id="_orbis_invoice_footer_text" name="_orbis_invoice_footer_text" rows="2" cols="60"><?php echo esc_textarea( $invoice_footer_text ); ?></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="_orbis_invoice_line_description"><?php esc_html_e( 'Invoice Line Description', 'orbis-projects' ); ?></label>
+			</th>
+			<td>
+				<input type="text" id="_orbis_invoice_line_description" name="_orbis_invoice_line_description" value="<?php echo esc_attr( $invoice_line_description ); ?>" class="regular-text" />
 			</td>
 		</tr>
 
