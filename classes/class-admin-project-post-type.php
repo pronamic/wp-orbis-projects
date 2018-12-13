@@ -154,6 +154,8 @@ class Orbis_Projects_AdminProjectPostType {
 			'_orbis_project_is_finished'    => FILTER_VALIDATE_BOOLEAN,
 			'_orbis_project_is_invoicable'  => FILTER_VALIDATE_BOOLEAN,
 			'_orbis_project_invoice_number' => FILTER_SANITIZE_STRING,
+			'_orbis_invoice_header_text'    => FILTER_SANITIZE_STRING,
+			'_orbis_invoice_footer_text'    => FILTER_SANITIZE_STRING,
 		);
 
 		if ( current_user_can( 'edit_orbis_project_administration' ) ) {
