@@ -151,7 +151,7 @@ if ( ! isset( $groups ) ) {
 									esc_attr( get_comment_link( $comment ) ),
 									esc_attr( $title ),
 									esc_attr( $comment->comment_content ),
-									esc_attr( date_i18n( 'j M Y', strtotime( $comment->comment_date ) ) ) . ' <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>'
+									esc_attr( date_i18n( 'j M Y', strtotime( $comment->comment_date ) ) ) . ' <span class="fas fa-comment" aria-hidden="true"></span>'
 								);
 								echo '<br />';
 							}
@@ -195,7 +195,7 @@ if ( ! isset( $groups ) ) {
 
 										?>
 									</div>
-									<i class="fa fa-spinner fa-spin fa-fw d-none orbis-saving-<?php echo esc_attr( $project->project_post_id ); ?>"></i>
+									<i class="fas fa-spinner fa-spin fa-fw d-none orbis-saving-<?php echo esc_attr( $project->project_post_id ); ?>"></i>
 								</div>
 
 							<?php endif; ?>
@@ -245,7 +245,7 @@ if ( ! isset( $groups ) ) {
 
 							$text = '';
 
-							$text .= '<i class="fa fa-pencil" aria-hidden="true"></i>';
+							$text .= '<i class="fas fa-edit" aria-hidden="true"></i>';
 							$text .= sprintf(
 								'<span class="sr-only sr-only-focusable">%s</span>',
 								__( 'Edit', 'orbis-projects' )
