@@ -1,14 +1,5 @@
 <?php
 
-// Create a new filtering function that will add our where clause to the query
-function filter_where( $where = '' ) {
-	// posts for March 1 to March 15, 2010
-	$where .= " AND post_date >= '2013-01-01'";
-	return $where;
-}
-
-add_filter( 'posts_where', 'filter_where' );
-
 $query = new WP_Query( array(
 	'post_type'      => 'orbis_project',
 	'posts_per_page' => 50,
@@ -22,9 +13,10 @@ $query = new WP_Query( array(
 			'compare' => 'EXISTS',
 		),
 	),
+	'date_query'     => array(
+		'after' => '2013-01-01',
+	),
 ) );
-
-remove_filter( 'posts_where', 'filter_where' );
 
 if ( $query->have_posts() ) : ?>
 
@@ -34,9 +26,7 @@ if ( $query->have_posts() ) : ?>
 				<tr>
 					<th scope="col"><?php esc_html_e( 'Orbis ID', 'orbis-projects' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Project Manager', 'orbis-projects' ); ?></th>
-					<?php if ( orbis_plugin_activated( 'companies' ) ) : ?>
-						<th scope="col"><?php esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
-					<?php endif ?>
+					<th scope="col"><?php esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Title', 'orbis-projects' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Actions', 'orbis-projects' ); ?></th>
 				</tr>
@@ -54,24 +44,21 @@ if ( $query->have_posts() ) : ?>
 						<td>
 							<?php the_author(); ?>
 						</td>
-						<?php if ( orbis_plugin_activated( 'companies' ) ) : ?>
-							<td>
-								<?php
+						<td>
+							<?php
 
-								global $orbis_project;
+							global $orbis_project;
 
-								if ( $orbis_project->has_principal() ) {
-									printf(
-										'<a href="%s">%s</a>',
-										esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
-										esc_html( $orbis_project->get_principal_name() )
-									);
-								}
+							if ( $orbis_project->has_principal() ) {
+								printf(
+									'<a href="%s">%s</a>',
+									esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
+									esc_html( $orbis_project->get_principal_name() )
+								);
+							}
 
-								?>
-							</td>
-						<?php endif ?>
-
+							?>
+						</td>
 						<td>
 							<a href="<?php the_permalink(); ?>">
 								<?php the_title(); ?>

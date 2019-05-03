@@ -6,7 +6,7 @@ $extra_select  = '';
 $extra_join    = '';
 $extra_orderby = '';
 
-if ( orbis_plugin_activated( 'companies' ) ) {
+if ( isset( $wpdb->orbis_companies ) ) {
 	$extra_select .= '
 	,
 	principal.id AS principal_id,
@@ -25,7 +25,7 @@ if ( orbis_plugin_activated( 'companies' ) ) {
 	';
 }
 
-if ( orbis_plugin_activated( 'timesheets' ) ) {
+if ( isset( $wpdb->orbis_timesheets ) ) {
 	$extra_select .= '
 	, SUM( registration.number_seconds ) AS registered_seconds
 	';
@@ -80,36 +80,73 @@ if ( isset( $_GET['order'] ) ) { // WPCS: CSRF ok.
 // Build query
 $sql = sprintf( $sql, $order_by );
 
-// Projects
+// Projects.
 $projects = $wpdb->get_results( $sql ); // WPCS: unprepared SQL ok.
 
-// Managers
-$managers = array();
+// Groups.
+$groups = array();
+
+// Managers.
+foreach ( $projects as $project ) {
+	// Find manager
+	if ( ! isset( $groups[ $project->project_manager_id ] ) ) {
+		$group           = new stdClass();
+		$group->id       = $project->project_manager_id;
+		$group->name     = $project->project_manager_name;
+		$group->projects = array();
+
+		$groups[ $group->id ] = $group;
+	}
+}
+
+$groups = wp_list_sort( $groups, 'name', 'ASC', true );
+
+$groups['marketing'] = (object) array(
+	'id'       => 'marketing',
+	'name'     => 'Marketing',
+	'projects' => array(),
+);
+
+$groups['strippenkaart'] = (object) array(
+	'id'       => 'strippenkaart',
+	'name'     => 'Strippenkaarten',
+	'projects' => array(),
+);
+
+$groups['pronamic'] = (object) array(
+	'id'       => 'pronamic',
+	'name'     => 'Pronamic',
+	'projects' => array(),
+);
 
 // Projects and managers
 foreach ( $projects as $project ) {
-	// Find manager
-	if ( ! isset( $managers[ $project->project_manager_id ] ) ) {
-		$manager           = new stdClass();
-		$manager->id       = $project->project_manager_id;
-		$manager->name     = $project->project_manager_name;
-		$manager->projects = array();
+	$post = get_post( $project->project_post_id );
 
-		$managers[ $manager->id ] = $manager;
+	$group_id = $project->project_manager_id;
+
+	if ( has_term( 'pronamic', 'orbis_project_category', $post ) ) {
+		$group_id = 'pronamic';
 	}
 
-	$orbis_project = new Orbis_Project( get_post( $project->project_post_id ) );
+	if ( has_term( 'strippenkaart', 'orbis_project_category', $post ) ) {
+		$group_id = 'strippenkaart';
+	}
+
+	if ( has_term( 'online-marketing', 'orbis_project_category', $post ) ) {
+		$group_id = 'marketing';
+	}
+
+	$orbis_project = new Orbis_Project( $post );
 
 	$project->registered_seconds = $orbis_project->get_registered_seconds();
 
 	$project->failed = $project->registered_seconds > $project->available_seconds;
 
-	$manager = $managers[ $project->project_manager_id ];
+	$group = $groups[ $group_id ];
 
-	$manager->projects[] = $project;
+	$group->projects[] = $project;
 }
-
-ksort( $managers );
 
 $parameters = $_GET; // WPCS: CSRF ok.
 

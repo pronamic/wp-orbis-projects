@@ -1,4 +1,5 @@
 <?php
+
 use Pronamic\WordPress\Money\Money;
 
 wp_enqueue_script( 'wp-api' );
@@ -12,6 +13,10 @@ $statuses = get_terms( array(
 	'taxonomy'   => 'orbis_project_status',
 	'hide_empty' => false,
 ) );
+
+if ( ! isset( $groups ) ) {
+	$groups = $managers;
+}
 
 ?>
 
@@ -38,15 +43,15 @@ $statuses = get_terms( array(
 
 		<tbody>
 
-			<?php foreach ( $managers as $manager ) : ?>
+			<?php foreach ( $groups as $group ) : ?>
 
 				<tr>
 					<th colspan="8">
-						<?php echo esc_html( $manager->name ); ?>
+						<?php echo esc_html( $group->name ); ?>
 					</th>
 				</tr>
 
-				<?php foreach ( $manager->projects as $project ) : ?>
+				<?php foreach ( $group->projects as $project ) : ?>
 
 					<tr>
 						<td>
