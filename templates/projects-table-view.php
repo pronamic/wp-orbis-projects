@@ -45,11 +45,15 @@ if ( ! isset( $groups ) ) {
 
 			<?php foreach ( $groups as $group ) : ?>
 
-				<tr>
-					<th colspan="8">
-						<?php echo esc_html( $group->name ); ?>
-					</th>
-				</tr>
+				<?php if ( ! empty( $group->projects ) ) : ?>
+
+					<tr>
+						<th colspan="8">
+							<?php echo esc_html( $group->name ); ?>
+						</th>
+					</tr>
+
+				<?php endif; ?>
 
 				<?php foreach ( $group->projects as $project ) : ?>
 
