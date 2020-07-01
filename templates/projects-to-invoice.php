@@ -345,9 +345,3 @@ $data = $wpdb->get_results( $query );
 		</tbody>
 	</table>
 </div>
-
-<?php
-
-echo '<pre>';
-echo $query;
-echo '</pre>';
