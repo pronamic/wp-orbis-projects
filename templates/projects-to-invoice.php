@@ -197,6 +197,8 @@ $data = $wpdb->get_results( $query );
 
 				<th scope="col"><?php \esc_html_e( 'Time', 'orbis_projects' ); ?></th>
 				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis_projects' ); ?></th>
+
+				<th scope="col"><i class="fas fa-file-invoice"></i></th>
 			</tr>
 		</thead>
 
@@ -292,7 +294,20 @@ $data = $wpdb->get_results( $query );
 					<td>
 						<?php 
 
-						$to_bill_seconds = \min( \intval( $item->project_timesheet_time ), \intval( $item->project_billable_time ) ) - $item->project_billed_time;
+						$to_bill_seconds = \max(
+							0,
+							\min(
+								\intval( $item->project_timesheet_time ),
+								\intval( $item->project_billable_time )
+							) - \intval( $item->project_billed_time )
+						);
+
+						$to_bill_amount = ( 85 * ( $to_bill_seconds / HOUR_IN_SECONDS ) );
+
+						if ( false !== \strpos( $item->project_name, 'Strippenkaart' ) ) {
+							//$to_bill_seconds = $item->project_billable_time;
+							//$to_bill_amount  = $item->project_billable_amount;
+						}
 						
 						echo \orbis_time( $to_bill_seconds );
 
@@ -301,9 +316,25 @@ $data = $wpdb->get_results( $query );
 					<td>
 						<?php
 
-						$to_bill_amount = ( 85 * ( $to_bill_seconds / HOUR_IN_SECONDS ) );
-
 						echo \orbis_price( $to_bill_amount );
+
+						?>
+					</td>
+					<td>
+						<?php
+
+						$url = \add_query_arg(
+							array(
+								'company_id' => $item->principal_id,
+								'project_id' => $item->project_id,
+							),
+							home_url( 'twinfield/invoicer' )
+						);
+
+						printf(
+							'<a href="%s"><i class="fas fa-file-invoice"></i></a>',
+							\esc_url( $url )
+						);
 
 						?>
 					</td>
