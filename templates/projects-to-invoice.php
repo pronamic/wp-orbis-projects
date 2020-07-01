@@ -174,7 +174,7 @@ $data = $wpdb->get_results( $query );
 				<th scope="col" colspan="2"><?php \esc_html_e( 'Billable', 'orbis_projects' ); ?></th>
 				<th scope="col" colspan="3"><?php \esc_html_e( 'Billed', 'orbis_projects' ); ?></th>
 				<th scope="col" colspan="2"><?php \esc_html_e( 'Timesheet', 'orbis_projects' ); ?></th>
-				<th scope="col" colspan="2"><?php \esc_html_e( 'To Bill', 'orbis_projects' ); ?></th>
+				<th scope="col" colspan="3"><?php \esc_html_e( 'To Bill', 'orbis_projects' ); ?></th>
 			</tr>
 			<tr>
 				<th scope="col"><?php \esc_html_e( 'Orbis ID', 'orbis_projects' ); ?></th>
