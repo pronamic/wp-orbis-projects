@@ -227,6 +227,7 @@ class Orbis_Projects_AdminProjectPostType {
 		$invoice_number = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
 		$is_finished    = get_post_meta( $post_id, '_orbis_project_is_finished', true );
 		$seconds        = get_post_meta( $post_id, '_orbis_project_seconds_available', true );
+		$price          = get_post_meta( $post_id, '_orbis_price', true );
 
 		$data = array();
 		$form = array();
@@ -256,6 +257,9 @@ class Orbis_Projects_AdminProjectPostType {
 
 		$data['finished'] = $is_finished;
 		$form['finished'] = '%d';
+
+		$data['billable_amount'] = $price;
+		$form['billable_amount'] = '%f';
 
 		if ( empty( $orbis_id ) ) {
 			$data['post_id'] = $post_id;
