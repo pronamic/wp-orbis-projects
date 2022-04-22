@@ -149,6 +149,11 @@ class Orbis_Projects_AdminProjectPostType {
 				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
 				'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
 			),
+			'_orbis_hourly_rate'                  => array(
+				'filter'  => FILTER_VALIDATE_FLOAT,
+				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
+				'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
+			),
 			'_orbis_project_principal_id'     => FILTER_VALIDATE_INT,
 			'_orbis_project_agreement_id'     => FILTER_VALIDATE_INT,
 			'_orbis_project_is_finished'      => FILTER_VALIDATE_BOOLEAN,

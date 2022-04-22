@@ -28,6 +28,8 @@ if ( $project ) {
 
 $principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_companies WHERE id= %d;", $principal_id ) );
 
+$hourly_rate = get_post_meta( $post->ID, '_orbis_hourly_rate', true );
+
 ?>
 <table class="form-table">
 	<tbody>
@@ -57,6 +59,14 @@ $principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_comp
 			</th>
 			<td>
 				<input type="text" id="orbis_project_price" name="_orbis_price" value="<?php echo esc_attr( empty( $price ) ? '' : number_format_i18n( $price, 2 ) ); ?>" class="regular-text" />
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_project_hourly_rate"><?php esc_html_e( 'Hourly Rate', 'orbis-projects' ); ?></label>
+			</th>
+			<td>
+				<input type="text" id="orbis_project_hourly_rate" name="_orbis_hourly_rate" value="<?php echo esc_attr( empty( $hourly_rate ) ? '' : number_format_i18n( $hourly_rate, 2 ) ); ?>" class="regular-text" />
 			</td>
 		</tr>
 		<tr valign="top">
