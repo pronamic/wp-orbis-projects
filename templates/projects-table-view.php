@@ -20,8 +20,8 @@ if ( ! isset( $groups ) ) {
 
 ?>
 
-<div class="panel">
-	<table class="table table-striped table-bordered">
+<div class="card">
+	<table class="table table-striped mb-0">
 		<thead>
 			<tr>
 				<th scope="col"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></th>
@@ -161,7 +161,7 @@ if ( ! isset( $groups ) ) {
 							foreach ( $project_statuses as $project_status ) {
 								$status_type = get_term_meta( $project_status->term_id, 'orbis_status_type', true ) ? get_term_meta( $project_status->term_id, 'orbis_status_type', true ) : 'primary';
 								printf(
-									'<span class="badge badge-pill badge-%s orbis-status" data-projectid="%s" data-statusid="%s">%s</span>',
+									'<span class="badge rounded-pill text-bg-%s orbis-status" data-projectid="%s" data-statusid="%s">%s</span>',
 									esc_attr( $status_type ),
 									esc_attr( $project->project_post_id ),
 									esc_attr( $project_status->term_id ),
@@ -175,7 +175,7 @@ if ( ! isset( $groups ) ) {
 							<?php if ( $statuses ) : ?>
 
 								<div class="dropdown show">
-									<a class="badge badge-pill badge-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<a class="badge rounded-pill text-bg-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<?php esc_html_e( 'Add status', 'orbis-projects' ); ?>
 									</a>
 
