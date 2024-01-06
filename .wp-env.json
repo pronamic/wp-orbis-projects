@@ -13,7 +13,7 @@
 		"https://downloads.wordpress.org/plugin/wp-plugin-dependencies.zip"
 	],
 	"mappings": {
-		"wp-content/plugins/orbis-timesheets-dev": "./",
-		"wp-content/plugins/orbis-timesheets": "./build/project/"
+		"wp-content/plugins/orbis-projects-dev": "./",
+		"wp-content/plugins/orbis-projects": "./build/project/"
 	}
 }
