@@ -1,26 +1,32 @@
 <?xml version="1.0"?>
 
 <ruleset name="Orbis Projects rules">
-	<config name="installed_paths" value="../../wp-coding-standards/wpcs" />
+	<file>.</file>
 
-	<rule ref="WordPress">
-		<exclude name="Squiz.Commenting" />
+	<exclude-pattern type="relative">^build/*</exclude-pattern>
+	<exclude-pattern type="relative">^node_modules/*</exclude-pattern>
+	<exclude-pattern type="relative">^packages/*</exclude-pattern>
+	<exclude-pattern type="relative">^vendor/*</exclude-pattern>
 
-		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-
-		<exclude name="WordPress.VIP.DirectDatabaseQuery.DirectQuery" />
-		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
-		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />
-		<exclude name="WordPress.VIP.RestrictedVariables.user_meta" />
-		<exclude name="WordPress.WP.PreparedSQL.NotPrepared" />
-
-		<exclude name="WordPress.VIP.RestrictedVariables.user_meta__wpdb__users" />
-		<exclude name="WordPress.VIP.SuperGlobalInputUsage.AccessDetected" />
+	<rule ref="PronamicWP">
+		
 	</rule>
 
-	<rule ref="WordPress.XSS.EscapeOutput">
+	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="customEscapingFunctions" type="array" value="orbis_price" />
+			<property name="text_domain" type="array">
+				<element value="orbis-projects" />
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.Utils.I18nTextDomainFixer">
+		<properties>
+			<property name="old_text_domain" type="array">
+				<element value="orbis_projects" />
+			</property>
+
+			<property name="new_text_domain" value="orbis-projects" />
 		</properties>
 	</rule>
 </ruleset>

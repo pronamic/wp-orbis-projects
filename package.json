@@ -1,43 +1,45 @@
 {
-  "name": "orbis-projects",
-  "version": "1.0.0",
-  "description": "The Orbis Projects plugin extends your Orbis environment with the option to manage projects.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wp-orbis/wp-orbis-projects.git"
-  },
-  "keywords": [
-    "orbis",
-    "deal",
-    "projects",
-    "offer",
-    "offers"
-  ],
-  "author": {
-    "name": "Pronamic",
-    "email": "info@pronamic.nl",
-    "url": "http://www.pronamic.nl/"
-  },
-  "contributors": [
-    {
-      "name": "Remco Tolsma",
-      "email": "info@remcotolsma.nl",
-      "url": "http://www.remcotolsma.nl/"
-    }
-  ],
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/wp-orbis/wp-orbis-projects/issues",
-    "email": "support@pronamic.nl"
-  },
-  "homepage": "https://github.com/wp-orbis/wp-orbis-projects",
-  "devDependencies": {
-    "grunt": "~1.0.2",
-    "grunt-phpcs": "^0.4.0",
-    "grunt-checktextdomain": "^1.0.1",
-    "grunt-checkwpversion": "~0.3.0",
-    "grunt-phplint": "0.1.0",
-    "grunt-wp-i18n": "~1.0.2",
-    "load-grunt-tasks": "^3.5.2"
-  }
+	"name": "orbis-projects",
+	"version": "1.0.0",
+	"description": "The Orbis Projects plugin extends your Orbis environment with the option to manage projects.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wp-orbis/wp-orbis-projects.git"
+	},
+	"keywords": [
+		"orbis",
+		"deal",
+		"projects",
+		"offer",
+		"offers"
+	],
+	"author": {
+		"name": "Pronamic",
+		"email": "info@pronamic.nl",
+		"url": "http://www.pronamic.nl/"
+	},
+	"contributors": [
+		{
+			"name": "Remco Tolsma",
+			"email": "info@remcotolsma.nl",
+			"url": "http://www.remcotolsma.nl/"
+		}
+	],
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/wp-orbis/wp-orbis-projects/issues",
+		"email": "support@pronamic.nl"
+	},
+	"homepage": "https://github.com/wp-orbis/wp-orbis-projects",
+	"bugs": {
+		"url": "https://github.com/pronamic/wp-orbis-timesheets/issues",
+		"email": "support@pronamic.eu"
+	},
+	"devDependencies": {
+		"@wordpress/env": "^9.0.0",
+		"@wordpress/scripts": "^26.19.0"
+	},
+	"scripts": {
+		"lint:pkg-json": "wp-scripts lint-pkg-json"
+	}
 }

@@ -1,5 +1,5 @@
 {
-	"name": "orbis-projects",
+	"name": "pronamic/wp-orbis-projects",
 	"description": "The Orbis Projects plugin extends your Orbis environment with the option to manage projects.",
 	"version": "1.0.0",
 	"keywords": [
@@ -31,16 +31,36 @@
 	},
 	"type": "wordpress-plugin",
 	"autoload": {
-		"classmap": ["classes/"]
+		"classmap": [
+			"classes/"
+		]
 	},
 	"require": {
-		"pronamic/wp-money": "dev-develop as 1.0.0",
+		"automattic/jetpack-autoloader": "^3.0",
+		"pronamic/wp-money": "^2.4",
 		"sabre/vobject": "^4.1",
 		"sabre/uri": "^1",
 		"sabre/xml": "^1"
 	},
 	"require-dev": {
-		"squizlabs/php_codesniffer": "^3.2",
-		"wp-coding-standards/wpcs": "^0.14.1"
+		"pronamic/wp-coding-standards": "^2.1",
+		"pronamic/pronamic-cli": "^1.1"
+	},
+	"scripts": {
+		"build": "vendor/bin/pronamic wp-build",
+		"phpcs": "vendor/bin/phpcs",
+		"translate": [
+			"@build",
+			"rsync --recursive --delete --verbose ./build/project/languages/ ./languages/"
+		],
+		"qa": [
+			"@phpcs"
+		]
+	},
+	"config": {
+		"allow-plugins": {
+			"automattic/jetpack-autoloader": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
 }
