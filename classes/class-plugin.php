@@ -12,11 +12,11 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		orbis_register_table( 'orbis_projects_invoices' );
 
 		// Actions
-		add_action( 'the_post', array( $this, 'the_post' ) );
+		add_action( 'the_post', [ $this, 'the_post' ] );
 
-		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
+		add_action( 'p2p_init', [ $this, 'p2p_init' ] );
 
-		add_action( 'wp_ajax_project_id_suggest', array( $this, 'ajax_projects_suggest_project_id' ) );
+		add_action( 'wp_ajax_project_id_suggest', [ $this, 'ajax_projects_suggest_project_id' ] );
 
 		// Load text domain
 		$this->load_textdomain( 'orbis-projects', '/languages/' );
@@ -51,7 +51,9 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 	 */
 	public function install() {
 		// Tables
-		orbis_install_table( 'orbis_projects', '
+		orbis_install_table(
+			'orbis_projects',
+			'
 			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 			post_id BIGINT(20) UNSIGNED DEFAULT NULL,
 			name VARCHAR(128) NOT NULL,
@@ -65,9 +67,12 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			PRIMARY KEY  (id),
 			KEY post_id (post_id)
 			KEY principal_id (principal_id)
-		' );
+		' 
+		);
 
-		orbis_install_table( 'orbis_projects_invoices', '
+		orbis_install_table(
+			'orbis_projects_invoices',
+			'
 			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 			project_id BIGINT(16) UNSIGNED NOT NULL,
 			invoice_number VARCHAR(32) NOT NULL,
@@ -77,7 +82,8 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			create_date DATETIME DEFAULT NULL,
 			PRIMARY KEY  (id),
 			KEY project_id (project_id)
-		' );
+		' 
+		);
 
 		// Install
 		parent::install();
@@ -102,31 +108,33 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 	 * Posts to posts initialize
 	 */
 	public function p2p_init() {
-		p2p_register_connection_type( array(
-			'name'        => 'orbis_projects_to_persons',
-			'from'        => 'orbis_project',
-			'to'          => 'orbis_person',
-			'title'       => array(
-				'from' => __( 'Involved Persons', 'orbis-projects' ),
-				'to'   => __( 'Projects', 'orbis-projects' ),
-			),
-			'from_labels' => array(
-				'singular_name' => __( 'Project', 'orbis-projects' ),
-				'search_items'  => __( 'Search project', 'orbis-projects' ),
-				'not_found'     => __( 'No projects found.', 'orbis-projects' ),
-				'create'        => __( 'Add Project', 'orbis-projects' ),
-				'new_item'      => __( 'New Project', 'orbis-projects' ),
-				'add_new_item'  => __( 'Add New Project', 'orbis-projects' ),
-			),
-			'to_labels'   => array(
-				'singular_name' => __( 'Person', 'orbis-projects' ),
-				'search_items'  => __( 'Search person', 'orbis-projects' ),
-				'not_found'     => __( 'No persons found.', 'orbis-projects' ),
-				'create'        => __( 'Add Person', 'orbis-projects' ),
-				'new_item'      => __( 'New Person', 'orbis-projects' ),
-				'add_new_item'  => __( 'Add New Person', 'orbis-projects' ),
-			),
-		) );
+		p2p_register_connection_type(
+			[
+				'name'        => 'orbis_projects_to_persons',
+				'from'        => 'orbis_project',
+				'to'          => 'orbis_person',
+				'title'       => [
+					'from' => __( 'Involved Persons', 'orbis-projects' ),
+					'to'   => __( 'Projects', 'orbis-projects' ),
+				],
+				'from_labels' => [
+					'singular_name' => __( 'Project', 'orbis-projects' ),
+					'search_items'  => __( 'Search project', 'orbis-projects' ),
+					'not_found'     => __( 'No projects found.', 'orbis-projects' ),
+					'create'        => __( 'Add Project', 'orbis-projects' ),
+					'new_item'      => __( 'New Project', 'orbis-projects' ),
+					'add_new_item'  => __( 'Add New Project', 'orbis-projects' ),
+				],
+				'to_labels'   => [
+					'singular_name' => __( 'Person', 'orbis-projects' ),
+					'search_items'  => __( 'Search person', 'orbis-projects' ),
+					'not_found'     => __( 'No persons found.', 'orbis-projects' ),
+					'create'        => __( 'Add Person', 'orbis-projects' ),
+					'new_item'      => __( 'New Person', 'orbis-projects' ),
+					'add_new_item'  => __( 'Add New Person', 'orbis-projects' ),
+				],
+			] 
+		);
 	}
 
 	/**
@@ -198,7 +206,7 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 
 		$projects = $wpdb->get_results( $query ); // unprepared SQL
 
-		$data = array();
+		$data = [];
 
 		foreach ( $projects as $project ) {
 			$result     = new stdClass();

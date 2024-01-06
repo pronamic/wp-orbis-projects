@@ -67,7 +67,7 @@ $sql = "
 $projects = $wpdb->get_results( $sql ); // unprepared SQL
 
 // Managers
-$managers = array();
+$managers = [];
 
 // Projects and managers
 foreach ( $projects as $project ) {
@@ -76,7 +76,7 @@ foreach ( $projects as $project ) {
 		$manager           = new stdClass();
 		$manager->id       = $project->project_manager_id;
 		$manager->name     = $project->project_manager_name;
-		$manager->projects = array();
+		$manager->projects = [];
 
 		$managers[ $manager->id ] = $manager;
 	}
@@ -90,7 +90,7 @@ foreach ( $projects as $project ) {
 
 ksort( $managers );
 
-include 'projects-table-view.php';
+require 'projects-table-view.php';
 
 /**
  * Update billable amount.
@@ -169,34 +169,34 @@ $data = $wpdb->get_results( $query );
 	<table class="table table-striped table-bordered table-sm">
 		<thead>
 			<tr>
-				<th scope="col" colspan="3"><?php \esc_html_e( 'Principal', 'orbis_projects' ); ?></th>
-				<th scope="col" colspan="3"><?php \esc_html_e( 'Project', 'orbis_projects' ); ?></th>
-				<th scope="col" colspan="2"><?php \esc_html_e( 'Billable', 'orbis_projects' ); ?></th>
-				<th scope="col" colspan="3"><?php \esc_html_e( 'Billed', 'orbis_projects' ); ?></th>
-				<th scope="col" colspan="2"><?php \esc_html_e( 'Timesheet', 'orbis_projects' ); ?></th>
-				<th scope="col" colspan="3"><?php \esc_html_e( 'To Bill', 'orbis_projects' ); ?></th>
+				<th scope="col" colspan="3"><?php \esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
+				<th scope="col" colspan="3"><?php \esc_html_e( 'Project', 'orbis-projects' ); ?></th>
+				<th scope="col" colspan="2"><?php \esc_html_e( 'Billable', 'orbis-projects' ); ?></th>
+				<th scope="col" colspan="3"><?php \esc_html_e( 'Billed', 'orbis-projects' ); ?></th>
+				<th scope="col" colspan="2"><?php \esc_html_e( 'Timesheet', 'orbis-projects' ); ?></th>
+				<th scope="col" colspan="3"><?php \esc_html_e( 'To Bill', 'orbis-projects' ); ?></th>
 			</tr>
 			<tr>
-				<th scope="col"><?php \esc_html_e( 'Orbis ID', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Post ID', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Name', 'orbis_projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Orbis ID', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Post ID', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Name', 'orbis-projects' ); ?></th>
 
-				<th scope="col"><?php \esc_html_e( 'Orbis ID', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Post ID', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Name', 'orbis_projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Orbis ID', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Post ID', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Name', 'orbis-projects' ); ?></th>
 
-				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Time', 'orbis_projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Time', 'orbis-projects' ); ?></th>
 
-				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Time', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Invoices', 'orbis_projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Time', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Invoices', 'orbis-projects' ); ?></th>
 
-				<th scope="col"><?php \esc_html_e( 'Registered', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Available', 'orbis_projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Registered', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Available', 'orbis-projects' ); ?></th>
 
-				<th scope="col"><?php \esc_html_e( 'Time', 'orbis_projects' ); ?></th>
-				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis_projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Time', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
 
 				<th scope="col"><i class="fas fa-file-invoice"></i></th>
 			</tr>
@@ -305,8 +305,8 @@ $data = $wpdb->get_results( $query );
 						$to_bill_amount = ( 85 * ( $to_bill_seconds / HOUR_IN_SECONDS ) );
 
 						if ( false !== \strpos( $item->project_name, 'Strippenkaart' ) ) {
-							//$to_bill_seconds = $item->project_billable_time;
-							//$to_bill_amount  = $item->project_billable_amount;
+							// $to_bill_seconds = $item->project_billable_time;
+							// $to_bill_amount  = $item->project_billable_amount;
 						}
 						
 						echo \orbis_time( $to_bill_seconds );
@@ -324,10 +324,10 @@ $data = $wpdb->get_results( $query );
 						<?php
 
 						$url = \add_query_arg(
-							array(
+							[
 								'company_id' => $item->principal_id,
 								'project_id' => $item->project_id,
-							),
+							],
 							home_url( 'twinfield/invoicer' )
 						);
 

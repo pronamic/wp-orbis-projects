@@ -8,8 +8,8 @@ class Orbis_Projects_Commenter {
 		$this->plugin = $plugin;
 
 		// Hooks
-		add_action( 'orbis_project_finished_update', array( $this, 'project_finished_update' ), 10, 2 );
-		add_action( 'orbis_project_invoice_number_update', array( $this, 'project_invoice_number_update' ), 10, 3 );
+		add_action( 'orbis_project_finished_update', [ $this, 'project_finished_update' ], 10, 2 );
+		add_action( 'orbis_project_invoice_number_update', [ $this, 'project_invoice_number_update' ], 10, 3 );
 	}
 
 	/**
@@ -32,12 +32,12 @@ class Orbis_Projects_Commenter {
 			$user->display_name
 		);
 
-		$data = array(
+		$data = [
 			'comment_post_ID' => $post_id,
 			'comment_content' => $comment_content,
 			'comment_author'  => 'Orbis',
 			'comment_type'    => 'orbis_comment',
-		);
+		];
 
 		wp_insert_comment( $data );
 	}

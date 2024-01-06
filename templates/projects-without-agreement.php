@@ -1,22 +1,24 @@
 <?php
 
-$query = new WP_Query( array(
-	'post_type'      => 'orbis_project',
-	'posts_per_page' => 50,
-	'meta_query'     => array( // WPCS: slow query ok.
-		array(
-			'key'     => '_orbis_project_agreement_id',
-			'compare' => 'NOT EXISTS',
-		),
-		array(
-			'key'     => '_orbis_project_is_invoicable',
-			'compare' => 'EXISTS',
-		),
-	),
-	'date_query'     => array(
-		'after' => '2013-01-01',
-	),
-) );
+$query = new WP_Query(
+	[
+		'post_type'      => 'orbis_project',
+		'posts_per_page' => 50,
+		'meta_query'     => [ // WPCS: slow query ok.
+			[
+				'key'     => '_orbis_project_agreement_id',
+				'compare' => 'NOT EXISTS',
+			],
+			[
+				'key'     => '_orbis_project_is_invoicable',
+				'compare' => 'EXISTS',
+			],
+		],
+		'date_query'     => [
+			'after' => '2013-01-01',
+		],
+	] 
+);
 
 if ( $query->have_posts() ) : ?>
 

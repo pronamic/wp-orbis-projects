@@ -5,12 +5,12 @@ class Orbis_Projects_QueryProcessor {
 	 * Construct.
 	 */
 	public function __construct() {
-		add_filter( 'query_vars', array( $this, 'query_vars' ) );
+		add_filter( 'query_vars', [ $this, 'query_vars' ] );
 
-		add_action( 'pre_get_posts', array( $this, 'pre_get_posts_custom_invoicable' ) );
-		add_action( 'pre_get_posts', array( $this, 'pre_get_posts_custom_orderby' ) );
+		add_action( 'pre_get_posts', [ $this, 'pre_get_posts_custom_invoicable' ] );
+		add_action( 'pre_get_posts', [ $this, 'pre_get_posts_custom_orderby' ] );
 
-		add_filter( 'posts_clauses', array( $this, 'posts_clauses' ), 10, 2 );
+		add_filter( 'posts_clauses', [ $this, 'posts_clauses' ], 10, 2 );
 	}
 
 	/**
@@ -52,27 +52,27 @@ class Orbis_Projects_QueryProcessor {
 		if ( null !== $invoicable ) {
 			$invoicable = filter_var( $invoicable, FILTER_VALIDATE_BOOLEAN );
 
-			$meta_query = array();
+			$meta_query = [];
 
 			if ( $invoicable ) {
-				$meta_query[] = array(
+				$meta_query[] = [
 					'key'     => '_orbis_project_is_invoicable',
 					'value'   => '1',
 					'compare' => '=',
-				);
+				];
 			} else {
 				$meta_query['relation'] = 'OR';
 
-				$meta_query[] = array(
+				$meta_query[] = [
 					'key'     => '_orbis_project_is_invoicable',
 					'value'   => '1',
 					'compare' => '!=',
-				);
+				];
 
-				$meta_query[] = array(
+				$meta_query[] = [
 					'key'     => '_orbis_project_is_invoicable',
 					'compare' => 'NOT EXISTS',
-				);
+				];
 			}
 
 			$query->set( 'meta_query', $meta_query );
@@ -100,7 +100,7 @@ class Orbis_Projects_QueryProcessor {
 	 * http://codex.wordpress.org/WordPress_Query_Vars
 	 * http://codex.wordpress.org/Custom_Queries
 	 *
-	 * @param array $pieces
+	 * @param array    $pieces
 	 * @param WP_Query $query
 	 * @return string
 	 */

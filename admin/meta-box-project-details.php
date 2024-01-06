@@ -178,20 +178,22 @@ $hourly_rate = get_post_meta( $post->ID, '_orbis_hourly_rate', true );
 
 		if ( ! is_wp_error( $terms ) ) :
 			$term = ( false !== $terms ) ? array_shift( $terms ) : $terms;
-		?>
+			?>
 			<tr valign="top">
 				<th scope="row">
 					<label for="orbis_project_payment_method"><?php esc_html_e( 'Payment Method', 'orbis-projects' ); ?></label>
 				</th>
 			<td>
 				<?php
-					wp_dropdown_categories( array(
-						'name'             => 'tax_input[orbis_payment_method]',
-						'show_option_none' => __( '— Select Payment Method —', 'orbis-projects' ),
-						'hide_empty'       => false,
-						'selected'         => is_object( $term ) ? $term->term_id : false,
-						'taxonomy'         => 'orbis_payment_method',
-					) );
+					wp_dropdown_categories(
+						[
+							'name'             => 'tax_input[orbis_payment_method]',
+							'show_option_none' => __( '— Select Payment Method —', 'orbis-projects' ),
+							'hide_empty'       => false,
+							'selected'         => is_object( $term ) ? $term->term_id : false,
+							'taxonomy'         => 'orbis_payment_method',
+						] 
+					);
 				?>
 			</td>
 		</tr>

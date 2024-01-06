@@ -73,7 +73,7 @@ class Orbis_Project {
 	 */
 	public function is_finished() {
 		if ( isset( $this->post->project_is_finished ) ) {
-			return (boolean) $this->post->project_is_finished;
+			return (bool) $this->post->project_is_finished;
 		}
 
 		return filter_var( get_post_meta( $this->post->ID, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
@@ -86,7 +86,7 @@ class Orbis_Project {
 	 */
 	public function is_invoiced() {
 		if ( isset( $this->post->project_is_invoiced ) ) {
-			return (boolean) $this->post->project_is_invoiced;
+			return (bool) $this->post->project_is_invoiced;
 		}
 
 		return filter_var( get_post_meta( $this->post->ID, '_orbis_project_is_invoiced', true ), FILTER_VALIDATE_BOOLEAN );
@@ -122,10 +122,12 @@ class Orbis_Project {
 		$project_id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_projects WHERE post_id = %d;", $this->post->ID ) );
 
 		if ( empty( $project_id ) ) {
-			return array();
+			return [];
 		}
 
-		$results = $wpdb->get_results( $wpdb->prepare( "
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				"
 			SELECT
 				*
 			FROM
@@ -136,10 +138,13 @@ class Orbis_Project {
 			WHERE
 				invoice.project_id = %d
 			;
-		", $project_id ) );
+		",
+				$project_id 
+			) 
+		);
 
 		if ( ! is_array( $results ) ) {
-			return array();
+			return [];
 		}
 
 		return $results;

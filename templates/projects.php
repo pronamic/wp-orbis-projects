@@ -84,7 +84,7 @@ $sql = sprintf( $sql, $order_by );
 $projects = $wpdb->get_results( $sql ); // WPCS: unprepared SQL ok.
 
 // Groups.
-$groups = array();
+$groups = [];
 
 // Managers.
 foreach ( $projects as $project ) {
@@ -93,7 +93,7 @@ foreach ( $projects as $project ) {
 		$group           = new stdClass();
 		$group->id       = $project->project_manager_id;
 		$group->name     = $project->project_manager_name;
-		$group->projects = array();
+		$group->projects = [];
 
 		$groups[ $group->id ] = $group;
 	}
@@ -101,23 +101,23 @@ foreach ( $projects as $project ) {
 
 $groups = wp_list_sort( $groups, 'name', 'ASC', true );
 
-$groups['marketing'] = (object) array(
+$groups['marketing'] = (object) [
 	'id'       => 'marketing',
 	'name'     => 'Marketing',
-	'projects' => array(),
-);
+	'projects' => [],
+];
 
-$groups['strippenkaart'] = (object) array(
+$groups['strippenkaart'] = (object) [
 	'id'       => 'strippenkaart',
 	'name'     => 'Strippenkaarten',
-	'projects' => array(),
-);
+	'projects' => [],
+];
 
-$groups['pronamic'] = (object) array(
+$groups['pronamic'] = (object) [
 	'id'       => 'pronamic',
 	'name'     => 'Pronamic',
-	'projects' => array(),
-);
+	'projects' => [],
+];
 
 // Projects and managers
 foreach ( $projects as $project ) {

@@ -8,7 +8,7 @@ class Orbis_Projects_Theme {
 		$this->plugin = $plugin;
 
 		// Hooks
-		add_filter( 'post_class', array( $this, 'post_class' ) );
+		add_filter( 'post_class', [ $this, 'post_class' ] );
 	}
 
 	/**

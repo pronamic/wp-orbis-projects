@@ -7,9 +7,9 @@ class Orbis_Projects_Shortcodes {
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
 
-		add_shortcode( 'orbis_projects_active', array( $this, 'shortcode_projects_active' ) );
-		add_shortcode( 'orbis_projects_without_agreement', array( $this, 'shortcode_projects_without_agreement' ) );
-		add_shortcode( 'orbis_projects_to_invoice', array( $this, 'shortcode_projects_to_invoice' ) );
+		add_shortcode( 'orbis_projects_active', [ $this, 'shortcode_projects_active' ] );
+		add_shortcode( 'orbis_projects_without_agreement', [ $this, 'shortcode_projects_without_agreement' ] );
+		add_shortcode( 'orbis_projects_to_invoice', [ $this, 'shortcode_projects_to_invoice' ] );
 	}
 
 	/**
@@ -34,10 +34,10 @@ class Orbis_Projects_Shortcodes {
 
 	/**
 	 * Projects without agreement
-	*
-	* @param array $atts
-	* @return string
-	*/
+	 *
+	 * @param array $atts
+	 * @return string
+	 */
 	public function shortcode_projects_without_agreement() {
 		$return = '';
 

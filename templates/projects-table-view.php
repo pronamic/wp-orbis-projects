@@ -4,15 +4,21 @@ use Pronamic\WordPress\Money\Money;
 
 wp_enqueue_script( 'wp-api' );
 
-wp_localize_script( 'wp-api', 'wpApiSettings', array(
-	'root'  => esc_url_raw( rest_url() ),
-	'nonce' => wp_create_nonce( 'wp_rest' ),
-) );
+wp_localize_script(
+	'wp-api',
+	'wpApiSettings',
+	[
+		'root'  => esc_url_raw( rest_url() ),
+		'nonce' => wp_create_nonce( 'wp_rest' ),
+	] 
+);
 
-$statuses = get_terms( array(
-	'taxonomy'   => 'orbis_project_status',
-	'hide_empty' => false,
-) );
+$statuses = get_terms(
+	[
+		'taxonomy'   => 'orbis_project_status',
+		'hide_empty' => false,
+	] 
+);
 
 if ( ! isset( $groups ) ) {
 	$groups = $managers;
@@ -74,20 +80,20 @@ if ( ! isset( $groups ) ) {
 							<td>
 								<?php
 
-								$invoice_header_texts = array(
+								$invoice_header_texts = [
 									get_post_meta( $project->principal_post_id, '_orbis_invoice_header_text', true ),
 									get_post_meta( $project->project_post_id, '_orbis_invoice_header_text', true ),
 									get_option( 'orbis_invoice_header_text' ),
-								);
+								];
 
 								$invoice_header_texts = array_filter( $invoice_header_texts );
 								$invoice_header_texts = array_unique( $invoice_header_texts );
 
-								$invoice_footer_texts = array(
+								$invoice_footer_texts = [
 									get_post_meta( $project->principal_post_id, '_orbis_invoice_footer_text', true ),
 									get_post_meta( $project->project_post_id, '_orbis_invoice_footer_text', true ),
 									get_option( 'orbis_invoice_footer_text' ),
-								);
+								];
 
 								$invoice_footer_texts = array_filter( $invoice_footer_texts );
 								$invoice_footer_texts = array_unique( $invoice_footer_texts );
@@ -133,10 +139,12 @@ if ( ! isset( $groups ) ) {
 
 							$comments_query = new WP_Comment_Query();
 
-							$comments = $comments_query->query( array(
-								'number'  => 1,
-								'post_id' => $project->project_post_id,
-							) );
+							$comments = $comments_query->query(
+								[
+									'number'  => 1,
+									'post_id' => $project->project_post_id,
+								] 
+							);
 
 							foreach ( $comments as $comment ) {
 								$title = sprintf(

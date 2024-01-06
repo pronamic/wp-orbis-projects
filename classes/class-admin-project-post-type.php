@@ -14,22 +14,22 @@ class Orbis_Projects_AdminProjectPostType {
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
 
-		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', array( $this, 'edit_columns' ) );
+		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', [ $this, 'edit_columns' ] );
 
-		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', array( $this, 'custom_columns' ), 10, 2 );
+		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', [ $this, 'custom_columns' ], 10, 2 );
 
-		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 
-		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_project' ), 10, 2 );
-		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_project_invoices' ), 20 );
-		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_project_sync' ), 500, 2 );
+		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project' ], 10, 2 );
+		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project_invoices' ], 20 );
+		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project_sync' ], 500, 2 );
 	}
 
 	/**
 	 * Edit columns.
 	 */
 	public function edit_columns( $columns ) {
-		$columns = array(
+		$columns = [
 			'cb'                      => '<input type="checkbox" />',
 			'title'                   => __( 'Title', 'orbis-projects' ),
 			'orbis_project_principal' => __( 'Principal', 'orbis-projects' ),
@@ -38,7 +38,7 @@ class Orbis_Projects_AdminProjectPostType {
 			'author'                  => __( 'Author', 'orbis-projects' ),
 			'comments'                => __( 'Comments', 'orbis-projects' ),
 			'date'                    => __( 'Date', 'orbis-projects' ),
-		);
+		];
 
 		return $columns;
 	}
@@ -81,7 +81,7 @@ class Orbis_Projects_AdminProjectPostType {
 		add_meta_box(
 			'orbis_project_details',
 			__( 'Project Information', 'orbis-projects' ),
-			array( $this, 'meta_box_details' ),
+			[ $this, 'meta_box_details' ],
 			'orbis_project',
 			'normal',
 			'high'
@@ -90,7 +90,7 @@ class Orbis_Projects_AdminProjectPostType {
 		add_meta_box(
 			'orbis_project_invoices',
 			__( 'Project Invoices', 'orbis-projects' ),
-			array( $this, 'meta_box_invoices' ),
+			[ $this, 'meta_box_invoices' ],
 			'orbis_project',
 			'normal',
 			'high'
@@ -120,7 +120,7 @@ class Orbis_Projects_AdminProjectPostType {
 	/**
 	 * Save project.
 	 *
-	 * @param int $post_id
+	 * @param int   $post_id
 	 * @param mixed $post
 	 */
 	public function save_project( $post_id, $post ) {
@@ -143,17 +143,17 @@ class Orbis_Projects_AdminProjectPostType {
 		// OK
 		global $wp_locale;
 
-		$definition = array(
-			'_orbis_price'                  => array(
+		$definition = [
+			'_orbis_price'                    => [
 				'filter'  => FILTER_VALIDATE_FLOAT,
 				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-				'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
-			),
-			'_orbis_hourly_rate'                  => array(
+				'options' => [ 'decimal' => $wp_locale->number_format['decimal_point'] ],
+			],
+			'_orbis_hourly_rate'              => [
 				'filter'  => FILTER_VALIDATE_FLOAT,
 				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-				'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
-			),
+				'options' => [ 'decimal' => $wp_locale->number_format['decimal_point'] ],
+			],
 			'_orbis_project_principal_id'     => FILTER_VALIDATE_INT,
 			'_orbis_project_agreement_id'     => FILTER_VALIDATE_INT,
 			'_orbis_project_is_finished'      => FILTER_VALIDATE_BOOLEAN,
@@ -162,7 +162,7 @@ class Orbis_Projects_AdminProjectPostType {
 			'_orbis_invoice_header_text'      => FILTER_SANITIZE_STRING,
 			'_orbis_invoice_footer_text'      => FILTER_SANITIZE_STRING,
 			'_orbis_invoice_line_description' => FILTER_SANITIZE_STRING,
-		);
+		];
 
 		if ( current_user_can( 'edit_orbis_project_administration' ) ) {
 			$definition['_orbis_project_is_invoiced'] = FILTER_VALIDATE_BOOLEAN;
@@ -234,8 +234,8 @@ class Orbis_Projects_AdminProjectPostType {
 		$seconds        = get_post_meta( $post_id, '_orbis_project_seconds_available', true );
 		$price          = get_post_meta( $post_id, '_orbis_price', true );
 
-		$data = array();
-		$form = array();
+		$data = [];
+		$form = [];
 
 		$data['name'] = $post->post_title;
 		$form['name'] = '%s';
@@ -279,9 +279,9 @@ class Orbis_Projects_AdminProjectPostType {
 			$result = $wpdb->update(
 				$wpdb->orbis_projects,
 				$data,
-				array( 'id' => $orbis_id ),
+				[ 'id' => $orbis_id ],
 				$form,
-				array( '%d' )
+				[ '%d' ]
 			);
 		}
 
@@ -291,7 +291,7 @@ class Orbis_Projects_AdminProjectPostType {
 	/**
 	 * Save invoices.
 	 *
-	 * @param int $post_id
+	 * @param int   $post_id
 	 * @param mixed $post
 	 */
 	public function save_project_invoices( $post_id ) {
@@ -324,21 +324,28 @@ class Orbis_Projects_AdminProjectPostType {
 		$invoices_data = filter_input( INPUT_POST, '_orbis_project_invoices', FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY );
 
 		foreach ( $invoices_data as $id => $invoice_data ) {
-			$invoice_data = wp_parse_args( $invoice_data, array(
-				'invoice_number' => null,
-				'amount'         => null,
-				'seconds'        => null,
-				'create_date'    => null,
-				'delete'         => false,
-			) );
+			$invoice_data = wp_parse_args(
+				$invoice_data,
+				[
+					'invoice_number' => null,
+					'amount'         => null,
+					'seconds'        => null,
+					'create_date'    => null,
+					'delete'         => false,
+				] 
+			);
 
 			$date    = $invoice_data['date'];
-			$amount  = filter_var( $invoice_data['amount'], FILTER_VALIDATE_FLOAT, array(
-				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-				'options' => array(
-					'decimal' => $wp_locale->number_format['decimal_point'],
-				),
-			) );
+			$amount  = filter_var(
+				$invoice_data['amount'],
+				FILTER_VALIDATE_FLOAT,
+				[
+					'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
+					'options' => [
+						'decimal' => $wp_locale->number_format['decimal_point'],
+					],
+				] 
+			);
 			$seconds = orbis_parse_time( $invoice_data['seconds'] );
 			$number  = $invoice_data['number'];
 			$delete  = $invoice_data['delete'];
@@ -347,19 +354,19 @@ class Orbis_Projects_AdminProjectPostType {
 				$final_invoice_number = $number;
 			}
 
-			$data = array(
+			$data = [
 				'invoice_number' => $number,
 				'amount'         => $amount,
 				'seconds'        => $seconds,
 				'create_date'    => $date,
-			);
+			];
 
-			$format = array(
+			$format = [
 				'invoice_number' => '%s',
 				'amount'         => '%f',
 				'seconds'        => '%d',
 				'create_date'    => '%s',
-			);
+			];
 
 			if ( 'new' === $id && filter_has_var( INPUT_POST, 'orbis_projects_invoice_add' ) ) {
 				$data['project_id']   = $project_id;
@@ -376,16 +383,16 @@ class Orbis_Projects_AdminProjectPostType {
 
 				$result = $wpdb->delete(
 					$wpdb->orbis_projects_invoices,
-					array( 'id' => $id ),
-					array( 'id' => '%d' )
+					[ 'id' => $id ],
+					[ 'id' => '%d' ]
 				);
 			} else {
 				$result = $wpdb->update(
 					$wpdb->orbis_projects_invoices,
 					$data,
-					array( 'id' => $id ),
+					[ 'id' => $id ],
 					$format,
-					array( 'id' => '%d' )
+					[ 'id' => '%d' ]
 				);
 			}
 		}
