@@ -103,7 +103,7 @@ class Orbis_Projects_AdminProjectPostType {
 	 * @param mixed $post
 	 */
 	public function meta_box_details( $post ) {
-		$this->plugin->plugin_include( 'admin/meta-box-project-details.php' );
+		include __DIR__ . '/../admin/meta-box-project-details.php';
 	}
 
 	/**
@@ -114,7 +114,7 @@ class Orbis_Projects_AdminProjectPostType {
 	public function meta_box_invoices( $post ) {
 		wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_nonce' );
 
-		$this->plugin->plugin_include( 'admin/meta-box-project-invoices.php' );
+		include __DIR__ . '/../admin/meta-box-project-invoices.php';
 	}
 
 	/**

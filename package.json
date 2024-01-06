@@ -2,17 +2,6 @@
 	"name": "orbis-projects",
 	"version": "1.0.0",
 	"description": "The Orbis Projects plugin extends your Orbis environment with the option to manage projects.",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/wp-orbis/wp-orbis-projects.git"
-	},
-	"keywords": [
-		"orbis",
-		"deal",
-		"projects",
-		"offer",
-		"offers"
-	],
 	"author": {
 		"name": "Pronamic",
 		"email": "info@pronamic.nl",
@@ -25,12 +14,19 @@
 			"url": "http://www.remcotolsma.nl/"
 		}
 	],
-	"license": "GPL-3.0",
-	"bugs": {
-		"url": "https://github.com/wp-orbis/wp-orbis-projects/issues",
-		"email": "support@pronamic.nl"
-	},
+	"license": "GPL-2.0-or-later",
+  "keywords": [
+    "orbis",
+    "deal",
+    "projects",
+    "offer",
+    "offers"
+  ],
 	"homepage": "https://github.com/wp-orbis/wp-orbis-projects",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wp-orbis/wp-orbis-projects.git"
+  },
 	"bugs": {
 		"url": "https://github.com/pronamic/wp-orbis-timesheets/issues",
 		"email": "support@pronamic.eu"

@@ -1,7 +1,7 @@
 {
 	"name": "pronamic/wp-orbis-projects",
 	"description": "The Orbis Projects plugin extends your Orbis environment with the option to manage projects.",
-	"version": "1.0.0",
+	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"orbis",
 		"projects",
@@ -35,6 +35,12 @@
 			"classes/"
 		]
 	},
+	"config": {
+		"allow-plugins": {
+			"automattic/jetpack-autoloader": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
 	"require": {
 		"automattic/jetpack-autoloader": "^3.0",
 		"pronamic/wp-money": "^2.4",
@@ -56,11 +62,5 @@
 		"qa": [
 			"@phpcs"
 		]
-	},
-	"config": {
-		"allow-plugins": {
-			"automattic/jetpack-autoloader": true,
-			"dealerdirect/phpcodesniffer-composer-installer": true
-		}
 	}
 }

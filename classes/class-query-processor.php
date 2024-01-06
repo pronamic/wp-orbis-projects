@@ -124,7 +124,7 @@ class Orbis_Projects_QueryProcessor {
 						ON $wpdb->posts.ID = project.post_id
 			";
 
-			if ( orbis_plugin_activated( 'companies' ) ) {
+			if ( property_exists( $wpdb, 'orbis_companies' ) ) {
 				$fields .= ',
 				principal.id AS principal_id,
 				principal.name AS principal_name,

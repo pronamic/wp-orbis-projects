@@ -1,15 +1,13 @@
 <?php
 
-class Orbis_Projects_Plugin extends Orbis_Plugin {
+class Orbis_Projects_Plugin {
 	public function __construct( $file ) {
-		parent::__construct( $file );
-
-		$this->set_name( 'orbis_projects' );
-		$this->set_db_version( '1.1.2' );
+//		$this->set_name( 'orbis_projects' );
+//		$this->set_db_version( '1.1.2' );
 
 		// Tables
-		orbis_register_table( 'orbis_projects' );
-		orbis_register_table( 'orbis_projects_invoices' );
+//		orbis_register_table( 'orbis_projects' );
+//		orbis_register_table( 'orbis_projects_invoices' );
 
 		// Actions
 		add_action( 'the_post', [ $this, 'the_post' ] );
@@ -17,10 +15,6 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 		add_action( 'p2p_init', [ $this, 'p2p_init' ] );
 
 		add_action( 'wp_ajax_project_id_suggest', [ $this, 'ajax_projects_suggest_project_id' ] );
-
-		// Load text domain
-		$this->load_textdomain( 'orbis-projects', '/languages/' );
-		$this->load_textdomain( 'pronamic-money', '/vendor/pronamic/wp-money/languages/' );
 
 		// Content Types
 		$this->content_types = new Orbis_Projects_ContentTypes();
@@ -84,9 +78,6 @@ class Orbis_Projects_Plugin extends Orbis_Plugin {
 			KEY project_id (project_id)
 		' 
 		);
-
-		// Install
-		parent::install();
 	}
 
 	/**

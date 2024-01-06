@@ -44,10 +44,11 @@ add_action(
 /**
  * Bootstrap
  */
-function orbis_projects_bootstrap() {
-	global $orbis_projects_plugin;
+add_action(
+	'plugins_loaded',
+	function () {
+		global $orbis_projects_plugin;
 
-	$orbis_projects_plugin = new Orbis_Projects_Plugin( __FILE__ );
-}
-
-add_action( 'plugins_loaded', 'orbis_projects_bootstrap' );
+		$orbis_projects_plugin = new \Orbis_Projects_Plugin( __FILE__ );
+	}
+);
