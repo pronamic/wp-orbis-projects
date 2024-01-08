@@ -15,18 +15,18 @@
 		}
 	],
 	"license": "GPL-2.0-or-later",
-  "keywords": [
-    "orbis",
-    "deal",
-    "projects",
-    "offer",
-    "offers"
-  ],
+	"keywords": [
+		"orbis",
+		"deal",
+		"projects",
+		"offer",
+		"offers"
+	],
 	"homepage": "https://github.com/wp-orbis/wp-orbis-projects",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wp-orbis/wp-orbis-projects.git"
-  },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wp-orbis/wp-orbis-projects.git"
+	},
 	"bugs": {
 		"url": "https://github.com/pronamic/wp-orbis-timesheets/issues",
 		"email": "support@pronamic.eu"
