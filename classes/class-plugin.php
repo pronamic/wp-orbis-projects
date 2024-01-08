@@ -2,37 +2,38 @@
 
 class Orbis_Projects_Plugin {
 	public function __construct( $file ) {
-//		$this->set_name( 'orbis_projects' );
-//		$this->set_db_version( '1.1.2' );
+		add_action( 'init', [ $this, 'init' ] );
 
-		// Tables
-//		orbis_register_table( 'orbis_projects' );
-//		orbis_register_table( 'orbis_projects_invoices' );
-
-		// Actions
 		add_action( 'the_post', [ $this, 'the_post' ] );
 
 		add_action( 'p2p_init', [ $this, 'p2p_init' ] );
 
 		add_action( 'wp_ajax_project_id_suggest', [ $this, 'ajax_projects_suggest_project_id' ] );
 
-		// Content Types
-		$this->content_types = new Orbis_Projects_ContentTypes();
-
-		// Query Processor
+		$this->content_types   = new Orbis_Projects_ContentTypes();
 		$this->query_processor = new Orbis_Projects_QueryProcessor();
+		$this->shortcodes      = new Orbis_Projects_Shortcodes( $this );
+		$this->commenter       = new Orbis_Projects_Commenter( $this );
 
-		// Shortcodes
-		$this->shortcodes = new Orbis_Projects_Shortcodes( $this );
-
-		// Commenter
-		$this->commenter = new Orbis_Projects_Commenter( $this );
-
-		// Admin
 		if ( is_admin() ) {
 			$this->admin = new Orbis_Projects_Admin( $this );
 		} else {
 			$this->theme = new Orbis_Projects_Theme( $this );
+		}
+	}
+
+	public function init() {
+		global $wpdb;
+
+		$wpdb->orbis_projects          = $wpdb->prefix . 'orbis_projects';
+		$wpdb->orbis_projects_invoices = $wpdb->prefix . 'orbis_projects_invoices';
+
+		$version = '1.1.2';
+
+		if ( \get_option( 'orbis_projects_db_version' ) !== $version ) {
+			$this->install();
+
+			\update_option( 'orbis_projects_db_version', $version );
 		}
 	}
 
@@ -44,40 +45,46 @@ class Orbis_Projects_Plugin {
 	 * @see Orbis_Plugin::install()
 	 */
 	public function install() {
-		// Tables
-		orbis_install_table(
-			'orbis_projects',
-			'
-			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
-			post_id BIGINT(20) UNSIGNED DEFAULT NULL,
-			name VARCHAR(128) NOT NULL,
-			principal_id BIGINT(16) UNSIGNED DEFAULT NULL,
-			start_date DATE NOT NULL DEFAULT "0000-00-00",
-			number_seconds INT(16) NOT NULL DEFAULT 0,
-			invoicable BOOLEAN NOT NULL DEFAULT TRUE,
-			invoiced BOOLEAN NOT NULL DEFAULT FALSE,
-			invoice_number VARCHAR(128) DEFAULT NULL,
-			finished BOOLEAN NOT NULL DEFAULT FALSE,
-			PRIMARY KEY  (id),
-			KEY post_id (post_id)
-			KEY principal_id (principal_id)
-		' 
-		);
+		global $wpdb;
 
-		orbis_install_table(
-			'orbis_projects_invoices',
-			'
-			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
-			project_id BIGINT(16) UNSIGNED NOT NULL,
-			invoice_number VARCHAR(32) NOT NULL,
-			amount FLOAT NOT NULL,
-			seconds BIGINT(16) DEFAULT NULL,
-			user_id BIGINT(20) UNSIGNED DEFAULT NULL,
-			create_date DATETIME DEFAULT NULL,
-			PRIMARY KEY  (id),
-			KEY project_id (project_id)
-		' 
-		);
+		$charset_collate = $wpdb->get_charset_collate();
+
+		$sql = "
+			CREATE TABLE $wpdb->orbis_projects (
+				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+				post_id BIGINT(20) UNSIGNED DEFAULT NULL,
+				name VARCHAR(128) NOT NULL,
+				principal_id BIGINT(16) UNSIGNED DEFAULT NULL,
+				start_date DATE NOT NULL DEFAULT '0000-00-00',
+				number_seconds INT(16) NOT NULL DEFAULT 0,
+				invoicable BOOLEAN NOT NULL DEFAULT TRUE,
+				invoiced BOOLEAN NOT NULL DEFAULT FALSE,
+				invoice_number VARCHAR(128) DEFAULT NULL,
+				finished BOOLEAN NOT NULL DEFAULT FALSE,
+				PRIMARY KEY  (id),
+				KEY post_id (post_id),
+				KEY principal_id (principal_id)
+			) $charset_collate;
+
+			CREATE TABLE $wpdb->orbis_projects_invoices (
+				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+				project_id BIGINT(16) UNSIGNED NOT NULL,
+				invoice_number VARCHAR(32) NOT NULL,
+				amount FLOAT NOT NULL,
+				seconds BIGINT(16) DEFAULT NULL,
+				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
+				create_date DATETIME DEFAULT NULL,
+				PRIMARY KEY  (id),
+				KEY project_id (project_id)
+			) $charset_collate;
+		";
+
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+		\dbDelta( $sql );
+
+		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_projects );
+		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_projects_invoices );
 	}
 
 	/**
