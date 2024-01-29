@@ -28,7 +28,7 @@ class Orbis_Projects_Plugin {
 		$wpdb->orbis_projects          = $wpdb->prefix . 'orbis_projects';
 		$wpdb->orbis_projects_invoices = $wpdb->prefix . 'orbis_projects_invoices';
 
-		$version = '1.1.2';
+		$version = '1.1.3';
 
 		if ( \get_option( 'orbis_projects_db_version' ) !== $version ) {
 			$this->install();
@@ -61,6 +61,7 @@ class Orbis_Projects_Plugin {
 				invoiced BOOLEAN NOT NULL DEFAULT FALSE,
 				invoice_number VARCHAR(128) DEFAULT NULL,
 				finished BOOLEAN NOT NULL DEFAULT FALSE,
+				billable_amount DECIMAL(15,2) DEFAULT NULL,
 				PRIMARY KEY  (id),
 				KEY post_id (post_id),
 				KEY principal_id (principal_id)
