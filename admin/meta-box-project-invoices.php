@@ -1,6 +1,10 @@
 <?php
 
+global $wpdb;
+
 $orbis_project = new Orbis_Project( get_post() );
+
+$project_id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_projects WHERE post_id = %d;", get_post_field( 'ID' ) ) );
 
 wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_nonce' );
 
@@ -108,7 +112,7 @@ wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_meta_box_
 					<?php echo esc_html( wp_get_current_user()->display_name ); ?>
 				</td>
 				<td>
-					<input type="hidden" name="_project_id" value="<?php echo esc_html( $project->id ); ?>" />
+					<input type="hidden" name="_project_id" value="<?php echo esc_attr( $project_id ); ?>" />
 
 					<?php submit_button( __( 'Add Invoice', 'orbis-projects' ), 'secondary', 'orbis_projects_invoice_add', false ); ?>
 				</td>
