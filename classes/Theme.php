@@ -17,8 +17,7 @@ class Theme {
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
 
-		// Hooks
-		add_filter( 'post_class', [ $this, 'post_class' ] );
+		\add_filter( 'post_class', [ $this, 'post_class' ] );
 	}
 
 	/**
