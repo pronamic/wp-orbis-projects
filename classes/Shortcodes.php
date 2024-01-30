@@ -33,7 +33,7 @@ class Shortcodes {
 
 		ob_start();
 
-		$this->plugin->plugin_include( 'templates/projects.php' );
+		include __DIR__ . '/../templates/projects.php';
 
 		$return = ob_get_contents();
 
@@ -53,7 +53,7 @@ class Shortcodes {
 
 		ob_start();
 
-		$this->plugin->plugin_include( 'templates/projects-without-agreement.php' );
+		include __DIR__ . '/../templates/projects-without-agreement.php';
 
 		$return = ob_get_contents();
 
@@ -73,7 +73,7 @@ class Shortcodes {
 
 		ob_start();
 
-		$this->plugin->plugin_include( 'templates/projects-to-invoice.php' );
+		include __DIR__ . '/../templates/projects-to-invoice.php';
 
 		$return = ob_get_contents();
 
