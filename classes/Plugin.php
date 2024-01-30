@@ -172,7 +172,7 @@ class Plugin {
 			";
 		}
 
-		if ( orbis_plugin_activated( 'companies' ) ) {
+		if ( isset( $wpdb->orbis_companies ) ) {
 			$extra_select .= ',
 				principal.name AS principal_name
 			';
