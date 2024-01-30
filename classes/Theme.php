@@ -18,6 +18,8 @@ class Theme {
 		$this->plugin = $plugin;
 
 		\add_filter( 'post_class', [ $this, 'post_class' ] );
+
+		\add_filter( 'orbis_project_sections', [ $this, 'project_sections' ] );
 	}
 
 	/**
@@ -33,5 +35,24 @@ class Theme {
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * Project sections.
+	 * 
+	 * @param array $sections Sections.
+	 * @return array
+	 */
+	public function project_sections( $sections ) {
+		$sections[] = [
+			'id'       => 'invoices',
+			'slug'     => __( 'invoices', 'orbis-projects' ),
+			'name'     => __( 'Invoices', 'orbis-projects' ),
+			'callback' => function () {
+				include __DIR__ . '/../templates/project-invoices.php';
+			},
+		];
+
+		return $sections;
 	}
 }
