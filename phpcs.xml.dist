@@ -24,6 +24,7 @@
 		<properties>
 			<property name="old_text_domain" type="array">
 				<element value="orbis_projects" />
+				<element value="orbis-4" />
 			</property>
 
 			<property name="new_text_domain" value="orbis-projects" />
