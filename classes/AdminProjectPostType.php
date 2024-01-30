@@ -73,8 +73,17 @@ class AdminProjectPostType {
 
 				break;
 			case 'orbis_project_price':
-				$price = new Money( $orbis_project->get_price(), 'EUR' );
-				echo esc_html( $price->format_i18n() );
+				$value = $orbis_project->get_price();
+
+				if ( null === $value ) {
+					echo '—';
+				}
+
+				if ( null !== $value ) {
+					$price = new Money( $value, 'EUR' );
+
+					echo esc_html( $price->format_i18n() );
+				}
 
 				break;
 			case 'orbis_project_time':
