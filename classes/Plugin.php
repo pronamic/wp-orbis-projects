@@ -10,6 +10,8 @@
 
 namespace Pronamic\Orbis\Projects;
 
+use stdClass;
+
 class Plugin {
 	public function __construct( $file ) {
 		add_action( 'init', [ $this, 'init' ] );
