@@ -31,9 +31,9 @@
 	},
 	"type": "wordpress-plugin",
 	"autoload": {
-		"classmap": [
-			"classes/"
-		]
+		"psr-4": {
+			"Pronamic\\Orbis\\Projects\\": "classes/"
+		}
 	},
 	"config": {
 		"allow-plugins": {

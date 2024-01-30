@@ -2,7 +2,7 @@
 
 global $wpdb, $post;
 
-$orbis_project = new Orbis_Project( $post );
+$orbis_project = new Pronamic\Orbis\Projects\Project( $post );
 
 wp_nonce_field( 'orbis_save_project_details', 'orbis_project_details_meta_box_nonce' );
 

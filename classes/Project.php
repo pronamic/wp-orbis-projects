@@ -1,6 +1,18 @@
 <?php
+/**
+ * Project
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Projects
+ */
 
-class Orbis_Project {
+namespace Pronamic\Orbis\Projects;
+
+use Orbis_Time;
+
+class Project {
 	public function __construct( $post = null ) {
 		$this->post = get_post( $post );
 	}

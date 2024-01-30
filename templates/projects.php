@@ -137,7 +137,7 @@ foreach ( $projects as $project ) {
 		$group_id = 'marketing';
 	}
 
-	$orbis_project = new Orbis_Project( $post );
+	$orbis_project = new Pronamic\Orbis\Projects\Project( $post );
 
 	$project->registered_seconds = $orbis_project->get_registered_seconds();
 

@@ -1,8 +1,18 @@
 <?php
+/**
+ * Admin project post type
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Projects
+ */
+
+namespace Pronamic\Orbis\Projects;
 
 use Pronamic\WordPress\Money\Money;
 
-class Orbis_Projects_AdminProjectPostType {
+class AdminProjectPostType {
 	/**
 	 * Post type.
 	 */
@@ -49,7 +59,7 @@ class Orbis_Projects_AdminProjectPostType {
 	 * @param string $column
 	 */
 	public function custom_columns( $column, $post_id ) {
-		$orbis_project = new Orbis_Project( $post_id );
+		$orbis_project = new Project( $post_id );
 
 		switch ( $column ) {
 			case 'orbis_project_principal':

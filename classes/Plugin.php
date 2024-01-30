@@ -1,6 +1,16 @@
 <?php
+/**
+ * Plugin
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Projects
+ */
 
-class Orbis_Projects_Plugin {
+namespace Pronamic\Orbis\Projects;
+
+class Plugin {
 	public function __construct( $file ) {
 		add_action( 'init', [ $this, 'init' ] );
 
@@ -10,15 +20,15 @@ class Orbis_Projects_Plugin {
 
 		add_action( 'wp_ajax_project_id_suggest', [ $this, 'ajax_projects_suggest_project_id' ] );
 
-		$this->content_types   = new Orbis_Projects_ContentTypes();
-		$this->query_processor = new Orbis_Projects_QueryProcessor();
-		$this->shortcodes      = new Orbis_Projects_Shortcodes( $this );
-		$this->commenter       = new Orbis_Projects_Commenter( $this );
+		$this->content_types   = new ContentTypes();
+		$this->query_processor = new QueryProcessor();
+		$this->shortcodes      = new Shortcodes( $this );
+		$this->commenter       = new Commenter( $this );
 
 		if ( is_admin() ) {
-			$this->admin = new Orbis_Projects_Admin( $this );
+			$this->admin = new Admin( $this );
 		} else {
-			$this->theme = new Orbis_Projects_Theme( $this );
+			$this->theme = new Theme( $this );
 		}
 	}
 
@@ -100,7 +110,7 @@ class Orbis_Projects_Plugin {
 			return;
 		}
 
-		$GLOBALS['orbis_project'] = new Orbis_Project( $post );
+		$GLOBALS['orbis_project'] = new Project( $post );
 	}
 
 	/**

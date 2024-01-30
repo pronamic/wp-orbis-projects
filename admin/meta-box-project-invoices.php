@@ -2,7 +2,7 @@
 
 global $wpdb;
 
-$orbis_project = new Orbis_Project( get_post() );
+$orbis_project = new Pronamic\Orbis\Projects\Project( get_post() );
 
 $project_id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_projects WHERE post_id = %d;", get_post_field( 'ID' ) ) );
 

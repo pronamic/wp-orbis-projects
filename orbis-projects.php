@@ -41,6 +41,6 @@ add_action(
 
 		global $orbis_projects_plugin;
 
-		$orbis_projects_plugin = new \Orbis_Projects_Plugin( __FILE__ );
+		$orbis_projects_plugin = new Plugin( __FILE__ );
 	}
 );
