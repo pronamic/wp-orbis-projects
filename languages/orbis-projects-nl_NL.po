@@ -4,24 +4,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2022-04-22 11:19:09+00:00\n"
-"PO-Revision-Date: 2022-04-22 13:21+0200\n"
+"POT-Creation-Date: 2024-01-30T18:48:58+00:00\n"
+"PO-Revision-Date: 2024-01-30 19:50+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#. Plugin Name of the plugin
+msgid "Orbis Projects"
+msgstr "Orbis Projects"
+
+#. Plugin URI of the plugin
+msgid "https://wp.pronamic.directory/plugins/orbis-projects/"
+msgstr "https://wp.pronamic.directory/plugins/orbis-projects/"
+
+#. Description of the plugin
+msgid ""
+"The Orbis Projects plugin extends your Orbis environment with the option to "
+"manage projects."
+msgstr ""
+"De Orbis projecten plugin breidt je Orbis omgeving uit met de mogelijkheid "
+"om projecten te beheren."
+
+#. Author of the plugin
+msgid "Pronamic"
+msgstr "Pronamic"
+
+#. Author URI of the plugin
+msgid "https://www.pronamic.eu/"
+msgstr "https://www.pronamic.nl/"
 
 #: admin/meta-box-project-details.php:38 templates/projects-to-invoice.php:180
 #: templates/projects-to-invoice.php:184
-#: templates/projects-without-agreement.php:27
+#: templates/projects-without-agreement.php:29
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:46 templates/projects-table-view.php:27
+#: admin/meta-box-project-details.php:46 templates/projects-table-view.php:33
 msgid "Client"
 msgstr "Klant"
 
@@ -29,8 +53,7 @@ msgstr "Klant"
 msgid "Select Client"
 msgstr "Selecteer klant"
 
-#: admin/meta-box-project-details.php:58
-#: classes/class-admin-project-post-type.php:36
+#: admin/meta-box-project-details.php:58 classes/AdminProjectPostType.php:46
 msgid "Price"
 msgstr "Prijs"
 
@@ -38,8 +61,7 @@ msgstr "Prijs"
 msgid "Hourly Rate"
 msgstr "Uurtarief"
 
-#: admin/meta-box-project-details.php:74
-#: classes/class-admin-project-post-type.php:37
+#: admin/meta-box-project-details.php:74 classes/AdminProjectPostType.php:47
 #: templates/projects-to-invoice.php:189 templates/projects-to-invoice.php:192
 #: templates/projects-to-invoice.php:198
 msgid "Time"
@@ -89,7 +111,7 @@ msgstr "Afgerond"
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:122 templates/projects-table-view.php:39
+#: admin/meta-box-project-details.php:122 templates/projects-table-view.php:45
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
@@ -121,329 +143,387 @@ msgstr "Factuurregelbeschrijving"
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
-#: admin/meta-box-project-details.php:190
+#: admin/meta-box-project-details.php:191
 msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
 
-#: admin/meta-box-project-invoices.php:13
-#: classes/class-admin-project-post-type.php:40
-#: templates/projects-table-view.php:36
+#: admin/meta-box-project-invoices.php:17 classes/AdminProjectPostType.php:50
+#: templates/project-invoices.php:16 templates/projects-table-view.php:42
 msgid "Date"
 msgstr "Datum"
 
-#: admin/meta-box-project-invoices.php:14
+#: admin/meta-box-project-invoices.php:18 templates/project-invoices.php:19
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
-#: admin/meta-box-project-invoices.php:15 templates/projects-to-invoice.php:188
-#: templates/projects-to-invoice.php:191 templates/projects-to-invoice.php:199
+#: admin/meta-box-project-invoices.php:19 templates/project-invoices.php:17
+#: templates/projects-to-invoice.php:188 templates/projects-to-invoice.php:191
+#: templates/projects-to-invoice.php:199
 msgid "Amount"
 msgstr "Bedrag"
 
-#: admin/meta-box-project-invoices.php:16
+#: admin/meta-box-project-invoices.php:20 templates/project-invoices.php:18
 msgid "Hours"
 msgstr "Uren"
 
-#: admin/meta-box-project-invoices.php:17
-#: admin/meta-box-project-invoices.php:48
-#: admin/meta-box-project-invoices.php:104
+#: admin/meta-box-project-invoices.php:21
+#: admin/meta-box-project-invoices.php:52
+#: admin/meta-box-project-invoices.php:108
 msgid "Final Invoice"
 msgstr "Eindfactuur"
 
-#: admin/meta-box-project-invoices.php:18
+#: admin/meta-box-project-invoices.php:22 templates/project-invoices.php:20
 msgid "User"
 msgstr "Gebruiker"
 
-#: admin/meta-box-project-invoices.php:55
+#: admin/meta-box-project-invoices.php:59
 msgid "Delete Invoice"
 msgstr "Factuur verwijderen"
 
-#: admin/meta-box-project-invoices.php:71
+#: admin/meta-box-project-invoices.php:75
 msgid "Register New Invoice"
 msgstr "Registreer nieuwe factuur"
 
-#: admin/meta-box-project-invoices.php:80
+#: admin/meta-box-project-invoices.php:84
 msgid "No final invoice"
 msgstr "Geen eindfactuur"
 
-#: admin/meta-box-project-invoices.php:113
+#: admin/meta-box-project-invoices.php:117
 msgid "Add Invoice"
 msgstr "Factuur toevoegen"
 
-#: admin/meta-box-project-invoices.php:125
+#: admin/meta-box-project-invoices.php:129
 msgid "Are you sure you want to delete this invoice?"
 msgstr "Weet je zeker dat je deze factuur wil verwijderen?"
 
-#: classes/class-admin-project-post-type.php:34
-#: templates/projects-without-agreement.php:30
+#: classes/AdminProjectPostType.php:44
+#: templates/projects-without-agreement.php:32
 msgid "Title"
 msgstr "Titel"
 
-#: classes/class-admin-project-post-type.php:35
-#: templates/projects-to-invoice.php:172
-#: templates/projects-without-agreement.php:29
+#: classes/AdminProjectPostType.php:45 templates/projects-to-invoice.php:172
+#: templates/projects-without-agreement.php:31
 msgid "Principal"
 msgstr "Opdrachtgever"
 
-#: classes/class-admin-project-post-type.php:38
+#: classes/AdminProjectPostType.php:48
 msgid "Author"
 msgstr "Auteur"
 
-#: classes/class-admin-project-post-type.php:39
+#: classes/AdminProjectPostType.php:49
 msgid "Comments"
 msgstr "Reacties"
 
-#: classes/class-admin-project-post-type.php:83
+#: classes/AdminProjectPostType.php:102
 msgid "Project Information"
 msgstr "Projectinformatie"
 
-#: classes/class-admin-project-post-type.php:92
+#: classes/AdminProjectPostType.php:111
 msgid "Project Invoices"
 msgstr "Projectfacturen"
 
-#. translators: first and second placeholder is the state of the project,
-#. opened or completed, and the third is the user name.
-#: classes/class-commenter.php:29
+#. translators: first and second placeholder is the state of the project, opened or completed, and the third is the user name.
+#: classes/Commenter.php:39
 msgid "This \"%1$s\" project is just \"%2$s\" by %3$s."
 msgstr "Dit \"%1$s\" project is zojuist \"%2$s\" door %3$s."
 
-#: classes/class-commenter.php:30 classes/class-commenter.php:31
+#: classes/Commenter.php:40 classes/Commenter.php:41
 msgid "opened"
 msgstr "geopend"
 
-#: classes/class-commenter.php:30 classes/class-commenter.php:31
+#: classes/Commenter.php:40 classes/Commenter.php:41
 msgid "completed"
 msgstr "afgerond"
 
-#: classes/class-content-types.php:18 classes/class-content-types.php:20
-#: classes/class-plugin.php:111
+#: classes/ContentTypes.php:28 classes/ContentTypes.php:30
+#: classes/Plugin.php:129
 msgid "Projects"
 msgstr "Projecten"
 
-#: classes/class-content-types.php:21 classes/class-plugin.php:114
-#: templates/projects-table-view.php:28 templates/projects-to-invoice.php:173
+#: classes/ContentTypes.php:31 classes/Plugin.php:132
+#: templates/projects-table-view.php:34 templates/projects-to-invoice.php:173
 msgid "Project"
 msgstr "Project"
 
-#: classes/class-content-types.php:23 classes/class-plugin.php:119
+#: classes/ContentTypes.php:32
+msgctxt "orbis_project"
+msgid "Add New"
+msgstr "Nieuw project"
+
+#: classes/ContentTypes.php:33 classes/Plugin.php:137
 msgid "Add New Project"
 msgstr "Nieuw project toevoegen"
 
-#: classes/class-content-types.php:24
+#: classes/ContentTypes.php:34
 msgid "Edit Project"
 msgstr "Project bewerken"
 
-#: classes/class-content-types.php:25 classes/class-plugin.php:118
+#: classes/ContentTypes.php:35 classes/Plugin.php:136
 msgid "New Project"
 msgstr "Nieuw project"
 
-#: classes/class-content-types.php:26
+#: classes/ContentTypes.php:36
 msgid "View Project"
 msgstr "Project bekijken"
 
-#: classes/class-content-types.php:27
+#: classes/ContentTypes.php:37
 msgid "View Projects"
 msgstr "Toon projecten"
 
-#: classes/class-content-types.php:28
+#: classes/ContentTypes.php:38
 msgid "Search Projects"
 msgstr "Projecten zoeken"
 
-#: classes/class-content-types.php:29 classes/class-plugin.php:116
+#: classes/ContentTypes.php:39 classes/Plugin.php:134
 msgid "No projects found."
 msgstr "Geen projecten gevonden."
 
-#: classes/class-content-types.php:30
+#: classes/ContentTypes.php:40
 msgid "No projects found in Trash."
 msgstr "Geen projecten gevonden in prullenbak."
 
-#: classes/class-content-types.php:31
+#: classes/ContentTypes.php:41
 msgid "Parent Project:"
 msgstr "Bovenliggend project:"
 
-#: classes/class-content-types.php:32
+#: classes/ContentTypes.php:42
 msgid "All Projects"
 msgstr "Alle projecten"
 
-#: classes/class-content-types.php:33
+#: classes/ContentTypes.php:43
 msgid "Project Archives"
 msgstr "Projectenarchief"
 
-#: classes/class-content-types.php:34
+#: classes/ContentTypes.php:44
 msgid "Project Attributes"
 msgstr "Projectattributen"
 
-#: classes/class-content-types.php:35
+#: classes/ContentTypes.php:45
 msgid "Insert into project"
 msgstr "In project invoegen"
 
-#: classes/class-content-types.php:36
+#: classes/ContentTypes.php:46
 msgid "Uploaded to this project"
 msgstr "Geüpload naar dit project"
 
-#: classes/class-content-types.php:37
+#: classes/ContentTypes.php:47
 msgid "Filter projects list"
 msgstr "Projecten filteren"
 
-#: classes/class-content-types.php:38
+#: classes/ContentTypes.php:48
 msgid "Projects list navigation"
 msgstr "Projectenlijst navigatie"
 
-#: classes/class-content-types.php:39
+#: classes/ContentTypes.php:49
 msgid "Projects list"
 msgstr "Projectenlijst"
 
-#: classes/class-content-types.php:62
-msgid "Search Categories"
-msgstr "Zoek categorieën"
+#: classes/ContentTypes.php:59
+msgctxt "slug"
+msgid "projects"
+msgstr "projecten"
 
-#: classes/class-content-types.php:63
-msgid "All Categories"
-msgstr "Alle categorieën"
-
-#: classes/class-content-types.php:64
-msgid "Parent Category"
-msgstr "Bovenliggende categorie"
-
-#: classes/class-content-types.php:65
-msgid "Parent Category:"
-msgstr "Bovenliggende categorie:"
-
-#: classes/class-content-types.php:66
-msgid "Edit Category"
-msgstr "Categorie bewerken"
-
-#: classes/class-content-types.php:67
-msgid "Update Category"
-msgstr "Categorie bijgewerkt"
-
-#: classes/class-content-types.php:68
-msgid "Add New Category"
-msgstr "Nieuwe categorie"
-
-#: classes/class-content-types.php:69
-msgid "New Category Name"
-msgstr "Nieuwe categorie naam"
-
-#: classes/class-content-types.php:70
+#: classes/ContentTypes.php:70
+msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr "Categorieën"
 
-#: classes/class-content-types.php:88
-msgid "Search Statuses"
-msgstr "Zoek statussen"
+#: classes/ContentTypes.php:71
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr "Categorie"
 
-#: classes/class-content-types.php:89
-msgid "All Statuses"
-msgstr "Alle statussen"
+#: classes/ContentTypes.php:72
+msgid "Search Categories"
+msgstr "Zoek categorieën"
 
-#: classes/class-content-types.php:90
-msgid "Parent Status"
-msgstr "Bovenliggende status"
+#: classes/ContentTypes.php:73
+msgid "All Categories"
+msgstr "Alle categorieën"
 
-#: classes/class-content-types.php:91
-msgid "Parent Status:"
-msgstr "Bovenliggende status:"
+#: classes/ContentTypes.php:74
+msgid "Parent Category"
+msgstr "Bovenliggende categorie"
 
-#: classes/class-content-types.php:92
-msgid "Edit Status"
-msgstr "Bewerkt status"
+#: classes/ContentTypes.php:75
+msgid "Parent Category:"
+msgstr "Bovenliggende categorie:"
 
-#: classes/class-content-types.php:93
-msgid "Update Status"
-msgstr "Status bijgewerkt"
+#: classes/ContentTypes.php:76
+msgid "Edit Category"
+msgstr "Categorie bewerken"
 
-#: classes/class-content-types.php:94
-msgid "Add New Status"
-msgstr "Nieuwe status"
+#: classes/ContentTypes.php:77
+msgid "Update Category"
+msgstr "Categorie bijgewerkt"
 
-#: classes/class-content-types.php:95
-msgid "New Status Name"
-msgstr "Nieuwe status naam"
+#: classes/ContentTypes.php:78
+msgid "Add New Category"
+msgstr "Nieuwe categorie"
 
-#: classes/class-content-types.php:96
+#: classes/ContentTypes.php:79
+msgid "New Category Name"
+msgstr "Nieuwe categorie naam"
+
+#: classes/ContentTypes.php:80
+msgid "Categories"
+msgstr "Categorieën"
+
+#: classes/ContentTypes.php:85
+msgctxt "slug"
+msgid "project-category"
+msgstr "project-categorie"
+
+#: classes/ContentTypes.php:96
+msgctxt "taxonomy general name"
 msgid "Statuses"
 msgstr "Statussen"
 
-#: classes/class-plugin.php:110
+#: classes/ContentTypes.php:97
+msgctxt "taxonomy singular name"
+msgid "Status"
+msgstr "Status"
+
+#: classes/ContentTypes.php:98
+msgid "Search Statuses"
+msgstr "Zoek statussen"
+
+#: classes/ContentTypes.php:99
+msgid "All Statuses"
+msgstr "Alle statussen"
+
+#: classes/ContentTypes.php:100
+msgid "Parent Status"
+msgstr "Bovenliggende status"
+
+#: classes/ContentTypes.php:101
+msgid "Parent Status:"
+msgstr "Bovenliggende status:"
+
+#: classes/ContentTypes.php:102
+msgid "Edit Status"
+msgstr "Bewerkt status"
+
+#: classes/ContentTypes.php:103
+msgid "Update Status"
+msgstr "Status bijgewerkt"
+
+#: classes/ContentTypes.php:104
+msgid "Add New Status"
+msgstr "Nieuwe status"
+
+#: classes/ContentTypes.php:105
+msgid "New Status Name"
+msgstr "Nieuwe status naam"
+
+#: classes/ContentTypes.php:106
+msgid "Statuses"
+msgstr "Statussen"
+
+#: classes/ContentTypes.php:113
+msgctxt "slug"
+msgid "project-status"
+msgstr "project-status"
+
+#: classes/Plugin.php:128
 msgid "Involved Persons"
 msgstr "Betrokken personen"
 
-#: classes/class-plugin.php:115
+#: classes/Plugin.php:133
 msgid "Search project"
 msgstr "Zoek project"
 
-#: classes/class-plugin.php:117
+#: classes/Plugin.php:135
 msgid "Add Project"
 msgstr "Project toevoegen"
 
-#: classes/class-plugin.php:122
+#: classes/Plugin.php:140
 msgid "Person"
 msgstr "Persoon"
 
-#: classes/class-plugin.php:123
+#: classes/Plugin.php:141
 msgid "Search person"
 msgstr "Zoek persoon"
 
-#: classes/class-plugin.php:124
+#: classes/Plugin.php:142
 msgid "No persons found."
 msgstr "Geen personen gevonden."
 
-#: classes/class-plugin.php:125
+#: classes/Plugin.php:143
 msgid "Add Person"
 msgstr "Persoon toevoegen"
 
-#: classes/class-plugin.php:126
+#: classes/Plugin.php:144
 msgid "New Person"
 msgstr "Nieuw persoon"
 
-#: classes/class-plugin.php:127
+#: classes/Plugin.php:145
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
-#: templates/projects-table-view.php:32
+#: classes/Theme.php:49
+msgid "invoices"
+msgstr "facturen"
+
+#: classes/Theme.php:50 templates/projects-to-invoice.php:193
+msgid "Invoices"
+msgstr "Facturen"
+
+#: templates/project-invoices.php:67
+msgid "This is the final invoice."
+msgstr "Dit is de eindfactuur."
+
+#: templates/project-invoices.php:80
+msgid "Total:"
+msgstr "Totaal:"
+
+#: templates/project-invoices.php:106
+msgid "No invoices found."
+msgstr "Geen facturen gevonden."
+
+#: templates/projects-table-view.php:38
 msgid "Invoice"
 msgstr "Factuur"
 
-#: templates/projects-table-view.php:37
+#: templates/projects-table-view.php:43
 msgid "Comment"
 msgstr "Reactie"
 
-#: templates/projects-table-view.php:38
+#: templates/projects-table-view.php:44
 msgid "Budget"
 msgstr "Budget"
 
-#: templates/projects-table-view.php:109
+#: templates/projects-table-view.php:115
 msgid "Header Text"
 msgstr "Koptekst"
 
-#: templates/projects-table-view.php:114
+#: templates/projects-table-view.php:120
 msgid "Footer Text"
 msgstr "Voettekst"
 
-#: templates/projects-table-view.php:119
+#: templates/projects-table-view.php:125
 msgid "Line Description"
 msgstr "Regelbeschrijving"
 
 #. translators: 1st placeholder is the comment author, 2nd is the date
-#: templates/projects-table-view.php:144
+#: templates/projects-table-view.php:152
 msgid "%1$s says on %2$s:"
 msgstr "%1$s zegt op %2$s:"
 
-#: templates/projects-table-view.php:179
+#: templates/projects-table-view.php:187
 msgid "Add status"
 msgstr "Voeg status toe"
 
-#: templates/projects-table-view.php:228
+#: templates/projects-table-view.php:236
 msgid "Yes"
 msgstr "Ja"
 
-#: templates/projects-table-view.php:239
+#: templates/projects-table-view.php:247
 msgid "No"
 msgstr "Nee"
 
-#: templates/projects-table-view.php:251
-#: templates/projects-without-agreement.php:69
+#: templates/projects-table-view.php:259
+#: templates/projects-without-agreement.php:71
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -472,10 +552,6 @@ msgstr "Bericht-ID"
 msgid "Name"
 msgstr "Naam"
 
-#: templates/projects-to-invoice.php:193
-msgid "Invoices"
-msgstr "Facturen"
-
 #: templates/projects-to-invoice.php:195
 msgid "Registered"
 msgstr "Geregistreerd"
@@ -484,11 +560,11 @@ msgstr "Geregistreerd"
 msgid "Available"
 msgstr "Beschikbaar"
 
-#: templates/projects-without-agreement.php:28
+#: templates/projects-without-agreement.php:30
 msgid "Project Manager"
 msgstr "Projectleider"
 
-#: templates/projects-without-agreement.php:31
+#: templates/projects-without-agreement.php:33
 msgid "Actions"
 msgstr "Acties"
 
@@ -500,69 +576,8 @@ msgstr "Sorteer op:"
 msgid "Number"
 msgstr "Nummer"
 
-#. Plugin Name of the plugin/theme
-msgid "Orbis Projects"
-msgstr "Orbis projecten"
-
-#. Plugin URI of the plugin/theme
-msgid "https://www.pronamic.eu/plugins/orbis-projects/"
-msgstr "https://www.pronamic.eu/plugins/orbis-projects/"
-
-#. Description of the plugin/theme
-msgid ""
-"The Orbis Projects plugin extends your Orbis environment with the option to "
-"manage projects."
-msgstr ""
-"De Orbis projecten plugin breidt je Orbis omgeving uit met de mogelijkheid "
-"om projecten te beheren."
-
-#. Author of the plugin/theme
-msgid "Pronamic"
-msgstr "Pronamic"
-
-#. Author URI of the plugin/theme
-msgid "https://www.pronamic.eu/"
-msgstr "https://www.pronamic.nl/"
-
-#: classes/class-content-types.php:22
-msgctxt "orbis_project"
-msgid "Add New"
-msgstr "Nieuw project"
-
-#: classes/class-content-types.php:49
-msgctxt "slug"
-msgid "projects"
-msgstr "projecten"
-
-#: classes/class-content-types.php:75
-msgctxt "slug"
-msgid "project-category"
-msgstr "project-categorie"
-
-#: classes/class-content-types.php:103
-msgctxt "slug"
-msgid "project-status"
-msgstr "Project-status"
-
-#: classes/class-content-types.php:60
-msgctxt "taxonomy general name"
-msgid "Categories"
-msgstr "Categorieën"
-
-#: classes/class-content-types.php:86
-msgctxt "taxonomy general name"
-msgid "Statuses"
-msgstr "Statussen"
-
-#: classes/class-content-types.php:61
-msgctxt "taxonomy singular name"
-msgid "Category"
-msgstr "Categorie"
-
-#: classes/class-content-types.php:87
-msgctxt "taxonomy singular name"
-msgid "Status"
-msgstr "Status"
+#~ msgid "https://www.pronamic.eu/plugins/orbis-projects/"
+#~ msgstr "https://www.pronamic.eu/plugins/orbis-projects/"
 
 #~ msgid "Not invoicable"
 #~ msgstr "Niet factureerbaar"

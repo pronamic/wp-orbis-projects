@@ -39,7 +39,8 @@
 		"allow-plugins": {
 			"automattic/jetpack-autoloader": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true
-		}
+		},
+		"wp-slug": "orbis-projects"
 	},
 	"require": {
 		"automattic/jetpack-autoloader": "^3.0",
