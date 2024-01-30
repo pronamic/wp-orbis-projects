@@ -37,16 +37,8 @@ require_once __DIR__ . '/vendor/autoload_packages.php';
 add_action(
 	'plugins_loaded',
 	function () {
-		load_plugin_textdomain( 'orbis-projects', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
-	}
-);
+		load_plugin_textdomain( 'orbis-projects', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
-/**
- * Bootstrap
- */
-add_action(
-	'plugins_loaded',
-	function () {
 		global $orbis_projects_plugin;
 
 		$orbis_projects_plugin = new \Orbis_Projects_Plugin( __FILE__ );
