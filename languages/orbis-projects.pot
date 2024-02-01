@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-30T18:48:58+00:00\n"
+"POT-Creation-Date: 2024-02-01T08:16:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: orbis-projects\n"
@@ -34,32 +34,32 @@ msgstr ""
 msgid "https://www.pronamic.eu/"
 msgstr ""
 
-#: admin/meta-box-project-details.php:38
+#: admin/meta-box-project-details.php:37
 #: templates/projects-to-invoice.php:180
 #: templates/projects-to-invoice.php:184
 #: templates/projects-without-agreement.php:29
 msgid "Orbis ID"
 msgstr ""
 
-#: admin/meta-box-project-details.php:46
+#: admin/meta-box-project-details.php:45
 #: templates/projects-table-view.php:33
 msgid "Client"
 msgstr ""
 
-#: admin/meta-box-project-details.php:49
+#: admin/meta-box-project-details.php:48
 msgid "Select Client"
 msgstr ""
 
-#: admin/meta-box-project-details.php:58
+#: admin/meta-box-project-details.php:57
 #: classes/AdminProjectPostType.php:46
 msgid "Price"
 msgstr ""
 
-#: admin/meta-box-project-details.php:66
+#: admin/meta-box-project-details.php:65
 msgid "Hourly Rate"
 msgstr ""
 
-#: admin/meta-box-project-details.php:74
+#: admin/meta-box-project-details.php:73
 #: classes/AdminProjectPostType.php:47
 #: templates/projects-to-invoice.php:189
 #: templates/projects-to-invoice.php:192
@@ -67,76 +67,73 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: admin/meta-box-project-details.php:80
+#: admin/meta-box-project-details.php:79
 msgid "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr ""
 
-#: admin/meta-box-project-details.php:87
+#: admin/meta-box-project-details.php:86
 msgid "Agreement ID"
 msgstr ""
 
-#: admin/meta-box-project-details.php:94
+#: admin/meta-box-project-details.php:93
 msgid "Choose an Agreement"
 msgstr ""
 
-#: admin/meta-box-project-details.php:97
+#: admin/meta-box-project-details.php:96
 msgid "Set as Agreement"
 msgstr ""
 
-#: admin/meta-box-project-details.php:97
+#: admin/meta-box-project-details.php:96
 msgid "Choose a Agreement"
 msgstr ""
 
-#: admin/meta-box-project-details.php:100
+#: admin/meta-box-project-details.php:99
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 
-#: admin/meta-box-project-details.php:101
+#: admin/meta-box-project-details.php:100
 msgid "If you received the agreement by mail print the complete mail conversation with an PDF printer."
 msgstr ""
 
-#: admin/meta-box-project-details.php:108
+#: admin/meta-box-project-details.php:107
 msgid "Finished"
 msgstr ""
 
-#: admin/meta-box-project-details.php:114
+#: admin/meta-box-project-details.php:113
 msgid "Project is finished"
 msgstr ""
 
-#: admin/meta-box-project-details.php:122
+#: admin/meta-box-project-details.php:121
 #: templates/projects-table-view.php:45
 msgid "Invoicable"
 msgstr ""
 
-#: admin/meta-box-project-details.php:128
+#: admin/meta-box-project-details.php:127
 msgid "Project is invoicable"
 msgstr ""
 
-#: admin/meta-box-project-details.php:138
+#: admin/meta-box-project-details.php:137
 msgid "Invoiced"
 msgstr ""
 
-#: admin/meta-box-project-details.php:144
+#: admin/meta-box-project-details.php:143
 msgid "Project is invoiced"
 msgstr ""
 
-#: admin/meta-box-project-details.php:153
-msgid "Invoice Header Text"
+#: admin/meta-box-project-details.php:152
+#: templates/projects-table-view.php:105
+msgid "Invoice reference"
 msgstr ""
 
-#: admin/meta-box-project-details.php:161
-msgid "Invoice Footer Text"
-msgstr ""
-
-#: admin/meta-box-project-details.php:169
+#: admin/meta-box-project-details.php:160
 msgid "Invoice Line Description"
 msgstr ""
 
-#: admin/meta-box-project-details.php:184
+#: admin/meta-box-project-details.php:175
 msgid "Payment Method"
 msgstr ""
 
-#: admin/meta-box-project-details.php:191
+#: admin/meta-box-project-details.php:182
 msgid "— Select Payment Method —"
 msgstr ""
 
@@ -503,36 +500,28 @@ msgstr ""
 msgid "Budget"
 msgstr ""
 
-#: templates/projects-table-view.php:115
-msgid "Header Text"
-msgstr ""
-
-#: templates/projects-table-view.php:120
-msgid "Footer Text"
-msgstr ""
-
-#: templates/projects-table-view.php:125
+#: templates/projects-table-view.php:110
 msgid "Line Description"
 msgstr ""
 
 #. translators: 1st placeholder is the comment author, 2nd is the date
-#: templates/projects-table-view.php:152
+#: templates/projects-table-view.php:137
 msgid "%1$s says on %2$s:"
 msgstr ""
 
-#: templates/projects-table-view.php:187
+#: templates/projects-table-view.php:172
 msgid "Add status"
 msgstr ""
 
-#: templates/projects-table-view.php:236
+#: templates/projects-table-view.php:221
 msgid "Yes"
 msgstr ""
 
-#: templates/projects-table-view.php:247
+#: templates/projects-table-view.php:232
 msgid "No"
 msgstr ""
 
-#: templates/projects-table-view.php:259
+#: templates/projects-table-view.php:244
 #: templates/projects-without-agreement.php:71
 msgid "Edit"
 msgstr ""
