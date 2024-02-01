@@ -80,23 +80,13 @@ if ( ! isset( $groups ) ) {
 							<td>
 								<?php
 
-								$invoice_header_texts = [
-									get_post_meta( $project->principal_post_id, '_orbis_invoice_header_text', true ),
-									get_post_meta( $project->project_post_id, '_orbis_invoice_header_text', true ),
-									get_option( 'orbis_invoice_header_text' ),
+								$invoice_references = [
+									get_post_meta( $project->principal_post_id, '_orbis_invoice_reference', true ),
+									get_post_meta( $project->project_post_id, '_orbis_invoice_reference', true ),
 								];
 
-								$invoice_header_texts = array_filter( $invoice_header_texts );
-								$invoice_header_texts = array_unique( $invoice_header_texts );
-
-								$invoice_footer_texts = [
-									get_post_meta( $project->principal_post_id, '_orbis_invoice_footer_text', true ),
-									get_post_meta( $project->project_post_id, '_orbis_invoice_footer_text', true ),
-									get_option( 'orbis_invoice_footer_text' ),
-								];
-
-								$invoice_footer_texts = array_filter( $invoice_footer_texts );
-								$invoice_footer_texts = array_unique( $invoice_footer_texts );
+								$invoice_references = array_filter( $invoice_references );
+								$invoice_references = array_unique( $invoice_references );
 
 								$invoice_line_description = get_post_meta( $project->project_post_id, '_orbis_invoice_line_description', true );
 
@@ -112,14 +102,9 @@ if ( ! isset( $groups ) ) {
 
 								?>
 								<dl>
-									<dt><?php esc_html_e( 'Header Text', 'orbis-projects' ); ?></dt>
+									<dt><?php esc_html_e( 'Invoice reference', 'orbis-projects' ); ?></dt>
 									<dd>
-										<?php echo nl2br( esc_html( implode( "\r\n", $invoice_header_texts ) ) ); ?>
-									</dd>
-
-									<dt><?php esc_html_e( 'Footer Text', 'orbis-projects' ); ?></dt>
-									<dd>
-										<?php echo nl2br( esc_html( implode( "\r\n", $invoice_footer_texts ) ) ); ?>
+										<?php echo nl2br( esc_html( implode( "\r\n", $invoice_references ) ) ); ?>
 									</dd>
 
 									<dt><?php esc_html_e( 'Line Description', 'orbis-projects' ); ?></dt>

@@ -11,8 +11,7 @@ $principal_id = get_post_meta( $post->ID, '_orbis_project_principal_id', true );
 $seconds      = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
 $agreement_id = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
 
-$invoice_header_text      = get_post_meta( $post->ID, '_orbis_invoice_header_text', true );
-$invoice_footer_text      = get_post_meta( $post->ID, '_orbis_invoice_footer_text', true );
+$invoice_reference        = get_post_meta( $post->ID, '_orbis_invoice_reference', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
 
 $price = $orbis_project->get_price();
@@ -150,18 +149,10 @@ $hourly_rate = get_post_meta( $post->ID, '_orbis_hourly_rate', true );
 
 		<tr>
 			<th scope="row">
-				<label for="_orbis_invoice_header_text"><?php esc_html_e( 'Invoice Header Text', 'orbis-projects' ); ?></label>
+				<label for="_orbis_invoice_reference"><?php esc_html_e( 'Invoice reference', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
-				<textarea id="_orbis_invoice_header_text" name="_orbis_invoice_header_text" rows="2" cols="60"><?php echo esc_textarea( $invoice_header_text ); ?></textarea>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">
-				<label for="_orbis_invoice_footer_text"><?php esc_html_e( 'Invoice Footer Text', 'orbis-projects' ); ?></label>
-			</th>
-			<td>
-				<textarea id="_orbis_invoice_footer_text" name="_orbis_invoice_footer_text" rows="2" cols="60"><?php echo esc_textarea( $invoice_footer_text ); ?></textarea>
+				<textarea id="_orbis_invoice_reference" name="_orbis_invoice_reference" rows="2" cols="60"><?php echo esc_textarea( $invoice_reference ); ?></textarea>
 			</td>
 		</tr>
 		<tr>
