@@ -16,7 +16,7 @@ if ( $invoices && $invoices[0]->id ) : ?>
 					<th class="border-top-0"><?php esc_html_e( 'Date', 'orbis-projects' ); ?></th>
 					<th class="border-top-0"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
 					<th class="border-top-0"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>
-					<th class="border-top-0"><?php esc_html_e( 'Invoice Number', 'orbis-projects' ); ?></th>
+					<th class="border-top-0"><?php esc_html_e( 'Invoice', 'orbis-projects' ); ?></th>
 					<th class="border-top-0"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
 				</tr>
 			</thead>
@@ -49,16 +49,18 @@ if ( $invoices && $invoices[0]->id ) : ?>
 						</td>
 						<td>
 							<?php
-							$invoice_link = orbis_get_invoice_link( $invoice->invoice_number );
 
-							if ( ! empty( $invoice_link ) ) {
+							$invoice_url  = \apply_filters( 'orbis_invoice_url', '', $invoice->invoice_data );
+							$invoice_text = \apply_filters( 'orbis_invoice_text', $invoice->invoice_number, $invoice->invoice_data );
+
+							if ( '' !== $invoice_url ) {
 								printf(
 									'<a href="%s" target="_blank">%s</a>',
-									esc_attr( $invoice_link ),
-									esc_html( $invoice->invoice_number )
+									esc_url( $invoice_url ),
+									esc_html( $invoice_text )
 								);
 							} else {
-								echo esc_html( $invoice->invoice_number );
+								echo esc_html( $invoice_text );
 							}
 
 							if ( get_post_meta( $post->ID, '_orbis_project_invoice_number', true ) === $invoice->invoice_number ) {
