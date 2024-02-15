@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2024-02-01T08:16:26+00:00\n"
-"PO-Revision-Date: 2024-02-01 09:17+0100\n"
+"POT-Creation-Date: 2024-02-15T08:31:59+00:00\n"
+"PO-Revision-Date: 2024-02-15 09:32+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -16,14 +16,17 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. Plugin Name of the plugin
+#: orbis-projects.php
 msgid "Orbis Projects"
 msgstr "Orbis Projects"
 
 #. Plugin URI of the plugin
+#: orbis-projects.php
 msgid "https://wp.pronamic.directory/plugins/orbis-projects/"
 msgstr "https://wp.pronamic.directory/plugins/orbis-projects/"
 
 #. Description of the plugin
+#: orbis-projects.php
 msgid ""
 "The Orbis Projects plugin extends your Orbis environment with the option to "
 "manage projects."
@@ -32,10 +35,12 @@ msgstr ""
 "om projecten te beheren."
 
 #. Author of the plugin
+#: orbis-projects.php
 msgid "Pronamic"
 msgstr "Pronamic"
 
 #. Author URI of the plugin
+#: orbis-projects.php
 msgid "https://www.pronamic.eu/"
 msgstr "https://www.pronamic.nl/"
 
@@ -148,7 +153,7 @@ msgstr "— Selecteer betaalmethode —"
 msgid "Date"
 msgstr "Datum"
 
-#: admin/meta-box-project-invoices.php:18 templates/project-invoices.php:19
+#: admin/meta-box-project-invoices.php:18
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
@@ -465,21 +470,21 @@ msgstr "facturen"
 msgid "Invoices"
 msgstr "Facturen"
 
-#: templates/project-invoices.php:67
+#: templates/project-invoices.php:19 templates/projects-table-view.php:38
+msgid "Invoice"
+msgstr "Factuur"
+
+#: templates/project-invoices.php:69
 msgid "This is the final invoice."
 msgstr "Dit is de eindfactuur."
 
-#: templates/project-invoices.php:80
+#: templates/project-invoices.php:82
 msgid "Total:"
 msgstr "Totaal:"
 
-#: templates/project-invoices.php:106
+#: templates/project-invoices.php:108
 msgid "No invoices found."
 msgstr "Geen facturen gevonden."
-
-#: templates/projects-table-view.php:38
-msgid "Invoice"
-msgstr "Factuur"
 
 #: templates/projects-table-view.php:43
 msgid "Comment"
