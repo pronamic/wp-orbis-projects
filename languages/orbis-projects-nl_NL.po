@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2024-02-15T08:31:59+00:00\n"
-"PO-Revision-Date: 2024-02-15 09:32+0100\n"
+"POT-Creation-Date: 2024-02-15T19:23:22+00:00\n"
+"PO-Revision-Date: 2024-02-15 20:23+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -44,63 +44,63 @@ msgstr "Pronamic"
 msgid "https://www.pronamic.eu/"
 msgstr "https://www.pronamic.nl/"
 
-#: admin/meta-box-project-details.php:37 templates/projects-to-invoice.php:180
+#: admin/meta-box-project-details.php:67 templates/projects-to-invoice.php:180
 #: templates/projects-to-invoice.php:184
 #: templates/projects-without-agreement.php:29
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:45 templates/projects-table-view.php:33
+#: admin/meta-box-project-details.php:75 templates/projects-table-view.php:33
 msgid "Client"
 msgstr "Klant"
 
-#: admin/meta-box-project-details.php:48
+#: admin/meta-box-project-details.php:78
 msgid "Select Client"
 msgstr "Selecteer klant"
 
-#: admin/meta-box-project-details.php:57 classes/AdminProjectPostType.php:46
+#: admin/meta-box-project-details.php:87 classes/AdminProjectPostType.php:46
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/meta-box-project-details.php:65
+#: admin/meta-box-project-details.php:95
 msgid "Hourly Rate"
 msgstr "Uurtarief"
 
-#: admin/meta-box-project-details.php:73 classes/AdminProjectPostType.php:47
+#: admin/meta-box-project-details.php:103 classes/AdminProjectPostType.php:47
 #: templates/projects-to-invoice.php:189 templates/projects-to-invoice.php:192
 #: templates/projects-to-invoice.php:198
 msgid "Time"
 msgstr "Tijd"
 
-#: admin/meta-box-project-details.php:79
+#: admin/meta-box-project-details.php:109
 msgid ""
 "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr ""
 "Je kunt de tijd invoeren als 1.5 of 1:30 (beide zijn 1 uur en 30 minuten)."
 
-#: admin/meta-box-project-details.php:86
+#: admin/meta-box-project-details.php:116
 msgid "Agreement ID"
 msgstr "Akkoord ID"
 
-#: admin/meta-box-project-details.php:93
+#: admin/meta-box-project-details.php:123
 msgid "Choose an Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-project-details.php:96
+#: admin/meta-box-project-details.php:126
 msgid "Set as Agreement"
 msgstr "Stel in als akkoord"
 
-#: admin/meta-box-project-details.php:96
+#: admin/meta-box-project-details.php:126
 msgid "Choose a Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-project-details.php:99
+#: admin/meta-box-project-details.php:129
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 "Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media "
 "bibliotheek."
 
-#: admin/meta-box-project-details.php:100
+#: admin/meta-box-project-details.php:130
 msgid ""
 "If you received the agreement by mail print the complete mail conversation "
 "with an PDF printer."
@@ -108,45 +108,56 @@ msgstr ""
 "Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail "
 "conversatie uit met een PDF-printer."
 
-#: admin/meta-box-project-details.php:107
+#: admin/meta-box-project-details.php:137
 msgid "Finished"
 msgstr "Afgerond"
 
-#: admin/meta-box-project-details.php:113
+#: admin/meta-box-project-details.php:143
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:121 templates/projects-table-view.php:45
+#: admin/meta-box-project-details.php:151 templates/projects-table-view.php:45
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
-#: admin/meta-box-project-details.php:127
+#: admin/meta-box-project-details.php:157
 msgid "Project is invoicable"
 msgstr "Project is factureerbaar"
 
-#: admin/meta-box-project-details.php:137
+#: admin/meta-box-project-details.php:167
 msgid "Invoiced"
 msgstr "Gefactureerd"
 
-#: admin/meta-box-project-details.php:143
+#: admin/meta-box-project-details.php:173
 msgid "Project is invoiced"
 msgstr "Project is gefactureerd"
 
-#: admin/meta-box-project-details.php:152 templates/projects-table-view.php:105
+#: admin/meta-box-project-details.php:182 templates/projects-table-view.php:105
 msgid "Invoice reference"
 msgstr "Factuurreferentie"
 
-#: admin/meta-box-project-details.php:160
+#: admin/meta-box-project-details.php:190
 msgid "Invoice Line Description"
 msgstr "Factuurregelbeschrijving"
 
-#: admin/meta-box-project-details.php:175
+#: admin/meta-box-project-details.php:205
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
-#: admin/meta-box-project-details.php:182
+#: admin/meta-box-project-details.php:212
 msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
+
+#. translators: 1: input for start date, 2: input for end date
+#: admin/meta-box-project-details.php:238
+msgctxt "including"
+msgid "%1$s to %2$s"
+msgstr "%1$s t/m %2$s"
+
+#: admin/meta-box-project-details.php:263
+msgctxt "including"
+msgid "Billed to"
+msgstr "Gefactureerd t/m"
 
 #: admin/meta-box-project-invoices.php:17 classes/AdminProjectPostType.php:50
 #: templates/project-invoices.php:16 templates/projects-table-view.php:42

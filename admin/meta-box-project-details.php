@@ -29,6 +29,36 @@ $principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_comp
 
 $hourly_rate = get_post_meta( $post->ID, '_orbis_hourly_rate', true );
 
+$start_date = null;
+
+$start_date_string = \get_post_meta( $post->ID, '_orbis_project_start_date', true );
+
+if ( '' !== $start_date_string ) {
+	$value = DateTimeImmutable::createFromFormat( 'Y-m-d', $start_date_string );
+
+	$start_date = ( false === $value ) ? null : $value->setTime( 0, 0 );
+}
+
+$end_date = null;
+
+$end_date_string = \get_post_meta( $post->ID, '_orbis_project_end_date', true );
+
+if ( '' !== $end_date_string ) {
+	$value = DateTimeImmutable::createFromFormat( 'Y-m-d', $end_date_string );
+
+	$end_date = ( false === $value ) ? null : $value->setTime( 0, 0 );
+}
+
+$billed_to = null;
+
+$billed_to_string = \get_post_meta( $post->ID, '_orbis_project_billed_to', true );
+
+if ( '' !== $billed_to_string ) {
+	$value = DateTimeImmutable::createFromFormat( 'Y-m-d', $billed_to_string );
+
+	$billed_to = ( false === $value ) ? null : $value->setTime( 0, 0 );
+}
+
 ?>
 <table class="form-table">
 	<tbody>
@@ -189,6 +219,53 @@ $hourly_rate = get_post_meta( $post->ID, '_orbis_hourly_rate', true );
 			</td>
 		</tr>
 		<?php endif; ?>
+
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_project_start_date"><?php esc_html_e( 'Period', 'orbis-tasks' ); ?></label>
+			</th>
+			<td>
+				<?php
+
+				echo \wp_kses(
+					\sprintf(
+						/**
+						 * The 'to' includes the end date, in Dutch it is translated as 'tot en met'.
+						 *
+						 * @link https://taaladvies.net/tot-of-tot-en-met/
+						 */
+						/* translators: 1: input for start date, 2: input for end date */
+						_x( '%1$s to %2$s', 'including', 'orbis-projects' ),
+						\sprintf( 
+							'<input id="orbis_project_start_date" name="_orbis_project_start_date" value="%s" type="date" />',
+							\esc_attr( null === $start_date ? '' : $start_date->format( 'Y-m-d' ) )
+						),
+						\sprintf(
+							'<input id="orbis_project_end_date" name="_orbis_project_end_date" value="%s" type="date" />',
+							esc_attr( null === $end_date ? '' : $end_date->format( 'Y-m-d' ) )
+						)
+					),
+					[
+						'input' => [
+							'id'    => true,
+							'name'  => true,
+							'value' => true,
+							'type'  => true,
+						],
+					]
+				);
+
+				?>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="orbis_project_billed_to"><?php echo esc_html( _x( 'Billed to', 'including', 'orbis-projects' ) ); ?></label>
+			</th>
+			<td>
+				<input id="orbis_project_billed_to" name="_orbis_project_billed_to" value="<?php echo esc_attr( null === $billed_to ? '' : $billed_to->format( 'Y-m-d' ) ); ?>" type="date" />
+			</td>
+		</tr>
 	</tbody>
 </table>
 
