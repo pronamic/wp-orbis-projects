@@ -44,14 +44,16 @@ class Theme {
 	 * @return array
 	 */
 	public function project_sections( $sections ) {
-		$sections[] = [
-			'id'       => 'invoices',
-			'slug'     => __( 'invoices', 'orbis-projects' ),
-			'name'     => __( 'Invoices', 'orbis-projects' ),
-			'callback' => function () {
-				include __DIR__ . '/../templates/project-invoices.php';
-			},
-		];
+		if ( \current_user_can( 'read_orbis_project_invoice', \get_the_ID() ) ) {
+			$sections[] = [
+				'id'       => 'invoices',
+				'slug'     => __( 'invoices', 'orbis-projects' ),
+				'name'     => __( 'Invoices', 'orbis-projects' ),
+				'callback' => function () {
+					include __DIR__ . '/../templates/project-invoices.php';
+				},
+			];
+		}
 
 		return $sections;
 	}
