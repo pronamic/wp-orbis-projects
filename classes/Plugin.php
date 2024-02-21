@@ -11,6 +11,7 @@
 namespace Pronamic\Orbis\Projects;
 
 use stdClass;
+use WP_Post;
 
 class Plugin {
 	public function __construct( $file ) {
@@ -19,8 +20,6 @@ class Plugin {
 		add_action( 'the_post', [ $this, 'the_post' ] );
 
 		add_action( 'p2p_init', [ $this, 'p2p_init' ] );
-
-		add_action( 'wp_ajax_project_id_suggest', [ $this, 'ajax_projects_suggest_project_id' ] );
 
 		$this->content_types   = new ContentTypes();
 		$this->query_processor = new QueryProcessor();
@@ -32,6 +31,33 @@ class Plugin {
 		} else {
 			$this->theme = new Theme( $this );
 		}
+
+		\add_action(
+			'rest_api_init',
+			function () {
+				\register_rest_field(
+					'orbis_project',
+					'select2_text',
+					[
+						'get_callback' => function() {
+							$project_post = \get_post();
+
+							if ( ! $project_post instanceof WP_Post ) {
+								return null;
+							}
+
+							return \sprintf(
+								'%s. %s - %s ( %s )',
+								$project_post->project_id,
+								$project_post->principal_name,
+								\get_the_title( $project_post ),
+								isset( $project->project_logged_time ) ? \orbis_time( $project_post->project_logged_time ) . ' / ' . \orbis_time( $project_post->project_number_seconds ) : \orbis_time( $project_post->project_number_seconds )
+							);
+						},
+					]
+				);
+			}
+		);
 	}
 
 	public function init() {
@@ -146,111 +172,5 @@ class Plugin {
 				],
 			] 
 		);
-	}
-
-	/**
-	 * AJAX projects suggest project ID.
-	 */
-	public function ajax_projects_suggest_project_id() {
-		global $wpdb;
-
-		$term = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
-
-		$extra_select = '';
-		$extra_join   = '';
-		$extra_where  = '';
-
-		if ( isset( $wpdb->orbis_timesheets ) ) {
-			$extra_select .= ',
-				SUM( entry.number_seconds ) AS project_logged_time
-			';
-
-			$extra_join = "
-				LEFT JOIN
-					$wpdb->orbis_timesheets AS entry
-						ON entry.project_id = project.id
-			";
-		}
-
-		if ( isset( $wpdb->orbis_companies ) ) {
-			$extra_select .= ',
-				principal.name AS principal_name
-			';
-
-			$extra_join .= "
-				LEFT JOIN
-					$wpdb->orbis_companies AS principal
-						ON project.principal_id = principal.id
-			";
-
-			$extra_where .= '
-					OR
-				principal.name LIKE %s
-			';
-		}
-
-		$query = "
-			SELECT
-				project.id AS project_id,
-				project.name AS project_name,
-				project.number_seconds AS project_time
-				$extra_select
-			FROM
-				$wpdb->orbis_projects AS project
-				$extra_join
-			WHERE
-				project.finished = 0
-					AND
-				(
-					project.name LIKE %s
-						$extra_where
-				)
-			GROUP BY
-				project.id
-			ORDER BY
-				project.id
-		";
-
-		$like = '%' . $wpdb->esc_like( $term ) . '%';
-
-		$query = $wpdb->prepare( $query, $like, $like ); // unprepared SQL
-
-		$projects = $wpdb->get_results( $query ); // unprepared SQL
-
-		$data = [];
-
-		foreach ( $projects as $project ) {
-			$result     = new stdClass();
-			$result->id = $project->project_id;
-
-			$principal_name = ( isset( $project->principal_name ) ) ? $project->principal_name . ' -' : '';
-
-			$text = sprintf(
-				'%s. %s %s ( %s )',
-				$project->project_id,
-				$principal_name,
-				$project->project_name,
-				orbis_time( $project->project_time )
-			);
-
-			if ( isset( $project->project_logged_time ) ) {
-				$text = sprintf(
-					'%s. %s %s ( %s / %s )',
-					$project->project_id,
-					$principal_name,
-					$project->project_name,
-					orbis_time( $project->project_logged_time ),
-					orbis_time( $project->project_time )
-				);
-			}
-
-			$result->text = $text;
-
-			$data[] = $result;
-		}
-
-		echo wp_json_encode( $data );
-
-		die();
 	}
 }

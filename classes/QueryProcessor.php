@@ -122,6 +122,7 @@ class QueryProcessor {
 		if ( 'orbis_project' === $post_type ) {
 			// Fields
 			$fields = ',
+				project.id AS project_id,
 				project.number_seconds AS project_number_seconds,
 				project.finished AS project_is_finished,
 				project.invoiced AS project_is_invoiced
