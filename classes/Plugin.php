@@ -37,6 +37,22 @@ class Plugin {
 			function () {
 				\register_rest_field(
 					'orbis_project',
+					'orbis_project_id',
+					[
+						'get_callback' => function() {
+							$project_post = \get_post();
+
+							if ( ! $project_post instanceof WP_Post ) {
+								return null;
+							}
+
+							return $project_post->project_id;
+						},
+					]
+				);
+
+				\register_rest_field(
+					'orbis_project',
 					'select2_text',
 					[
 						'get_callback' => function() {
@@ -50,8 +66,8 @@ class Plugin {
 								'%s. %s - %s ( %s )',
 								$project_post->project_id,
 								$project_post->principal_name,
-								\get_the_title( $project_post ),
-								isset( $project->project_logged_time ) ? \orbis_time( $project_post->project_logged_time ) . ' / ' . \orbis_time( $project_post->project_number_seconds ) : \orbis_time( $project_post->project_number_seconds )
+								$project_post->post_title,
+								isset( $project_post->project_logged_time ) ? \orbis_time( $project_post->project_logged_time ) . ' / ' . \orbis_time( $project_post->project_number_seconds ) : \orbis_time( $project_post->project_number_seconds )
 							);
 						},
 					]
