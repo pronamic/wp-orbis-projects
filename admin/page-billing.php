@@ -1,103 +1,19 @@
 <?php
+/**
+ * Page billing
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Projects
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 global $wpdb;
-global $orbis_is_projects_to_invoice;
 
-$orbis_is_projects_to_invoice = true;
-
-$extra = 'AND invoice_number IS NULL';
-
-if ( filter_input( INPUT_GET, 'all', FILTER_VALIDATE_BOOLEAN ) ) {
-	$extra = '';
-}
-
-$sql = "
-	SELECT
-		project.id ,
-		project.name ,
-		project.number_seconds AS available_seconds ,
-		project.invoice_number AS invoice_number ,
-		project.invoicable ,
-		project.post_id AS project_post_id,
-		manager.ID AS project_manager_id,
-		manager.display_name AS project_manager_name,
-		principal.id AS principal_id ,
-		principal.name AS principal_name ,
-		principal.post_id AS principal_post_id,
-		SUM(registration.number_seconds) AS registered_seconds
-	FROM
-		$wpdb->orbis_projects AS project
-			LEFT JOIN
-		$wpdb->posts AS post
-				ON project.post_id = post.ID
-			LEFT JOIN
-		$wpdb->users AS manager
-				ON post.post_author = manager.ID
-			LEFT JOIN
-		$wpdb->orbis_companies AS principal
-				ON project.principal_id = principal.id
-			LEFT JOIN
-		$wpdb->orbis_timesheets AS registration
-				ON project.id = registration.project_id
-	WHERE
-		(
-			project.finished
-				OR
-			project.name LIKE '%strippenkaart%'
-				OR
-			project.name LIKE '%adwords%'
-				OR
-			project.name LIKE '%marketing%'
-		)
-			AND
-		project.invoicable
-			AND
-		NOT project.invoiced
-			AND
-		project.start_date > '2011-01-01'
-		$extra
-	GROUP BY
-		project.id
-	ORDER BY
-		principal.name
-	;
-";
-
-// Projects
-$projects = $wpdb->get_results( $sql ); // unprepared SQL
-
-// Managers
-$managers = [];
-
-// Projects and managers
-foreach ( $projects as $project ) {
-	// Find manager
-	if ( ! isset( $managers[ $project->project_manager_id ] ) ) {
-		$manager           = new stdClass();
-		$manager->id       = $project->project_manager_id;
-		$manager->name     = $project->project_manager_name;
-		$manager->projects = [];
-
-		$managers[ $manager->id ] = $manager;
-	}
-
-	$project->failed = $project->registered_seconds > $project->available_seconds;
-
-	$manager = $managers[ $project->project_manager_id ];
-
-	$manager->projects[] = $project;
-}
-
-ksort( $managers );
-
-require 'projects-table-view.php';
-
-/**
- * Update billable amount.
- *
- * @link https://github.com/wp-orbis/wp-orbis-timesheets/blob/develop/examples/update-project-billable-amount-from-post-meta.sql
- * @link https://dba.stackexchange.com/questions/217220/how-i-use-multiple-sum-with-multiple-left-joins
- */
 $query = "
 	SELECT
 		project.id AS project_id,
@@ -165,12 +81,16 @@ $query = "
 $data = $wpdb->get_results( $query );
 
 ?>
-<div class="panel" style="font-size: 12px;">
-	<table class="table table-striped table-bordered table-sm">
+<div class="wrap">
+	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+
+	<h2><?php \esc_html_e( 'Projects', 'orbis-projects' ); ?></h2>
+
+	<table class="wp-list-table widefat fixed striped">
 		<thead>
 			<tr>
 				<th scope="col" colspan="3"><?php \esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
-				<th scope="col" colspan="3"><?php \esc_html_e( 'Project', 'orbis-projects' ); ?></th>
+				<th scope="col" colspan="4"><?php \esc_html_e( 'Project', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="2"><?php \esc_html_e( 'Billable', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="3"><?php \esc_html_e( 'Billed', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="2"><?php \esc_html_e( 'Timesheet', 'orbis-projects' ); ?></th>
@@ -184,6 +104,7 @@ $data = $wpdb->get_results( $query );
 				<th scope="col"><?php \esc_html_e( 'Orbis ID', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php \esc_html_e( 'Post ID', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php \esc_html_e( 'Name', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Hourly rate', 'orbis-projects' ); ?></th>
 
 				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php \esc_html_e( 'Time', 'orbis-projects' ); ?></th>
@@ -239,6 +160,17 @@ $data = $wpdb->get_results( $query );
 							\esc_url( \add_query_arg( 'p', $item->project_post_id, home_url( '/' ) ) ),
 							\esc_html( $item->project_name )
 						);
+
+						?>
+					</td>
+					<td>
+						<?php
+
+						$hourly_rate = get_post_meta( $item->project_post_id, '_orbis_hourly_rate', true );
+
+						if ( '' !== $hourly_rate ) {
+							echo \esc_html( number_format_i18n( $hourly_rate, 2 ) );
+						}
 
 						?>
 					</td>
@@ -325,14 +257,14 @@ $data = $wpdb->get_results( $query );
 
 						$url = \add_query_arg(
 							[
-								'company_id' => $item->principal_id,
-								'project_id' => $item->project_id,
+								'orbis_company_id' => $item->principal_id,
+								'orbis_project_id' => $item->project_id,
 							],
-							home_url( 'twinfield/invoicer' )
+							home_url( 'moneybird/sales-invoices/new' )
 						);
 
 						printf(
-							'<a href="%s"><i class="fas fa-file-invoice"></i></a>',
+							'<a href="%s"><span class="dashicons dashicons-media-spreadsheet"></span></a>',
 							\esc_url( $url )
 						);
 

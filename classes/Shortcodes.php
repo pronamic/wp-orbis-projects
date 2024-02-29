@@ -19,7 +19,6 @@ class Shortcodes {
 
 		add_shortcode( 'orbis_projects_active', [ $this, 'shortcode_projects_active' ] );
 		add_shortcode( 'orbis_projects_without_agreement', [ $this, 'shortcode_projects_without_agreement' ] );
-		add_shortcode( 'orbis_projects_to_invoice', [ $this, 'shortcode_projects_to_invoice' ] );
 	}
 
 	/**
@@ -54,26 +53,6 @@ class Shortcodes {
 		ob_start();
 
 		include __DIR__ . '/../templates/projects-without-agreement.php';
-
-		$return = ob_get_contents();
-
-		ob_end_clean();
-
-		return $return;
-	}
-
-	/**
-	 * Projects to invoice
-	 *
-	 * @param array $atts
-	 * @return string
-	 */
-	public function shortcode_projects_to_invoice() {
-		$return = '';
-
-		ob_start();
-
-		include __DIR__ . '/../templates/projects-to-invoice.php';
 
 		$return = ob_get_contents();
 

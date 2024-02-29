@@ -17,10 +17,10 @@ class Admin {
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
 
-		// Actions
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 
-		// Project post type
+		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+
 		$this->project_post_type = new AdminProjectPostType( $plugin );
 	}
 
@@ -30,5 +30,30 @@ class Admin {
 	public function enqueue_scripts() {
 		wp_enqueue_script( 'orbis-autocomplete' );
 		wp_enqueue_style( 'select2' );
+	}
+	
+	/**
+	 * Admin menu.
+	 * 
+	 * @return void
+	 */
+	public function admin_menu() {
+		\add_submenu_page(
+			'edit.php?post_type=orbis_project',
+			\__( 'Orbis Projects Billing', 'orbis-projects' ),
+			\__( 'Billing', 'orbis-projects' ),
+			'manage_options',
+			'orbis_projects_billing',
+			[ $this, 'page_billing' ]
+		);
+	}
+
+	/**
+	 * Page billing.
+	 * 
+	 * @return void
+	 */
+	public function page_billing() {
+		include __DIR__ . '/../admin/page-billing.php';
 	}
 }
