@@ -396,7 +396,7 @@ class AdminProjectPostType {
 				$data['user_id']   = get_current_user_id();
 				$format['user_id'] = '%d';
 
-				$wpdb->insert( $wpdb->orbis_projects_invoices, $data, $format );
+				$wpdb->insert( $wpdb->orbis_invoices, $data, $format );
 			} elseif ( $delete ) {
 				if ( $number == $final_invoice_number ) { // WPCS: loose comparison ok.
 					$final_invoice_number = null;
@@ -409,7 +409,7 @@ class AdminProjectPostType {
 				);
 			} else {
 				$result = $wpdb->update(
-					$wpdb->orbis_projects_invoices,
+					$wpdb->orbis_invoices,
 					$data,
 					[ 'id' => $id ],
 					$format,

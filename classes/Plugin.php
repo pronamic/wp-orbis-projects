@@ -79,8 +79,9 @@ class Plugin {
 	public function init() {
 		global $wpdb;
 
-		$wpdb->orbis_projects          = $wpdb->prefix . 'orbis_projects';
-		$wpdb->orbis_projects_invoices = $wpdb->prefix . 'orbis_projects_invoices';
+		$wpdb->orbis_projects       = $wpdb->prefix . 'orbis_projects';
+		$wpdb->orbis_invoices       = $wpdb->prefix . 'orbis_invoices';
+		$wpdb->orbis_invoices_lines = $wpdb->prefix . 'orbis_invoices_lines';
 
 		$version = '1.1.3';
 
@@ -120,18 +121,6 @@ class Plugin {
 				KEY post_id (post_id),
 				KEY principal_id (principal_id)
 			) $charset_collate;
-
-			CREATE TABLE $wpdb->orbis_projects_invoices (
-				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
-				project_id BIGINT(16) UNSIGNED NOT NULL,
-				invoice_number VARCHAR(32) NOT NULL,
-				amount FLOAT NOT NULL,
-				seconds BIGINT(16) DEFAULT NULL,
-				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
-				create_date DATETIME DEFAULT NULL,
-				PRIMARY KEY  (id),
-				KEY project_id (project_id)
-			) $charset_collate;
 		";
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -139,7 +128,6 @@ class Plugin {
 		\dbDelta( $sql );
 
 		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_projects );
-		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_projects_invoices );
 	}
 
 	/**

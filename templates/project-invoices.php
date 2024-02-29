@@ -32,7 +32,7 @@ if ( $invoices && $invoices[0]->id ) : ?>
 					?>
 					<tr id="post-<?php the_ID(); ?>">
 						<td>
-							<?php echo esc_html( date_format( new DateTime( $invoice->create_date ), 'd-m-Y' ) ); ?>
+							<?php echo esc_html( date_format( new DateTime( $invoice->created_at ), 'd-m-Y' ) ); ?>
 						</td>
 						<td>
 							<?php

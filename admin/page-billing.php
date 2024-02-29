@@ -45,12 +45,15 @@ $query = "
 			LEFT JOIN
 		(
 			SELECT
-				project_invoice.project_id,
-				SUM( project_invoice.seconds ) AS project_billed_time,
-				SUM( project_invoice.amount ) AS project_billed_amount,
-				GROUP_CONCAT( DISTINCT project_invoice.invoice_number ) AS project_invoice_numbers
+				invoice_line.project_id,
+				SUM( invoice_line.seconds ) AS project_billed_time,
+				SUM( invoice_line.amount ) AS project_billed_amount,
+				GROUP_CONCAT( DISTINCT invoice.invoice_number ) AS project_invoice_numbers
 			FROM
-				$wpdb->orbis_projects_invoices AS project_invoice
+				$wpdb->orbis_invoices AS invoice
+					INNER JOIN
+				$wpdb->orbis_invoices_lines AS invoice_line
+						ON invoice_line.invoice_id = invoice.id
 			GROUP BY
 				project_invoice.project_id
 		) AS project_invoice_totals ON project_invoice_totals.project_id = project.id
