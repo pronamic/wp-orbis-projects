@@ -144,22 +144,19 @@ class Project {
 				invoice.*,
 				user.display_name
 			FROM
-				$wpdb->orbis_invoices AS invoice
-					LEFT JOIN
 				$wpdb->orbis_invoices_lines AS invoice_line
-						ON invoice_line.invoice_id = invoice.id
+					INNER JOIN
+				$wpdb->orbis_invoices AS invoice				
+						ON invoice.id = invoice_line.invoice_id
 					LEFT JOIN
 				$wpdb->users AS user
 						ON invoice.user_id = user.ID
 			WHERE
-				invoice.project_id = %d
-					OR
 				invoice_line.project_id = %d
 			GROUP BY
 				invoice.id
 			;
 		",
-				$project_id,
 				$project_id 
 			) 
 		);
