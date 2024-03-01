@@ -68,6 +68,12 @@ $query = "
 				project_timesheet.project_id
 		) AS project_timesheet_totals ON project_timesheet_totals.project_id = project.id
 	WHERE
+		(
+			project.billed_to IS NULL
+				OR
+			project.billed_to < DATE_SUB( NOW(), INTERVAL 1 WEEK )
+		)
+			AND
 		project.invoicable
 			AND
 		NOT project.invoiced
