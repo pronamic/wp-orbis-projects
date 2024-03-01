@@ -142,6 +142,8 @@ class Project {
 				"
 			SELECT
 				invoice.*,
+				invoice_line.amount,
+				invoice_line.seconds,
 				user.display_name
 			FROM
 				$wpdb->orbis_invoices_lines AS invoice_line
