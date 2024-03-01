@@ -243,7 +243,7 @@ $data = $wpdb->get_results( $query );
 							) - \intval( $item->project_billed_time )
 						);
 
-						$to_bill_amount = ( 85 * ( $to_bill_seconds / HOUR_IN_SECONDS ) );
+						$to_bill_amount = ( $hourly_rate * ( $to_bill_seconds / HOUR_IN_SECONDS ) );
 
 						if ( false !== \strpos( $item->project_name, 'Strippenkaart' ) ) {
 							// $to_bill_seconds = $item->project_billable_time;
