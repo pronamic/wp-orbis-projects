@@ -55,7 +55,7 @@ $query = "
 				$wpdb->orbis_invoices_lines AS invoice_line
 						ON invoice_line.invoice_id = invoice.id
 			GROUP BY
-				project_invoice.project_id
+				invoice_line.project_id
 		) AS project_invoice_totals ON project_invoice_totals.project_id = project.id
 			LEFT JOIN
 		(
