@@ -21,6 +21,8 @@ class QueryProcessor {
 		add_action( 'pre_get_posts', [ $this, 'pre_get_posts_custom_orderby' ] );
 
 		add_filter( 'posts_clauses', [ $this, 'posts_clauses' ], 10, 2 );
+
+		add_filter( 'rest_orbis_project_query', [ $this, 'rest_query' ], 10, 2 );
 	}
 
 	/**
@@ -185,5 +187,19 @@ class QueryProcessor {
 		}
 
 		return $pieces;
+	}
+
+	/**
+	 * REST query.
+	 * 
+	 * @link https://developer.wordpress.org/reference/hooks/rest_this-post_type_query/
+	 * @param array $args Query arguments.
+	 * @param WP_REST_Request $request WordPress REST request.
+	 * @return array
+	 */
+	public function rest_query( $args, $request ) {
+		$args['orbis_project_is_finished'] = false;
+
+		return $args;
 	}
 }
