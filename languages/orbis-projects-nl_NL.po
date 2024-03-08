@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2024-02-29T15:04:25+00:00\n"
-"PO-Revision-Date: 2024-02-29 16:05+0100\n"
+"POT-Creation-Date: 2024-03-08T08:17:30+00:00\n"
+"PO-Revision-Date: 2024-03-08 09:18+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -44,10 +44,8 @@ msgstr "Pronamic"
 msgid "https://www.pronamic.eu/"
 msgstr "https://www.pronamic.nl/"
 
-#: admin/meta-box-project-details.php:67 admin/page-billing.php:100
-#: admin/page-billing.php:104 templates/projects-to-invoice.php:180
-#: templates/projects-to-invoice.php:184
-#: templates/projects-without-agreement.php:29
+#: admin/meta-box-project-details.php:67 admin/page-billing.php:109
+#: admin/page-billing.php:113 templates/projects-without-agreement.php:29
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
@@ -67,10 +65,9 @@ msgstr "Prijs"
 msgid "Hourly Rate"
 msgstr "Uurtarief"
 
-#: admin/meta-box-project-details.php:103 admin/page-billing.php:109
-#: admin/page-billing.php:112 admin/page-billing.php:118
-#: classes/AdminProjectPostType.php:47 templates/projects-to-invoice.php:189
-#: templates/projects-to-invoice.php:192 templates/projects-to-invoice.php:198
+#: admin/meta-box-project-details.php:103 admin/page-billing.php:119
+#: admin/page-billing.php:122 admin/page-billing.php:128
+#: classes/AdminProjectPostType.php:47
 msgid "Time"
 msgstr "Tijd"
 
@@ -170,10 +167,9 @@ msgstr "Datum"
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
-#: admin/meta-box-project-invoices.php:19 admin/page-billing.php:108
-#: admin/page-billing.php:111 admin/page-billing.php:119
-#: templates/project-invoices.php:17 templates/projects-to-invoice.php:188
-#: templates/projects-to-invoice.php:191 templates/projects-to-invoice.php:199
+#: admin/meta-box-project-invoices.php:19 admin/page-billing.php:118
+#: admin/page-billing.php:121 admin/page-billing.php:129
+#: templates/project-invoices.php:17
 msgid "Amount"
 msgstr "Bedrag"
 
@@ -187,7 +183,7 @@ msgstr "Uren"
 msgid "Final Invoice"
 msgstr "Eindfactuur"
 
-#: admin/meta-box-project-invoices.php:22 templates/project-invoices.php:20
+#: admin/meta-box-project-invoices.php:22 templates/project-invoices.php:22
 msgid "User"
 msgstr "Gebruiker"
 
@@ -211,59 +207,59 @@ msgstr "Factuur toevoegen"
 msgid "Are you sure you want to delete this invoice?"
 msgstr "Weet je zeker dat je deze factuur wil verwijderen?"
 
-#: admin/page-billing.php:87 classes/ContentTypes.php:28
-#: classes/ContentTypes.php:30 classes/Plugin.php:171
+#: admin/page-billing.php:96 classes/ContentTypes.php:28
+#: classes/ContentTypes.php:30 classes/Plugin.php:159
 msgid "Projects"
 msgstr "Projecten"
 
-#: admin/page-billing.php:92 classes/AdminProjectPostType.php:45
-#: templates/projects-to-invoice.php:172
+#: admin/page-billing.php:101 classes/AdminProjectPostType.php:45
 #: templates/projects-without-agreement.php:31
 msgid "Principal"
 msgstr "Opdrachtgever"
 
-#: admin/page-billing.php:93 classes/ContentTypes.php:31 classes/Plugin.php:174
-#: templates/projects-table-view.php:34 templates/projects-to-invoice.php:173
+#: admin/page-billing.php:102 classes/ContentTypes.php:31
+#: classes/Plugin.php:162 templates/projects-table-view.php:34
 msgid "Project"
 msgstr "Project"
 
-#: admin/page-billing.php:94 templates/projects-to-invoice.php:174
+#: admin/page-billing.php:103
 msgid "Billable"
 msgstr "Factureerbaar"
 
-#: admin/page-billing.php:95 templates/projects-to-invoice.php:175
+#: admin/page-billing.php:104
 msgid "Billed"
 msgstr "Gefactureerd"
 
-#: admin/page-billing.php:96 templates/projects-to-invoice.php:176
+#: admin/page-billing.php:105
 msgid "Timesheet"
 msgstr "Urenregistraties"
 
-#: admin/page-billing.php:97 templates/projects-to-invoice.php:177
+#: admin/page-billing.php:106
 msgid "To Bill"
 msgstr "Te factureren"
 
-#: admin/page-billing.php:101 admin/page-billing.php:105
-#: templates/projects-to-invoice.php:181 templates/projects-to-invoice.php:185
+#: admin/page-billing.php:110 admin/page-billing.php:114
 msgid "Post ID"
 msgstr "Bericht-ID"
 
-#: admin/page-billing.php:102 admin/page-billing.php:106
-#: templates/projects-to-invoice.php:182 templates/projects-to-invoice.php:186
+#: admin/page-billing.php:111 admin/page-billing.php:115
 #: templates/projects.php:155
 msgid "Name"
 msgstr "Naam"
 
-#: admin/page-billing.php:113 classes/Theme.php:51
-#: templates/projects-to-invoice.php:193
+#: admin/page-billing.php:116
+msgid "Hourly rate"
+msgstr "Uurtarief"
+
+#: admin/page-billing.php:123 classes/Theme.php:51
 msgid "Invoices"
 msgstr "Facturen"
 
-#: admin/page-billing.php:115 templates/projects-to-invoice.php:195
+#: admin/page-billing.php:125
 msgid "Registered"
 msgstr "Geregistreerd"
 
-#: admin/page-billing.php:116 templates/projects-to-invoice.php:196
+#: admin/page-billing.php:126
 msgid "Available"
 msgstr "Beschikbaar"
 
@@ -314,7 +310,7 @@ msgctxt "orbis_project"
 msgid "Add New"
 msgstr "Nieuw project"
 
-#: classes/ContentTypes.php:33 classes/Plugin.php:179
+#: classes/ContentTypes.php:33 classes/Plugin.php:167
 msgid "Add New Project"
 msgstr "Nieuw project toevoegen"
 
@@ -322,7 +318,7 @@ msgstr "Nieuw project toevoegen"
 msgid "Edit Project"
 msgstr "Project bewerken"
 
-#: classes/ContentTypes.php:35 classes/Plugin.php:178
+#: classes/ContentTypes.php:35 classes/Plugin.php:166
 msgid "New Project"
 msgstr "Nieuw project"
 
@@ -338,7 +334,7 @@ msgstr "Toon projecten"
 msgid "Search Projects"
 msgstr "Projecten zoeken"
 
-#: classes/ContentTypes.php:39 classes/Plugin.php:176
+#: classes/ContentTypes.php:39 classes/Plugin.php:164
 msgid "No projects found."
 msgstr "Geen projecten gevonden."
 
@@ -489,39 +485,39 @@ msgctxt "slug"
 msgid "project-status"
 msgstr "project-status"
 
-#: classes/Plugin.php:170
+#: classes/Plugin.php:158
 msgid "Involved Persons"
 msgstr "Betrokken personen"
 
-#: classes/Plugin.php:175
+#: classes/Plugin.php:163
 msgid "Search project"
 msgstr "Zoek project"
 
-#: classes/Plugin.php:177
+#: classes/Plugin.php:165
 msgid "Add Project"
 msgstr "Project toevoegen"
 
-#: classes/Plugin.php:182
+#: classes/Plugin.php:170
 msgid "Person"
 msgstr "Persoon"
 
-#: classes/Plugin.php:183
+#: classes/Plugin.php:171
 msgid "Search person"
 msgstr "Zoek persoon"
 
-#: classes/Plugin.php:184
+#: classes/Plugin.php:172
 msgid "No persons found."
 msgstr "Geen personen gevonden."
 
-#: classes/Plugin.php:185
+#: classes/Plugin.php:173
 msgid "Add Person"
 msgstr "Persoon toevoegen"
 
-#: classes/Plugin.php:186
+#: classes/Plugin.php:174
 msgid "New Person"
 msgstr "Nieuw persoon"
 
-#: classes/Plugin.php:187
+#: classes/Plugin.php:175
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
@@ -533,15 +529,23 @@ msgstr "facturen"
 msgid "Invoice"
 msgstr "Factuur"
 
-#: templates/project-invoices.php:69
+#: templates/project-invoices.php:20
+msgid "Start date"
+msgstr "Startdatum"
+
+#: templates/project-invoices.php:21
+msgid "End date"
+msgstr "Einddatum"
+
+#: templates/project-invoices.php:71
 msgid "This is the final invoice."
 msgstr "Dit is de eindfactuur."
 
-#: templates/project-invoices.php:82
+#: templates/project-invoices.php:114
 msgid "Total:"
 msgstr "Totaal:"
 
-#: templates/project-invoices.php:108
+#: templates/project-invoices.php:142
 msgid "No invoices found."
 msgstr "Geen facturen gevonden."
 

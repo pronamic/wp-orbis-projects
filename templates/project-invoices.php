@@ -17,6 +17,8 @@ if ( $invoices && $invoices[0]->id ) : ?>
 					<th class="border-top-0"><?php esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
 					<th class="border-top-0"><?php esc_html_e( 'Hours', 'orbis-projects' ); ?></th>
 					<th class="border-top-0"><?php esc_html_e( 'Invoice', 'orbis-projects' ); ?></th>
+					<th class="border-top-0"><?php esc_html_e( 'Start date', 'orbis-projects' ); ?></th>
+					<th class="border-top-0"><?php esc_html_e( 'End date', 'orbis-projects' ); ?></th>
 					<th class="border-top-0"><?php esc_html_e( 'User', 'orbis-projects' ); ?></th>
 				</tr>
 			</thead>
@@ -72,6 +74,36 @@ if ( $invoices && $invoices[0]->id ) : ?>
 							?>
 						</td>
 						<td>
+							<?php 
+
+							if ( null !== $invoice->start_date ) {
+								$start_date = \DateTimeImmutable::createFromFormat( 'Y-m-d', $invoice->start_date, new \DateTimeZone( 'UTC' ) );
+
+								if ( false !== $start_date ) {
+									$start_date = $start_date->setTime( 0, 0 );
+
+									echo \esc_html( \date_i18n( 'D j M Y', $start_date->getTimestamp() ) );
+								}
+							}
+
+							?>
+						</td>
+						<td>
+							<?php 
+
+							if ( null !== $invoice->end_date ) {
+								$end_date = \DateTimeImmutable::createFromFormat( 'Y-m-d', $invoice->end_date, new \DateTimeZone( 'UTC' ) );
+
+								if ( false !== $end_date ) {
+									$end_date = $end_date->setTime( 0, 0 );
+
+									echo \esc_html( \date_i18n( 'D j M Y', $end_date->getTimestamp() ) );
+								}
+							}
+
+							?>
+						</td>
+						<td>
 							<?php echo esc_html( $invoice->display_name ); ?>
 						</td>
 					</tr>
@@ -92,6 +124,8 @@ if ( $invoices && $invoices[0]->id ) : ?>
 						<td>
 							<strong><?php echo esc_html( orbis_time( $hours_total ) ); ?></strong>
 						</td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 					</tr>
