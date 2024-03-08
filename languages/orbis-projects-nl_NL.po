@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2024-03-08T08:17:30+00:00\n"
-"PO-Revision-Date: 2024-03-08 09:18+0100\n"
+"POT-Creation-Date: 2024-03-08T08:34:05+00:00\n"
+"PO-Revision-Date: 2024-03-08 09:34+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -115,7 +115,7 @@ msgstr "Afgerond"
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:151 templates/projects-table-view.php:45
+#: admin/meta-box-project-details.php:151 templates/projects-table-view.php:46
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
@@ -131,7 +131,7 @@ msgstr "Gefactureerd"
 msgid "Project is invoiced"
 msgstr "Project is gefactureerd"
 
-#: admin/meta-box-project-details.php:182 templates/projects-table-view.php:105
+#: admin/meta-box-project-details.php:182 templates/projects-table-view.php:106
 msgid "Invoice reference"
 msgstr "Factuurreferentie"
 
@@ -554,31 +554,40 @@ msgid "Comment"
 msgstr "Reactie"
 
 #: templates/projects-table-view.php:44
+msgid "Period"
+msgstr "Periode"
+
+#: templates/projects-table-view.php:45
 msgid "Budget"
 msgstr "Budget"
 
-#: templates/projects-table-view.php:110
+#: templates/projects-table-view.php:111
 msgid "Line Description"
 msgstr "Regelbeschrijving"
 
 #. translators: 1st placeholder is the comment author, 2nd is the date
-#: templates/projects-table-view.php:137
+#: templates/projects-table-view.php:138
 msgid "%1$s says on %2$s:"
 msgstr "%1$s zegt op %2$s:"
 
-#: templates/projects-table-view.php:172
+#: templates/projects-table-view.php:173
 msgid "Add status"
 msgstr "Voeg status toe"
 
-#: templates/projects-table-view.php:221
+#. translators: 1: Period start date, 2: Period end date.
+#: templates/projects-table-view.php:224
+msgid "%1$s - %2$s"
+msgstr "%1$s - %2$s"
+
+#: templates/projects-table-view.php:256
 msgid "Yes"
 msgstr "Ja"
 
-#: templates/projects-table-view.php:232
+#: templates/projects-table-view.php:267
 msgid "No"
 msgstr "Nee"
 
-#: templates/projects-table-view.php:244
+#: templates/projects-table-view.php:279
 #: templates/projects-without-agreement.php:71
 msgid "Edit"
 msgstr "Bewerken"
