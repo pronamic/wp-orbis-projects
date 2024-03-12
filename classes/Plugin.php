@@ -67,7 +67,7 @@ class Plugin {
 								$project_post->project_id,
 								$project_post->principal_name,
 								$project_post->post_title,
-								isset( $project_post->project_logged_time ) ? \orbis_time( (int) $project_post->project_logged_time ) . ' / ' . \orbis_time( (int) $project_post->project_number_seconds ) : \orbis_time( (int) $project_post->project_number_seconds )
+								isset( $project_post->project_logged_time ) ? \orbis_time( $project_post->project_logged_time ) . ' / ' . \orbis_time( $project_post->project_number_seconds ) : \orbis_time( $project_post->project_number_seconds )
 							);
 						},
 					]
