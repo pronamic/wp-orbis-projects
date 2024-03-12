@@ -121,70 +121,72 @@ class QueryProcessor {
 
 		$post_type = $query->get( 'post_type' );
 
-		if ( 'orbis_project' === $post_type ) {
-			// Fields
-			$fields = ',
-				project.id AS project_id,
-				project.number_seconds AS project_number_seconds,
-				project.finished AS project_is_finished,
-				project.invoiced AS project_is_invoiced
-			';
-
-			// Join
-			$join = "
-				LEFT JOIN
-					$wpdb->orbis_projects AS project
-						ON $wpdb->posts.ID = project.post_id
-			";
-
-			if ( property_exists( $wpdb, 'orbis_companies' ) ) {
-				$fields .= ',
-				principal.id AS principal_id,
-				principal.name AS principal_name,
-				principal.post_id AS principal_post_id
-			';
-
-				$join .= "
-					LEFT JOIN
-						$wpdb->orbis_companies AS principal
-							ON project.principal_id = principal.id
-				";
-			}
-
-			// Where
-			$where = '';
-
-			$principal = $query->get( 'orbis_project_principal' );
-
-			if ( ! empty( $principal ) ) {
-				$where .= $wpdb->prepare( ' AND principal.name LIKE %s', '%' . $wpdb->esc_like( $principal ) . '%' );
-			}
-
-			$client_id = $query->get( 'orbis_project_client_id' );
-
-			if ( ! empty( $client_id ) ) {
-				$where .= $wpdb->prepare( ' AND principal.post_id LIKE %d ', $client_id );
-			}
-
-			$invoice_number = $query->get( 'orbis_project_invoice_number' );
-
-			if ( ! empty( $invoice_number ) ) {
-				$where .= $wpdb->prepare( ' AND project.invoice_number LIKE %s', '%' . $wpdb->esc_like( $invoice_number ) . '%' );
-			}
-
-			$is_finished = $query->get( 'orbis_project_is_finished', null );
-
-			if ( null !== $is_finished ) {
-				$is_finished = filter_var( $is_finished, FILTER_VALIDATE_BOOLEAN );
-
-				$where .= $wpdb->prepare( ' AND project.finished = %d', $is_finished );
-			}
-
-			// Pieces
-			$pieces['join']   .= $join;
-			$pieces['fields'] .= $fields;
-			$pieces['where']  .= $where;
+		if ( 'orbis_project' !== $post_type ) {
+			return $pieces;
 		}
+
+		// Fields
+		$fields = ',
+			project.id AS project_id,
+			project.number_seconds AS project_number_seconds,
+			project.finished AS project_is_finished,
+			project.invoiced AS project_is_invoiced
+		';
+
+		// Join
+		$join = "
+			LEFT JOIN
+				$wpdb->orbis_projects AS project
+					ON $wpdb->posts.ID = project.post_id
+		";
+
+		if ( property_exists( $wpdb, 'orbis_companies' ) ) {
+			$fields .= ',
+			principal.id AS principal_id,
+			principal.name AS principal_name,
+			principal.post_id AS principal_post_id
+		';
+
+			$join .= "
+				LEFT JOIN
+					$wpdb->orbis_companies AS principal
+						ON project.principal_id = principal.id
+			";
+		}
+
+		// Where
+		$where = '';
+
+		$principal = $query->get( 'orbis_project_principal' );
+
+		if ( ! empty( $principal ) ) {
+			$where .= $wpdb->prepare( ' AND principal.name LIKE %s', '%' . $wpdb->esc_like( $principal ) . '%' );
+		}
+
+		$client_id = $query->get( 'orbis_project_client_id' );
+
+		if ( ! empty( $client_id ) ) {
+			$where .= $wpdb->prepare( ' AND principal.post_id LIKE %d ', $client_id );
+		}
+
+		$invoice_number = $query->get( 'orbis_project_invoice_number' );
+
+		if ( ! empty( $invoice_number ) ) {
+			$where .= $wpdb->prepare( ' AND project.invoice_number LIKE %s', '%' . $wpdb->esc_like( $invoice_number ) . '%' );
+		}
+
+		$is_finished = $query->get( 'orbis_project_is_finished', null );
+
+		if ( null !== $is_finished ) {
+			$is_finished = filter_var( $is_finished, FILTER_VALIDATE_BOOLEAN );
+
+			$where .= $wpdb->prepare( ' AND project.finished = %d', $is_finished );
+		}
+
+		// Pieces
+		$pieces['join']   .= $join;
+		$pieces['fields'] .= $fields;
+		$pieces['where']  .= $where;
 
 		return $pieces;
 	}
