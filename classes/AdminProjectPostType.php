@@ -31,7 +31,6 @@ class AdminProjectPostType {
 		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 
 		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project' ], 10, 2 );
-		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project_invoices' ], 20 );
 		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project_sync' ], 500, 2 );
 	}
 
@@ -105,15 +104,6 @@ class AdminProjectPostType {
 			'normal',
 			'high'
 		);
-
-		add_meta_box(
-			'orbis_project_invoices',
-			__( 'Project Invoices', 'orbis-projects' ),
-			[ $this, 'meta_box_invoices' ],
-			'orbis_project',
-			'normal',
-			'high'
-		);
 	}
 
 	/**
@@ -123,17 +113,6 @@ class AdminProjectPostType {
 	 */
 	public function meta_box_details( $post ) {
 		include __DIR__ . '/../admin/meta-box-project-details.php';
-	}
-
-	/**
-	 * Invoices meta box.
-	 *
-	 * @param mixed $post
-	 */
-	public function meta_box_invoices( $post ) {
-		wp_nonce_field( 'orbis_save_project_invoices', 'orbis_project_invoices_nonce' );
-
-		include __DIR__ . '/../admin/meta-box-project-invoices.php';
 	}
 
 	/**
@@ -196,10 +175,6 @@ class AdminProjectPostType {
 		// Finished
 		$is_finished_old = filter_var( get_post_meta( $post_id, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
 		$is_finished_new = filter_var( $data['_orbis_project_is_finished'], FILTER_VALIDATE_BOOLEAN );
-
-		// Invoice number
-		$invoice_number_old = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
-		$invoice_number_new = $data['_orbis_project_invoice_number'];
 
 		foreach ( $data as $key => $value ) {
 			if ( empty( $value ) ) {
@@ -307,117 +282,5 @@ class AdminProjectPostType {
 		}
 
 		update_post_meta( $post_id, '_orbis_project_id', $orbis_id );
-	}
-
-	/**
-	 * Save invoices.
-	 *
-	 * @param int   $post_id
-	 * @param mixed $post
-	 */
-	public function save_project_invoices( $post_id ) {
-		global $wpdb;
-		global $wp_locale;
-
-		// Check nonce.
-		if ( ! filter_has_var( INPUT_POST, 'orbis_project_invoices_nonce' ) ) {
-			return;
-		}
-
-		$nonce = filter_input( INPUT_POST, 'orbis_project_invoices_nonce', FILTER_SANITIZE_STRING );
-
-		if ( ! wp_verify_nonce( $nonce, 'orbis_save_project_invoices' ) ) {
-			return;
-		}
-
-		// Ok.
-		$project_id = get_post_meta( $post_id, '_orbis_project_id', true );
-
-		if ( empty( $project_id ) ) {
-			return;
-		}
-
-		// Final Invoice.
-		$final_invoice_id     = filter_input( INPUT_POST, '_is_final_invoice', FILTER_SANITIZE_STRING );
-		$final_invoice_number = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
-
-		// Invoices Data.
-		$invoices_data = filter_input( INPUT_POST, '_orbis_project_invoices', FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY );
-
-		foreach ( $invoices_data as $id => $invoice_data ) {
-			$invoice_data = wp_parse_args(
-				$invoice_data,
-				[
-					'invoice_number' => null,
-					'amount'         => null,
-					'seconds'        => null,
-					'create_date'    => null,
-					'delete'         => false,
-				] 
-			);
-
-			$date    = $invoice_data['date'];
-			$amount  = filter_var(
-				$invoice_data['amount'],
-				FILTER_VALIDATE_FLOAT,
-				[
-					'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-					'options' => [
-						'decimal' => $wp_locale->number_format['decimal_point'],
-					],
-				] 
-			);
-			$seconds = orbis_parse_time( $invoice_data['seconds'] );
-			$number  = $invoice_data['number'];
-			$delete  = $invoice_data['delete'];
-
-			if ( $id == $final_invoice_id ) { // WPCS: loose comparison ok.
-				$final_invoice_number = $number;
-			}
-
-			$data = [
-				'invoice_number' => $number,
-				'amount'         => $amount,
-				'seconds'        => $seconds,
-				'create_date'    => $date,
-			];
-
-			$format = [
-				'invoice_number' => '%s',
-				'amount'         => '%f',
-				'seconds'        => '%d',
-				'create_date'    => '%s',
-			];
-
-			if ( 'new' === $id && filter_has_var( INPUT_POST, 'orbis_projects_invoice_add' ) ) {
-				$data['project_id']   = $project_id;
-				$format['project_id'] = '%d';
-
-				$data['user_id']   = get_current_user_id();
-				$format['user_id'] = '%d';
-
-				$wpdb->insert( $wpdb->orbis_invoices, $data, $format );
-			} elseif ( $delete ) {
-				if ( $number == $final_invoice_number ) { // WPCS: loose comparison ok.
-					$final_invoice_number = null;
-				}
-
-				$result = $wpdb->delete(
-					$wpdb->orbis_projects_invoices,
-					[ 'id' => $id ],
-					[ 'id' => '%d' ]
-				);
-			} else {
-				$result = $wpdb->update(
-					$wpdb->orbis_invoices,
-					$data,
-					[ 'id' => $id ],
-					$format,
-					[ 'id' => '%d' ]
-				);
-			}
-		}
-
-		update_post_meta( $post_id, '_orbis_project_invoice_number', $final_invoice_number );
 	}
 }

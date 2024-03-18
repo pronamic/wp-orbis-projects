@@ -59,6 +59,8 @@ if ( '' !== $billed_to_string ) {
 	$billed_to = ( false === $value ) ? null : $value->setTime( 0, 0 );
 }
 
+$final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_number', true );
+
 ?>
 <table class="form-table">
 	<tbody>
@@ -264,6 +266,14 @@ if ( '' !== $billed_to_string ) {
 			</th>
 			<td>
 				<input id="orbis_project_billed_to" name="_orbis_project_billed_to" value="<?php echo esc_attr( null === $billed_to ? '' : $billed_to->format( 'Y-m-d' ) ); ?>" type="date" />
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="orbis_project_invoice_number"><?php esc_html_e( 'Final invoice number', 'orbis-projects' ); ?></label>
+			</th>
+			<td>
+				<input id="orbis_project_invoice_number" name="_orbis_project_invoice_number" value="<?php echo esc_attr( $final_invoice_number ); ?>" type="text" />
 			</td>
 		</tr>
 	</tbody>
