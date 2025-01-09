@@ -117,6 +117,7 @@ class Plugin {
 				invoice_number VARCHAR(128) DEFAULT NULL,
 				finished BOOLEAN NOT NULL DEFAULT FALSE,
 				billable_amount DECIMAL(15,2) DEFAULT NULL,
+				declarability VARCHAR(16) DEFAULT '',
 				PRIMARY KEY  (id),
 				KEY post_id (post_id),
 				KEY principal_id (principal_id)

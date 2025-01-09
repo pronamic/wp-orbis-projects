@@ -156,6 +156,7 @@ class AdminProjectPostType {
 			'_orbis_project_agreement_id'     => FILTER_VALIDATE_INT,
 			'_orbis_project_is_finished'      => FILTER_VALIDATE_BOOLEAN,
 			'_orbis_project_is_invoicable'    => FILTER_VALIDATE_BOOLEAN,
+			'_orbis_project_declarability'    => FILTER_SANITIZE_STRING,
 			'_orbis_project_invoice_number'   => FILTER_SANITIZE_STRING,
 			'_orbis_invoice_reference'        => FILTER_SANITIZE_STRING,
 			'_orbis_invoice_line_description' => FILTER_SANITIZE_STRING,
@@ -224,6 +225,7 @@ class AdminProjectPostType {
 
 		$principal_id   = get_post_meta( $post_id, '_orbis_project_principal_id', true );
 		$is_invoicable  = get_post_meta( $post_id, '_orbis_project_is_invoicable', true );
+		$declarability  = get_post_meta( $post_id, '_orbis_project_declarability', true );
 		$is_invoiced    = get_post_meta( $post_id, '_orbis_project_is_invoiced', true );
 		$invoice_number = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
 		$is_finished    = get_post_meta( $post_id, '_orbis_project_is_finished', true );
@@ -249,6 +251,9 @@ class AdminProjectPostType {
 
 		$data['invoicable'] = $is_invoicable;
 		$form['invoicable'] = '%d';
+
+		$data['declarability'] = $declarability;
+		$form['declarability'] = '%s';
 
 		$data['invoiced'] = $is_invoiced;
 		$form['invoiced'] = '%d';

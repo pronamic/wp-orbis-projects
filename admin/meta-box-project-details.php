@@ -6,10 +6,11 @@ $orbis_project = new Pronamic\Orbis\Projects\Project( $post );
 
 wp_nonce_field( 'orbis_save_project_details', 'orbis_project_details_meta_box_nonce' );
 
-$orbis_id     = get_post_meta( $post->ID, '_orbis_project_id', true );
-$principal_id = get_post_meta( $post->ID, '_orbis_project_principal_id', true );
-$seconds      = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
-$agreement_id = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
+$orbis_id      = get_post_meta( $post->ID, '_orbis_project_id', true );
+$principal_id  = get_post_meta( $post->ID, '_orbis_project_principal_id', true );
+$seconds       = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
+$agreement_id  = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
+$declarability = get_post_meta( $post->ID, '_orbis_project_declarability', true );
 
 $invoice_reference        = get_post_meta( $post->ID, '_orbis_invoice_reference', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
@@ -23,6 +24,7 @@ if ( $project ) {
 	$principal_id   = $project->principal_id;
 	$invoice_number = $project->invoice_number;
 	$seconds        = $project->number_seconds;
+	$declarability  = $project->declarability;
 }
 
 $principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_companies WHERE id= %d;", $principal_id ) );
@@ -158,6 +160,40 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 					<input type="checkbox" value="yes" id="_orbis_project_is_invoicable" name="_orbis_project_is_invoicable" <?php checked( $orbis_project->is_invoicable() ); ?> />
 					<?php esc_html_e( 'Project is invoicable', 'orbis-projects' ); ?>
 				</label>
+			</td>
+		</tr>
+
+		<tr valign="top">
+			<th scope="row">
+				<label for="_orbis_project_declarability">
+					<?php esc_html_e( 'Declarability', 'orbis-projects' ); ?>
+				</label>
+			</th>
+			<td>
+				<?php
+
+				$options = [
+					''               => \__( '— Select Declarability —', 'orbis-projects' ),
+					'chargeable'     => \_x( 'Chargeable', 'declarability', 'orbis-projects' ),
+					'non_chargeable' => \_x( 'Non-chargeable', 'declarability', 'orbis-projects' ),
+					'excluded'       => \_x( 'Excluded', 'declarability', 'orbis-projects' ),
+				];
+
+				?>
+				<select id="_orbis_project_declarability" name="_orbis_project_declarability">
+					<?php
+
+					foreach ( $options as $value => $label ) {
+						printf(
+							'<option value="%s" %s>%s</option>',
+							\esc_attr( $value ),
+							\selected( $declarability, $value, false ),
+							\esc_html( $label )
+						);
+					}
+
+					?>
+				</select>
 			</td>
 		</tr>
 
