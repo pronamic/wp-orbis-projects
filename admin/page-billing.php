@@ -3,7 +3,7 @@
  * Page billing
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2024 Pronamic
+ * @copyright 2005-2026 Pronamic
  * @license   GPL-2.0-or-later
  * @package   Pronamic\Orbis\Projects
  */
@@ -133,7 +133,7 @@ $data = $wpdb->get_results( $query );
 		</thead>
 
 		<tbody>
-			
+
 			<?php foreach ( $data as $item ) : ?>
 
 				<tr>
@@ -175,9 +175,9 @@ $data = $wpdb->get_results( $query );
 					<td>
 						<?php
 
-						$hourly_rate = get_post_meta( $item->project_post_id, '_orbis_hourly_rate', true );
+						$hourly_rate = (string) get_post_meta( $item->project_post_id, '_orbis_hourly_rate', true );
 
-						if ( '' !== $hourly_rate ) {
+						if ( \is_numeric( $hourly_rate ) ) {
 							echo \esc_html( number_format_i18n( $hourly_rate, 2 ) );
 						}
 
@@ -233,7 +233,7 @@ $data = $wpdb->get_results( $query );
 					</td>
 
 					<td>
-						<?php 
+						<?php
 
 						$to_bill_seconds = \max(
 							0,
@@ -243,13 +243,17 @@ $data = $wpdb->get_results( $query );
 							) - \intval( $item->project_billed_time )
 						);
 
-						$to_bill_amount = ( $hourly_rate * ( $to_bill_seconds / HOUR_IN_SECONDS ) );
+						$to_bill_amount = null;
+
+						if ( \is_numeric( $hourly_rate ) ) {
+							$to_bill_amount = ( $hourly_rate * ( $to_bill_seconds / \HOUR_IN_SECONDS ) );
+						}
 
 						if ( false !== \strpos( $item->project_name, 'Strippenkaart' ) ) {
 							// $to_bill_seconds = $item->project_billable_time;
 							// $to_bill_amount  = $item->project_billable_amount;
 						}
-						
+
 						echo \orbis_time( $to_bill_seconds );
 
 						?>
@@ -257,7 +261,9 @@ $data = $wpdb->get_results( $query );
 					<td>
 						<?php
 
-						echo \orbis_price( $to_bill_amount );
+						if ( null !== $to_bill_amount ) {
+							echo \orbis_price( $to_bill_amount );
+						}
 
 						?>
 					</td>
