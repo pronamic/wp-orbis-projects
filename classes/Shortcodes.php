@@ -12,6 +12,13 @@ namespace Pronamic\Orbis\Projects;
 
 class Shortcodes {
 	/**
+	 * Plugin.
+	 *
+	 * @var Plugin
+	 */
+	public $plugin;
+
+	/**
 	 * Construct.
 	 */
 	public function __construct( $plugin ) {

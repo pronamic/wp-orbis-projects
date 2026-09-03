@@ -12,6 +12,20 @@ namespace Pronamic\Orbis\Projects;
 
 class Admin {
 	/**
+	 * Plugin.
+	 *
+	 * @var Plugin
+	 */
+	public $plugin;
+
+	/**
+	 * Project post type.
+	 *
+	 * @var AdminProjectPostType
+	 */
+	public $project_post_type;
+
+	/**
 	 * Construct.
 	 */
 	public function __construct( $plugin ) {
