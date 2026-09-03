@@ -260,7 +260,7 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 
 		<tr valign="top">
 			<th scope="row">
-				<label for="orbis_project_start_date"><?php esc_html_e( 'Period', 'orbis-tasks' ); ?></label>
+				<label for="orbis_project_start_date"><?php esc_html_e( 'Period', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
 				<?php
