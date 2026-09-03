@@ -135,7 +135,9 @@ class AdminProjectPostType {
 		}
 
 		// Verify nonce
-		$nonce = filter_input( INPUT_POST, 'orbis_project_details_meta_box_nonce', FILTER_SANITIZE_STRING );
+		$nonce = filter_input( INPUT_POST, 'orbis_project_details_meta_box_nonce', FILTER_UNSAFE_RAW );
+		$nonce = ( null === $nonce ) ? '' : sanitize_text_field( wp_unslash( $nonce ) );
+
 		if ( ! wp_verify_nonce( $nonce, 'orbis_save_project_details' ) ) {
 			return;
 		}
@@ -163,13 +165,24 @@ class AdminProjectPostType {
 			'_orbis_project_agreement_id'     => FILTER_VALIDATE_INT,
 			'_orbis_project_is_finished'      => FILTER_VALIDATE_BOOLEAN,
 			'_orbis_project_is_invoicable'    => FILTER_VALIDATE_BOOLEAN,
-			'_orbis_project_declarability'    => FILTER_SANITIZE_STRING,
-			'_orbis_project_invoice_number'   => FILTER_SANITIZE_STRING,
-			'_orbis_invoice_reference'        => FILTER_SANITIZE_STRING,
-			'_orbis_invoice_line_description' => FILTER_SANITIZE_STRING,
-			'_orbis_project_start_date'       => FILTER_SANITIZE_STRING,
-			'_orbis_project_end_date'         => FILTER_SANITIZE_STRING,
-			'_orbis_project_billed_to'        => FILTER_SANITIZE_STRING,
+			'_orbis_project_declarability'    => FILTER_UNSAFE_RAW,
+			'_orbis_project_invoice_number'   => FILTER_UNSAFE_RAW,
+			'_orbis_invoice_reference'        => FILTER_UNSAFE_RAW,
+			'_orbis_invoice_line_description' => FILTER_UNSAFE_RAW,
+			'_orbis_project_start_date'       => FILTER_UNSAFE_RAW,
+			'_orbis_project_end_date'         => FILTER_UNSAFE_RAW,
+			'_orbis_project_billed_to'        => FILTER_UNSAFE_RAW,
+		];
+
+		// Text fields which require explicit sanitization, since `FILTER_UNSAFE_RAW` does not sanitize.
+		$text_keys = [
+			'_orbis_project_declarability',
+			'_orbis_project_invoice_number',
+			'_orbis_invoice_reference',
+			'_orbis_invoice_line_description',
+			'_orbis_project_start_date',
+			'_orbis_project_end_date',
+			'_orbis_project_billed_to',
 		];
 
 		if ( current_user_can( 'edit_orbis_project_administration' ) ) {
@@ -178,11 +191,21 @@ class AdminProjectPostType {
 
 		$data = filter_input_array( INPUT_POST, $definition );
 
+		if ( ! is_array( $data ) ) {
+			$data = [];
+		}
+
+		foreach ( $text_keys as $text_key ) {
+			$value = array_key_exists( $text_key, $data ) ? $data[ $text_key ] : null;
+
+			$data[ $text_key ] = ( null === $value || false === $value ) ? null : sanitize_text_field( wp_unslash( $value ) );
+		}
+
 		$data['_orbis_project_seconds_available'] = orbis_filter_time_input( INPUT_POST, '_orbis_project_seconds_available' );
 
 		// Finished
 		$is_finished_old = filter_var( get_post_meta( $post_id, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
-		$is_finished_new = filter_var( $data['_orbis_project_is_finished'], FILTER_VALIDATE_BOOLEAN );
+		$is_finished_new = filter_var( $data['_orbis_project_is_finished'] ?? null, FILTER_VALIDATE_BOOLEAN );
 
 		foreach ( $data as $key => $value ) {
 			if ( empty( $value ) ) {
