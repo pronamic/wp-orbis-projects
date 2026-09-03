@@ -35,3 +35,6 @@ psalm.xml
 /build/
 /deploy/
 /node_modules/
+
+# Deployer.org
+/deploy.php
