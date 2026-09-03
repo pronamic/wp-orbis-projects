@@ -19,6 +19,13 @@ class AdminProjectPostType {
 	const POST_TYPE = 'orbis_project';
 
 	/**
+	 * Plugin.
+	 *
+	 * @var Plugin
+	 */
+	public $plugin;
+
+	/**
 	 * Construct.
 	 */
 	public function __construct( $plugin ) {

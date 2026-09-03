@@ -14,6 +14,48 @@ use stdClass;
 use WP_Post;
 
 class Plugin {
+	/**
+	 * Content types.
+	 *
+	 * @var ContentTypes
+	 */
+	public $content_types;
+
+	/**
+	 * Query processor.
+	 *
+	 * @var QueryProcessor
+	 */
+	public $query_processor;
+
+	/**
+	 * Shortcodes.
+	 *
+	 * @var Shortcodes
+	 */
+	public $shortcodes;
+
+	/**
+	 * Commenter.
+	 *
+	 * @var Commenter
+	 */
+	public $commenter;
+
+	/**
+	 * Admin.
+	 *
+	 * @var Admin|null
+	 */
+	public $admin;
+
+	/**
+	 * Theme.
+	 *
+	 * @var Theme|null
+	 */
+	public $theme;
+
 	public function __construct( $file ) {
 		add_action( 'init', [ $this, 'init' ] );
 

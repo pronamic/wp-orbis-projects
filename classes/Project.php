@@ -13,6 +13,13 @@ namespace Pronamic\Orbis\Projects;
 use Orbis_Time;
 
 class Project {
+	/**
+	 * Post.
+	 *
+	 * @var \WP_Post|null
+	 */
+	public $post;
+
 	public function __construct( $post = null ) {
 		$this->post = get_post( $post );
 	}
