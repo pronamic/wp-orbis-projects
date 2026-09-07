@@ -38,6 +38,7 @@ class AdminProjectPostType {
 		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 
 		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project' ], 10, 2 );
+		add_action( 'save_post_' . AdminProjectTemplatePostType::POST_TYPE, [ $this, 'save_project' ], 10, 2 );
 		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project_sync' ], 500, 2 );
 	}
 
@@ -101,13 +102,19 @@ class AdminProjectPostType {
 
 	/**
 	 * Add meta boxes.
+	 *
+	 * @param string $post_type Post type.
 	 */
-	public function add_meta_boxes() {
+	public function add_meta_boxes( $post_type ) {
+		if ( ! post_type_supports( $post_type, 'orbis-project-details' ) ) {
+			return;
+		}
+
 		add_meta_box(
 			'orbis_project_details',
 			__( 'Project Information', 'orbis-projects' ),
 			[ $this, 'meta_box_details' ],
-			'orbis_project',
+			$post_type,
 			'normal',
 			'high'
 		);
