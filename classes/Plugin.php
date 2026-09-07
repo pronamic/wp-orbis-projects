@@ -208,6 +208,11 @@ class Plugin {
 	 * Posts to posts initialize
 	 */
 	public function p2p_init() {
+		// The `orbis_person` post type is registered by the Orbis People plugin, which may not be active.
+		if ( ! post_type_exists( 'orbis_person' ) ) {
+			return;
+		}
+
 		p2p_register_connection_type(
 			[
 				'name'        => 'orbis_projects_to_persons',
