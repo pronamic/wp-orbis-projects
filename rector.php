@@ -1,4 +1,9 @@
 <?php
+/**
+ * Rector configuration.
+ *
+ * @package Pronamic\Orbis\Projects
+ */
 
 declare(strict_types=1);
 
