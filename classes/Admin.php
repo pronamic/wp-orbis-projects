@@ -54,6 +54,14 @@ class Admin {
 	public function admin_menu() {
 		\add_submenu_page(
 			'edit.php?post_type=orbis_project',
+			\__( 'Project Templates', 'orbis-projects' ),
+			\__( 'Templates', 'orbis-projects' ),
+			'edit_posts',
+			'edit.php?post_type=orbis_project_tmpl'
+		);
+
+		\add_submenu_page(
+			'edit.php?post_type=orbis_project',
 			\__( 'Orbis Projects Billing', 'orbis-projects' ),
 			\__( 'Billing', 'orbis-projects' ),
 			'manage_options',
