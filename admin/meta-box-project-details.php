@@ -255,7 +255,7 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 							'hide_empty'       => false,
 							'selected'         => is_object( $term ) ? $term->term_id : false,
 							'taxonomy'         => 'orbis_payment_method',
-						] 
+						]
 					);
 				?>
 			</td>
@@ -278,7 +278,7 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 						 */
 						/* translators: 1: input for start date, 2: input for end date */
 						_x( '%1$s to %2$s', 'including', 'orbis-projects' ),
-						\sprintf( 
+						\sprintf(
 							'<input id="orbis_project_start_date" name="_orbis_project_start_date" value="%s" type="date" />',
 							\esc_attr( null === $start_date ? '' : $start_date->format( 'Y-m-d' ) )
 						),
