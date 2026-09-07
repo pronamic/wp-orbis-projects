@@ -32,8 +32,8 @@
 		"email": "support@pronamic.eu"
 	},
 	"devDependencies": {
-		"@wordpress/env": "^9.3.0",
-		"@wordpress/scripts": "^27.2.0"
+		"@wordpress/env": "^11.14.0",
+		"@wordpress/scripts": "^34.2.0"
 	},
 	"scripts": {
 		"lint:pkg-json": "wp-scripts lint-pkg-json"

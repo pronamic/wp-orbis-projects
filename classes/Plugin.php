@@ -43,6 +43,20 @@ class Plugin {
 	public $commenter;
 
 	/**
+	 * Project post type.
+	 *
+	 * @var AdminProjectPostType
+	 */
+	public $project_post_type;
+
+	/**
+	 * Project scheduler.
+	 *
+	 * @var ProjectScheduler
+	 */
+	public $project_scheduler;
+
+	/**
 	 * Admin.
 	 *
 	 * @var Admin|null
@@ -67,6 +81,8 @@ class Plugin {
 		$this->query_processor = new QueryProcessor();
 		$this->shortcodes      = new Shortcodes( $this );
 		$this->commenter       = new Commenter( $this );
+		$this->project_post_type = new AdminProjectPostType( $this );
+		$this->project_scheduler = new ProjectScheduler( $this );
 
 		if ( is_admin() ) {
 			$this->admin = new Admin( $this );
@@ -217,7 +233,7 @@ class Plugin {
 					'new_item'      => __( 'New Person', 'orbis-projects' ),
 					'add_new_item'  => __( 'Add New Person', 'orbis-projects' ),
 				],
-			] 
+			]
 		);
 	}
 }

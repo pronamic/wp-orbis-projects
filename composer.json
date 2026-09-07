@@ -47,7 +47,8 @@
 		"pronamic/wp-money": "^2.4",
 		"sabre/vobject": "^4.1",
 		"sabre/uri": "^1",
-		"sabre/xml": "^1"
+		"sabre/xml": "^1",
+		"woocommerce/action-scheduler": "^3.9"
 	},
 	"require-dev": {
 		"pronamic/wp-coding-standards": "^2.1",
