@@ -55,6 +55,7 @@
 	},
 	"require-dev": {
 		"pronamic/wp-coding-standards": "^2.1",
+		"rector/rector": "^2.6",
 		"wp-cli/dist-archive-command": "*",
 		"wp-cli/wp-cli-bundle": "*",
 		"deployer/deployer": "^7.5",
@@ -78,6 +79,7 @@
 			"vendor/bin/wp i18n update-po ./languages/orbis-projects.pot"
 		],
 		"phpcs": "vendor/bin/phpcs",
+		"rector": "vendor/bin/rector",
 		"qa": [
 			"@phpcs"
 		]
