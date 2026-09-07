@@ -14,6 +14,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $wpdb;
 
+$required_tables = [
+	'orbis_companies'  => \__( 'Orbis Companies', 'orbis-projects' ),
+	'orbis_timesheets' => \__( 'Orbis Timesheets', 'orbis-projects' ),
+];
+
+$missing_tables = [];
+
+foreach ( $required_tables as $property => $label ) {
+	if ( isset( $wpdb->{$property} ) ) {
+		continue;
+	}
+
+	$missing_tables[] = $label;
+}
+
+if ( [] !== $missing_tables ) :
+	?>
+	<div class="wrap">
+		<h1><?php echo \esc_html( \get_admin_page_title() ); ?></h1>
+
+		<div class="notice notice-warning">
+			<p>
+				<?php
+				\printf(
+					/* translators: %s: missing Orbis table names. */
+					\esc_html__( 'The billing overview cannot be shown because the following Orbis tables are not available: %s.', 'orbis-projects' ),
+					\esc_html( \implode( ', ', $missing_tables ) )
+				);
+				?>
+			</p>
+		</div>
+	</div>
+	<?php
+
+	return;
+endif;
+
 $query = "
 	SELECT
 		project.id AS project_id,
