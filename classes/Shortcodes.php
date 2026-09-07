@@ -12,20 +12,20 @@ namespace Pronamic\Orbis\Projects;
 
 class Shortcodes {
 	/**
-	 * Plugin.
-	 *
-	 * @var Plugin
-	 */
-	public $plugin;
-
-	/**
 	 * Construct.
+	 *
+	 * @param \Pronamic\Orbis\Projects\Plugin $plugin
 	 */
-	public function __construct( $plugin ) {
-		$this->plugin = $plugin;
-
-		add_shortcode( 'orbis_projects_active', [ $this, 'shortcode_projects_active' ] );
-		add_shortcode( 'orbis_projects_without_agreement', [ $this, 'shortcode_projects_without_agreement' ] );
+	public function __construct(
+		/**
+		 * Plugin.
+		 *
+		 * @var \Pronamic\Orbis\Projects\Plugin
+		 */
+		public $plugin
+	) {
+		add_shortcode( 'orbis_projects_active', $this->shortcode_projects_active( ... ) );
+		add_shortcode( 'orbis_projects_without_agreement', $this->shortcode_projects_without_agreement( ... ) );
 	}
 
 	/**

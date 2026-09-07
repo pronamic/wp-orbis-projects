@@ -20,13 +20,13 @@ class AdminProjectTemplatePostType {
 	 * Construct.
 	 */
 	public function __construct() {
-		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', [ $this, 'edit_columns' ] );
+		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', $this->edit_columns( ... ) );
 
-		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', [ $this, 'custom_columns' ], 10, 2 );
+		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
 
-		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
+		add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
 
-		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project_template' ], 10, 2 );
+		add_action( 'save_post_' . self::POST_TYPE, $this->save_project_template( ... ), 10, 2 );
 	}
 
 	/**
@@ -37,12 +37,12 @@ class AdminProjectTemplatePostType {
 	 */
 	public function edit_columns( $columns ) {
 		return [
-			'cb'                                        => '<input type="checkbox" />',
-			'title'                                     => __( 'Title', 'orbis-projects' ),
+			'cb'                                       => '<input type="checkbox" />',
+			'title'                                    => __( 'Title', 'orbis-projects' ),
 			'orbis_project_template_creation_date'     => __( 'Next Creation Date', 'orbis-projects' ),
 			'orbis_project_template_creation_modifier' => __( 'Recurrence', 'orbis-projects' ),
-			'author'                                    => __( 'Author', 'orbis-projects' ),
-			'date'                                      => __( 'Date', 'orbis-projects' ),
+			'author'                                   => __( 'Author', 'orbis-projects' ),
+			'date'                                     => __( 'Date', 'orbis-projects' ),
 		];
 	}
 
@@ -72,7 +72,7 @@ class AdminProjectTemplatePostType {
 		add_meta_box(
 			'orbis_project_template_schedule',
 			__( 'Project Template Schedule', 'orbis-projects' ),
-			[ $this, 'meta_box_schedule' ],
+			$this->meta_box_schedule( ... ),
 			self::POST_TYPE,
 			'normal',
 			'high'

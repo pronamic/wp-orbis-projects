@@ -12,20 +12,20 @@ namespace Pronamic\Orbis\Projects;
 
 class Commenter {
 	/**
-	 * Plugin.
-	 *
-	 * @var Plugin
-	 */
-	public $plugin;
-
-	/**
 	 * Construct.
+	 *
+	 * @param \Pronamic\Orbis\Projects\Plugin $plugin
 	 */
-	public function __construct( $plugin ) {
-		$this->plugin = $plugin;
-
+	public function __construct(
+		/**
+		 * Plugin.
+		 *
+		 * @var \Pronamic\Orbis\Projects\Plugin
+		 */
+		public $plugin
+	) {
 		// Hooks
-		add_action( 'orbis_project_finished_update', [ $this, 'project_finished_update' ], 10, 2 );
+		add_action( 'orbis_project_finished_update', $this->project_finished_update( ... ), 10, 2 );
 		add_action( 'orbis_project_invoice_number_update', [ $this, 'project_invoice_number_update' ], 10, 3 );
 	}
 

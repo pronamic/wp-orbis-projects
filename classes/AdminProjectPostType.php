@@ -19,27 +19,27 @@ class AdminProjectPostType {
 	const POST_TYPE = 'orbis_project';
 
 	/**
-	 * Plugin.
-	 *
-	 * @var Plugin
-	 */
-	public $plugin;
-
-	/**
 	 * Construct.
+	 *
+	 * @param \Pronamic\Orbis\Projects\Plugin $plugin
 	 */
-	public function __construct( $plugin ) {
-		$this->plugin = $plugin;
+	public function __construct(
+		/**
+		 * Plugin.
+		 *
+		 * @var \Pronamic\Orbis\Projects\Plugin
+		 */
+		public $plugin
+	) {
+		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', $this->edit_columns( ... ) );
 
-		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', [ $this, 'edit_columns' ] );
+		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
 
-		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', [ $this, 'custom_columns' ], 10, 2 );
+		add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
 
-		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
-
-		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project' ], 10, 2 );
-		add_action( 'save_post_' . AdminProjectTemplatePostType::POST_TYPE, [ $this, 'save_project' ], 10, 2 );
-		add_action( 'save_post_' . self::POST_TYPE, [ $this, 'save_project_sync' ], 500, 2 );
+		add_action( 'save_post_' . self::POST_TYPE, $this->save_project( ... ), 10, 2 );
+		add_action( 'save_post_' . AdminProjectTemplatePostType::POST_TYPE, $this->save_project( ... ), 10, 2 );
+		add_action( 'save_post_' . self::POST_TYPE, $this->save_project_sync( ... ), 500, 2 );
 	}
 
 	/**
@@ -113,7 +113,7 @@ class AdminProjectPostType {
 		add_meta_box(
 			'orbis_project_details',
 			__( 'Project Information', 'orbis-projects' ),
-			[ $this, 'meta_box_details' ],
+			$this->meta_box_details( ... ),
 			$post_type,
 			'normal',
 			'high'

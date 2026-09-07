@@ -71,16 +71,16 @@ class Plugin {
 	public $theme;
 
 	public function __construct( $file ) {
-		add_action( 'init', [ $this, 'init' ] );
+		add_action( 'init', $this->init( ... ) );
 
-		add_action( 'the_post', [ $this, 'the_post' ] );
+		add_action( 'the_post', $this->the_post( ... ) );
 
-		add_action( 'p2p_init', [ $this, 'p2p_init' ] );
+		add_action( 'p2p_init', $this->p2p_init( ... ) );
 
-		$this->content_types   = new ContentTypes();
-		$this->query_processor = new QueryProcessor();
-		$this->shortcodes      = new Shortcodes( $this );
-		$this->commenter       = new Commenter( $this );
+		$this->content_types     = new ContentTypes();
+		$this->query_processor   = new QueryProcessor();
+		$this->shortcodes        = new Shortcodes( $this );
+		$this->commenter         = new Commenter( $this );
 		$this->project_post_type = new AdminProjectPostType( $this );
 		$this->project_scheduler = new ProjectScheduler( $this );
 
@@ -92,12 +92,12 @@ class Plugin {
 
 		\add_action(
 			'rest_api_init',
-			function () {
+			function (): void {
 				\register_rest_field(
 					'orbis_project',
 					'orbis_project_id',
 					[
-						'get_callback' => function() {
+						'get_callback' => function () {
 							$project_post = \get_post();
 
 							if ( ! $project_post instanceof WP_Post ) {
@@ -113,7 +113,7 @@ class Plugin {
 					'orbis_project',
 					'select2_text',
 					[
-						'get_callback' => function() {
+						'get_callback' => function () {
 							$project_post = \get_post();
 
 							if ( ! $project_post instanceof WP_Post ) {

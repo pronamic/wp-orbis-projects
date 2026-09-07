@@ -46,6 +46,7 @@
 		"wp-slug": "orbis-projects"
 	},
 	"require": {
+		"php": ">=8.2",
 		"automattic/jetpack-autoloader": "^3.0",
 		"pronamic/wp-money": "^2.4",
 		"sabre/vobject": "^4.1",

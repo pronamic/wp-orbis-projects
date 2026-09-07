@@ -12,13 +12,6 @@ namespace Pronamic\Orbis\Projects;
 
 class Admin {
 	/**
-	 * Plugin.
-	 *
-	 * @var Plugin
-	 */
-	public $plugin;
-
-	/**
 	 * Project template post type.
 	 *
 	 * @var AdminProjectTemplatePostType
@@ -27,13 +20,20 @@ class Admin {
 
 	/**
 	 * Construct.
+	 *
+	 * @param \Pronamic\Orbis\Projects\Plugin $plugin
 	 */
-	public function __construct( $plugin ) {
-		$this->plugin = $plugin;
+	public function __construct(
+		/**
+		 * Plugin.
+		 *
+		 * @var \Pronamic\Orbis\Projects\Plugin
+		 */
+		public $plugin
+	) {
+		add_action( 'admin_enqueue_scripts', $this->enqueue_scripts( ... ) );
 
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-
-		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+		add_action( 'admin_menu', $this->admin_menu( ... ) );
 
 		$this->project_template_post_type = new AdminProjectTemplatePostType();
 	}
@@ -66,7 +66,7 @@ class Admin {
 			\__( 'Billing', 'orbis-projects' ),
 			'manage_options',
 			'orbis_projects_billing',
-			[ $this, 'page_billing' ]
+			$this->page_billing( ... )
 		);
 	}
 

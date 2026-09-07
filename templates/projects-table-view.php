@@ -20,9 +20,7 @@ $statuses = get_terms(
 	] 
 );
 
-if ( ! isset( $groups ) ) {
-	$groups = $managers;
-}
+$groups ??= $managers;
 
 ?>
 
@@ -153,7 +151,7 @@ if ( ! isset( $groups ) ) {
 							$project_statuses = wp_get_post_terms( $project->project_post_id, 'orbis_project_status' );
 
 							foreach ( $project_statuses as $project_status ) {
-								$status_type = get_term_meta( $project_status->term_id, 'orbis_status_type', true ) ? get_term_meta( $project_status->term_id, 'orbis_status_type', true ) : 'primary';
+								$status_type = get_term_meta( $project_status->term_id, 'orbis_status_type', true ) ?: 'primary';
 								printf(
 									'<span class="badge rounded-pill text-bg-%s orbis-status" data-projectid="%s" data-statusid="%s">%s</span>',
 									esc_attr( $status_type ),
@@ -177,7 +175,7 @@ if ( ! isset( $groups ) ) {
 										<?php
 
 										foreach ( $statuses as $status ) {
-											$status_type = get_term_meta( $status->term_id, 'orbis_status_type', true ) ? get_term_meta( $status->term_id, 'orbis_status_type', true ) : 'primary';
+											$status_type = get_term_meta( $status->term_id, 'orbis_status_type', true ) ?: 'primary';
 											printf(
 												'<a class="dropdown-item orbis-js-add-status" data-statusType="%s" data-projectID="%s" href="%s">%s</a>',
 												esc_attr( $status_type ),

@@ -38,7 +38,7 @@ require_once __DIR__ . '/vendor/woocommerce/action-scheduler/action-scheduler.ph
  */
 add_action(
 	'plugins_loaded',
-	function () {
+	function (): void {
 		load_plugin_textdomain( 'orbis-projects', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 		global $orbis_projects_plugin;

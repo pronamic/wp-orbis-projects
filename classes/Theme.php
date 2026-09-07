@@ -12,21 +12,21 @@ namespace Pronamic\Orbis\Projects;
 
 class Theme {
 	/**
-	 * Plugin.
-	 *
-	 * @var Plugin
-	 */
-	public $plugin;
-
-	/**
 	 * Construct.
+	 *
+	 * @param \Pronamic\Orbis\Projects\Plugin $plugin
 	 */
-	public function __construct( $plugin ) {
-		$this->plugin = $plugin;
+	public function __construct(
+		/**
+		 * Plugin.
+		 *
+		 * @var \Pronamic\Orbis\Projects\Plugin
+		 */
+		public $plugin
+	) {
+		\add_filter( 'post_class', $this->post_class( ... ) );
 
-		\add_filter( 'post_class', [ $this, 'post_class' ] );
-
-		\add_filter( 'orbis_project_sections', [ $this, 'project_sections' ] );
+		\add_filter( 'orbis_project_sections', $this->project_sections( ... ) );
 	}
 
 	/**
@@ -46,7 +46,7 @@ class Theme {
 
 	/**
 	 * Project sections.
-	 * 
+	 *
 	 * @param array $sections Sections.
 	 * @return array
 	 */
@@ -56,7 +56,7 @@ class Theme {
 				'id'       => 'invoices',
 				'slug'     => __( 'invoices', 'orbis-projects' ),
 				'name'     => __( 'Invoices', 'orbis-projects' ),
-				'callback' => function () {
+				'callback' => function (): void {
 					include __DIR__ . '/../templates/project-invoices.php';
 				},
 			];

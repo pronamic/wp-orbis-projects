@@ -29,24 +29,22 @@ class ProjectScheduler {
 	const POST_TYPE = 'orbis_project_tmpl';
 
 	/**
-	 * Plugin.
-	 *
-	 * @var Plugin
-	 */
-	private $plugin;
-
-	/**
 	 * Construct.
 	 *
 	 * @param Plugin $plugin Plugin.
 	 */
-	public function __construct( $plugin ) {
-		$this->plugin = $plugin;
-
-		add_action( 'init', [ $this, 'init' ] );
-		add_action( 'orbis_projects_schedule_create_projects', [ $this, 'schedule_all' ] );
-		add_action( 'orbis_projects_schedule_paged_create_projects', [ $this, 'schedule_paged' ], 10, 1 );
-		add_action( 'orbis_projects_create_project_from_template', [ $this, 'create_project_from_template' ], 10, 2 );
+	public function __construct(
+		/**
+		 * Plugin.
+		 *
+		 * @var \Pronamic\Orbis\Projects\Plugin
+		 */
+		private $plugin
+	) {
+		add_action( 'init', $this->init( ... ) );
+		add_action( 'orbis_projects_schedule_create_projects', $this->schedule_all( ... ) );
+		add_action( 'orbis_projects_schedule_paged_create_projects', $this->schedule_paged( ... ), 10, 1 );
+		add_action( 'orbis_projects_create_project_from_template', $this->create_project_from_template( ... ), 10, 2 );
 	}
 
 	/**
@@ -235,7 +233,7 @@ class ProjectScheduler {
 	private function modify_date( $date, $modifier ) {
 		try {
 			$modified_date = $date->modify( $modifier );
-		} catch ( Exception $exception ) {
+		} catch ( Exception ) {
 			return null;
 		}
 
@@ -252,7 +250,7 @@ class ProjectScheduler {
 		$meta = get_post_meta( $template_id );
 
 		foreach ( array_keys( $meta ) as $key ) {
-			if ( '_orbis_project_id' === $key || 0 === strpos( $key, '_orbis_project_template_' ) ) {
+			if ( '_orbis_project_id' === $key || str_starts_with( $key, '_orbis_project_template_' ) ) {
 				continue;
 			}
 
@@ -327,9 +325,7 @@ class ProjectScheduler {
 		];
 
 		foreach ( $dates as $prefix => $date ) {
-			if ( null === $date ) {
-				$date = $creation_date;
-			}
+			$date ??= $creation_date;
 
 			$replace_pairs[ '{' . $prefix . '_month}' ]   = wp_date( 'F', $date->getTimestamp() );
 			$replace_pairs[ '{' . $prefix . '_year}' ]    = wp_date( 'Y', $date->getTimestamp() );

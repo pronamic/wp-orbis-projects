@@ -286,7 +286,7 @@ $data = $wpdb->get_results( $query );
 							$to_bill_amount = ( $hourly_rate * ( $to_bill_seconds / \HOUR_IN_SECONDS ) );
 						}
 
-						if ( false !== \strpos( $item->project_name, 'Strippenkaart' ) ) {
+						if ( str_contains( $item->project_name, 'Strippenkaart' ) ) {
 							// $to_bill_seconds = $item->project_billable_time;
 							// $to_bill_amount  = $item->project_billable_amount;
 						}
