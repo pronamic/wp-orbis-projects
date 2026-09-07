@@ -38,3 +38,6 @@ psalm.xml
 
 # Deployer.org
 /deploy.php
+
+# Rector
+/rector.php
