@@ -19,11 +19,11 @@ class Admin {
 	public $plugin;
 
 	/**
-	 * Project post type.
+	 * Project template post type.
 	 *
-	 * @var AdminProjectPostType
+	 * @var AdminProjectTemplatePostType
 	 */
-	public $project_post_type;
+	public $project_template_post_type;
 
 	/**
 	 * Construct.
@@ -35,7 +35,7 @@ class Admin {
 
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 
-		$this->project_post_type = new AdminProjectPostType( $plugin );
+		$this->project_template_post_type = new AdminProjectTemplatePostType();
 	}
 
 	/**
@@ -45,10 +45,10 @@ class Admin {
 		wp_enqueue_script( 'orbis-autocomplete' );
 		wp_enqueue_style( 'select2' );
 	}
-	
+
 	/**
 	 * Admin menu.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function admin_menu() {
@@ -64,7 +64,7 @@ class Admin {
 
 	/**
 	 * Page billing.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function page_billing() {

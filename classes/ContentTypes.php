@@ -61,9 +61,48 @@ class ContentTypes {
 			]
 		);
 
+		register_post_type(
+			'orbis_project_tmpl',
+			[
+				'label'         => __( 'Project Templates', 'orbis-projects' ),
+				'labels'        => [
+					'name'                  => __( 'Project Templates', 'orbis-projects' ),
+					'singular_name'         => __( 'Project Template', 'orbis-projects' ),
+					'add_new'               => _x( 'Add New', 'orbis_project_tmpl', 'orbis-projects' ),
+					'add_new_item'          => __( 'Add New Project Template', 'orbis-projects' ),
+					'edit_item'             => __( 'Edit Project Template', 'orbis-projects' ),
+					'new_item'              => __( 'New Project Template', 'orbis-projects' ),
+					'view_item'             => __( 'View Project Template', 'orbis-projects' ),
+					'view_items'            => __( 'View Project Templates', 'orbis-projects' ),
+					'search_items'          => __( 'Search Project Templates', 'orbis-projects' ),
+					'not_found'             => __( 'No project templates found.', 'orbis-projects' ),
+					'not_found_in_trash'    => __( 'No project templates found in Trash.', 'orbis-projects' ),
+					'parent_item_colon'     => __( 'Parent Project Template:', 'orbis-projects' ),
+					'all_items'             => __( 'All Project Templates', 'orbis-projects' ),
+					'archives'              => __( 'Project Template Archives', 'orbis-projects' ),
+					'attributes'            => __( 'Project Template Attributes', 'orbis-projects' ),
+					'insert_into_item'      => __( 'Insert into project template', 'orbis-projects' ),
+					'uploaded_to_this_item' => __( 'Uploaded to this project template', 'orbis-projects' ),
+					'filter_items_list'     => __( 'Filter project templates list', 'orbis-projects' ),
+					'items_list_navigation' => __( 'Project templates list navigation', 'orbis-projects' ),
+					'items_list'            => __( 'Project templates list', 'orbis-projects' ),
+				],
+				'public'        => true,
+				'menu_position' => 30,
+				'menu_icon'     => 'dashicons-clipboard',
+				'supports'      => [ 'title', 'editor', 'author', 'comments', 'custom-fields', 'revisions' ],
+				'has_archive'   => true,
+				'show_in_rest'  => true,
+				'rest_base'     => 'orbis/project-templates',
+				'rewrite'       => [
+					'slug' => _x( 'project-templates', 'slug', 'orbis-projects' ),
+				],
+			]
+		);
+
 		register_taxonomy(
 			'orbis_project_category',
-			[ 'orbis_project' ],
+			[ 'orbis_project', 'orbis_project_tmpl' ],
 			[
 				'hierarchical' => true,
 				'labels'       => [
@@ -89,7 +128,7 @@ class ContentTypes {
 
 		register_taxonomy(
 			'orbis_project_status',
-			[ 'orbis_project' ],
+			[ 'orbis_project', 'orbis_project_tmpl' ],
 			[
 				'hierarchical' => true,
 				'labels'       => [
@@ -116,5 +155,6 @@ class ContentTypes {
 		);
 
 		register_taxonomy_for_object_type( 'orbis_payment_method', 'orbis_project' );
+		register_taxonomy_for_object_type( 'orbis_payment_method', 'orbis_project_tmpl' );
 	}
 }

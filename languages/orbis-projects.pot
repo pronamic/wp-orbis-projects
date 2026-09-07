@@ -1,4 +1,4 @@
-# Copyright (C) 2025 Pronamic
+# Copyright (C) 2026 Pronamic
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
@@ -9,28 +9,33 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-09T11:32:24+00:00\n"
+"POT-Creation-Date: 2026-09-07T13:07:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: orbis-projects\n"
 
 #. Plugin Name of the plugin
+#: orbis-projects.php:11
 msgid "Orbis Projects"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: orbis-projects.php:12
 msgid "https://wp.pronamic.directory/plugins/orbis-projects/"
 msgstr ""
 
 #. Description of the plugin
+#: orbis-projects.php:13
 msgid "The Orbis Projects plugin extends your Orbis environment with the option to manage projects."
 msgstr ""
 
 #. Author of the plugin
+#: orbis-projects.php:17
 msgid "Pronamic"
 msgstr ""
 
 #. Author URI of the plugin
+#: orbis-projects.php:18
 msgid "https://www.pronamic.eu/"
 msgstr ""
 
@@ -51,7 +56,7 @@ msgid "Select Client"
 msgstr ""
 
 #: admin/meta-box-project-details.php:91
-#: classes/AdminProjectPostType.php:45
+#: classes/AdminProjectPostType.php:52
 msgid "Price"
 msgstr ""
 
@@ -63,7 +68,7 @@ msgstr ""
 #: admin/page-billing.php:119
 #: admin/page-billing.php:122
 #: admin/page-billing.php:128
-#: classes/AdminProjectPostType.php:46
+#: classes/AdminProjectPostType.php:53
 msgid "Time"
 msgstr ""
 
@@ -160,8 +165,14 @@ msgstr ""
 msgid "— Select Payment Method —"
 msgstr ""
 
+#: admin/meta-box-project-details.php:263
+#: templates/projects-table-view.php:44
+msgid "Period"
+msgstr ""
+
 #. translators: 1: input for start date, 2: input for end date
 #: admin/meta-box-project-details.php:276
+#, php-format
 msgctxt "including"
 msgid "%1$s to %2$s"
 msgstr ""
@@ -175,22 +186,40 @@ msgstr ""
 msgid "Final invoice number"
 msgstr ""
 
+#: admin/meta-box-project-template-schedule.php:19
+#: classes/AdminProjectTemplatePostType.php:42
+msgid "Next Creation Date"
+msgstr ""
+
+#: admin/meta-box-project-template-schedule.php:23
+#: classes/AdminProjectTemplatePostType.php:43
+msgid "Recurrence"
+msgstr ""
+
+#: admin/meta-box-project-template-schedule.php:27
+msgid "Start Date Offset"
+msgstr ""
+
+#: admin/meta-box-project-template-schedule.php:31
+msgid "End Date Offset"
+msgstr ""
+
 #: admin/page-billing.php:96
 #: classes/ContentTypes.php:28
 #: classes/ContentTypes.php:30
-#: classes/Plugin.php:160
+#: classes/Plugin.php:218
 msgid "Projects"
 msgstr ""
 
 #: admin/page-billing.php:101
-#: classes/AdminProjectPostType.php:44
+#: classes/AdminProjectPostType.php:51
 #: templates/projects-without-agreement.php:31
 msgid "Principal"
 msgstr ""
 
 #: admin/page-billing.php:102
 #: classes/ContentTypes.php:31
-#: classes/Plugin.php:163
+#: classes/Plugin.php:221
 #: templates/projects-table-view.php:34
 msgid "Project"
 msgstr ""
@@ -234,7 +263,7 @@ msgid "Amount"
 msgstr ""
 
 #: admin/page-billing.php:123
-#: classes/Theme.php:51
+#: classes/Theme.php:58
 msgid "Invoices"
 msgstr ""
 
@@ -246,49 +275,57 @@ msgstr ""
 msgid "Available"
 msgstr ""
 
-#: classes/Admin.php:43
+#: classes/Admin.php:57
 msgid "Orbis Projects Billing"
 msgstr ""
 
-#: classes/Admin.php:44
+#: classes/Admin.php:58
 msgid "Billing"
 msgstr ""
 
-#: classes/AdminProjectPostType.php:43
+#: classes/AdminProjectPostType.php:50
+#: classes/AdminProjectTemplatePostType.php:41
 #: templates/projects-without-agreement.php:32
 msgid "Title"
 msgstr ""
 
-#: classes/AdminProjectPostType.php:47
+#: classes/AdminProjectPostType.php:54
+#: classes/AdminProjectTemplatePostType.php:44
 msgid "Author"
 msgstr ""
 
-#: classes/AdminProjectPostType.php:48
+#: classes/AdminProjectPostType.php:55
 msgid "Comments"
 msgstr ""
 
-#: classes/AdminProjectPostType.php:49
+#: classes/AdminProjectPostType.php:56
+#: classes/AdminProjectTemplatePostType.php:45
 #: templates/project-invoices.php:16
 #: templates/projects-table-view.php:42
 msgid "Date"
 msgstr ""
 
-#: classes/AdminProjectPostType.php:101
+#: classes/AdminProjectPostType.php:108
 msgid "Project Information"
 msgstr ""
 
+#: classes/AdminProjectTemplatePostType.php:74
+msgid "Project Template Schedule"
+msgstr ""
+
 #. translators: first and second placeholder is the state of the project, opened or completed, and the third is the user name.
-#: classes/Commenter.php:39
+#: classes/Commenter.php:46
+#, php-format
 msgid "This \"%1$s\" project is just \"%2$s\" by %3$s."
 msgstr ""
 
-#: classes/Commenter.php:40
-#: classes/Commenter.php:41
+#: classes/Commenter.php:47
+#: classes/Commenter.php:48
 msgid "opened"
 msgstr ""
 
-#: classes/Commenter.php:40
-#: classes/Commenter.php:41
+#: classes/Commenter.php:47
+#: classes/Commenter.php:48
 msgid "completed"
 msgstr ""
 
@@ -298,7 +335,7 @@ msgid "Add New"
 msgstr ""
 
 #: classes/ContentTypes.php:33
-#: classes/Plugin.php:168
+#: classes/Plugin.php:226
 msgid "Add New Project"
 msgstr ""
 
@@ -307,7 +344,7 @@ msgid "Edit Project"
 msgstr ""
 
 #: classes/ContentTypes.php:35
-#: classes/Plugin.php:167
+#: classes/Plugin.php:225
 msgid "New Project"
 msgstr ""
 
@@ -324,7 +361,7 @@ msgid "Search Projects"
 msgstr ""
 
 #: classes/ContentTypes.php:39
-#: classes/Plugin.php:165
+#: classes/Plugin.php:223
 msgid "No projects found."
 msgstr ""
 
@@ -373,145 +410,232 @@ msgctxt "slug"
 msgid "projects"
 msgstr ""
 
+#: classes/ContentTypes.php:67
+#: classes/ContentTypes.php:69
+msgid "Project Templates"
+msgstr ""
+
 #: classes/ContentTypes.php:70
+msgid "Project Template"
+msgstr ""
+
+#: classes/ContentTypes.php:71
+msgctxt "orbis_project_tmpl"
+msgid "Add New"
+msgstr ""
+
+#: classes/ContentTypes.php:72
+msgid "Add New Project Template"
+msgstr ""
+
+#: classes/ContentTypes.php:73
+msgid "Edit Project Template"
+msgstr ""
+
+#: classes/ContentTypes.php:74
+msgid "New Project Template"
+msgstr ""
+
+#: classes/ContentTypes.php:75
+msgid "View Project Template"
+msgstr ""
+
+#: classes/ContentTypes.php:76
+msgid "View Project Templates"
+msgstr ""
+
+#: classes/ContentTypes.php:77
+msgid "Search Project Templates"
+msgstr ""
+
+#: classes/ContentTypes.php:78
+msgid "No project templates found."
+msgstr ""
+
+#: classes/ContentTypes.php:79
+msgid "No project templates found in Trash."
+msgstr ""
+
+#: classes/ContentTypes.php:80
+msgid "Parent Project Template:"
+msgstr ""
+
+#: classes/ContentTypes.php:81
+msgid "All Project Templates"
+msgstr ""
+
+#: classes/ContentTypes.php:82
+msgid "Project Template Archives"
+msgstr ""
+
+#: classes/ContentTypes.php:83
+msgid "Project Template Attributes"
+msgstr ""
+
+#: classes/ContentTypes.php:84
+msgid "Insert into project template"
+msgstr ""
+
+#: classes/ContentTypes.php:85
+msgid "Uploaded to this project template"
+msgstr ""
+
+#: classes/ContentTypes.php:86
+msgid "Filter project templates list"
+msgstr ""
+
+#: classes/ContentTypes.php:87
+msgid "Project templates list navigation"
+msgstr ""
+
+#: classes/ContentTypes.php:88
+msgid "Project templates list"
+msgstr ""
+
+#: classes/ContentTypes.php:98
+msgctxt "slug"
+msgid "project-templates"
+msgstr ""
+
+#: classes/ContentTypes.php:109
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr ""
 
-#: classes/ContentTypes.php:71
+#: classes/ContentTypes.php:110
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr ""
 
-#: classes/ContentTypes.php:72
+#: classes/ContentTypes.php:111
 msgid "Search Categories"
 msgstr ""
 
-#: classes/ContentTypes.php:73
+#: classes/ContentTypes.php:112
 msgid "All Categories"
 msgstr ""
 
-#: classes/ContentTypes.php:74
+#: classes/ContentTypes.php:113
 msgid "Parent Category"
 msgstr ""
 
-#: classes/ContentTypes.php:75
+#: classes/ContentTypes.php:114
 msgid "Parent Category:"
 msgstr ""
 
-#: classes/ContentTypes.php:76
+#: classes/ContentTypes.php:115
 msgid "Edit Category"
 msgstr ""
 
-#: classes/ContentTypes.php:77
+#: classes/ContentTypes.php:116
 msgid "Update Category"
 msgstr ""
 
-#: classes/ContentTypes.php:78
+#: classes/ContentTypes.php:117
 msgid "Add New Category"
 msgstr ""
 
-#: classes/ContentTypes.php:79
+#: classes/ContentTypes.php:118
 msgid "New Category Name"
 msgstr ""
 
-#: classes/ContentTypes.php:80
+#: classes/ContentTypes.php:119
 msgid "Categories"
 msgstr ""
 
-#: classes/ContentTypes.php:85
+#: classes/ContentTypes.php:124
 msgctxt "slug"
 msgid "project-category"
 msgstr ""
 
-#: classes/ContentTypes.php:96
+#: classes/ContentTypes.php:135
 msgctxt "taxonomy general name"
 msgid "Statuses"
 msgstr ""
 
-#: classes/ContentTypes.php:97
+#: classes/ContentTypes.php:136
 msgctxt "taxonomy singular name"
 msgid "Status"
 msgstr ""
 
-#: classes/ContentTypes.php:98
+#: classes/ContentTypes.php:137
 msgid "Search Statuses"
 msgstr ""
 
-#: classes/ContentTypes.php:99
+#: classes/ContentTypes.php:138
 msgid "All Statuses"
 msgstr ""
 
-#: classes/ContentTypes.php:100
+#: classes/ContentTypes.php:139
 msgid "Parent Status"
 msgstr ""
 
-#: classes/ContentTypes.php:101
+#: classes/ContentTypes.php:140
 msgid "Parent Status:"
 msgstr ""
 
-#: classes/ContentTypes.php:102
+#: classes/ContentTypes.php:141
 msgid "Edit Status"
 msgstr ""
 
-#: classes/ContentTypes.php:103
+#: classes/ContentTypes.php:142
 msgid "Update Status"
 msgstr ""
 
-#: classes/ContentTypes.php:104
+#: classes/ContentTypes.php:143
 msgid "Add New Status"
 msgstr ""
 
-#: classes/ContentTypes.php:105
+#: classes/ContentTypes.php:144
 msgid "New Status Name"
 msgstr ""
 
-#: classes/ContentTypes.php:106
+#: classes/ContentTypes.php:145
 msgid "Statuses"
 msgstr ""
 
-#: classes/ContentTypes.php:113
+#: classes/ContentTypes.php:152
 msgctxt "slug"
 msgid "project-status"
 msgstr ""
 
-#: classes/Plugin.php:159
+#: classes/Plugin.php:217
 msgid "Involved Persons"
 msgstr ""
 
-#: classes/Plugin.php:164
+#: classes/Plugin.php:222
 msgid "Search project"
 msgstr ""
 
-#: classes/Plugin.php:166
+#: classes/Plugin.php:224
 msgid "Add Project"
 msgstr ""
 
-#: classes/Plugin.php:171
+#: classes/Plugin.php:229
 msgid "Person"
 msgstr ""
 
-#: classes/Plugin.php:172
+#: classes/Plugin.php:230
 msgid "Search person"
 msgstr ""
 
-#: classes/Plugin.php:173
+#: classes/Plugin.php:231
 msgid "No persons found."
 msgstr ""
 
-#: classes/Plugin.php:174
+#: classes/Plugin.php:232
 msgid "Add Person"
 msgstr ""
 
-#: classes/Plugin.php:175
+#: classes/Plugin.php:233
 msgid "New Person"
 msgstr ""
 
-#: classes/Plugin.php:176
+#: classes/Plugin.php:234
 msgid "Add New Person"
 msgstr ""
 
-#: classes/Theme.php:50
+#: classes/Theme.php:57
 msgid "invoices"
 msgstr ""
 
@@ -552,10 +676,6 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: templates/projects-table-view.php:44
-msgid "Period"
-msgstr ""
-
 #: templates/projects-table-view.php:45
 msgid "Budget"
 msgstr ""
@@ -566,6 +686,7 @@ msgstr ""
 
 #. translators: 1st placeholder is the comment author, 2nd is the date
 #: templates/projects-table-view.php:138
+#, php-format
 msgid "%1$s says on %2$s:"
 msgstr ""
 
@@ -575,6 +696,7 @@ msgstr ""
 
 #. translators: 1: Period start date, 2: Period end date.
 #: templates/projects-table-view.php:224
+#, php-format
 msgid "%1$s - %2$s"
 msgstr ""
 

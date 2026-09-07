@@ -31,6 +31,8 @@ namespace Pronamic\Orbis\Projects;
  */
 require_once __DIR__ . '/vendor/autoload_packages.php';
 
+require_once __DIR__ . '/vendor/woocommerce/action-scheduler/action-scheduler.php';
+
 /**
  * Bootstrap.
  */
