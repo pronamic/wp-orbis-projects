@@ -27,7 +27,11 @@ if ( $project ) {
 	$declarability  = $project->declarability;
 }
 
-$principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_companies WHERE id= %d;", $principal_id ) );
+$principal = null;
+
+if ( isset( $wpdb->orbis_companies ) ) {
+	$principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_companies WHERE id= %d;", $principal_id ) );
+}
 
 $hourly_rate = get_post_meta( $post->ID, '_orbis_hourly_rate', true );
 
