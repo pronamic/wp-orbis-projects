@@ -21,16 +21,6 @@ use WP_Query;
  */
 class ProjectScheduler {
 	/**
-	 * Action Scheduler group.
-	 */
-	const GROUP = 'orbis-projects';
-
-	/**
-	 * Project template post type.
-	 */
-	const POST_TYPE = 'orbis_project_tmpl';
-
-	/**
 	 * Construct.
 	 *
 	 * @param Plugin $plugin Plugin.
@@ -53,16 +43,16 @@ class ProjectScheduler {
 	 * Initialize recurring project creation.
 	 */
 	public function init() {
-		if ( false !== \as_has_scheduled_action( 'orbis_projects_schedule_create_projects', [], self::GROUP ) ) {
+		if ( false !== \as_has_scheduled_action( 'orbis_projects_schedule_create_projects', [], 'orbis-projects' ) ) {
 			return;
 		}
 
-		\as_schedule_recurring_action(
-			\strtotime( 'tomorrow' ),
-			\DAY_IN_SECONDS,
+		\as_schedule_cron_action(
+			\time(),
+			'0 0 * * *',
 			'orbis_projects_schedule_create_projects',
 			[],
-			self::GROUP,
+			'orbis-projects',
 			true
 		);
 	}
@@ -77,7 +67,7 @@ class ProjectScheduler {
 			\as_enqueue_async_action(
 				'orbis_projects_schedule_paged_create_projects',
 				[ 'page' => $page ],
-				self::GROUP
+				'orbis-projects'
 			);
 		}
 	}
@@ -103,7 +93,7 @@ class ProjectScheduler {
 					'post_id'       => $post->ID,
 					'creation_date' => $creation_date,
 				],
-				self::GROUP
+				'orbis-projects'
 			);
 		}
 	}
@@ -118,7 +108,7 @@ class ProjectScheduler {
 	public function create_project_from_template( $post_id, $creation_date ) {
 		$template = \get_post( $post_id );
 
-		if ( ! $template instanceof WP_Post || self::POST_TYPE !== $template->post_type || 'publish' !== $template->post_status ) {
+		if ( ! $template instanceof WP_Post || 'orbis_project_tmpl' !== $template->post_type || 'publish' !== $template->post_status ) {
 			return null;
 		}
 
@@ -186,7 +176,7 @@ class ProjectScheduler {
 		$connection_types = array_filter(
 			P2P_Connection_Type_Factory::get_all_instances(),
 			function ( P2P_Connection_Type $connection_type ) {
-				$template_direction = $connection_type->direction_from_types( 'post', self::POST_TYPE );
+				$template_direction = $connection_type->direction_from_types( 'post', 'orbis_project_tmpl' );
 
 				if ( false === $template_direction ) {
 					return false;
@@ -215,7 +205,7 @@ class ProjectScheduler {
 	 * @param int                 $project_id      Project post ID.
 	 */
 	private function copy_project_connection_type( P2P_Connection_Type $connection_type, $template_id, $project_id ) {
-		$direction = $connection_type->direction_from_types( 'post', self::POST_TYPE );
+		$direction = $connection_type->direction_from_types( 'post', 'orbis_project_tmpl' );
 
 		if ( false === $direction ) {
 			return;
@@ -259,7 +249,7 @@ class ProjectScheduler {
 	 */
 	private function get_query_args() {
 		return [
-			'post_type'      => self::POST_TYPE,
+			'post_type'      => 'orbis_project_tmpl',
 			'post_status'    => 'publish',
 			'posts_per_page' => 100,
 			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Scheduler must select templates due today.
