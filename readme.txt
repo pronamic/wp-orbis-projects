@@ -2,8 +2,8 @@
 Contributors: pronamic, remcotolsma, stefanboonstra, rubendroogh
 Donate link: https://www.pronamic.eu/
 Tags: orbis, deal
-Requires at least: 3.5
-Tested up to: 3.8
+Requires at least: 6.9
+Tested up to: 7.1
 Stable tag: 1.0.0
 License: Copyright (c) Pronamic
 License URI: https://www.pronamic.eu/copyright/
