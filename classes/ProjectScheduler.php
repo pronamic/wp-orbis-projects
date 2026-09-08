@@ -146,6 +146,8 @@ class ProjectScheduler {
 			return null;
 		}
 
+		\update_post_meta( $project_id, '_orbis_project_template_id', $template->ID );
+
 		$this->copy_project_meta( $template->ID, $project_id );
 		$this->update_project_period( $project_id, $start_date, $end_date );
 		$this->copy_project_terms( $template->ID, $project_id );
