@@ -62,7 +62,7 @@ class QueryProcessor {
 		$invoicable = $query->get( 'orbis_invoicable', null );
 
 		if ( null !== $invoicable ) {
-			$invoicable = filter_var( $invoicable, FILTER_VALIDATE_BOOLEAN );
+			$invoicable = BooleanHelper::from_mixed( $invoicable );
 
 			$meta_query = [];
 
@@ -127,7 +127,7 @@ class QueryProcessor {
 
 		/**
 		 * Construct a subquery to join the project data.
-		 * 
+		 *
 		 * @link https://github.com/pronamic/orbis.pronamic.nl/issues/49
 		 */
 		$subquery_select_expr = [
@@ -194,7 +194,7 @@ class QueryProcessor {
 		$is_finished = $query->get( 'orbis_project_is_finished', null );
 
 		if ( null !== $is_finished ) {
-			$is_finished = filter_var( $is_finished, FILTER_VALIDATE_BOOLEAN );
+			$is_finished = BooleanHelper::from_mixed( $is_finished );
 
 			$where .= $wpdb->prepare( ' AND project_data.project_is_finished = %d', $is_finished );
 		}
@@ -208,7 +208,7 @@ class QueryProcessor {
 
 	/**
 	 * REST query.
-	 * 
+	 *
 	 * @link https://developer.wordpress.org/reference/hooks/rest_this-post_type_query/
 	 * @param array           $args Query arguments.
 	 * @param WP_REST_Request $request WordPress REST request.

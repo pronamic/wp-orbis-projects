@@ -103,8 +103,9 @@ class AdminProjectTemplatePostType {
 			return;
 		}
 
-		$nonce = filter_input( INPUT_POST, 'orbis_project_template_schedule_meta_box_nonce', FILTER_UNSAFE_RAW );
-		$nonce = ( null === $nonce ) ? '' : sanitize_text_field( wp_unslash( $nonce ) );
+		$nonce = isset( $_POST['orbis_project_template_schedule_meta_box_nonce'] ) && is_scalar( $_POST['orbis_project_template_schedule_meta_box_nonce'] )
+			? sanitize_text_field( wp_unslash( $_POST['orbis_project_template_schedule_meta_box_nonce'] ) )
+			: '';
 
 		if ( ! wp_verify_nonce( $nonce, 'orbis_save_project_template_schedule' ) ) {
 			return;
@@ -122,8 +123,9 @@ class AdminProjectTemplatePostType {
 		];
 
 		foreach ( $keys as $key ) {
-			$value = filter_input( INPUT_POST, $key, FILTER_UNSAFE_RAW );
-			$value = ( null === $value ) ? '' : sanitize_text_field( wp_unslash( $value ) );
+			$value = isset( $_POST[ $key ] ) && is_scalar( $_POST[ $key ] )
+				? sanitize_text_field( wp_unslash( $_POST[ $key ] ) )
+				: '';
 
 			if ( '' === $value ) {
 				delete_post_meta( $post_id, $key );

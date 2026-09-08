@@ -28,7 +28,7 @@ class Duration {
 	 */
 	public function __construct( int $seconds = 0 ) {
 		$this->seconds = $seconds;
-	}
+    }
 
 	/**
 	 * Create duration from seconds.

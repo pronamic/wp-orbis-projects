@@ -155,83 +155,33 @@ class AdminProjectPostType {
 			return;
 		}
 
-		// OK
-		global $wp_locale;
-
-		$definition = [
-			'_orbis_price'                    => [
-				'filter'  => FILTER_VALIDATE_FLOAT,
-				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-				'options' => [ 'decimal' => $wp_locale->number_format['decimal_point'] ],
-			],
-			'_orbis_hourly_rate'              => [
-				'filter'  => FILTER_VALIDATE_FLOAT,
-				'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-				'options' => [ 'decimal' => $wp_locale->number_format['decimal_point'] ],
-			],
-			'_orbis_project_principal_id'     => FILTER_VALIDATE_INT,
-			'_orbis_project_agreement_id'     => FILTER_VALIDATE_INT,
-			'_orbis_project_is_finished'      => FILTER_VALIDATE_BOOLEAN,
-			'_orbis_project_is_invoicable'    => FILTER_VALIDATE_BOOLEAN,
-			'_orbis_project_declarability'    => FILTER_UNSAFE_RAW,
-			'_orbis_project_invoice_number'   => FILTER_UNSAFE_RAW,
-			'_orbis_invoice_reference'        => FILTER_UNSAFE_RAW,
-			'_orbis_invoice_line_description' => FILTER_UNSAFE_RAW,
-			'_orbis_project_start_date'       => FILTER_UNSAFE_RAW,
-			'_orbis_project_end_date'         => FILTER_UNSAFE_RAW,
-			'_orbis_project_billed_to'        => FILTER_UNSAFE_RAW,
-		];
-
-		// Text fields which require explicit sanitization, since `FILTER_UNSAFE_RAW` does not sanitize.
-		$text_keys = [
-			'_orbis_project_declarability',
-			'_orbis_project_invoice_number',
-			'_orbis_invoice_reference',
-			'_orbis_invoice_line_description',
-			'_orbis_project_start_date',
-			'_orbis_project_end_date',
-			'_orbis_project_billed_to',
+		$data = [
+			'_orbis_price'                    => self::parse_decimal( self::get_post_value( '_orbis_price' ) ),
+			'_orbis_hourly_rate'              => self::parse_decimal( self::get_post_value( '_orbis_hourly_rate' ) ),
+			'_orbis_project_principal_id'     => self::get_post_value( '_orbis_project_principal_id' ),
+			'_orbis_project_agreement_id'     => self::get_post_value( '_orbis_project_agreement_id' ),
+			'_orbis_project_is_finished'      => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_finished' ) ),
+			'_orbis_project_is_invoicable'    => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_invoicable' ) ),
+			'_orbis_project_declarability'    => self::get_post_value( '_orbis_project_declarability' ),
+			'_orbis_project_invoice_number'   => self::get_post_value( '_orbis_project_invoice_number' ),
+			'_orbis_invoice_reference'        => self::get_post_value( '_orbis_invoice_reference' ),
+			'_orbis_invoice_line_description' => self::get_post_value( '_orbis_invoice_line_description' ),
+			'_orbis_project_start_date'       => self::get_post_value( '_orbis_project_start_date' ),
+			'_orbis_project_end_date'         => self::get_post_value( '_orbis_project_end_date' ),
+			'_orbis_project_billed_to'        => self::get_post_value( '_orbis_project_billed_to' ),
+			'_orbis_project_seconds_available' => Duration::from_string( self::get_post_value( '_orbis_project_seconds_available' ) ?? '' )?->get_seconds(),
 		];
 
 		if ( current_user_can( 'edit_orbis_project_administration' ) ) {
-			$definition['_orbis_project_is_invoiced'] = FILTER_VALIDATE_BOOLEAN;
+			$data['_orbis_project_is_invoiced'] = BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_invoiced' ) );
 		}
-
-		$data = filter_input_array( INPUT_POST, $definition );
-
-		if ( ! is_array( $data ) ) {
-			$data = [];
-		}
-
-		foreach ( $text_keys as $text_key ) {
-			$value = array_key_exists( $text_key, $data ) ? $data[ $text_key ] : null;
-
-			$data[ $text_key ] = ( null === $value || false === $value ) ? null : sanitize_text_field( wp_unslash( $value ) );
-		}
-
-		$value = filter_input( INPUT_POST, '_orbis_project_seconds_available', FILTER_UNSAFE_RAW );
-		$value = ( null === $value ) ? '' : sanitize_text_field( wp_unslash( $value ) );
-
-		$duration = Duration::from_string( $value );
-
-		$data['_orbis_project_seconds_available'] = ( null === $duration ) ? null : $duration->get_seconds();
 
 		// Finished
-		$is_finished_old = filter_var( get_post_meta( $post_id, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
-		$is_finished_new = filter_var( $data['_orbis_project_is_finished'] ?? null, FILTER_VALIDATE_BOOLEAN );
+		$is_finished_old = BooleanHelper::from_mixed( get_post_meta( $post_id, '_orbis_project_is_finished', true ) );
+		$is_finished_new = BooleanHelper::from_mixed( $data['_orbis_project_is_finished'] ?? null );
 
 		foreach ( $data as $key => $value ) {
-			if ( '_orbis_project_seconds_available' === $key ) {
-				if ( null === $value ) {
-					delete_post_meta( $post_id, $key );
-				} else {
-					update_post_meta( $post_id, $key, $value );
-				}
-
-				continue;
-			}
-
-			if ( empty( $value ) ) {
+			if ( null === $value || '' === $value ) {
 				delete_post_meta( $post_id, $key );
 			} else {
 				update_post_meta( $post_id, $key, $value );
@@ -243,6 +193,47 @@ class AdminProjectPostType {
 			// @see https://github.com/woothemes/woocommerce/blob/v2.1.4/includes/class-wc-order.php#L1274
 			do_action( 'orbis_project_finished_update', $post_id, $is_finished_new );
 		}
+	}
+
+	/**
+	 * Get a scalar POST value.
+	 *
+	 * @param string $key Key.
+	 * @return string|null
+	 */
+	private static function get_post_value( $key ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- The nonce is verified before this method is called.
+		if ( ! isset( $_POST[ $key ] ) || ! is_scalar( $_POST[ $key ] ) ) {
+			return null;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- The nonce is verified before this method is called.
+		return sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
+	}
+
+	/**
+	 * Parse a localized decimal value.
+	 *
+	 * @param string|null $value Value.
+	 * @return float|null
+	 */
+	private static function parse_decimal( $value ) {
+		if ( null === $value ) {
+			return null;
+		}
+
+		$value = sanitize_text_field( $value );
+
+		if ( '' === $value ) {
+			return null;
+		}
+
+		global $wp_locale;
+
+		$value = str_replace( $wp_locale->number_format['thousands_sep'], '', $value );
+		$value = str_replace( $wp_locale->number_format['decimal_point'], '.', $value );
+
+		return is_numeric( $value ) ? (float) $value : null;
 	}
 
 	/**

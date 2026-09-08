@@ -93,7 +93,7 @@ class Project {
 			return (bool) $this->post->project_is_finished;
 		}
 
-		return filter_var( get_post_meta( $this->post->ID, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
+		return BooleanHelper::from_mixed( get_post_meta( $this->post->ID, '_orbis_project_is_finished', true ) );
 	}
 
 	/**
@@ -106,7 +106,7 @@ class Project {
 			return (bool) $this->post->project_is_invoiced;
 		}
 
-		return filter_var( get_post_meta( $this->post->ID, '_orbis_project_is_invoiced', true ), FILTER_VALIDATE_BOOLEAN );
+		return BooleanHelper::from_mixed( get_post_meta( $this->post->ID, '_orbis_project_is_invoiced', true ) );
 	}
 
 	/**
@@ -115,7 +115,7 @@ class Project {
 	 * @return boolean
 	 */
 	public function is_invoicable() {
-		return filter_var( get_post_meta( $this->post->ID, '_orbis_project_is_invoicable', true ), FILTER_VALIDATE_BOOLEAN );
+		return BooleanHelper::from_mixed( get_post_meta( $this->post->ID, '_orbis_project_is_invoicable', true ) );
 	}
 
 	/**
