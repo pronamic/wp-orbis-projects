@@ -12,11 +12,6 @@ namespace Pronamic\Orbis\Projects;
  */
 class AdminProjectTemplatePostType {
 	/**
-	 * Post type.
-	 */
-	const POST_TYPE = 'orbis_project_tmpl';
-
-	/**
 	 * Construct.
 	 *
 	 * @param ProjectScheduler $project_scheduler Project scheduler.
@@ -29,13 +24,13 @@ class AdminProjectTemplatePostType {
 		 */
 		private $project_scheduler
 	) {
-		\add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', $this->edit_columns( ... ) );
+		\add_filter( 'manage_edit-orbis_project_tmpl_columns', $this->edit_columns( ... ) );
 
-		\add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
+		\add_action( 'manage_orbis_project_tmpl_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
 
 		\add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
 
-		\add_action( 'save_post_' . self::POST_TYPE, $this->save_project_template( ... ), 10, 2 );
+		\add_action( 'save_post_orbis_project_tmpl', $this->save_project_template( ... ), 10, 2 );
 
 		\add_filter( 'post_row_actions', $this->add_row_actions( ... ), 10, 2 );
 
@@ -55,7 +50,7 @@ class AdminProjectTemplatePostType {
 	public function parent_file( $parent_file ) {
 		$screen = \get_current_screen();
 
-		if ( null === $screen || self::POST_TYPE !== $screen->post_type ) {
+		if ( null === $screen || 'orbis_project_tmpl' !== $screen->post_type ) {
 			return $parent_file;
 		}
 
@@ -113,7 +108,7 @@ class AdminProjectTemplatePostType {
 			'orbis_project_template_schedule',
 			\__( 'Project Template Schedule', 'orbis-projects' ),
 			$this->meta_box_schedule( ... ),
-			self::POST_TYPE,
+			'orbis_project_tmpl',
 			'normal',
 			'high'
 		);
@@ -139,7 +134,7 @@ class AdminProjectTemplatePostType {
 			return;
 		}
 
-		if ( self::POST_TYPE !== $post->post_type ) {
+		if ( 'orbis_project_tmpl' !== $post->post_type ) {
 			return;
 		}
 
@@ -185,7 +180,7 @@ class AdminProjectTemplatePostType {
 	 * @return array<string, string>
 	 */
 	public function add_row_actions( $actions, $post ) {
-		if ( self::POST_TYPE !== $post->post_type ) {
+		if ( 'orbis_project_tmpl' !== $post->post_type ) {
 			return $actions;
 		}
 
@@ -229,7 +224,7 @@ class AdminProjectTemplatePostType {
 
 		$post = \get_post( $post_id );
 
-		if ( ! $post instanceof \WP_Post || self::POST_TYPE !== $post->post_type || 'publish' !== $post->post_status ) {
+		if ( ! $post instanceof \WP_Post || 'orbis_project_tmpl' !== $post->post_type || 'publish' !== $post->post_status ) {
 			\wp_die( \esc_html__( 'Invalid project template.', 'orbis-projects' ), 400 );
 		}
 
@@ -249,7 +244,7 @@ class AdminProjectTemplatePostType {
 		$redirect_to = \wp_get_referer();
 
 		if ( false === $redirect_to ) {
-			$redirect_to = \admin_url( 'edit.php?post_type=' . self::POST_TYPE );
+			$redirect_to = \admin_url( 'edit.php?post_type=orbis_project_tmpl' );
 		}
 
 		\wp_safe_redirect( \add_query_arg( 'orbis_project_created', $project_id, $redirect_to ) );
@@ -270,7 +265,7 @@ class AdminProjectTemplatePostType {
 
 		$screen = \get_current_screen();
 
-		if ( ! $screen instanceof \WP_Screen || self::POST_TYPE !== $screen->post_type ) {
+		if ( ! $screen instanceof \WP_Screen || 'orbis_project_tmpl' !== $screen->post_type ) {
 			return;
 		}
 

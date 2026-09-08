@@ -38,7 +38,7 @@ class AdminProjectPostType {
 		\add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
 
 		\add_action( 'save_post_' . self::POST_TYPE, $this->save_project( ... ), 10, 2 );
-		\add_action( 'save_post_' . AdminProjectTemplatePostType::POST_TYPE, $this->save_project( ... ), 10, 2 );
+		\add_action( 'save_post_orbis_project_tmpl', $this->save_project( ... ), 10, 2 );
 		\add_action( 'save_post_' . self::POST_TYPE, $this->save_project_sync( ... ), 500, 2 );
 	}
 
