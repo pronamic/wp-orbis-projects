@@ -94,7 +94,15 @@ class AdminProjectPostType {
 
 				break;
 			case 'orbis_project_time':
-				echo esc_html( $orbis_project->get_available_time()->format() );
+				$duration = $orbis_project->get_available_time();
+
+				if ( null === $duration ) {
+					echo '—';
+				}
+
+				if ( null !== $duration ) {
+					echo esc_html( $duration->format() );
+				}
 
 				break;
 		}
