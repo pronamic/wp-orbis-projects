@@ -59,11 +59,11 @@ class Project {
 	 * @return Duration|null
 	 */
 	public function get_available_time() {
-		$seconds = null;
-
 		if ( isset( $this->post->project_number_seconds ) ) {
-			$seconds = $this->post->project_number_seconds;
+			return Duration::try_from_seconds( $this->post->project_number_seconds );
 		}
+
+		$seconds = get_post_meta( $this->post->ID, '_orbis_project_seconds_available', true );
 
 		return Duration::try_from_seconds( $seconds );
 	}

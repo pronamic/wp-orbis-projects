@@ -18,8 +18,17 @@ class AdminProjectTemplatePostType {
 
 	/**
 	 * Construct.
+	 *
+	 * @param ProjectScheduler $project_scheduler Project scheduler.
 	 */
-	public function __construct() {
+	public function __construct(
+		/**
+		 * Project scheduler.
+		 *
+		 * @var ProjectScheduler
+		 */
+		private $project_scheduler
+	) {
 		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', $this->edit_columns( ... ) );
 
 		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
@@ -27,6 +36,12 @@ class AdminProjectTemplatePostType {
 		add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
 
 		add_action( 'save_post_' . self::POST_TYPE, $this->save_project_template( ... ), 10, 2 );
+
+		\add_filter( 'post_row_actions', $this->add_row_actions( ... ), 10, 2 );
+
+		\add_action( 'admin_post_orbis_create_project_from_template', $this->handle_create_project_now( ... ) );
+
+		\add_action( 'admin_notices', $this->render_admin_notices( ... ) );
 	}
 
 	/**
@@ -135,5 +150,123 @@ class AdminProjectTemplatePostType {
 
 			update_post_meta( $post_id, $key, $value );
 		}
+	}
+
+	/**
+	 * Add row actions.
+	 *
+	 * @param array<string, string> $actions Row actions.
+	 * @param \WP_Post              $post    Post.
+	 * @return array<string, string>
+	 */
+	public function add_row_actions( $actions, $post ) {
+		if ( self::POST_TYPE !== $post->post_type ) {
+			return $actions;
+		}
+
+		if ( ! \current_user_can( 'edit_post', $post->ID ) ) {
+			return $actions;
+		}
+
+		if ( 'publish' !== $post->post_status ) {
+			return $actions;
+		}
+
+		if ( '' === \get_post_meta( $post->ID, '_orbis_project_template_creation_date', true ) ) {
+			return $actions;
+		}
+
+		$url = \wp_nonce_url(
+			\admin_url( 'admin-post.php?action=orbis_create_project_from_template&post=' . $post->ID ),
+			'orbis_create_project_from_template_' . $post->ID
+		);
+
+		$actions['orbis_create_project_from_template'] = \sprintf(
+			'<a href="%s">%s</a>',
+			\esc_url( $url ),
+			\esc_html__( 'Create project now', 'orbis-projects' )
+		);
+
+		return $actions;
+	}
+
+	/**
+	 * Handle manual "create project now" request.
+	 */
+	public function handle_create_project_now() {
+		$post_id = isset( $_GET['post'] ) && \is_scalar( $_GET['post'] ) ? \absint( $_GET['post'] ) : 0;
+
+		\check_admin_referer( 'orbis_create_project_from_template_' . $post_id );
+
+		if ( ! \current_user_can( 'edit_post', $post_id ) ) {
+			\wp_die( \esc_html__( 'You are not allowed to do this.', 'orbis-projects' ), 403 );
+		}
+
+		$post = \get_post( $post_id );
+
+		if ( ! $post instanceof \WP_Post || self::POST_TYPE !== $post->post_type || 'publish' !== $post->post_status ) {
+			\wp_die( \esc_html__( 'Invalid project template.', 'orbis-projects' ), 400 );
+		}
+
+		$creation_date = \get_post_meta( $post_id, '_orbis_project_template_creation_date', true );
+
+		if ( '' === $creation_date ) {
+			\wp_die( \esc_html__( 'This project template has no creation date set.', 'orbis-projects' ), 400 );
+		}
+
+		// Bypass the daily due-date check on purpose, this is a manual, immediate trigger.
+		$project_id = $this->project_scheduler->create_project_from_template( $post_id, $creation_date );
+
+		if ( null === $project_id ) {
+			\wp_die( \esc_html__( 'No project was created from this template.', 'orbis-projects' ), 400 );
+		}
+
+		$redirect_to = \wp_get_referer();
+
+		if ( false === $redirect_to ) {
+			$redirect_to = \admin_url( 'edit.php?post_type=' . self::POST_TYPE );
+		}
+
+		\wp_safe_redirect( \add_query_arg( 'orbis_project_created', $project_id, $redirect_to ) );
+
+		exit;
+	}
+
+	/**
+	 * Render admin notices.
+	 */
+	public function render_admin_notices() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only used to conditionally show a notice, not to process data.
+		$project_id = isset( $_GET['orbis_project_created'] ) && \is_scalar( $_GET['orbis_project_created'] ) ? \absint( $_GET['orbis_project_created'] ) : 0;
+
+		if ( 0 === $project_id ) {
+			return;
+		}
+
+		$screen = \get_current_screen();
+
+		if ( ! $screen instanceof \WP_Screen || self::POST_TYPE !== $screen->post_type ) {
+			return;
+		}
+
+		$edit_link = \get_edit_post_link( $project_id );
+
+		?>
+		<div class="notice notice-success is-dismissible">
+			<p>
+				<?php if ( null !== $edit_link ) : ?>
+					<?php
+					printf(
+						/* translators: %s: link to the created project */
+						\esc_html__( 'Project created from template: %s.', 'orbis-projects' ),
+						'<a href="' . \esc_url( $edit_link ) . '">' . \esc_html( \get_the_title( $project_id ) ) . '</a>'
+					);
+					?>
+				<?php else : ?>
+					<?php \esc_html_e( 'Project created from template.', 'orbis-projects' ); ?>
+				<?php endif; ?>
+			</p>
+		</div>
+		<?php
 	}
 }

@@ -35,7 +35,7 @@ class Admin {
 
 		add_action( 'admin_menu', $this->admin_menu( ... ) );
 
-		$this->project_template_post_type = new AdminProjectTemplatePostType();
+		$this->project_template_post_type = new AdminProjectTemplatePostType( $plugin->project_scheduler );
 	}
 
 	/**

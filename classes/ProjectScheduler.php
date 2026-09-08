@@ -111,29 +111,30 @@ class ProjectScheduler {
 	 *
 	 * @param int    $post_id       Template post ID.
 	 * @param string $creation_date Scheduled creation date.
+	 * @return int|null Created project post ID, or null if no project was created.
 	 */
 	public function create_project_from_template( $post_id, $creation_date ) {
 		$template = get_post( $post_id );
 
 		if ( ! $template instanceof WP_Post || self::POST_TYPE !== $template->post_type || 'publish' !== $template->post_status ) {
-			return;
+			return null;
 		}
 
 		if ( get_post_meta( $template->ID, '_orbis_project_template_creation_date', true ) !== $creation_date ) {
-			return;
+			return null;
 		}
 
 		$base_date  = $this->get_date( $creation_date );
 		$recurrence = get_post_meta( $template->ID, '_orbis_project_template_creation_date_modifier', true );
 
 		if ( null === $base_date || '' === $recurrence ) {
-			return;
+			return null;
 		}
 
 		$next_creation_date = $this->modify_date( $base_date, $recurrence );
 
 		if ( null === $next_creation_date ) {
-			return;
+			return null;
 		}
 
 		$start_date = $this->get_modified_template_date( $template->ID, '_orbis_project_template_start_date_modifier', $base_date );
@@ -150,7 +151,7 @@ class ProjectScheduler {
 		);
 
 		if ( $project_id instanceof WP_Error ) {
-			return;
+			return null;
 		}
 
 		$this->copy_project_meta( $template->ID, $project_id );
@@ -164,6 +165,8 @@ class ProjectScheduler {
 		}
 
 		update_post_meta( $template->ID, '_orbis_project_template_creation_date', $next_creation_date->format( 'Y-m-d' ) );
+
+		return $project_id;
 	}
 
 	/**
