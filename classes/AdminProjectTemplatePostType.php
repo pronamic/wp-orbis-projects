@@ -52,12 +52,13 @@ class AdminProjectTemplatePostType {
 	 */
 	public function edit_columns( $columns ) {
 		return [
-			'cb'                                       => '<input type="checkbox" />',
-			'title'                                    => __( 'Title', 'orbis-projects' ),
-			'orbis_project_template_creation_date'     => __( 'Next Creation Date', 'orbis-projects' ),
-			'orbis_project_template_creation_modifier' => __( 'Recurrence', 'orbis-projects' ),
-			'author'                                   => __( 'Author', 'orbis-projects' ),
-			'date'                                     => __( 'Date', 'orbis-projects' ),
+			'cb'                                        => '<input type="checkbox" />',
+			'title'                                     => __( 'Title', 'orbis-projects' ),
+			'orbis_project_template_next_project_title' => __( 'Next Project', 'orbis-projects' ),
+			'orbis_project_template_creation_date'      => __( 'Next Creation Date', 'orbis-projects' ),
+			'orbis_project_template_creation_modifier'  => __( 'Recurrence', 'orbis-projects' ),
+			'author'                                    => __( 'Author', 'orbis-projects' ),
+			'date'                                      => __( 'Date', 'orbis-projects' ),
 		];
 	}
 
@@ -69,6 +70,12 @@ class AdminProjectTemplatePostType {
 	 */
 	public function custom_columns( $column, $post_id ) {
 		switch ( $column ) {
+			case 'orbis_project_template_next_project_title':
+				$next_project = $this->project_scheduler->get_next_project_preview( $post_id );
+
+				echo esc_html( null === $next_project ? __( 'N/A', 'orbis-projects' ) : $next_project['title'] );
+
+				break;
 			case 'orbis_project_template_creation_date':
 				echo esc_html( get_post_meta( $post_id, '_orbis_project_template_creation_date', true ) );
 
@@ -184,7 +191,7 @@ class AdminProjectTemplatePostType {
 		$actions['orbis_create_project_from_template'] = \sprintf(
 			'<a href="%s">%s</a>',
 			\esc_url( $url ),
-			\esc_html__( 'Create project now', 'orbis-projects' )
+			\esc_html__( 'Create project', 'orbis-projects' )
 		);
 
 		return $actions;

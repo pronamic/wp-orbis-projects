@@ -320,6 +320,18 @@ class ProjectScheduler {
 	 * @return string
 	 */
 	private function replace_merge_tags( $text, $creation_date, $start_date, $end_date ) {
+		return \strtr( $text, $this->get_merge_tag_pairs( $creation_date, $start_date, $end_date ) );
+	}
+
+	/**
+	 * Build merge tag replacement pairs.
+	 *
+	 * @param DateTimeImmutable      $creation_date Creation date.
+	 * @param DateTimeImmutable|null $start_date    Start date.
+	 * @param DateTimeImmutable|null $end_date      End date.
+	 * @return array<string, string>
+	 */
+	private function get_merge_tag_pairs( $creation_date, $start_date, $end_date ) {
 		$replace_pairs = [];
 
 		$dates = [
@@ -330,12 +342,63 @@ class ProjectScheduler {
 		foreach ( $dates as $prefix => $date ) {
 			$date ??= $creation_date;
 
-			$replace_pairs[ '{' . $prefix . '_month}' ]   = wp_date( 'F', $date->getTimestamp() );
-			$replace_pairs[ '{' . $prefix . '_year}' ]    = wp_date( 'Y', $date->getTimestamp() );
-			$replace_pairs[ '{' . $prefix . '_quarter}' ] = (string) ceil( (int) $date->format( 'n' ) / 3 );
-			$replace_pairs[ '{' . $prefix . '_week}' ]    = ltrim( $date->format( 'W' ), '0' );
+			$replace_pairs[ '{' . $prefix . '_month}' ]   = \wp_date( 'F', $date->getTimestamp() );
+			$replace_pairs[ '{' . $prefix . '_year}' ]    = \wp_date( 'Y', $date->getTimestamp() );
+			$replace_pairs[ '{' . $prefix . '_quarter}' ] = (string) \ceil( (int) $date->format( 'n' ) / 3 );
+			$replace_pairs[ '{' . $prefix . '_week}' ]    = \ltrim( $date->format( 'W' ), '0' );
 		}
 
-		return strtr( $text, $replace_pairs );
+		return $replace_pairs;
+	}
+
+	/**
+	 * Get example merge tag values for a project template, based on its saved schedule.
+	 *
+	 * @param int $post_id Template post ID.
+	 * @return array<string, string> Empty if the template has no valid creation date.
+	 */
+	public function get_merge_tag_examples( $post_id ) {
+		$creation_date = \get_post_meta( $post_id, '_orbis_project_template_creation_date', true );
+		$base_date     = $this->get_date( $creation_date );
+
+		if ( null === $base_date ) {
+			return [];
+		}
+
+		$start_date = $this->get_modified_template_date( $post_id, '_orbis_project_template_start_date_modifier', $base_date );
+		$end_date   = $this->get_modified_template_date( $post_id, '_orbis_project_template_end_date_modifier', $base_date );
+
+		return $this->get_merge_tag_pairs( $base_date, $start_date, $end_date );
+	}
+
+	/**
+	 * Get a preview of the next project that will be created from a template.
+	 *
+	 * @param int $post_id Template post ID.
+	 * @return array{creation_date: DateTimeImmutable, title: string, start_date: DateTimeImmutable|null, end_date: DateTimeImmutable|null}|null Null if the template has no valid creation date.
+	 */
+	public function get_next_project_preview( $post_id ) {
+		$template = \get_post( $post_id );
+
+		if ( ! $template instanceof WP_Post ) {
+			return null;
+		}
+
+		$creation_date = \get_post_meta( $post_id, '_orbis_project_template_creation_date', true );
+		$base_date     = $this->get_date( $creation_date );
+
+		if ( null === $base_date ) {
+			return null;
+		}
+
+		$start_date = $this->get_modified_template_date( $post_id, '_orbis_project_template_start_date_modifier', $base_date );
+		$end_date   = $this->get_modified_template_date( $post_id, '_orbis_project_template_end_date_modifier', $base_date );
+
+		return [
+			'creation_date' => $base_date,
+			'title'         => $this->replace_merge_tags( $template->post_title, $base_date, $start_date, $end_date ),
+			'start_date'    => $start_date,
+			'end_date'      => $end_date,
+		];
 	}
 }
