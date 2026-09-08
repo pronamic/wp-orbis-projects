@@ -42,6 +42,24 @@ class AdminProjectTemplatePostType {
 		\add_action( 'admin_post_orbis_create_project_from_template', $this->handle_create_project_now( ... ) );
 
 		\add_action( 'admin_notices', $this->render_admin_notices( ... ) );
+
+		\add_filter( 'parent_file', $this->parent_file( ... ) );
+	}
+
+	/**
+	 * Highlight the "Projects" menu when editing this post type, since it is registered with `show_in_menu` disabled.
+	 *
+	 * @param string $parent_file Parent file.
+	 * @return string
+	 */
+	public function parent_file( $parent_file ) {
+		$screen = \get_current_screen();
+
+		if ( null === $screen || self::POST_TYPE !== $screen->post_type ) {
+			return $parent_file;
+		}
+
+		return 'edit.php?post_type=orbis_project';
 	}
 
 	/**
