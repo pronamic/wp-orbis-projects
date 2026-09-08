@@ -10,6 +10,8 @@ namespace Pronamic\Orbis\Projects;
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
+use P2P_Connection_Type;
+use P2P_Connection_Type_Factory;
 use WP_Error;
 use WP_Post;
 use WP_Query;
@@ -157,6 +159,7 @@ class ProjectScheduler {
 		$this->copy_project_meta( $template->ID, $project_id );
 		$this->update_project_period( $project_id, $start_date, $end_date );
 		$this->copy_project_terms( $template->ID, $project_id );
+		$this->copy_project_connections( $template->ID, $project_id );
 
 		$project = get_post( $project_id );
 
@@ -167,6 +170,86 @@ class ProjectScheduler {
 		update_post_meta( $template->ID, '_orbis_project_template_creation_date', $next_creation_date->format( 'Y-m-d' ) );
 
 		return $project_id;
+	}
+
+	/**
+	 * Copy shared post-to-post connections from a project template to a project.
+	 *
+	 * @param int $template_id Template post ID.
+	 * @param int $project_id  Project post ID.
+	 */
+	private function copy_project_connections( $template_id, $project_id ) {
+		if ( ! class_exists( P2P_Connection_Type_Factory::class ) ) {
+			return;
+		}
+
+		$connection_types = array_filter(
+			P2P_Connection_Type_Factory::get_all_instances(),
+			function ( P2P_Connection_Type $connection_type ) {
+				$template_direction = $connection_type->direction_from_types( 'post', self::POST_TYPE );
+
+				if ( false === $template_direction ) {
+					return false;
+				}
+
+				$project_direction = $connection_type->direction_from_types( 'post', 'orbis_project' );
+
+				if ( false === $project_direction ) {
+					return false;
+				}
+
+				return $template_direction === $project_direction;
+			}
+		);
+
+		foreach ( $connection_types as $connection_type ) {
+			$this->copy_project_connection_type( $connection_type, $template_id, $project_id );
+		}
+	}
+
+	/**
+	 * Copy one shared post-to-post connection type from a project template to a project.
+	 *
+	 * @param P2P_Connection_Type $connection_type Posts 2 Posts connection type.
+	 * @param int                 $template_id     Template post ID.
+	 * @param int                 $project_id      Project post ID.
+	 */
+	private function copy_project_connection_type( P2P_Connection_Type $connection_type, $template_id, $project_id ) {
+		$direction = $connection_type->direction_from_types( 'post', self::POST_TYPE );
+
+		if ( false === $direction ) {
+			return;
+		}
+
+		$page = 1;
+
+		do {
+			$connected_posts = $connection_type->get_connected(
+				$template_id,
+				[
+					'paged'          => $page,
+					'posts_per_page' => 100,
+				]
+			);
+
+			if ( ! $connected_posts instanceof WP_Query ) {
+				return;
+			}
+
+			foreach ( $connected_posts->posts as $connected_post ) {
+				if ( ! $connected_post instanceof WP_Post ) {
+					continue;
+				}
+
+				if ( 'to' === $direction ) {
+					$connection_type->connect( $connected_post->ID, $project_id );
+				} else {
+					$connection_type->connect( $project_id, $connected_post->ID );
+				}
+			}
+
+			++$page;
+		} while ( $page <= $connected_posts->max_num_pages );
 	}
 
 	/**
