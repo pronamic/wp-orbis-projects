@@ -36,6 +36,8 @@ psalm.xml
 /deploy/
 /node_modules/
 
+/wp-content/
+
 # Deployer.org
 /deploy.php
 
