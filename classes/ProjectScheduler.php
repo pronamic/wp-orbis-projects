@@ -131,6 +131,7 @@ class ProjectScheduler {
 
 		$start_date = $this->get_modified_template_date( $template->ID, '_orbis_project_template_start_date_modifier', $base_date );
 		$end_date   = $this->get_modified_template_date( $template->ID, '_orbis_project_template_end_date_modifier', $base_date );
+
 		$project_id = \wp_insert_post(
 			[
 				'post_type'    => 'orbis_project',
