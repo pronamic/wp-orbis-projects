@@ -8,6 +8,8 @@
  * @package   Pronamic\Orbis\Projects
  */
 
+use Pronamic\Orbis\Projects\Duration;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -225,14 +227,14 @@ $data = $wpdb->get_results( $query );
 						<?php echo \orbis_price( $item->project_billable_amount ); ?>
 					</td>
 					<td>
-						<?php echo \orbis_time( $item->project_billable_time ); ?>
+						<?php echo \esc_html( Duration::try_from_seconds( $item->project_billable_time )?->format() ?? '' ); ?>
 					</td>
 
 					<td>
 						<?php echo \orbis_price( $item->project_billed_amount ); ?>
 					</td>
 					<td>
-						<?php echo \orbis_time( $item->project_billed_time ); ?>
+						<?php echo \esc_html( Duration::try_from_seconds( $item->project_billed_time )?->format() ?? '' ); ?>
 					</td>
 					<td>
 						<?php
@@ -263,10 +265,10 @@ $data = $wpdb->get_results( $query );
 					</td>
 
 					<td>
-						<?php echo \orbis_time( $item->project_timesheet_time ); ?>
+						<?php echo \esc_html( Duration::try_from_seconds( $item->project_timesheet_time )?->format() ?? '' ); ?>
 					</td>
 					<td>
-						<?php echo \orbis_time( $item->project_billable_time ); ?>
+						<?php echo \esc_html( Duration::try_from_seconds( $item->project_billable_time )?->format() ?? '' ); ?>
 					</td>
 
 					<td>
@@ -291,7 +293,7 @@ $data = $wpdb->get_results( $query );
 							// $to_bill_amount  = $item->project_billable_amount;
 						}
 
-						echo \orbis_time( $to_bill_seconds );
+						echo \esc_html( Duration::from_seconds( $to_bill_seconds )->format() );
 
 						?>
 					</td>

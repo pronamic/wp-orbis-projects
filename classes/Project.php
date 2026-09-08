@@ -10,8 +10,6 @@
 
 namespace Pronamic\Orbis\Projects;
 
-use Orbis_Time;
-
 class Project {
 	/**
 	 * Post.
@@ -56,9 +54,9 @@ class Project {
 	}
 
 	/**
-	 * Get available time.
+	 * Get available duration.
 	 *
-	 * @return Orbis_Time
+	 * @return Duration|null
 	 */
 	public function get_available_time() {
 		$seconds = null;
@@ -67,7 +65,7 @@ class Project {
 			$seconds = $this->post->project_number_seconds;
 		}
 
-		return new Orbis_Time( $seconds );
+		return Duration::try_from_seconds( $seconds );
 	}
 
 	/**
@@ -157,7 +155,7 @@ class Project {
 			FROM
 				$wpdb->orbis_invoices_lines AS invoice_line
 					INNER JOIN
-				$wpdb->orbis_invoices AS invoice				
+				$wpdb->orbis_invoices AS invoice
 						ON invoice.id = invoice_line.invoice_id
 					LEFT JOIN
 				$wpdb->users AS user
@@ -168,8 +166,8 @@ class Project {
 				invoice.id
 			;
 		",
-				$project_id 
-			) 
+				$project_id
+			)
 		);
 
 		if ( ! is_array( $results ) ) {

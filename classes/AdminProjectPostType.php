@@ -142,8 +142,9 @@ class AdminProjectPostType {
 		}
 
 		// Verify nonce
-		$nonce = filter_input( INPUT_POST, 'orbis_project_details_meta_box_nonce', FILTER_UNSAFE_RAW );
-		$nonce = ( null === $nonce ) ? '' : sanitize_text_field( wp_unslash( $nonce ) );
+		$nonce = isset( $_POST['orbis_project_details_meta_box_nonce'] )
+			? sanitize_text_field( wp_unslash( $_POST['orbis_project_details_meta_box_nonce'] ) )
+			: '';
 
 		if ( ! wp_verify_nonce( $nonce, 'orbis_save_project_details' ) ) {
 			return;
@@ -208,13 +209,28 @@ class AdminProjectPostType {
 			$data[ $text_key ] = ( null === $value || false === $value ) ? null : sanitize_text_field( wp_unslash( $value ) );
 		}
 
-		$data['_orbis_project_seconds_available'] = orbis_filter_time_input( INPUT_POST, '_orbis_project_seconds_available' );
+		$value = filter_input( INPUT_POST, '_orbis_project_seconds_available', FILTER_UNSAFE_RAW );
+		$value = ( null === $value ) ? '' : sanitize_text_field( wp_unslash( $value ) );
+
+		$duration = Duration::from_string( $value );
+
+		$data['_orbis_project_seconds_available'] = ( null === $duration ) ? null : $duration->get_seconds();
 
 		// Finished
 		$is_finished_old = filter_var( get_post_meta( $post_id, '_orbis_project_is_finished', true ), FILTER_VALIDATE_BOOLEAN );
 		$is_finished_new = filter_var( $data['_orbis_project_is_finished'] ?? null, FILTER_VALIDATE_BOOLEAN );
 
 		foreach ( $data as $key => $value ) {
+			if ( '_orbis_project_seconds_available' === $key ) {
+				if ( null === $value ) {
+					delete_post_meta( $post_id, $key );
+				} else {
+					update_post_meta( $post_id, $key, $value );
+				}
+
+				continue;
+			}
+
 			if ( empty( $value ) ) {
 				delete_post_meta( $post_id, $key );
 			} else {

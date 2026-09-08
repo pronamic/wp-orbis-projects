@@ -1,5 +1,6 @@
 <?php
 
+use Pronamic\Orbis\Projects\Duration;
 use Pronamic\WordPress\Money\Money;
 
 wp_enqueue_script( 'wp-api' );
@@ -10,14 +11,14 @@ wp_localize_script(
 	[
 		'root'  => esc_url_raw( rest_url() ),
 		'nonce' => wp_create_nonce( 'wp_rest' ),
-	] 
+	]
 );
 
 $statuses = get_terms(
 	[
 		'taxonomy'   => 'orbis_project_status',
 		'hide_empty' => false,
-	] 
+	]
 );
 
 $groups ??= $managers;
@@ -30,7 +31,7 @@ $groups ??= $managers;
 			<tr>
 				<th scope="col"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Project', 'orbis-projects' ); ?></th>
-				
+
 				<?php if ( isset( $orbis_is_projects_to_invoice ) ) : ?>
 
 					<th scope="col"><?php esc_html_e( 'Invoice', 'orbis-projects' ); ?></th>
@@ -127,7 +128,7 @@ $groups ??= $managers;
 								[
 									'number'  => 1,
 									'post_id' => $project->project_post_id,
-								] 
+								]
 							);
 
 							foreach ( $comments as $comment ) {
@@ -230,11 +231,11 @@ $groups ??= $managers;
 						<td style="white-space: nowrap;">
 							<span style="color: <?php echo esc_attr( $project->failed ? 'Red' : 'Green' ); ?>;">
 								<?php
-								echo $project->registered_seconds ? esc_html( orbis_time( $project->registered_seconds ) ) : '00:00';
+								echo $project->registered_seconds ? esc_html( Duration::try_from_seconds( $project->registered_seconds )?->format() ?? '' ) : '00:00';
 								?>
 							</span>
 							/
-							<?php echo esc_html( orbis_time( $project->available_seconds ) ); ?>
+							<?php echo esc_html( Duration::try_from_seconds( $project->available_seconds )?->format() ?? '' ); ?>
 							<br />
 							<?php
 							if ( get_post_meta( $project->project_post_id, '_orbis_price', true ) ) {

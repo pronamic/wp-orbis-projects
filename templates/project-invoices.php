@@ -2,6 +2,7 @@
 
 global $post;
 
+use Pronamic\Orbis\Projects\Duration;
 use Pronamic\WordPress\Money\Money;
 
 $orbis_project = new Pronamic\Orbis\Projects\Project( $post );
@@ -45,7 +46,7 @@ if ( $invoices && $invoices[0]->id ) : ?>
 						<td>
 							<?php
 							if ( $invoice->seconds ) {
-								echo esc_html( orbis_time( $invoice->seconds ) );
+								echo esc_html( Duration::try_from_seconds( $invoice->seconds )?->format() ?? '' );
 							}
 							?>
 						</td>
@@ -74,7 +75,7 @@ if ( $invoices && $invoices[0]->id ) : ?>
 							?>
 						</td>
 						<td>
-							<?php 
+							<?php
 
 							if ( null !== $invoice->start_date ) {
 								$start_date = \DateTimeImmutable::createFromFormat( 'Y-m-d', $invoice->start_date, new \DateTimeZone( 'UTC' ) );
@@ -89,7 +90,7 @@ if ( $invoices && $invoices[0]->id ) : ?>
 							?>
 						</td>
 						<td>
-							<?php 
+							<?php
 
 							if ( null !== $invoice->end_date ) {
 								$end_date = \DateTimeImmutable::createFromFormat( 'Y-m-d', $invoice->end_date, new \DateTimeZone( 'UTC' ) );
@@ -122,7 +123,7 @@ if ( $invoices && $invoices[0]->id ) : ?>
 							</strong>
 						</td>
 						<td>
-							<strong><?php echo esc_html( orbis_time( $hours_total ) ); ?></strong>
+							<strong><?php echo esc_html( Duration::from_seconds( $hours_total )->format() ); ?></strong>
 						</td>
 						<td></td>
 						<td></td>

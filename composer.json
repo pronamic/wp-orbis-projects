@@ -31,9 +31,6 @@
 	},
 	"type": "wordpress-plugin",
 	"autoload": {
-		"files": [
-			"includes/functions.php"
-		],
 		"psr-4": {
 			"Pronamic\\Orbis\\Projects\\": "classes/"
 		}

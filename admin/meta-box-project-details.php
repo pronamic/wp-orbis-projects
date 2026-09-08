@@ -1,5 +1,7 @@
 <?php
 
+use Pronamic\Orbis\Projects\Duration;
+
 global $wpdb, $post;
 
 $orbis_project = new Pronamic\Orbis\Projects\Project( $post );
@@ -111,7 +113,7 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 				<label for="_orbis_project_seconds_available"><?php esc_html_e( 'Time', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
-				<input size="5" id="_orbis_project_seconds_available" name="_orbis_project_seconds_available" value="<?php echo esc_attr( orbis_time( $seconds ) ); ?>" type="text" />
+				<input size="5" id="_orbis_project_seconds_available" name="_orbis_project_seconds_available" value="<?php echo esc_attr( Duration::try_from_seconds( $seconds )?->format() ?? '' ); ?>" type="text" />
 
 				<p class="description">
 					<?php esc_html_e( 'You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes).', 'orbis-projects' ); ?>
