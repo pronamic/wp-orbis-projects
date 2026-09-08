@@ -213,10 +213,13 @@ class Plugin {
 			return;
 		}
 
-		p2p_register_connection_type(
+		\p2p_register_connection_type(
 			[
 				'name'        => 'orbis_projects_to_persons',
-				'from'        => 'orbis_project',
+				'from'        => [
+					'orbis_project',
+					'orbis_project_tmpl',
+				],
 				'to'          => 'orbis_person',
 				'title'       => [
 					'from' => __( 'Involved Persons', 'orbis-projects' ),
