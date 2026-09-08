@@ -38,7 +38,8 @@
 	"config": {
 		"allow-plugins": {
 			"automattic/jetpack-autoloader": true,
-			"dealerdirect/phpcodesniffer-composer-installer": true
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"composer/installers": true
 		},
 		"wp-slug": "orbis-projects"
 	},
@@ -57,7 +58,8 @@
 		"wp-cli/dist-archive-command": "*",
 		"wp-cli/wp-cli-bundle": "*",
 		"deployer/deployer": "^7.5",
-		"roots/wordpress-no-content": "^7.1"
+		"roots/wordpress-no-content": "^7.1",
+		"wp-plugin/posts-to-posts": "^1.7"
 	},
 	"scripts": {
 		"build": [
@@ -81,5 +83,10 @@
 		"qa": [
 			"@phpcs"
 		]
-	}
+	},
+	"repositories": [{
+		"name": "wp-packages",
+		"type": "composer",
+		"url": "https://repo.wp-packages.org"
+	}]
 }
