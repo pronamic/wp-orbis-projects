@@ -105,6 +105,7 @@ class ContentTypes {
 					'custom-fields',
 					'revisions',
 					'orbis-project-details',
+					'orbis_teams',
 				],
 				'has_archive'  => true,
 				'show_in_rest' => true,
