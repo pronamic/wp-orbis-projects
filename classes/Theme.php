@@ -37,7 +37,7 @@ class Theme {
 	public function post_class( $classes ) {
 		global $orbis_project;
 
-		if ( is_object( $orbis_project ) ) {
+		if ( \is_object( $orbis_project ) ) {
 			$classes[] = $orbis_project->is_finished() ? 'orbis-status-finished' : 'orbis-status-open';
 		}
 
@@ -54,8 +54,8 @@ class Theme {
 		if ( \current_user_can( 'read_orbis_project_invoice', \get_the_ID() ) ) {
 			$sections[] = [
 				'id'       => 'invoices',
-				'slug'     => __( 'invoices', 'orbis-projects' ),
-				'name'     => __( 'Invoices', 'orbis-projects' ),
+				'slug'     => \__( 'invoices', 'orbis-projects' ),
+				'name'     => \__( 'Invoices', 'orbis-projects' ),
 				'callback' => function (): void {
 					include __DIR__ . '/../templates/project-invoices.php';
 				},

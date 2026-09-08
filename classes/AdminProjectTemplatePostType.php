@@ -29,13 +29,13 @@ class AdminProjectTemplatePostType {
 		 */
 		private $project_scheduler
 	) {
-		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', $this->edit_columns( ... ) );
+		\add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', $this->edit_columns( ... ) );
 
-		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
+		\add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
 
-		add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
+		\add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
 
-		add_action( 'save_post_' . self::POST_TYPE, $this->save_project_template( ... ), 10, 2 );
+		\add_action( 'save_post_' . self::POST_TYPE, $this->save_project_template( ... ), 10, 2 );
 
 		\add_filter( 'post_row_actions', $this->add_row_actions( ... ), 10, 2 );
 
@@ -53,12 +53,12 @@ class AdminProjectTemplatePostType {
 	public function edit_columns( $columns ) {
 		return [
 			'cb'                                        => '<input type="checkbox" />',
-			'title'                                     => __( 'Title', 'orbis-projects' ),
-			'orbis_project_template_next_project_title' => __( 'Next Project', 'orbis-projects' ),
-			'orbis_project_template_creation_date'      => __( 'Next Creation Date', 'orbis-projects' ),
-			'orbis_project_template_creation_modifier'  => __( 'Recurrence', 'orbis-projects' ),
-			'author'                                    => __( 'Author', 'orbis-projects' ),
-			'date'                                      => __( 'Date', 'orbis-projects' ),
+			'title'                                     => \__( 'Title', 'orbis-projects' ),
+			'orbis_project_template_next_project_title' => \__( 'Next Project', 'orbis-projects' ),
+			'orbis_project_template_creation_date'      => \__( 'Next Creation Date', 'orbis-projects' ),
+			'orbis_project_template_creation_modifier'  => \__( 'Recurrence', 'orbis-projects' ),
+			'author'                                    => \__( 'Author', 'orbis-projects' ),
+			'date'                                      => \__( 'Date', 'orbis-projects' ),
 		];
 	}
 
@@ -73,15 +73,15 @@ class AdminProjectTemplatePostType {
 			case 'orbis_project_template_next_project_title':
 				$next_project = $this->project_scheduler->get_next_project_preview( $post_id );
 
-				echo esc_html( null === $next_project ? __( 'N/A', 'orbis-projects' ) : $next_project['title'] );
+				echo \esc_html( null === $next_project ? \__( 'N/A', 'orbis-projects' ) : $next_project['title'] );
 
 				break;
 			case 'orbis_project_template_creation_date':
-				echo esc_html( get_post_meta( $post_id, '_orbis_project_template_creation_date', true ) );
+				echo \esc_html( \get_post_meta( $post_id, '_orbis_project_template_creation_date', true ) );
 
 				break;
 			case 'orbis_project_template_creation_modifier':
-				echo esc_html( get_post_meta( $post_id, '_orbis_project_template_creation_date_modifier', true ) );
+				echo \esc_html( \get_post_meta( $post_id, '_orbis_project_template_creation_date_modifier', true ) );
 
 				break;
 		}
@@ -91,9 +91,9 @@ class AdminProjectTemplatePostType {
 	 * Add meta boxes.
 	 */
 	public function add_meta_boxes() {
-		add_meta_box(
+		\add_meta_box(
 			'orbis_project_template_schedule',
-			__( 'Project Template Schedule', 'orbis-projects' ),
+			\__( 'Project Template Schedule', 'orbis-projects' ),
 			$this->meta_box_schedule( ... ),
 			self::POST_TYPE,
 			'normal',
@@ -125,15 +125,15 @@ class AdminProjectTemplatePostType {
 			return;
 		}
 
-		$nonce = isset( $_POST['orbis_project_template_schedule_meta_box_nonce'] ) && is_scalar( $_POST['orbis_project_template_schedule_meta_box_nonce'] )
-			? sanitize_text_field( wp_unslash( $_POST['orbis_project_template_schedule_meta_box_nonce'] ) )
+		$nonce = isset( $_POST['orbis_project_template_schedule_meta_box_nonce'] ) && \is_scalar( $_POST['orbis_project_template_schedule_meta_box_nonce'] )
+			? \sanitize_text_field( \wp_unslash( $_POST['orbis_project_template_schedule_meta_box_nonce'] ) )
 			: '';
 
-		if ( ! wp_verify_nonce( $nonce, 'orbis_save_project_template_schedule' ) ) {
+		if ( ! \wp_verify_nonce( $nonce, 'orbis_save_project_template_schedule' ) ) {
 			return;
 		}
 
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		if ( ! \current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 
@@ -145,17 +145,17 @@ class AdminProjectTemplatePostType {
 		];
 
 		foreach ( $keys as $key ) {
-			$value = isset( $_POST[ $key ] ) && is_scalar( $_POST[ $key ] )
-				? sanitize_text_field( wp_unslash( $_POST[ $key ] ) )
+			$value = isset( $_POST[ $key ] ) && \is_scalar( $_POST[ $key ] )
+				? \sanitize_text_field( \wp_unslash( $_POST[ $key ] ) )
 				: '';
 
 			if ( '' === $value ) {
-				delete_post_meta( $post_id, $key );
+				\delete_post_meta( $post_id, $key );
 
 				continue;
 			}
 
-			update_post_meta( $post_id, $key, $value );
+			\update_post_meta( $post_id, $key, $value );
 		}
 	}
 

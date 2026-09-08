@@ -24,8 +24,8 @@ class Shortcodes {
 		 */
 		public $plugin
 	) {
-		add_shortcode( 'orbis_projects_active', $this->shortcode_projects_active( ... ) );
-		add_shortcode( 'orbis_projects_without_agreement', $this->shortcode_projects_without_agreement( ... ) );
+		\add_shortcode( 'orbis_projects_active', $this->shortcode_projects_active( ... ) );
+		\add_shortcode( 'orbis_projects_without_agreement', $this->shortcode_projects_without_agreement( ... ) );
 	}
 
 	/**

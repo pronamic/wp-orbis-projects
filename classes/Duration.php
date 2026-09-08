@@ -13,22 +13,19 @@ namespace Pronamic\Orbis\Projects;
 /**
  * Duration value object.
  */
-class Duration {
-	/**
-	 * Seconds.
-	 *
-	 * @var int
-	 */
-	private int $seconds;
-
+class Duration implements \Stringable {
 	/**
 	 * Construct.
 	 *
 	 * @param int $seconds Seconds.
 	 */
-	public function __construct( int $seconds = 0 ) {
-		$this->seconds = $seconds;
-    }
+	public function __construct(
+		/**
+		 * Seconds.
+		 */
+		private readonly int $seconds = 0
+	) {
+	}
 
 	/**
 	 * Create duration from seconds.
@@ -149,7 +146,7 @@ class Duration {
 	 *
 	 * @return string
 	 */
-	public function __toString() {
+	public function __toString(): string {
 		return $this->format();
 	}
 }

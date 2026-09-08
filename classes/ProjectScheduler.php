@@ -43,23 +43,23 @@ class ProjectScheduler {
 		 */
 		private $plugin
 	) {
-		add_action( 'init', $this->init( ... ) );
-		add_action( 'orbis_projects_schedule_create_projects', $this->schedule_all( ... ) );
-		add_action( 'orbis_projects_schedule_paged_create_projects', $this->schedule_paged( ... ), 10, 1 );
-		add_action( 'orbis_projects_create_project_from_template', $this->create_project_from_template( ... ), 10, 2 );
+		\add_action( 'init', $this->init( ... ) );
+		\add_action( 'orbis_projects_schedule_create_projects', $this->schedule_all( ... ) );
+		\add_action( 'orbis_projects_schedule_paged_create_projects', $this->schedule_paged( ... ), 10, 1 );
+		\add_action( 'orbis_projects_create_project_from_template', $this->create_project_from_template( ... ), 10, 2 );
 	}
 
 	/**
 	 * Initialize recurring project creation.
 	 */
 	public function init() {
-		if ( false !== as_has_scheduled_action( 'orbis_projects_schedule_create_projects', [], self::GROUP ) ) {
+		if ( false !== \as_has_scheduled_action( 'orbis_projects_schedule_create_projects', [], self::GROUP ) ) {
 			return;
 		}
 
-		as_schedule_recurring_action(
-			strtotime( 'tomorrow' ),
-			DAY_IN_SECONDS,
+		\as_schedule_recurring_action(
+			\strtotime( 'tomorrow' ),
+			\DAY_IN_SECONDS,
 			'orbis_projects_schedule_create_projects',
 			[],
 			self::GROUP,
@@ -74,7 +74,7 @@ class ProjectScheduler {
 		$query = new WP_Query( $this->get_query_args() );
 
 		for ( $page = 1; $page <= $query->max_num_pages; $page++ ) {
-			as_enqueue_async_action(
+			\as_enqueue_async_action(
 				'orbis_projects_schedule_paged_create_projects',
 				[ 'page' => $page ],
 				self::GROUP
@@ -95,9 +95,9 @@ class ProjectScheduler {
 		$query = new WP_Query( $args );
 
 		foreach ( $query->posts as $post ) {
-			$creation_date = get_post_meta( $post->ID, '_orbis_project_template_creation_date', true );
+			$creation_date = \get_post_meta( $post->ID, '_orbis_project_template_creation_date', true );
 
-			as_enqueue_async_action(
+			\as_enqueue_async_action(
 				'orbis_projects_create_project_from_template',
 				[
 					'post_id'       => $post->ID,
@@ -116,18 +116,18 @@ class ProjectScheduler {
 	 * @return int|null Created project post ID, or null if no project was created.
 	 */
 	public function create_project_from_template( $post_id, $creation_date ) {
-		$template = get_post( $post_id );
+		$template = \get_post( $post_id );
 
 		if ( ! $template instanceof WP_Post || self::POST_TYPE !== $template->post_type || 'publish' !== $template->post_status ) {
 			return null;
 		}
 
-		if ( get_post_meta( $template->ID, '_orbis_project_template_creation_date', true ) !== $creation_date ) {
+		if ( \get_post_meta( $template->ID, '_orbis_project_template_creation_date', true ) !== $creation_date ) {
 			return null;
 		}
 
 		$base_date  = $this->get_date( $creation_date );
-		$recurrence = get_post_meta( $template->ID, '_orbis_project_template_creation_date_modifier', true );
+		$recurrence = \get_post_meta( $template->ID, '_orbis_project_template_creation_date_modifier', true );
 
 		if ( null === $base_date || '' === $recurrence ) {
 			return null;
@@ -141,7 +141,7 @@ class ProjectScheduler {
 
 		$start_date = $this->get_modified_template_date( $template->ID, '_orbis_project_template_start_date_modifier', $base_date );
 		$end_date   = $this->get_modified_template_date( $template->ID, '_orbis_project_template_end_date_modifier', $base_date );
-		$project_id = wp_insert_post(
+		$project_id = \wp_insert_post(
 			[
 				'post_type'    => 'orbis_project',
 				'post_status'  => 'publish',
@@ -161,13 +161,13 @@ class ProjectScheduler {
 		$this->copy_project_terms( $template->ID, $project_id );
 		$this->copy_project_connections( $template->ID, $project_id );
 
-		$project = get_post( $project_id );
+		$project = \get_post( $project_id );
 
 		if ( $project instanceof WP_Post ) {
 			$this->plugin->project_post_type->save_project_sync( $project_id, $project );
 		}
 
-		update_post_meta( $template->ID, '_orbis_project_template_creation_date', $next_creation_date->format( 'Y-m-d' ) );
+		\update_post_meta( $template->ID, '_orbis_project_template_creation_date', $next_creation_date->format( 'Y-m-d' ) );
 
 		return $project_id;
 	}
@@ -179,7 +179,7 @@ class ProjectScheduler {
 	 * @param int $project_id  Project post ID.
 	 */
 	private function copy_project_connections( $template_id, $project_id ) {
-		if ( ! class_exists( P2P_Connection_Type_Factory::class ) ) {
+		if ( ! \class_exists( P2P_Connection_Type_Factory::class ) ) {
 			return;
 		}
 
@@ -266,7 +266,7 @@ class ProjectScheduler {
 			'meta_query'     => [
 				[
 					'key'     => '_orbis_project_template_creation_date',
-					'value'   => wp_date( 'Y-m-d' ),
+					'value'   => \wp_date( 'Y-m-d' ),
 					'compare' => '<=',
 					'type'    => 'DATE',
 				],
@@ -283,7 +283,7 @@ class ProjectScheduler {
 	 * @return DateTimeImmutable|null
 	 */
 	private function get_modified_template_date( $post_id, $meta_key, $base_date ) {
-		$modifier = get_post_meta( $post_id, $meta_key, true );
+		$modifier = \get_post_meta( $post_id, $meta_key, true );
 
 		if ( '' === $modifier ) {
 			return null;
@@ -333,15 +333,15 @@ class ProjectScheduler {
 	 * @param int $project_id  Project post ID.
 	 */
 	private function copy_project_meta( $template_id, $project_id ) {
-		$meta = get_post_meta( $template_id );
+		$meta = \get_post_meta( $template_id );
 
-		foreach ( array_keys( $meta ) as $key ) {
-			if ( '_orbis_project_id' === $key || str_starts_with( $key, '_orbis_project_template_' ) ) {
+		foreach ( \array_keys( $meta ) as $key ) {
+			if ( '_orbis_project_id' === $key || \str_starts_with( $key, '_orbis_project_template_' ) ) {
 				continue;
 			}
 
-			foreach ( get_post_meta( $template_id, $key, false ) as $value ) {
-				add_post_meta( $project_id, $key, $value );
+			foreach ( \get_post_meta( $template_id, $key, false ) as $value ) {
+				\add_post_meta( $project_id, $key, $value );
 			}
 		}
 	}
@@ -355,11 +355,11 @@ class ProjectScheduler {
 	 */
 	private function update_project_period( $project_id, $start_date, $end_date ) {
 		if ( null !== $start_date ) {
-			update_post_meta( $project_id, '_orbis_project_start_date', $start_date->format( 'Y-m-d' ) );
+			\update_post_meta( $project_id, '_orbis_project_start_date', $start_date->format( 'Y-m-d' ) );
 		}
 
 		if ( null !== $end_date ) {
-			update_post_meta( $project_id, '_orbis_project_end_date', $end_date->format( 'Y-m-d' ) );
+			\update_post_meta( $project_id, '_orbis_project_end_date', $end_date->format( 'Y-m-d' ) );
 		}
 	}
 
@@ -377,7 +377,7 @@ class ProjectScheduler {
 		];
 
 		foreach ( $taxonomies as $taxonomy ) {
-			$term_ids = wp_get_object_terms(
+			$term_ids = \wp_get_object_terms(
 				$template_id,
 				$taxonomy,
 				[
@@ -385,11 +385,11 @@ class ProjectScheduler {
 				]
 			);
 
-			if ( is_wp_error( $term_ids ) ) {
+			if ( \is_wp_error( $term_ids ) ) {
 				continue;
 			}
 
-			wp_set_object_terms( $project_id, $term_ids, $taxonomy );
+			\wp_set_object_terms( $project_id, $term_ids, $taxonomy );
 		}
 	}
 

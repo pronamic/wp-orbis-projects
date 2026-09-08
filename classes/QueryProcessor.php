@@ -15,14 +15,14 @@ class QueryProcessor {
 	 * Construct.
 	 */
 	public function __construct() {
-		add_filter( 'query_vars', $this->query_vars( ... ) );
+		\add_filter( 'query_vars', $this->query_vars( ... ) );
 
-		add_action( 'pre_get_posts', $this->pre_get_posts_custom_invoicable( ... ) );
-		add_action( 'pre_get_posts', $this->pre_get_posts_custom_orderby( ... ) );
+		\add_action( 'pre_get_posts', $this->pre_get_posts_custom_invoicable( ... ) );
+		\add_action( 'pre_get_posts', $this->pre_get_posts_custom_orderby( ... ) );
 
-		add_filter( 'posts_clauses', $this->posts_clauses( ... ), 10, 2 );
+		\add_filter( 'posts_clauses', $this->posts_clauses( ... ), 10, 2 );
 
-		add_filter( 'rest_orbis_project_query', $this->rest_query( ... ), 10, 2 );
+		\add_filter( 'rest_orbis_project_query', $this->rest_query( ... ), 10, 2 );
 	}
 
 	/**
@@ -160,8 +160,8 @@ class QueryProcessor {
 		$subquery = \implode(
 			' ',
 			[
-				'SELECT ' . implode( ', ', $subquery_select_expr ),
-				'FROM ' . implode( ' ', $subquery_table_references ),
+				'SELECT ' . \implode( ', ', $subquery_select_expr ),
+				'FROM ' . \implode( ' ', $subquery_table_references ),
 				'GROUP BY project.id',
 			]
 		);

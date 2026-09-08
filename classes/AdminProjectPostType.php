@@ -31,15 +31,15 @@ class AdminProjectPostType {
 		 */
 		public $plugin
 	) {
-		add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', $this->edit_columns( ... ) );
+		\add_filter( 'manage_edit-' . self::POST_TYPE . '_columns', $this->edit_columns( ... ) );
 
-		add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
+		\add_action( 'manage_' . self::POST_TYPE . '_posts_custom_column', $this->custom_columns( ... ), 10, 2 );
 
-		add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
+		\add_action( 'add_meta_boxes', $this->add_meta_boxes( ... ) );
 
-		add_action( 'save_post_' . self::POST_TYPE, $this->save_project( ... ), 10, 2 );
-		add_action( 'save_post_' . AdminProjectTemplatePostType::POST_TYPE, $this->save_project( ... ), 10, 2 );
-		add_action( 'save_post_' . self::POST_TYPE, $this->save_project_sync( ... ), 500, 2 );
+		\add_action( 'save_post_' . self::POST_TYPE, $this->save_project( ... ), 10, 2 );
+		\add_action( 'save_post_' . AdminProjectTemplatePostType::POST_TYPE, $this->save_project( ... ), 10, 2 );
+		\add_action( 'save_post_' . self::POST_TYPE, $this->save_project_sync( ... ), 500, 2 );
 	}
 
 	/**
@@ -48,13 +48,13 @@ class AdminProjectPostType {
 	public function edit_columns( $columns ) {
 		$columns = [
 			'cb'                      => '<input type="checkbox" />',
-			'title'                   => __( 'Title', 'orbis-projects' ),
-			'orbis_project_principal' => __( 'Principal', 'orbis-projects' ),
-			'orbis_project_price'     => __( 'Price', 'orbis-projects' ),
-			'orbis_project_time'      => __( 'Time', 'orbis-projects' ),
-			'author'                  => __( 'Author', 'orbis-projects' ),
-			'comments'                => __( 'Comments', 'orbis-projects' ),
-			'date'                    => __( 'Date', 'orbis-projects' ),
+			'title'                   => \__( 'Title', 'orbis-projects' ),
+			'orbis_project_principal' => \__( 'Principal', 'orbis-projects' ),
+			'orbis_project_price'     => \__( 'Price', 'orbis-projects' ),
+			'orbis_project_time'      => \__( 'Time', 'orbis-projects' ),
+			'author'                  => \__( 'Author', 'orbis-projects' ),
+			'comments'                => \__( 'Comments', 'orbis-projects' ),
+			'date'                    => \__( 'Date', 'orbis-projects' ),
 		];
 
 		return $columns;
@@ -71,10 +71,10 @@ class AdminProjectPostType {
 		switch ( $column ) {
 			case 'orbis_project_principal':
 				if ( $orbis_project->has_principal() ) {
-					printf(
+					\printf(
 						'<a href="%s">%s</a>',
-						esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
-						esc_html( $orbis_project->get_principal_name() )
+						\esc_attr( \get_permalink( $orbis_project->get_principal_post_id() ) ),
+						\esc_html( $orbis_project->get_principal_name() )
 					);
 				}
 
@@ -89,7 +89,7 @@ class AdminProjectPostType {
 				if ( null !== $value ) {
 					$price = new Money( $value, 'EUR' );
 
-					echo esc_html( $price->format_i18n() );
+					echo \esc_html( $price->format_i18n() );
 				}
 
 				break;
@@ -101,7 +101,7 @@ class AdminProjectPostType {
 				}
 
 				if ( null !== $duration ) {
-					echo esc_html( $duration->format() );
+					echo \esc_html( $duration->format() );
 				}
 
 				break;
@@ -114,13 +114,13 @@ class AdminProjectPostType {
 	 * @param string $post_type Post type.
 	 */
 	public function add_meta_boxes( $post_type ) {
-		if ( ! post_type_supports( $post_type, 'orbis-project-details' ) ) {
+		if ( ! \post_type_supports( $post_type, 'orbis-project-details' ) ) {
 			return;
 		}
 
-		add_meta_box(
+		\add_meta_box(
 			'orbis_project_details',
-			__( 'Project Information', 'orbis-projects' ),
+			\__( 'Project Information', 'orbis-projects' ),
 			$this->meta_box_details( ... ),
 			$post_type,
 			'normal',
@@ -145,61 +145,61 @@ class AdminProjectPostType {
 	 */
 	public function save_project( $post_id, $post ) {
 		// Doing autosave
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		if ( \defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 
 		// Verify nonce
 		$nonce = isset( $_POST['orbis_project_details_meta_box_nonce'] )
-			? sanitize_text_field( wp_unslash( $_POST['orbis_project_details_meta_box_nonce'] ) )
+			? \sanitize_text_field( \wp_unslash( $_POST['orbis_project_details_meta_box_nonce'] ) )
 			: '';
 
-		if ( ! wp_verify_nonce( $nonce, 'orbis_save_project_details' ) ) {
+		if ( ! \wp_verify_nonce( $nonce, 'orbis_save_project_details' ) ) {
 			return;
 		}
 
 		// Check permissions
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		if ( ! \current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 
 		$data = [
-			'_orbis_price'                    => self::parse_decimal( self::get_post_value( '_orbis_price' ) ),
-			'_orbis_hourly_rate'              => self::parse_decimal( self::get_post_value( '_orbis_hourly_rate' ) ),
-			'_orbis_project_principal_id'     => self::get_post_value( '_orbis_project_principal_id' ),
-			'_orbis_project_agreement_id'     => self::get_post_value( '_orbis_project_agreement_id' ),
-			'_orbis_project_is_finished'      => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_finished' ) ),
-			'_orbis_project_is_invoicable'    => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_invoicable' ) ),
-			'_orbis_project_declarability'    => self::get_post_value( '_orbis_project_declarability' ),
-			'_orbis_project_invoice_number'   => self::get_post_value( '_orbis_project_invoice_number' ),
-			'_orbis_invoice_reference'        => self::get_post_value( '_orbis_invoice_reference' ),
-			'_orbis_invoice_line_description' => self::get_post_value( '_orbis_invoice_line_description' ),
-			'_orbis_project_start_date'       => self::get_post_value( '_orbis_project_start_date' ),
-			'_orbis_project_end_date'         => self::get_post_value( '_orbis_project_end_date' ),
-			'_orbis_project_billed_to'        => self::get_post_value( '_orbis_project_billed_to' ),
+			'_orbis_price'                     => self::parse_decimal( self::get_post_value( '_orbis_price' ) ),
+			'_orbis_hourly_rate'               => self::parse_decimal( self::get_post_value( '_orbis_hourly_rate' ) ),
+			'_orbis_project_principal_id'      => self::get_post_value( '_orbis_project_principal_id' ),
+			'_orbis_project_agreement_id'      => self::get_post_value( '_orbis_project_agreement_id' ),
+			'_orbis_project_is_finished'       => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_finished' ) ),
+			'_orbis_project_is_invoicable'     => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_invoicable' ) ),
+			'_orbis_project_declarability'     => self::get_post_value( '_orbis_project_declarability' ),
+			'_orbis_project_invoice_number'    => self::get_post_value( '_orbis_project_invoice_number' ),
+			'_orbis_invoice_reference'         => self::get_post_value( '_orbis_invoice_reference' ),
+			'_orbis_invoice_line_description'  => self::get_post_value( '_orbis_invoice_line_description' ),
+			'_orbis_project_start_date'        => self::get_post_value( '_orbis_project_start_date' ),
+			'_orbis_project_end_date'          => self::get_post_value( '_orbis_project_end_date' ),
+			'_orbis_project_billed_to'         => self::get_post_value( '_orbis_project_billed_to' ),
 			'_orbis_project_seconds_available' => Duration::from_string( self::get_post_value( '_orbis_project_seconds_available' ) ?? '' )?->get_seconds(),
 		];
 
-		if ( current_user_can( 'edit_orbis_project_administration' ) ) {
+		if ( \current_user_can( 'edit_orbis_project_administration' ) ) {
 			$data['_orbis_project_is_invoiced'] = BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_invoiced' ) );
 		}
 
 		// Finished
-		$is_finished_old = BooleanHelper::from_mixed( get_post_meta( $post_id, '_orbis_project_is_finished', true ) );
+		$is_finished_old = BooleanHelper::from_mixed( \get_post_meta( $post_id, '_orbis_project_is_finished', true ) );
 		$is_finished_new = BooleanHelper::from_mixed( $data['_orbis_project_is_finished'] ?? null );
 
 		foreach ( $data as $key => $value ) {
 			if ( null === $value || '' === $value ) {
-				delete_post_meta( $post_id, $key );
+				\delete_post_meta( $post_id, $key );
 			} else {
-				update_post_meta( $post_id, $key, $value );
+				\update_post_meta( $post_id, $key, $value );
 			}
 		}
 
-		// Action
+		// Action.
 		if ( 'publish' === $post->post_status && $is_finished_old !== $is_finished_new ) {
 			// @see https://github.com/woothemes/woocommerce/blob/v2.1.4/includes/class-wc-order.php#L1274
-			do_action( 'orbis_project_finished_update', $post_id, $is_finished_new );
+			\do_action( 'orbis_project_finished_update', $post_id, $is_finished_new );
 		}
 	}
 
@@ -211,12 +211,12 @@ class AdminProjectPostType {
 	 */
 	private static function get_post_value( $key ) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- The nonce is verified before this method is called.
-		if ( ! isset( $_POST[ $key ] ) || ! is_scalar( $_POST[ $key ] ) ) {
+		if ( ! isset( $_POST[ $key ] ) || ! \is_scalar( $_POST[ $key ] ) ) {
 			return null;
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- The nonce is verified before this method is called.
-		return sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
+		return \sanitize_text_field( \wp_unslash( $_POST[ $key ] ) );
 	}
 
 	/**
@@ -230,7 +230,7 @@ class AdminProjectPostType {
 			return null;
 		}
 
-		$value = sanitize_text_field( $value );
+		$value = \sanitize_text_field( $value );
 
 		if ( '' === $value ) {
 			return null;
@@ -238,32 +238,32 @@ class AdminProjectPostType {
 
 		global $wp_locale;
 
-		$value = str_replace( $wp_locale->number_format['thousands_sep'], '', $value );
-		$value = str_replace( $wp_locale->number_format['decimal_point'], '.', $value );
+		$value = \str_replace( $wp_locale->number_format['thousands_sep'], '', $value );
+		$value = \str_replace( $wp_locale->number_format['decimal_point'], '.', $value );
 
-		return is_numeric( $value ) ? (float) $value : null;
+		return \is_numeric( $value ) ? (float) $value : null;
 	}
 
 	/**
 	 * Sync project with Orbis tables
 	 */
 	public function save_project_sync( $post_id, $post ) {
-		// Doing autosave
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		// Doing autosave.
+		if ( \defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 
-		// Check post type
+		// Check post type.
 		if ( ! ( 'orbis_project' === $post->post_type ) ) {
 			return;
 		}
 
-		// Revision
-		if ( wp_is_post_revision( $post_id ) ) {
+		// Revision.
+		if ( \wp_is_post_revision( $post_id ) ) {
 			return;
 		}
 
-		// Publish
+		// Publish.
 		if ( 'publish' !== $post->post_status ) {
 			return;
 		}
@@ -272,17 +272,17 @@ class AdminProjectPostType {
 		global $wpdb;
 
 		// Orbis project ID
-		$orbis_id = get_post_meta( $post_id, '_orbis_project_id', true );
+		$orbis_id = \get_post_meta( $post_id, '_orbis_project_id', true );
 		$orbis_id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_projects WHERE post_id = %d;", $post_id ) );
 
-		$principal_id   = get_post_meta( $post_id, '_orbis_project_principal_id', true );
-		$is_invoicable  = get_post_meta( $post_id, '_orbis_project_is_invoicable', true );
-		$declarability  = get_post_meta( $post_id, '_orbis_project_declarability', true );
-		$is_invoiced    = get_post_meta( $post_id, '_orbis_project_is_invoiced', true );
-		$invoice_number = get_post_meta( $post_id, '_orbis_project_invoice_number', true );
-		$is_finished    = get_post_meta( $post_id, '_orbis_project_is_finished', true );
-		$seconds        = get_post_meta( $post_id, '_orbis_project_seconds_available', true );
-		$price          = get_post_meta( $post_id, '_orbis_price', true );
+		$principal_id   = \get_post_meta( $post_id, '_orbis_project_principal_id', true );
+		$is_invoicable  = \get_post_meta( $post_id, '_orbis_project_is_invoicable', true );
+		$declarability  = \get_post_meta( $post_id, '_orbis_project_declarability', true );
+		$is_invoiced    = \get_post_meta( $post_id, '_orbis_project_is_invoiced', true );
+		$invoice_number = \get_post_meta( $post_id, '_orbis_project_invoice_number', true );
+		$is_finished    = \get_post_meta( $post_id, '_orbis_project_is_finished', true );
+		$seconds        = \get_post_meta( $post_id, '_orbis_project_seconds_available', true );
+		$price          = \get_post_meta( $post_id, '_orbis_price', true );
 
 		$data = [];
 		$form = [];
@@ -338,6 +338,6 @@ class AdminProjectPostType {
 			);
 		}
 
-		update_post_meta( $post_id, '_orbis_project_id', $orbis_id );
+		\update_post_meta( $post_id, '_orbis_project_id', $orbis_id );
 	}
 }

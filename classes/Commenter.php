@@ -25,8 +25,8 @@ class Commenter {
 		public $plugin
 	) {
 		// Hooks
-		add_action( 'orbis_project_finished_update', $this->project_finished_update( ... ), 10, 2 );
-		add_action( 'orbis_project_invoice_number_update', [ $this, 'project_invoice_number_update' ], 10, 3 );
+		\add_action( 'orbis_project_finished_update', $this->project_finished_update( ... ), 10, 2 );
+		\add_action( 'orbis_project_invoice_number_update', [ $this, 'project_invoice_number_update' ], 10, 3 );
 	}
 
 	/**
@@ -36,16 +36,16 @@ class Commenter {
 	 */
 	public function project_finished_update( $post_id, $is_finished ) {
 		// Date
-		update_post_meta( $post_id, '_orbis_project_finished_modified', time() );
+		\update_post_meta( $post_id, '_orbis_project_finished_modified', time() );
 
 		// Comment
-		$user = wp_get_current_user();
+		$user = \wp_get_current_user();
 
-		$comment_content = sprintf(
+		$comment_content = \sprintf(
 			/* translators: first and second placeholder is the state of the project, opened or completed, and the third is the user name. */
-			__( 'This "%1$s" project is just "%2$s" by %3$s.', 'orbis-projects' ),
-			$is_finished ? __( 'opened', 'orbis-projects' ) : __( 'completed', 'orbis-projects' ),
-			$is_finished ? __( 'completed', 'orbis-projects' ) : __( 'opened', 'orbis-projects' ),
+			\__( 'This "%1$s" project is just "%2$s" by %3$s.', 'orbis-projects' ),
+			$is_finished ? \__( 'opened', 'orbis-projects' ) : \__( 'completed', 'orbis-projects' ),
+			$is_finished ? \__( 'completed', 'orbis-projects' ) : \__( 'opened', 'orbis-projects' ),
 			$user->display_name
 		);
 
@@ -56,6 +56,6 @@ class Commenter {
 			'comment_type'    => 'orbis_comment',
 		];
 
-		wp_insert_comment( $data );
+		\wp_insert_comment( $data );
 	}
 }

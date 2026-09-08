@@ -71,11 +71,11 @@ class Plugin {
 	public $theme;
 
 	public function __construct( $file ) {
-		add_action( 'init', $this->init( ... ) );
+		\add_action( 'init', $this->init( ... ) );
 
-		add_action( 'the_post', $this->the_post( ... ) );
+		\add_action( 'the_post', $this->the_post( ... ) );
 
-		add_action( 'p2p_init', $this->p2p_init( ... ) );
+		\add_action( 'p2p_init', $this->p2p_init( ... ) );
 
 		$this->content_types     = new ContentTypes();
 		$this->query_processor   = new QueryProcessor();
@@ -84,7 +84,7 @@ class Plugin {
 		$this->project_post_type = new AdminProjectPostType( $this );
 		$this->project_scheduler = new ProjectScheduler( $this );
 
-		if ( is_admin() ) {
+		if ( \is_admin() ) {
 			$this->admin = new Admin( $this );
 		} else {
 			$this->theme = new Theme( $this );
@@ -197,7 +197,7 @@ class Plugin {
 	public function the_post( $post ) {
 		unset( $GLOBALS['orbis_project'] );
 
-		if ( 'orbis_project' !== get_post_type( $post ) ) {
+		if ( 'orbis_project' !== \get_post_type( $post ) ) {
 			return;
 		}
 
@@ -208,7 +208,7 @@ class Plugin {
 	 * Posts to posts initialize
 	 */
 	public function p2p_init() {
-		if ( ! post_type_exists( 'orbis_person' ) ) {
+		if ( ! \post_type_exists( 'orbis_person' ) ) {
 			return;
 		}
 
@@ -221,24 +221,24 @@ class Plugin {
 				],
 				'to'          => 'orbis_person',
 				'title'       => [
-					'from' => __( 'Involved Persons', 'orbis-projects' ),
-					'to'   => __( 'Projects', 'orbis-projects' ),
+					'from' => \__( 'Involved Persons', 'orbis-projects' ),
+					'to'   => \__( 'Projects', 'orbis-projects' ),
 				],
 				'from_labels' => [
-					'singular_name' => __( 'Project', 'orbis-projects' ),
-					'search_items'  => __( 'Search project', 'orbis-projects' ),
-					'not_found'     => __( 'No projects found.', 'orbis-projects' ),
-					'create'        => __( 'Add Project', 'orbis-projects' ),
-					'new_item'      => __( 'New Project', 'orbis-projects' ),
-					'add_new_item'  => __( 'Add New Project', 'orbis-projects' ),
+					'singular_name' => \__( 'Project', 'orbis-projects' ),
+					'search_items'  => \__( 'Search project', 'orbis-projects' ),
+					'not_found'     => \__( 'No projects found.', 'orbis-projects' ),
+					'create'        => \__( 'Add Project', 'orbis-projects' ),
+					'new_item'      => \__( 'New Project', 'orbis-projects' ),
+					'add_new_item'  => \__( 'Add New Project', 'orbis-projects' ),
 				],
 				'to_labels'   => [
-					'singular_name' => __( 'Person', 'orbis-projects' ),
-					'search_items'  => __( 'Search person', 'orbis-projects' ),
-					'not_found'     => __( 'No persons found.', 'orbis-projects' ),
-					'create'        => __( 'Add Person', 'orbis-projects' ),
-					'new_item'      => __( 'New Person', 'orbis-projects' ),
-					'add_new_item'  => __( 'Add New Person', 'orbis-projects' ),
+					'singular_name' => \__( 'Person', 'orbis-projects' ),
+					'search_items'  => \__( 'Search person', 'orbis-projects' ),
+					'not_found'     => \__( 'No persons found.', 'orbis-projects' ),
+					'create'        => \__( 'Add Person', 'orbis-projects' ),
+					'new_item'      => \__( 'New Person', 'orbis-projects' ),
+					'add_new_item'  => \__( 'Add New Person', 'orbis-projects' ),
 				],
 			]
 		);

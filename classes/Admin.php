@@ -31,9 +31,9 @@ class Admin {
 		 */
 		public $plugin
 	) {
-		add_action( 'admin_enqueue_scripts', $this->enqueue_scripts( ... ) );
+		\add_action( 'admin_enqueue_scripts', $this->enqueue_scripts( ... ) );
 
-		add_action( 'admin_menu', $this->admin_menu( ... ) );
+		\add_action( 'admin_menu', $this->admin_menu( ... ) );
 
 		$this->project_template_post_type = new AdminProjectTemplatePostType( $plugin->project_scheduler );
 	}
@@ -42,8 +42,8 @@ class Admin {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'orbis-autocomplete' );
-		wp_enqueue_style( 'select2' );
+		\wp_enqueue_script( 'orbis-autocomplete' );
+		\wp_enqueue_style( 'select2' );
 	}
 
 	/**

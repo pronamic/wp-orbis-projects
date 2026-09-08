@@ -19,7 +19,7 @@ class Project {
 	public $post;
 
 	public function __construct( $post = null ) {
-		$this->post = get_post( $post );
+		$this->post = \get_post( $post );
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Project {
 			return Duration::try_from_seconds( $this->post->project_number_seconds );
 		}
 
-		$seconds = get_post_meta( $this->post->ID, '_orbis_project_seconds_available', true );
+		$seconds = \get_post_meta( $this->post->ID, '_orbis_project_seconds_available', true );
 
 		return Duration::try_from_seconds( $seconds );
 	}
@@ -74,7 +74,7 @@ class Project {
 	 * @return float
 	 */
 	public function get_price() {
-		$value = get_post_meta( $this->post->ID, '_orbis_price', true );
+		$value = \get_post_meta( $this->post->ID, '_orbis_price', true );
 
 		if ( '' === $value ) {
 			return null;
@@ -93,7 +93,7 @@ class Project {
 			return (bool) $this->post->project_is_finished;
 		}
 
-		return BooleanHelper::from_mixed( get_post_meta( $this->post->ID, '_orbis_project_is_finished', true ) );
+		return BooleanHelper::from_mixed( \get_post_meta( $this->post->ID, '_orbis_project_is_finished', true ) );
 	}
 
 	/**
@@ -106,7 +106,7 @@ class Project {
 			return (bool) $this->post->project_is_invoiced;
 		}
 
-		return BooleanHelper::from_mixed( get_post_meta( $this->post->ID, '_orbis_project_is_invoiced', true ) );
+		return BooleanHelper::from_mixed( \get_post_meta( $this->post->ID, '_orbis_project_is_invoiced', true ) );
 	}
 
 	/**
@@ -115,7 +115,7 @@ class Project {
 	 * @return boolean
 	 */
 	public function is_invoicable() {
-		return BooleanHelper::from_mixed( get_post_meta( $this->post->ID, '_orbis_project_is_invoicable', true ) );
+		return BooleanHelper::from_mixed( \get_post_meta( $this->post->ID, '_orbis_project_is_invoicable', true ) );
 	}
 
 	/**
@@ -124,7 +124,7 @@ class Project {
 	 * @return boolean
 	 */
 	public function is_final_invoice( $invoice_number ) {
-		return get_post_meta( $this->post->ID, '_orbis_project_invoice_number', true ) == $invoice_number; // WPCS: loose comparison ok.
+		return \get_post_meta( $this->post->ID, '_orbis_project_invoice_number', true ) == $invoice_number; // WPCS: loose comparison ok.
 	}
 
 	/**
