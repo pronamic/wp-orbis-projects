@@ -18,8 +18,8 @@ namespace Pronamic\Orbis\Projects;
  * Defines when the price of a fixed price project is billed.
  */
 enum BillingSchedule: string {
-	case Upfront      = 'upfront';
-	case OnCompletion = 'on_completion';
+	case InAdvance    = 'in_advance';
+	case InArrears    = 'in_arrears';
 	case ProRata      = 'pro_rata';
 	case Flexible     = 'flexible';
 
@@ -40,8 +40,8 @@ enum BillingSchedule: string {
 	 */
 	public function label(): string {
 		return match ( $this ) {
-			self::Upfront      => \_x( 'Upfront (prepaid)', 'billing schedule', 'orbis-projects' ),
-			self::OnCompletion => \_x( 'On completion', 'billing schedule', 'orbis-projects' ),
+			self::InAdvance    => \_x( 'In advance', 'billing schedule', 'orbis-projects' ),
+			self::InArrears    => \_x( 'In arrears', 'billing schedule', 'orbis-projects' ),
 			self::ProRata      => \_x( 'Pro rata', 'billing schedule', 'orbis-projects' ),
 			self::Flexible     => \_x( 'Flexible', 'billing schedule', 'orbis-projects' ),
 		};

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Projects\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-projects\n"
-"POT-Creation-Date: 2026-09-08T12:57:11+00:00\n"
-"PO-Revision-Date: 2026-10-01 23:51+0200\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
-"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-08T12:57:11+00:00\n"
+"PO-Revision-Date: 2026-10-01T22:08:36+00:00\n"
+"Language: nl_NL\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -38,12 +38,15 @@ msgstr "Pronamic"
 msgid "https://www.pronamic.eu/"
 msgstr "https://www.pronamic.nl/"
 
-#: admin/meta-box-project-details.php:82 admin/page-billing.php:155
-#: admin/page-billing.php:159 templates/projects-without-agreement.php:29
+#: admin/meta-box-project-details.php:82
+#: admin/page-billing.php:155
+#: admin/page-billing.php:159
+#: templates/projects-without-agreement.php:29
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-project-details.php:90 templates/projects-table-view.php:32
+#: admin/meta-box-project-details.php:90
+#: templates/projects-table-view.php:32
 msgid "Client"
 msgstr "Klant"
 
@@ -51,7 +54,8 @@ msgstr "Klant"
 msgid "Select Client"
 msgstr "Selecteer klant"
 
-#: admin/meta-box-project-details.php:102 classes/AdminProjectPostType.php:53
+#: admin/meta-box-project-details.php:102
+#: classes/AdminProjectPostType.php:53
 msgid "Price"
 msgstr "Prijs"
 
@@ -59,8 +63,10 @@ msgstr "Prijs"
 msgid "Hourly Rate"
 msgstr "Uurtarief"
 
-#: admin/meta-box-project-details.php:118 admin/page-billing.php:166
-#: admin/page-billing.php:169 admin/page-billing.php:175
+#: admin/meta-box-project-details.php:118
+#: admin/page-billing.php:166
+#: admin/page-billing.php:169
+#: admin/page-billing.php:175
 #: classes/AdminProjectPostType.php:54
 msgid "Time"
 msgstr "Tijd"
@@ -101,7 +107,8 @@ msgstr "Afgerond"
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:166 templates/projects-table-view.php:45
+#: admin/meta-box-project-details.php:166
+#: templates/projects-table-view.php:45
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
@@ -132,7 +139,8 @@ msgctxt "billability"
 msgid "Excluded"
 msgstr "Uitgesloten"
 
-#: admin/meta-box-project-details.php:214 admin/page-billing.php:162
+#: admin/meta-box-project-details.php:214
+#: admin/page-billing.php:162
 msgid "Billing method"
 msgstr "Facturatiemethode"
 
@@ -164,7 +172,8 @@ msgstr "Gefactureerd"
 msgid "Project is invoiced"
 msgstr "Project is gefactureerd"
 
-#: admin/meta-box-project-details.php:291 templates/projects-table-view.php:105
+#: admin/meta-box-project-details.php:291
+#: templates/projects-table-view.php:105
 msgid "Invoice reference"
 msgstr "Factuurreferentie"
 
@@ -180,7 +189,8 @@ msgstr "Betaalmethode"
 msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
 
-#: admin/meta-box-project-details.php:334 templates/projects-table-view.php:43
+#: admin/meta-box-project-details.php:334
+#: templates/projects-table-view.php:43
 msgid "Period"
 msgstr "Periode"
 
@@ -282,18 +292,23 @@ msgstr "Orbis-tijdstaten"
 msgid "The billing overview cannot be shown because the following Orbis tables are not available: %s."
 msgstr "Het factureringsoverzicht kan niet worden weergegeven omdat de volgende Orbis-tabellen niet beschikbaar zijn: %s."
 
-#: admin/page-billing.php:142 classes/ContentTypes.php:28
-#: classes/ContentTypes.php:30 classes/Plugin.php:227
+#: admin/page-billing.php:142
+#: classes/ContentTypes.php:28
+#: classes/ContentTypes.php:30
+#: classes/Plugin.php:227
 msgid "Projects"
 msgstr "Projecten"
 
-#: admin/page-billing.php:147 classes/AdminProjectPostType.php:52
+#: admin/page-billing.php:147
+#: classes/AdminProjectPostType.php:52
 #: templates/projects-without-agreement.php:31
 msgid "Principal"
 msgstr "Opdrachtgever"
 
-#: admin/page-billing.php:148 classes/ContentTypes.php:31
-#: classes/Plugin.php:230 templates/projects-table-view.php:33
+#: admin/page-billing.php:148
+#: classes/ContentTypes.php:31
+#: classes/Plugin.php:230
+#: templates/projects-table-view.php:33
 msgid "Project"
 msgstr "Project"
 
@@ -313,11 +328,13 @@ msgstr "Urenregistraties"
 msgid "To Bill"
 msgstr "Te factureren"
 
-#: admin/page-billing.php:156 admin/page-billing.php:160
+#: admin/page-billing.php:156
+#: admin/page-billing.php:160
 msgid "Post ID"
 msgstr "Bericht-ID"
 
-#: admin/page-billing.php:157 admin/page-billing.php:161
+#: admin/page-billing.php:157
+#: admin/page-billing.php:161
 #: templates/projects.php:155
 msgid "Name"
 msgstr "Naam"
@@ -326,12 +343,15 @@ msgstr "Naam"
 msgid "Hourly rate"
 msgstr "Uurtarief"
 
-#: admin/page-billing.php:165 admin/page-billing.php:168
-#: admin/page-billing.php:176 templates/project-invoices.php:18
+#: admin/page-billing.php:165
+#: admin/page-billing.php:168
+#: admin/page-billing.php:176
+#: templates/project-invoices.php:18
 msgid "Amount"
 msgstr "Bedrag"
 
-#: admin/page-billing.php:170 classes/Theme.php:58
+#: admin/page-billing.php:170
+#: classes/Theme.php:58
 msgid "Invoices"
 msgstr "Facturen"
 
@@ -343,7 +363,9 @@ msgstr "Geregistreerd"
 msgid "Available"
 msgstr "Beschikbaar"
 
-#: classes/Admin.php:57 classes/ContentTypes.php:75 classes/ContentTypes.php:77
+#: classes/Admin.php:57
+#: classes/ContentTypes.php:75
+#: classes/ContentTypes.php:77
 msgid "Project Templates"
 msgstr "Projectsjablonen"
 
@@ -370,7 +392,8 @@ msgstr "Reacties"
 
 #: classes/AdminProjectPostType.php:57
 #: classes/AdminProjectTemplatePostType.php:74
-#: templates/project-invoices.php:17 templates/projects-table-view.php:41
+#: templates/project-invoices.php:17
+#: templates/projects-table-view.php:41
 msgid "Date"
 msgstr "Datum"
 
@@ -424,13 +447,13 @@ msgstr "Vaste prijs"
 
 #: classes/BillingSchedule.php:43
 msgctxt "billing schedule"
-msgid "Upfront (prepaid)"
-msgstr "Vooraf (prepaid)"
+msgid "In advance"
+msgstr "Vooraf"
 
 #: classes/BillingSchedule.php:44
 msgctxt "billing schedule"
-msgid "On completion"
-msgstr "Achteraf (bij oplevering)"
+msgid "In arrears"
+msgstr "Achteraf"
 
 #: classes/BillingSchedule.php:45
 msgctxt "billing schedule"
@@ -448,11 +471,13 @@ msgstr "Flexibel"
 msgid "This \"%1$s\" project is just \"%2$s\" by %3$s."
 msgstr "Dit \"%1$s\" project is zojuist \"%2$s\" door %3$s."
 
-#: classes/Commenter.php:47 classes/Commenter.php:48
+#: classes/Commenter.php:47
+#: classes/Commenter.php:48
 msgid "opened"
 msgstr "geopend"
 
-#: classes/Commenter.php:47 classes/Commenter.php:48
+#: classes/Commenter.php:47
+#: classes/Commenter.php:48
 msgid "completed"
 msgstr "afgerond"
 
@@ -461,7 +486,8 @@ msgctxt "orbis_project"
 msgid "Add New"
 msgstr "Nieuw project"
 
-#: classes/ContentTypes.php:33 classes/Plugin.php:235
+#: classes/ContentTypes.php:33
+#: classes/Plugin.php:235
 msgid "Add New Project"
 msgstr "Nieuw project toevoegen"
 
@@ -469,7 +495,8 @@ msgstr "Nieuw project toevoegen"
 msgid "Edit Project"
 msgstr "Project bewerken"
 
-#: classes/ContentTypes.php:35 classes/Plugin.php:234
+#: classes/ContentTypes.php:35
+#: classes/Plugin.php:234
 msgid "New Project"
 msgstr "Nieuw project"
 
@@ -485,7 +512,8 @@ msgstr "Toon projecten"
 msgid "Search Projects"
 msgstr "Projecten zoeken"
 
-#: classes/ContentTypes.php:39 classes/Plugin.php:232
+#: classes/ContentTypes.php:39
+#: classes/Plugin.php:232
 msgid "No projects found."
 msgstr "Geen projecten gevonden."
 
@@ -762,7 +790,8 @@ msgstr "facturen"
 msgid "Hours"
 msgstr "Uren"
 
-#: templates/project-invoices.php:20 templates/projects-table-view.php:37
+#: templates/project-invoices.php:20
+#: templates/projects-table-view.php:37
 msgid "Invoice"
 msgstr "Factuur"
 

@@ -319,9 +319,9 @@ $data = $wpdb->get_results( $query );
 								break;
 							case BillingMethod::FixedPrice:
 								$ratio = match ( $billing_schedule ) {
-									BillingSchedule::Upfront,
+									BillingSchedule::InAdvance,
 									BillingSchedule::Flexible     => 1,
-									BillingSchedule::OnCompletion => ( '1' === (string) $item->project_finished ) ? 1 : 0,
+									BillingSchedule::InArrears    => ( '1' === (string) $item->project_finished ) ? 1 : 0,
 									BillingSchedule::ProRata      => ( $billable_time > 0 ) ? \min( 1, $timesheet_time / $billable_time ) : null,
 									default                       => null,
 								};
