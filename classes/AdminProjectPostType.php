@@ -314,7 +314,7 @@ class AdminProjectPostType {
 		$data['billing_method'] = $billing_method;
 		$form['billing_method'] = '%s';
 
-		$data['billing_schedule'] = BillingMethod::FixedPrice->value === $billing_method ? $schedule : '';
+		$data['billing_schedule'] = $schedule;
 		$form['billing_schedule'] = '%s';
 
 		$data['invoiced'] = $is_invoiced;

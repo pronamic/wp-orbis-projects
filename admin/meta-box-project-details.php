@@ -261,10 +261,6 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 
 					?>
 				</select>
-
-				<p class="description">
-					<?php esc_html_e( 'Only applies to fixed price projects.', 'orbis-projects' ); ?>
-				</p>
 			</td>
 		</tr>
 

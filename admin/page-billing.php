@@ -229,7 +229,7 @@ $data = $wpdb->get_results( $query );
 							echo \esc_html( $billing_method->label() );
 						}
 
-						if ( BillingMethod::FixedPrice === $billing_method && null !== $billing_schedule ) {
+						if ( null !== $billing_schedule ) {
 							echo '<br />';
 							echo '<small>', \esc_html( $billing_schedule->label() ), '</small>';
 						}
