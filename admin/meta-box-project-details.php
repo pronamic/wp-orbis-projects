@@ -1,5 +1,7 @@
 <?php
 
+use Pronamic\Orbis\Projects\BillingMethod;
+use Pronamic\Orbis\Projects\BillingSchedule;
 use Pronamic\Orbis\Projects\Duration;
 
 global $wpdb, $post;
@@ -13,6 +15,9 @@ $principal_id  = get_post_meta( $post->ID, '_orbis_project_principal_id', true )
 $seconds       = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
 $agreement_id  = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
 $billability   = get_post_meta( $post->ID, '_orbis_project_billability', true );
+
+$billing_method   = get_post_meta( $post->ID, '_orbis_project_billing_method', true );
+$billing_schedule = get_post_meta( $post->ID, '_orbis_project_billing_schedule', true );
 
 $invoice_reference        = get_post_meta( $post->ID, '_orbis_invoice_reference', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
@@ -200,6 +205,66 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 
 					?>
 				</select>
+			</td>
+		</tr>
+
+		<tr valign="top">
+			<th scope="row">
+				<label for="_orbis_project_billing_method">
+					<?php esc_html_e( 'Billing method', 'orbis-projects' ); ?>
+				</label>
+			</th>
+			<td>
+				<select id="_orbis_project_billing_method" name="_orbis_project_billing_method">
+					<option value=""><?php esc_html_e( '— Select Billing Method —', 'orbis-projects' ); ?></option>
+
+					<?php
+
+					foreach ( BillingMethod::cases() as $case ) {
+						printf(
+							'<option value="%s" %s>%s</option>',
+							\esc_attr( $case->value ),
+							\selected( $billing_method, $case->value, false ),
+							\esc_html( $case->label() )
+						);
+					}
+
+					?>
+				</select>
+
+				<p class="description">
+					<?php esc_html_e( 'Time and materials: all registered time is billable at the hourly rate. Fixed price: the price is billed, registered time within the available time is billable.', 'orbis-projects' ); ?>
+				</p>
+			</td>
+		</tr>
+
+		<tr valign="top">
+			<th scope="row">
+				<label for="_orbis_project_billing_schedule">
+					<?php esc_html_e( 'Billing schedule', 'orbis-projects' ); ?>
+				</label>
+			</th>
+			<td>
+				<select id="_orbis_project_billing_schedule" name="_orbis_project_billing_schedule">
+					<option value=""><?php esc_html_e( '— Select Billing Schedule —', 'orbis-projects' ); ?></option>
+
+					<?php
+
+					foreach ( BillingSchedule::cases() as $case ) {
+						printf(
+							'<option value="%s" %s>%s</option>',
+							\esc_attr( $case->value ),
+							\selected( $billing_schedule, $case->value, false ),
+							\esc_html( $case->label() )
+						);
+					}
+
+					?>
+				</select>
+
+				<p class="description">
+					<?php esc_html_e( 'Only applies to fixed price projects.', 'orbis-projects' ); ?>
+				</p>
 			</td>
 		</tr>
 

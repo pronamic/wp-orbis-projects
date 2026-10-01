@@ -141,7 +141,7 @@ class Plugin {
 		$wpdb->orbis_invoices       = $wpdb->prefix . 'orbis_invoices';
 		$wpdb->orbis_invoices_lines = $wpdb->prefix . 'orbis_invoices_lines';
 
-		$version = '1.1.0';
+		$version = '1.2.0';
 
 		if ( \get_option( 'orbis_projects_db_version' ) !== $version ) {
 			$this->install();
@@ -176,6 +176,8 @@ class Plugin {
 				finished BOOLEAN NOT NULL DEFAULT FALSE,
 				billable_amount DECIMAL(15,2) DEFAULT NULL,
 				billability VARCHAR(16) DEFAULT '',
+				billing_method VARCHAR(32) DEFAULT '',
+				billing_schedule VARCHAR(32) DEFAULT '',
 				PRIMARY KEY  (id),
 				KEY post_id (post_id),
 				KEY principal_id (principal_id)

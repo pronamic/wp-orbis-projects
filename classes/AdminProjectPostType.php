@@ -171,6 +171,8 @@ class AdminProjectPostType {
 			'_orbis_project_is_finished'       => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_finished' ) ),
 			'_orbis_project_is_invoicable'     => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_invoicable' ) ),
 			'_orbis_project_billability'       => self::get_post_value( '_orbis_project_billability' ),
+			'_orbis_project_billing_method'    => BillingMethod::from_value( self::get_post_value( '_orbis_project_billing_method' ) )?->value,
+			'_orbis_project_billing_schedule'  => BillingSchedule::from_value( self::get_post_value( '_orbis_project_billing_schedule' ) )?->value,
 			'_orbis_project_invoice_number'    => self::get_post_value( '_orbis_project_invoice_number' ),
 			'_orbis_invoice_reference'         => self::get_post_value( '_orbis_invoice_reference' ),
 			'_orbis_invoice_line_description'  => self::get_post_value( '_orbis_invoice_line_description' ),
@@ -278,6 +280,8 @@ class AdminProjectPostType {
 		$principal_id   = \get_post_meta( $post_id, '_orbis_project_principal_id', true );
 		$is_invoicable  = \get_post_meta( $post_id, '_orbis_project_is_invoicable', true );
 		$billability    = \get_post_meta( $post_id, '_orbis_project_billability', true );
+		$billing_method = \get_post_meta( $post_id, '_orbis_project_billing_method', true );
+		$schedule       = \get_post_meta( $post_id, '_orbis_project_billing_schedule', true );
 		$is_invoiced    = \get_post_meta( $post_id, '_orbis_project_is_invoiced', true );
 		$invoice_number = \get_post_meta( $post_id, '_orbis_project_invoice_number', true );
 		$is_finished    = \get_post_meta( $post_id, '_orbis_project_is_finished', true );
@@ -306,6 +310,12 @@ class AdminProjectPostType {
 
 		$data['billability'] = $billability;
 		$form['billability'] = '%s';
+
+		$data['billing_method'] = $billing_method;
+		$form['billing_method'] = '%s';
+
+		$data['billing_schedule'] = BillingMethod::FixedPrice->value === $billing_method ? $schedule : '';
+		$form['billing_schedule'] = '%s';
 
 		$data['invoiced'] = $is_invoiced;
 		$form['invoiced'] = '%d';

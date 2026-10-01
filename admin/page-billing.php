@@ -8,6 +8,8 @@
  * @package   Pronamic\Orbis\Projects
  */
 
+use Pronamic\Orbis\Projects\BillingMethod;
+use Pronamic\Orbis\Projects\BillingSchedule;
 use Pronamic\Orbis\Projects\Duration;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -60,6 +62,9 @@ $query = "
 		project.billable_amount AS project_billable_amount,
 		project.number_seconds AS project_billable_time,
 		project.invoice_number AS project_invoice_number,
+		project.finished AS project_finished,
+		project.billing_method AS project_billing_method,
+		project.billing_schedule AS project_billing_schedule,
 		project.post_id AS project_post_id,
 		manager.ID AS project_manager_id,
 		manager.display_name AS project_manager_name,
@@ -69,7 +74,8 @@ $query = "
 		project_invoice_totals.project_billed_time,
 		project_invoice_totals.project_billed_amount,
 		project_invoice_totals.project_invoice_numbers,
-		project_timesheet_totals.project_timesheet_time
+		project_timesheet_totals.project_timesheet_time,
+		project_timesheet_totals.project_timesheet_billable_time
 	FROM
 		$wpdb->orbis_projects AS project
 			INNER JOIN
@@ -100,7 +106,8 @@ $query = "
 		(
 			SELECT
 				project_timesheet.project_id,
-				SUM( project_timesheet.number_seconds ) AS project_timesheet_time
+				SUM( project_timesheet.number_seconds ) AS project_timesheet_time,
+				SUM( IF( project_timesheet.billability = 'billable', project_timesheet.number_seconds, 0 ) ) AS project_timesheet_billable_time
 			FROM
 				$wpdb->orbis_timesheets AS project_timesheet
 			GROUP BY
@@ -138,7 +145,7 @@ $data = $wpdb->get_results( $query );
 		<thead>
 			<tr>
 				<th scope="col" colspan="3"><?php \esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
-				<th scope="col" colspan="4"><?php \esc_html_e( 'Project', 'orbis-projects' ); ?></th>
+				<th scope="col" colspan="5"><?php \esc_html_e( 'Project', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="2"><?php \esc_html_e( 'Billable', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="3"><?php \esc_html_e( 'Billed', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="2"><?php \esc_html_e( 'Timesheet', 'orbis-projects' ); ?></th>
@@ -152,6 +159,7 @@ $data = $wpdb->get_results( $query );
 				<th scope="col"><?php \esc_html_e( 'Orbis ID', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php \esc_html_e( 'Post ID', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php \esc_html_e( 'Name', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php \esc_html_e( 'Billing method', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php \esc_html_e( 'Hourly rate', 'orbis-projects' ); ?></th>
 
 				<th scope="col"><?php \esc_html_e( 'Amount', 'orbis-projects' ); ?></th>
@@ -208,6 +216,23 @@ $data = $wpdb->get_results( $query );
 							\esc_url( \add_query_arg( 'p', $item->project_post_id, home_url( '/' ) ) ),
 							\esc_html( $item->project_name )
 						);
+
+						?>
+					</td>
+					<td>
+						<?php
+
+						$billing_method   = BillingMethod::from_value( $item->project_billing_method );
+						$billing_schedule = BillingSchedule::from_value( $item->project_billing_schedule );
+
+						if ( null !== $billing_method ) {
+							echo \esc_html( $billing_method->label() );
+						}
+
+						if ( BillingMethod::FixedPrice === $billing_method && null !== $billing_schedule ) {
+							echo '<br />';
+							echo '<small>', \esc_html( $billing_schedule->label() ), '</small>';
+						}
 
 						?>
 					</td>
@@ -274,23 +299,47 @@ $data = $wpdb->get_results( $query );
 					<td>
 						<?php
 
-						$to_bill_seconds = \max(
-							0,
-							\min(
-								\intval( $item->project_timesheet_time ),
-								\intval( $item->project_billable_time )
-							) - \intval( $item->project_billed_time )
-						);
+						$billable_amount = (float) $item->project_billable_amount;
+						$billable_time   = (int) $item->project_billable_time;
+						$billed_amount   = (float) $item->project_billed_amount;
+						$billed_time     = (int) $item->project_billed_time;
+						$timesheet_time  = (int) $item->project_timesheet_time;
 
-						$to_bill_amount = null;
+						$to_bill_seconds = 0;
+						$to_bill_amount  = null;
 
-						if ( \is_numeric( $hourly_rate ) ) {
-							$to_bill_amount = ( $hourly_rate * ( $to_bill_seconds / \HOUR_IN_SECONDS ) );
-						}
+						switch ( $billing_method ) {
+							case BillingMethod::TimeAndMaterials:
+								$to_bill_seconds = \max( 0, (int) $item->project_timesheet_billable_time - $billed_time );
 
-						if ( str_contains( $item->project_name, 'Strippenkaart' ) ) {
-							// $to_bill_seconds = $item->project_billable_time;
-							// $to_bill_amount  = $item->project_billable_amount;
+								if ( \is_numeric( $hourly_rate ) ) {
+									$to_bill_amount = ( $hourly_rate * ( $to_bill_seconds / \HOUR_IN_SECONDS ) );
+								}
+
+								break;
+							case BillingMethod::FixedPrice:
+								$ratio = match ( $billing_schedule ) {
+									BillingSchedule::Upfront,
+									BillingSchedule::Flexible     => 1,
+									BillingSchedule::OnCompletion => ( '1' === (string) $item->project_finished ) ? 1 : 0,
+									BillingSchedule::ProRata      => ( $billable_time > 0 ) ? \min( 1, $timesheet_time / $billable_time ) : null,
+									default                       => null,
+								};
+
+								if ( null !== $ratio ) {
+									$to_bill_seconds = (int) \max( 0, \round( $billable_time * $ratio ) - $billed_time );
+									$to_bill_amount  = \max( 0, \round( $billable_amount * $ratio, 2 ) - $billed_amount );
+								}
+
+								break;
+							default:
+								$to_bill_seconds = \max( 0, \min( $timesheet_time, $billable_time ) - $billed_time );
+
+								if ( \is_numeric( $hourly_rate ) ) {
+									$to_bill_amount = ( $hourly_rate * ( $to_bill_seconds / \HOUR_IN_SECONDS ) );
+								}
+
+								break;
 						}
 
 						echo \esc_html( Duration::from_seconds( $to_bill_seconds )->format() );
