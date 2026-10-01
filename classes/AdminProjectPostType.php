@@ -170,7 +170,7 @@ class AdminProjectPostType {
 			'_orbis_project_agreement_id'      => self::get_post_value( '_orbis_project_agreement_id' ),
 			'_orbis_project_is_finished'       => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_finished' ) ),
 			'_orbis_project_is_invoicable'     => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_invoicable' ) ),
-			'_orbis_project_declarability'     => self::get_post_value( '_orbis_project_declarability' ),
+			'_orbis_project_billability'       => self::get_post_value( '_orbis_project_billability' ),
 			'_orbis_project_invoice_number'    => self::get_post_value( '_orbis_project_invoice_number' ),
 			'_orbis_invoice_reference'         => self::get_post_value( '_orbis_invoice_reference' ),
 			'_orbis_invoice_line_description'  => self::get_post_value( '_orbis_invoice_line_description' ),
@@ -277,7 +277,7 @@ class AdminProjectPostType {
 
 		$principal_id   = \get_post_meta( $post_id, '_orbis_project_principal_id', true );
 		$is_invoicable  = \get_post_meta( $post_id, '_orbis_project_is_invoicable', true );
-		$declarability  = \get_post_meta( $post_id, '_orbis_project_declarability', true );
+		$billability    = \get_post_meta( $post_id, '_orbis_project_billability', true );
 		$is_invoiced    = \get_post_meta( $post_id, '_orbis_project_is_invoiced', true );
 		$invoice_number = \get_post_meta( $post_id, '_orbis_project_invoice_number', true );
 		$is_finished    = \get_post_meta( $post_id, '_orbis_project_is_finished', true );
@@ -304,8 +304,8 @@ class AdminProjectPostType {
 		$data['invoicable'] = $is_invoicable;
 		$form['invoicable'] = '%d';
 
-		$data['declarability'] = $declarability;
-		$form['declarability'] = '%s';
+		$data['billability'] = $billability;
+		$form['billability'] = '%s';
 
 		$data['invoiced'] = $is_invoiced;
 		$form['invoiced'] = '%d';

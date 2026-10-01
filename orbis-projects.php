@@ -11,10 +11,10 @@
  * Plugin Name:       Orbis Projects
  * Plugin URI:        https://wp.pronamic.directory/plugins/orbis-projects/
  * Description:       The Orbis Projects plugin extends your Orbis environment with the option to manage projects.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.9
  * Tested up to:      7.1
- * Requires PHP:      7.2
+ * Requires PHP:      8.2
  * Author:            Pronamic
  * Author URI:        https://www.pronamic.eu/
  * Text Domain:       orbis-projects

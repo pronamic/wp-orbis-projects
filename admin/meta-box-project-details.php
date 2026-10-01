@@ -12,7 +12,7 @@ $orbis_id      = get_post_meta( $post->ID, '_orbis_project_id', true );
 $principal_id  = get_post_meta( $post->ID, '_orbis_project_principal_id', true );
 $seconds       = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
 $agreement_id  = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
-$declarability = get_post_meta( $post->ID, '_orbis_project_declarability', true );
+$billability   = get_post_meta( $post->ID, '_orbis_project_billability', true );
 
 $invoice_reference        = get_post_meta( $post->ID, '_orbis_invoice_reference', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
@@ -26,7 +26,7 @@ if ( $project ) {
 	$principal_id   = $project->principal_id;
 	$invoice_number = $project->invoice_number;
 	$seconds        = $project->number_seconds;
-	$declarability  = $project->declarability;
+	$billability    = $project->billability;
 }
 
 $principal = null;
@@ -171,29 +171,29 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 
 		<tr valign="top">
 			<th scope="row">
-				<label for="_orbis_project_declarability">
-					<?php esc_html_e( 'Declarability', 'orbis-projects' ); ?>
+				<label for="_orbis_project_billability">
+					<?php esc_html_e( 'Billability', 'orbis-projects' ); ?>
 				</label>
 			</th>
 			<td>
 				<?php
 
 				$options = [
-					''               => \__( '— Select Declarability —', 'orbis-projects' ),
-					'chargeable'     => \_x( 'Chargeable', 'declarability', 'orbis-projects' ),
-					'non_chargeable' => \_x( 'Non-chargeable', 'declarability', 'orbis-projects' ),
-					'excluded'       => \_x( 'Excluded', 'declarability', 'orbis-projects' ),
+					''             => \__( '— Select Billability —', 'orbis-projects' ),
+					'billable'     => \_x( 'Billable', 'billability', 'orbis-projects' ),
+					'non_billable' => \_x( 'Non-billable', 'billability', 'orbis-projects' ),
+					'excluded'     => \_x( 'Excluded', 'billability', 'orbis-projects' ),
 				];
 
 				?>
-				<select id="_orbis_project_declarability" name="_orbis_project_declarability">
+				<select id="_orbis_project_billability" name="_orbis_project_billability">
 					<?php
 
 					foreach ( $options as $value => $label ) {
 						printf(
 							'<option value="%s" %s>%s</option>',
 							\esc_attr( $value ),
-							\selected( $declarability, $value, false ),
+							\selected( $billability, $value, false ),
 							\esc_html( $label )
 						);
 					}

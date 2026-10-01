@@ -4,7 +4,7 @@ Donate link: https://www.pronamic.eu/
 Tags: orbis, deal
 Requires at least: 6.9
 Tested up to: 7.1
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: Copyright (c) Pronamic
 License URI: https://www.pronamic.eu/copyright/
 

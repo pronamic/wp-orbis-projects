@@ -118,25 +118,25 @@ msgid "Project is invoicable"
 msgstr ""
 
 #: admin/meta-box-project-details.php:175
-msgid "Declarability"
+msgid "Billability"
 msgstr ""
 
 #: admin/meta-box-project-details.php:182
-msgid "— Select Declarability —"
+msgid "— Select Billability —"
 msgstr ""
 
 #: admin/meta-box-project-details.php:183
-msgctxt "declarability"
-msgid "Chargeable"
+msgctxt "billability"
+msgid "Billable"
 msgstr ""
 
 #: admin/meta-box-project-details.php:184
-msgctxt "declarability"
-msgid "Non-chargeable"
+msgctxt "billability"
+msgid "Non-billable"
 msgstr ""
 
 #: admin/meta-box-project-details.php:185
-msgctxt "declarability"
+msgctxt "billability"
 msgid "Excluded"
 msgstr ""
 
