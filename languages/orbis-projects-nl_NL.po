@@ -75,6 +75,9 @@ msgstr "Tijd"
 msgid "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr "Je kunt de tijd invoeren als 1.5 of 1:30 (beide zijn 1 uur en 30 minuten)."
 
+msgid "Hourly rate × time:"
+msgstr "Uurtarief × tijd:"
+
 #: admin/meta-box-project-details.php:131
 msgid "Agreement ID"
 msgstr "Akkoord ID"

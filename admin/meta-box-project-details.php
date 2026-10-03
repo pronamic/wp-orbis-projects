@@ -103,6 +103,11 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 			</th>
 			<td>
 				<input type="text" id="orbis_project_price" name="_orbis_price" value="<?php echo esc_attr( empty( $price ) ? '' : number_format_i18n( $price, 2 ) ); ?>" class="regular-text" />
+
+				<p class="description" id="orbis_project_price_calculation" hidden>
+					<?php esc_html_e( 'Hourly rate × time:', 'orbis-projects' ); ?>
+					<span class="orbis-project-price-calculation-value"></span>
+				</p>
 			</td>
 		</tr>
 		<tr valign="top">
@@ -443,4 +448,98 @@ wp_enqueue_media();
 			} );
 		} );
 	} )( jQuery );
+</script>
+
+<script type="text/javascript">
+	( function() {
+		var numberFormat = <?php echo wp_json_encode( $GLOBALS['wp_locale']->number_format ); ?>;
+
+		var priceCalculation = document.getElementById( 'orbis_project_price_calculation' );
+		var hourlyRateInput  = document.getElementById( 'orbis_project_hourly_rate' );
+		var timeInput        = document.getElementById( '_orbis_project_seconds_available' );
+
+		if ( ! priceCalculation || ! hourlyRateInput || ! timeInput ) {
+			return;
+		}
+
+		var isNumeric = function( value ) {
+			return /^\s*-?(\d+\.?\d*|\.\d+)\s*$/.test( value );
+		};
+
+		/**
+		 * Parse a decimal, like `parse_decimal()` in `AdminProjectPostType`.
+		 */
+		var parseDecimal = function( value ) {
+			value = value.trim().split( numberFormat.thousands_sep ).join( '' ).split( numberFormat.decimal_point ).join( '.' );
+
+			return isNumeric( value ) ? parseFloat( value ) : null;
+		};
+
+		/**
+		 * Parse a duration to hours, like `Duration::from_string()`, e.g. `1.5` or `1:30`.
+		 */
+		var parseHours = function( value ) {
+			var parts   = value.trim().split( ':' );
+			var hours   = parts[0];
+			var minutes = parts.length > 1 ? parts.slice( 1 ).join( ':' ) : '';
+
+			if ( ! isNumeric( hours ) && ! isNumeric( minutes ) ) {
+				return null;
+			}
+
+			var seconds = 0;
+
+			if ( isNumeric( hours ) ) {
+				seconds += parseFloat( hours ) * 3600;
+			}
+
+			if ( isNumeric( minutes ) ) {
+				seconds += parseFloat( minutes ) * 60;
+			}
+
+			return Math.floor( seconds ) / 3600;
+		};
+
+		/**
+		 * Format a number, like `number_format_i18n()`.
+		 */
+		var formatNumber = function( value, decimals ) {
+			var parts = Math.abs( value ).toFixed( decimals ).split( '.' );
+
+			parts[0] = parts[0].replace( /\B(?=(\d{3})+(?!\d))/g, numberFormat.thousands_sep );
+
+			return ( value < 0 ? '-' : '' ) + parts.join( numberFormat.decimal_point );
+		};
+
+		var formatDuration = function( hours ) {
+			var minutes = Math.round( hours * 60 );
+
+			return Math.floor( minutes / 60 ) + ':' + String( minutes % 60 ).padStart( 2, '0' );
+		};
+
+		var update = function() {
+			var hourlyRate = parseDecimal( hourlyRateInput.value );
+			var hours      = parseHours( timeInput.value );
+
+			if ( null === hourlyRate || null === hours ) {
+				priceCalculation.hidden = true;
+
+				return;
+			}
+
+			priceCalculation.querySelector( '.orbis-project-price-calculation-value' ).textContent =
+				formatNumber( hourlyRate, 2 ) +
+				' × ' +
+				formatDuration( hours ) + ' (' + formatNumber( hours, 2 ) + ')' +
+				' = ' +
+				formatNumber( hourlyRate * hours, 2 );
+
+			priceCalculation.hidden = false;
+		};
+
+		hourlyRateInput.addEventListener( 'input', update );
+		timeInput.addEventListener( 'input', update );
+
+		update();
+	} )();
 </script>
