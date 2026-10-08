@@ -84,6 +84,8 @@ class Plugin {
 		$this->project_post_type = new AdminProjectPostType( $this );
 		$this->project_scheduler = new ProjectScheduler( $this );
 
+		new TemplateController();
+
 		if ( \is_admin() ) {
 			$this->admin = new Admin( $this );
 		} else {

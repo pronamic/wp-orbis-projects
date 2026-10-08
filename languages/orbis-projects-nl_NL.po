@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-09-08T12:57:11+00:00\n"
-"PO-Revision-Date: 2026-10-01T22:08:36+00:00\n"
+"PO-Revision-Date: 2026-10-08T07:10:33+00:00\n"
 "Language: nl_NL\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -46,7 +46,9 @@ msgid "Orbis ID"
 msgstr "Orbis ID"
 
 #: admin/meta-box-project-details.php:90
+#: templates/archive-orbis_project.php:35
 #: templates/projects-table-view.php:32
+#: templates/single-orbis_project.php:105
 msgid "Client"
 msgstr "Klant"
 
@@ -56,160 +58,167 @@ msgstr "Selecteer klant"
 
 #: admin/meta-box-project-details.php:102
 #: classes/AdminProjectPostType.php:53
+#: templates/archive-orbis_project.php:40
+#: templates/organization-projects.php:42
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/meta-box-project-details.php:110
+#: admin/meta-box-project-details.php:108
+msgid "Hourly rate × time:"
+msgstr "Uurtarief × tijd:"
+
+#: admin/meta-box-project-details.php:115
 msgid "Hourly Rate"
 msgstr "Uurtarief"
 
-#: admin/meta-box-project-details.php:118
+#: admin/meta-box-project-details.php:123
 #: admin/page-billing.php:166
 #: admin/page-billing.php:169
 #: admin/page-billing.php:175
 #: classes/AdminProjectPostType.php:54
+#: templates/archive-orbis_project.php:44
+#: templates/organization-projects.php:46
 msgid "Time"
 msgstr "Tijd"
 
-#: admin/meta-box-project-details.php:124
+#: admin/meta-box-project-details.php:129
 msgid "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
 msgstr "Je kunt de tijd invoeren als 1.5 of 1:30 (beide zijn 1 uur en 30 minuten)."
 
-msgid "Hourly rate × time:"
-msgstr "Uurtarief × tijd:"
-
-#: admin/meta-box-project-details.php:131
+#: admin/meta-box-project-details.php:136
 msgid "Agreement ID"
 msgstr "Akkoord ID"
 
-#: admin/meta-box-project-details.php:138
+#: admin/meta-box-project-details.php:143
 msgid "Choose an Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-project-details.php:141
+#: admin/meta-box-project-details.php:146
 msgid "Set as Agreement"
 msgstr "Stel in als akkoord"
 
-#: admin/meta-box-project-details.php:141
+#: admin/meta-box-project-details.php:146
 msgid "Choose a Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-project-details.php:144
+#: admin/meta-box-project-details.php:149
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr "Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media bibliotheek."
 
-#: admin/meta-box-project-details.php:145
+#: admin/meta-box-project-details.php:150
 msgid "If you received the agreement by mail print the complete mail conversation with an PDF printer."
 msgstr "Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail conversatie uit met een PDF-printer."
 
-#: admin/meta-box-project-details.php:152
+#: admin/meta-box-project-details.php:157
+#: templates/single-orbis_project.php:168
 msgid "Finished"
 msgstr "Afgerond"
 
-#: admin/meta-box-project-details.php:158
+#: admin/meta-box-project-details.php:163
 msgid "Project is finished"
 msgstr "Project is afgerond"
 
-#: admin/meta-box-project-details.php:166
+#: admin/meta-box-project-details.php:171
 #: templates/projects-table-view.php:45
+#: templates/single-orbis_project.php:188
 msgid "Invoicable"
 msgstr "Factureerbaar"
 
-#: admin/meta-box-project-details.php:172
+#: admin/meta-box-project-details.php:177
 msgid "Project is invoicable"
 msgstr "Project is factureerbaar"
 
-#: admin/meta-box-project-details.php:180
+#: admin/meta-box-project-details.php:185
 msgid "Billability"
 msgstr "Declarabiliteit"
 
-#: admin/meta-box-project-details.php:187
+#: admin/meta-box-project-details.php:192
 msgid "— Select Billability —"
 msgstr "— Selecteer declarabiliteit —"
 
-#: admin/meta-box-project-details.php:188
+#: admin/meta-box-project-details.php:193
 msgctxt "billability"
 msgid "Billable"
 msgstr "Declarabel"
 
-#: admin/meta-box-project-details.php:189
+#: admin/meta-box-project-details.php:194
 msgctxt "billability"
 msgid "Non-billable"
 msgstr "Niet-declarabel"
 
-#: admin/meta-box-project-details.php:190
+#: admin/meta-box-project-details.php:195
 msgctxt "billability"
 msgid "Excluded"
 msgstr "Uitgesloten"
 
-#: admin/meta-box-project-details.php:214
+#: admin/meta-box-project-details.php:219
 #: admin/page-billing.php:162
 msgid "Billing method"
 msgstr "Facturatiemethode"
 
-#: admin/meta-box-project-details.php:219
+#: admin/meta-box-project-details.php:224
 msgid "— Select Billing Method —"
 msgstr "— Selecteer facturatiemethode —"
 
-#: admin/meta-box-project-details.php:236
+#: admin/meta-box-project-details.php:241
 msgid "Time and materials: all registered time is billable at the hourly rate. Fixed price: the price is billed, registered time within the available time is billable."
 msgstr "Nacalculatie: alle geregistreerde tijd is declarabel tegen het uurtarief. Vaste prijs: de prijs wordt gefactureerd, geregistreerde tijd binnen de beschikbare tijd is declarabel."
 
-#: admin/meta-box-project-details.php:244
+#: admin/meta-box-project-details.php:249
 msgid "Billing schedule"
 msgstr "Factuurmoment"
 
-#: admin/meta-box-project-details.php:249
+#: admin/meta-box-project-details.php:254
 msgid "— Select Billing Schedule —"
 msgstr "— Selecteer factuurmoment —"
 
-#: admin/meta-box-project-details.php:266
-msgid "Only applies to fixed price projects."
-msgstr "Alleen van toepassing op projecten met een vaste prijs."
-
-#: admin/meta-box-project-details.php:276
+#: admin/meta-box-project-details.php:277
+#: templates/single-orbis_project.php:178
 msgid "Invoiced"
 msgstr "Gefactureerd"
 
-#: admin/meta-box-project-details.php:282
+#: admin/meta-box-project-details.php:283
 msgid "Project is invoiced"
 msgstr "Project is gefactureerd"
 
-#: admin/meta-box-project-details.php:291
+#: admin/meta-box-project-details.php:292
 #: templates/projects-table-view.php:105
 msgid "Invoice reference"
 msgstr "Factuurreferentie"
 
-#: admin/meta-box-project-details.php:299
+#: admin/meta-box-project-details.php:300
+#: templates/single-orbis_project.php:227
 msgid "Invoice Line Description"
 msgstr "Factuurregelbeschrijving"
 
-#: admin/meta-box-project-details.php:314
+#: admin/meta-box-project-details.php:315
+#: templates/single-orbis_project.php:217
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
-#: admin/meta-box-project-details.php:321
+#: admin/meta-box-project-details.php:322
 msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
 
-#: admin/meta-box-project-details.php:334
+#: admin/meta-box-project-details.php:335
 #: templates/projects-table-view.php:43
+#: templates/single-orbis_project.php:148
 msgid "Period"
 msgstr "Periode"
 
 #. translators: 1: input for start date, 2: input for end date
-#: admin/meta-box-project-details.php:347
+#: admin/meta-box-project-details.php:348
 #, php-format
 msgctxt "including"
 msgid "%1$s to %2$s"
 msgstr "%1$s t/m %2$s"
 
-#: admin/meta-box-project-details.php:372
+#: admin/meta-box-project-details.php:373
 msgctxt "including"
 msgid "Billed to"
 msgstr "Gefactureerd t/m"
 
-#: admin/meta-box-project-details.php:380
+#: admin/meta-box-project-details.php:381
 msgid "Final invoice number"
 msgstr "Eindfactuurnummer"
 
@@ -298,7 +307,8 @@ msgstr "Het factureringsoverzicht kan niet worden weergegeven omdat de volgende 
 #: admin/page-billing.php:142
 #: classes/ContentTypes.php:28
 #: classes/ContentTypes.php:30
-#: classes/Plugin.php:227
+#: classes/Plugin.php:229
+#: classes/TemplateController.php:55
 msgid "Projects"
 msgstr "Projecten"
 
@@ -310,7 +320,9 @@ msgstr "Opdrachtgever"
 
 #: admin/page-billing.php:148
 #: classes/ContentTypes.php:31
-#: classes/Plugin.php:230
+#: classes/Plugin.php:232
+#: templates/archive-orbis_project.php:36
+#: templates/organization-projects.php:38
 #: templates/projects-table-view.php:33
 msgid "Project"
 msgstr "Project"
@@ -490,7 +502,7 @@ msgid "Add New"
 msgstr "Nieuw project"
 
 #: classes/ContentTypes.php:33
-#: classes/Plugin.php:235
+#: classes/Plugin.php:237
 msgid "Add New Project"
 msgstr "Nieuw project toevoegen"
 
@@ -499,7 +511,7 @@ msgid "Edit Project"
 msgstr "Project bewerken"
 
 #: classes/ContentTypes.php:35
-#: classes/Plugin.php:234
+#: classes/Plugin.php:236
 msgid "New Project"
 msgstr "Nieuw project"
 
@@ -516,7 +528,8 @@ msgid "Search Projects"
 msgstr "Projecten zoeken"
 
 #: classes/ContentTypes.php:39
-#: classes/Plugin.php:232
+#: classes/Plugin.php:234
+#: templates/organization-projects.php:111
 msgid "No projects found."
 msgstr "Geen projecten gevonden."
 
@@ -749,45 +762,52 @@ msgctxt "slug"
 msgid "project-status"
 msgstr "project-status"
 
-#: classes/Plugin.php:226
+#: classes/Plugin.php:228
+#: templates/project-persons.php:33
 msgid "Involved Persons"
 msgstr "Betrokken personen"
 
-#: classes/Plugin.php:231
+#: classes/Plugin.php:233
 msgid "Search project"
 msgstr "Zoek project"
 
-#: classes/Plugin.php:233
+#: classes/Plugin.php:235
 msgid "Add Project"
 msgstr "Project toevoegen"
 
-#: classes/Plugin.php:238
+#: classes/Plugin.php:240
 msgid "Person"
 msgstr "Persoon"
 
-#: classes/Plugin.php:239
+#: classes/Plugin.php:241
 msgid "Search person"
 msgstr "Zoek persoon"
 
-#: classes/Plugin.php:240
+#: classes/Plugin.php:242
 msgid "No persons found."
 msgstr "Geen personen gevonden."
 
-#: classes/Plugin.php:241
+#: classes/Plugin.php:243
 msgid "Add Person"
 msgstr "Persoon toevoegen"
 
-#: classes/Plugin.php:242
+#: classes/Plugin.php:244
 msgid "New Person"
 msgstr "Nieuw persoon"
 
-#: classes/Plugin.php:243
+#: classes/Plugin.php:245
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
 #: classes/Theme.php:57
 msgid "invoices"
 msgstr "facturen"
+
+#: templates/archive-orbis_project.php:45
+#: templates/projects-without-agreement.php:33
+#: templates/single-orbis_project.php:274
+msgid "Actions"
+msgstr "Acties"
 
 #: templates/project-invoices.php:19
 msgid "Hours"
@@ -822,6 +842,10 @@ msgstr "Totaal:"
 msgid "No invoices found."
 msgstr "Geen facturen gevonden."
 
+#: templates/project-persons.php:104
+msgid "No persons involved."
+msgstr "Geen personen betrokken."
+
 #: templates/projects-table-view.php:42
 msgid "Comment"
 msgstr "Reactie"
@@ -846,6 +870,7 @@ msgstr "Voeg status toe"
 
 #. translators: 1: Period start date, 2: Period end date.
 #: templates/projects-table-view.php:223
+#: templates/single-orbis_project.php:154
 #, php-format
 msgid "%1$s - %2$s"
 msgstr "%1$s - %2$s"
@@ -860,16 +885,13 @@ msgstr "Nee"
 
 #: templates/projects-table-view.php:278
 #: templates/projects-without-agreement.php:71
+#: templates/single-orbis_project.php:275
 msgid "Edit"
 msgstr "Bewerken"
 
 #: templates/projects-without-agreement.php:30
 msgid "Project Manager"
 msgstr "Projectleider"
-
-#: templates/projects-without-agreement.php:33
-msgid "Actions"
-msgstr "Acties"
 
 #: templates/projects.php:155
 msgid "Order By:"
@@ -878,3 +900,59 @@ msgstr "Sorteer op:"
 #: templates/projects.php:155
 msgid "Number"
 msgstr "Nummer"
+
+#: templates/single-orbis_project.php:38
+msgid "Description"
+msgstr "Beschrijving"
+
+#: templates/single-orbis_project.php:60
+msgid "Project Status"
+msgstr "Projectstatus"
+
+#: templates/single-orbis_project.php:63
+msgid "Project budget"
+msgstr "Projectbudget"
+
+#: templates/single-orbis_project.php:99
+msgid "Project Details"
+msgstr "Projectdetails"
+
+#: templates/single-orbis_project.php:120
+msgid "Posted on"
+msgstr "Geplaatst op"
+
+#: templates/single-orbis_project.php:123
+msgid "Posted by"
+msgstr "Geplaatst door"
+
+#: templates/single-orbis_project.php:133
+msgid "Agreement"
+msgstr "Akkoord"
+
+#: templates/single-orbis_project.php:164
+msgid "Status"
+msgstr "Status"
+
+#: templates/single-orbis_project.php:172
+msgid "Not finished"
+msgstr "Niet afgerond"
+
+#: templates/single-orbis_project.php:182
+msgid "Not invoiced"
+msgstr "Niet gefactureerd"
+
+#: templates/single-orbis_project.php:192
+msgid "Not invoicable"
+msgstr "Niet factureerbaar"
+
+#: templates/single-orbis_project.php:225
+msgid "Invoice Header Text"
+msgstr "Factuur koptekst"
+
+#: templates/single-orbis_project.php:226
+msgid "Invoice Footer Text"
+msgstr "Factuur voettekst"
+
+#: templates/single-orbis_project.php:253
+msgid "Final Invoice"
+msgstr "Eindfactuur"
