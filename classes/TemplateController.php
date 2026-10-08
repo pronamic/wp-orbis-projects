@@ -18,13 +18,68 @@ class TemplateController {
 	 * Construct.
 	 */
 	public function __construct() {
+		\add_filter( 'query_vars', $this->query_vars( ... ) );
+
+		\add_action( 'init', $this->init( ... ) );
+
 		\add_filter( 'template_include', $this->template_include( ... ) );
+
+		\add_filter( 'get_the_archive_title', $this->get_the_archive_title( ... ) );
 
 		\add_filter( 'orbis_organization_sections', $this->organization_sections( ... ) );
 
 		\add_action( 'orbis_after_main_content', $this->maybe_include_person_projects( ... ) );
 
 		\add_action( 'get_template_part_templates/filter_advanced', $this->search_form_advanced( ... ), 10, 2 );
+	}
+
+	/**
+	 * Query vars.
+	 *
+	 * @param string[] $query_vars Query vars.
+	 * @return string[]
+	 */
+	public function query_vars( $query_vars ) {
+		$query_vars[] = 'orbis_projects_route';
+
+		return $query_vars;
+	}
+
+	/**
+	 * Initialize.
+	 *
+	 * @return void
+	 */
+	public function init() {
+		\add_rewrite_rule(
+			'projecten/facturen/?$',
+			[
+				'orbis_projects_route' => 'invoices',
+			],
+			'top'
+		);
+
+		\add_rewrite_rule(
+			'projecten/over-budget/?$',
+			[
+				'orbis_projects_route' => 'over_budget',
+			],
+			'top'
+		);
+	}
+
+	/**
+	 * Get the archive title.
+	 *
+	 * @param string $title Title.
+	 * @return string
+	 */
+	public function get_the_archive_title( $title ) {
+		return match ( \get_query_var( 'orbis_projects_route', null ) ) {
+			'invoices'    => \__( 'Project Invoices', 'orbis-projects' ),
+			'over_budget' => \__( 'Projects Over Budget', 'orbis-projects' ),
+			default       => $title,
+		};
 	}
 
 	/**
@@ -53,12 +108,23 @@ class TemplateController {
 	/**
 	 * Template include.
 	 *
-	 * Uses the single and archive project templates of this plugin, unless the theme has one.
+	 * Uses the report templates of this plugin for the report routes and the
+	 * single and archive project templates, unless the theme has one.
 	 *
 	 * @param string $template Template.
 	 * @return string
 	 */
 	public function template_include( $template ) {
+		$route = \get_query_var( 'orbis_projects_route', null );
+
+		if ( null !== $route ) {
+			return match ( $route ) {
+				'invoices'    => __DIR__ . '/../templates/report-invoices.php',
+				'over_budget' => __DIR__ . '/../templates/report-over-budget.php',
+				default       => $template,
+			};
+		}
+
 		if ( \is_singular( 'orbis_project' ) && '' === \locate_template( 'single-orbis_project.php' ) ) {
 			return __DIR__ . '/../templates/single-orbis_project.php';
 		}
