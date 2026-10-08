@@ -1,6 +1,6 @@
 <?php
 /**
- * Organization projects
+ * Customer projects
  *
  * @author    Pronamic <info@pronamic.eu>
  * @copyright 2005-2026 Pronamic
@@ -21,15 +21,17 @@ global $orbis_project;
 
 $can_read_price = \current_user_can( 'read_orbis_project_price' );
 
-$query = new WP_Query(
+$customer_id = \Pronamic\Orbis\Contacts\ContactsTable::get_contact_id( (int) \get_the_ID() );
+
+$query = null === $customer_id ? null : new WP_Query(
 	[
-		'post_type'               => 'orbis_project',
-		'posts_per_page'          => 25,
-		'orbis_project_client_id' => \get_the_ID(),
+		'post_type'                 => 'orbis_project',
+		'posts_per_page'            => 25,
+		'orbis_project_customer_id' => $customer_id,
 	]
 );
 
-if ( $query->have_posts() ) : ?>
+if ( null !== $query && $query->have_posts() ) : ?>
 
 	<div class="table-responsive">
 		<table class="table table-striped mb-0">

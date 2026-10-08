@@ -100,16 +100,16 @@ while ( \have_posts() ) :
 
 					<div class="card-body">
 						<dl>
-							<?php if ( $orbis_project->has_principal() ) : ?>
+							<?php if ( $orbis_project->has_customer() ) : ?>
 
-								<dt><?php \esc_html_e( 'Client', 'orbis-projects' ); ?></dt>
+								<dt><?php \esc_html_e( 'Customer', 'orbis-projects' ); ?></dt>
 								<dd>
 									<?php
 
 									\printf(
 										'<a href="%s">%s</a>',
-										\esc_url( (string) \get_permalink( $orbis_project->get_principal_post_id() ) ),
-										\esc_html( $orbis_project->get_principal_name() )
+										\esc_url( (string) \get_permalink( $orbis_project->get_customer_post_id() ) ),
+										\esc_html( $orbis_project->get_customer_name() )
 									);
 
 									?>

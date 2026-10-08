@@ -18,19 +18,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $wpdb;
 
-$required_tables = [
-	'orbis_companies'  => \__( 'Orbis Companies', 'orbis-projects' ),
-	'orbis_timesheets' => \__( 'Orbis Timesheets', 'orbis-projects' ),
-];
-
 $missing_tables = [];
 
-foreach ( $required_tables as $property => $label ) {
-	if ( isset( $wpdb->{$property} ) ) {
-		continue;
-	}
+if ( ! class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+	$missing_tables[] = \__( 'Orbis Contacts', 'orbis-projects' );
+}
 
-	$missing_tables[] = $label;
+if ( ! isset( $wpdb->orbis_timesheets ) ) {
+	$missing_tables[] = \__( 'Orbis Timesheets', 'orbis-projects' );
 }
 
 if ( [] !== $missing_tables ) :
@@ -55,6 +50,8 @@ if ( [] !== $missing_tables ) :
 	return;
 endif;
 
+$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
 $query = "
 	SELECT
 		project.id AS project_id,
@@ -68,9 +65,9 @@ $query = "
 		project.post_id AS project_post_id,
 		manager.ID AS project_manager_id,
 		manager.display_name AS project_manager_name,
-		principal.id AS principal_id ,
-		principal.name AS principal_name ,
-		principal.post_id AS principal_post_id,
+		customer.id AS customer_id,
+		customer.name AS customer_name,
+		customer.post_id AS customer_post_id,
 		project_invoice_totals.project_billed_time,
 		project_invoice_totals.project_billed_amount,
 		project_invoice_totals.project_invoice_numbers,
@@ -85,8 +82,8 @@ $query = "
 		$wpdb->users AS manager
 				ON project_post.post_author = manager.ID
 			INNER JOIN
-		$wpdb->orbis_companies AS principal
-				ON project.principal_id = principal.id
+		$contacts_table AS customer
+				ON project.customer_id = customer.id
 			LEFT JOIN
 		(
 			SELECT
@@ -130,7 +127,7 @@ $query = "
 	GROUP BY
 		project.id
 	ORDER BY
-		principal.name
+		customer.name
 ";
 
 $data = $wpdb->get_results( $query );
@@ -144,7 +141,7 @@ $data = $wpdb->get_results( $query );
 	<table class="wp-list-table widefat fixed striped">
 		<thead>
 			<tr>
-				<th scope="col" colspan="3"><?php \esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
+				<th scope="col" colspan="3"><?php \esc_html_e( 'Customer', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="5"><?php \esc_html_e( 'Project', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="2"><?php \esc_html_e( 'Billable', 'orbis-projects' ); ?></th>
 				<th scope="col" colspan="3"><?php \esc_html_e( 'Billed', 'orbis-projects' ); ?></th>
@@ -185,18 +182,18 @@ $data = $wpdb->get_results( $query );
 
 				<tr>
 					<td>
-						<code class="text-body"><?php echo \esc_html( $item->principal_id ); ?></code>
+						<code class="text-body"><?php echo \esc_html( $item->customer_id ); ?></code>
 					</td>
 					<td>
-						<code class="text-body"><?php echo \esc_html( $item->principal_post_id ); ?></code>
+						<code class="text-body"><?php echo \esc_html( $item->customer_post_id ); ?></code>
 					</td>
 					<td>
 						<?php
 
 						\printf(
 							'<a href="%s">%s</a>',
-							\esc_url( \add_query_arg( 'p', $item->principal_post_id, home_url( '/' ) ) ),
-							\esc_html( $item->principal_name )
+							\esc_url( \add_query_arg( 'p', $item->customer_post_id, home_url( '/' ) ) ),
+							\esc_html( $item->customer_name )
 						);
 
 						?>
@@ -360,8 +357,8 @@ $data = $wpdb->get_results( $query );
 
 						$url = \add_query_arg(
 							[
-								'orbis_company_id' => $item->principal_id,
-								'orbis_project_id' => $item->project_id,
+								'orbis_customer_id' => $item->customer_id,
+								'orbis_project_id'  => $item->project_id,
 							],
 							home_url( 'moneybird/sales-invoices/new' )
 						);

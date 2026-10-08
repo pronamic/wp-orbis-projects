@@ -32,7 +32,7 @@ $can_read_price = \current_user_can( 'read_orbis_project_price' );
 			<table class="table table-striped table-condense table-hover">
 				<thead>
 					<tr>
-						<th><?php \esc_html_e( 'Client', 'orbis-projects' ); ?></th>
+						<th><?php \esc_html_e( 'Customer', 'orbis-projects' ); ?></th>
 						<th><?php \esc_html_e( 'Project', 'orbis-projects' ); ?></th>
 
 						<?php if ( $can_read_price ) : ?>
@@ -57,11 +57,11 @@ $can_read_price = \current_user_can( 'read_orbis_project_price' );
 							<td>
 								<?php
 
-								if ( $orbis_project->has_principal() ) {
+								if ( $orbis_project->has_customer() ) {
 									\printf(
 										'<a href="%s">%s</a>',
-										\esc_url( (string) \get_permalink( $orbis_project->get_principal_post_id() ) ),
-										\esc_html( $orbis_project->get_principal_name() )
+										\esc_url( (string) \get_permalink( $orbis_project->get_customer_post_id() ) ),
+										\esc_html( $orbis_project->get_customer_name() )
 									);
 								}
 

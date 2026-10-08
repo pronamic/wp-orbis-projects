@@ -32,8 +32,8 @@ class QueryProcessor {
 	 * @return array
 	 */
 	public function query_vars( $query_vars ) {
-		$query_vars[] = 'orbis_project_principal';
-		$query_vars[] = 'orbis_project_client_id';
+		$query_vars[] = 'orbis_project_customer';
+		$query_vars[] = 'orbis_project_customer_id';
 		$query_vars[] = 'orbis_project_invoice_number';
 		$query_vars[] = 'orbis_project_is_finished';
 		$query_vars[] = 'orbis_invoicable';
@@ -143,12 +143,16 @@ class QueryProcessor {
 			$wpdb->orbis_projects . ' AS project',
 		];
 
-		if ( \property_exists( $wpdb, 'orbis_companies' ) ) {
-			$subquery_select_expr[] = 'principal.id AS principal_id';
-			$subquery_select_expr[] = 'principal.name AS principal_name';
-			$subquery_select_expr[] = 'principal.post_id AS principal_post_id';
+		$has_customers = \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class );
 
-			$subquery_table_references[] = " LEFT JOIN $wpdb->orbis_companies AS principal ON project.principal_id = principal.id";
+		if ( $has_customers ) {
+			$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
+			$subquery_select_expr[] = 'customer.id AS customer_id';
+			$subquery_select_expr[] = 'customer.name AS customer_name';
+			$subquery_select_expr[] = 'customer.post_id AS customer_post_id';
+
+			$subquery_table_references[] = " LEFT JOIN $contacts_table AS customer ON project.customer_id = customer.id";
 		}
 
 		if ( \property_exists( $wpdb, 'orbis_timesheets' ) ) {
@@ -173,16 +177,16 @@ class QueryProcessor {
 		$join   = " LEFT JOIN ( $subquery ) AS project_data ON $wpdb->posts.id = project_data.post_id";
 		$where  = '';
 
-		$principal = $query->get( 'orbis_project_principal' );
+		$customer = $query->get( 'orbis_project_customer' );
 
-		if ( ! empty( $principal ) ) {
-			$where .= $wpdb->prepare( ' AND project_data.principal_name LIKE %s', '%' . $wpdb->esc_like( $principal ) . '%' );
+		if ( $has_customers && ! empty( $customer ) ) {
+			$where .= $wpdb->prepare( ' AND project_data.customer_name LIKE %s', '%' . $wpdb->esc_like( $customer ) . '%' );
 		}
 
-		$client_id = $query->get( 'orbis_project_client_id' );
+		$customer_id = $query->get( 'orbis_project_customer_id' );
 
-		if ( ! empty( $client_id ) ) {
-			$where .= $wpdb->prepare( ' AND project_data.principal_post_id LIKE %d ', $client_id );
+		if ( $has_customers && ! empty( $customer_id ) ) {
+			$where .= $wpdb->prepare( ' AND project_data.customer_id = %d', $customer_id );
 		}
 
 		$invoice_number = $query->get( 'orbis_project_invoice_number' );

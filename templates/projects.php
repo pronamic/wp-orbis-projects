@@ -6,22 +6,24 @@ $extra_select  = '';
 $extra_join    = '';
 $extra_orderby = '';
 
-if ( isset( $wpdb->orbis_companies ) ) {
+if ( class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+	$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
 	$extra_select .= '
 	,
-	principal.id AS principal_id,
-	principal.name AS principal_name,
-	principal.post_id AS principal_post_id
+	customer.id AS customer_id,
+	customer.name AS customer_name,
+	customer.post_id AS customer_post_id
 	';
 
 	$extra_join .= "
 	LEFT JOIN
-		$wpdb->orbis_companies AS principal
-			ON project.principal_id = principal.id
+		$contacts_table AS customer
+			ON project.customer_id = customer.id
 	";
 
 	$extra_orderby .= '
-	, principal.name
+	, customer.name
 	';
 }
 

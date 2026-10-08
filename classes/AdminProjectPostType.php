@@ -47,14 +47,14 @@ class AdminProjectPostType {
 	 */
 	public function edit_columns( $columns ) {
 		$columns = [
-			'cb'                      => '<input type="checkbox" />',
-			'title'                   => \__( 'Title', 'orbis-projects' ),
-			'orbis_project_principal' => \__( 'Principal', 'orbis-projects' ),
-			'orbis_project_price'     => \__( 'Price', 'orbis-projects' ),
-			'orbis_project_time'      => \__( 'Time', 'orbis-projects' ),
-			'author'                  => \__( 'Author', 'orbis-projects' ),
-			'comments'                => \__( 'Comments', 'orbis-projects' ),
-			'date'                    => \__( 'Date', 'orbis-projects' ),
+			'cb'                     => '<input type="checkbox" />',
+			'title'                  => \__( 'Title', 'orbis-projects' ),
+			'orbis_project_customer' => \__( 'Customer', 'orbis-projects' ),
+			'orbis_project_price'    => \__( 'Price', 'orbis-projects' ),
+			'orbis_project_time'     => \__( 'Time', 'orbis-projects' ),
+			'author'                 => \__( 'Author', 'orbis-projects' ),
+			'comments'               => \__( 'Comments', 'orbis-projects' ),
+			'date'                   => \__( 'Date', 'orbis-projects' ),
 		];
 
 		return $columns;
@@ -69,12 +69,12 @@ class AdminProjectPostType {
 		$orbis_project = new Project( $post_id );
 
 		switch ( $column ) {
-			case 'orbis_project_principal':
-				if ( $orbis_project->has_principal() ) {
+			case 'orbis_project_customer':
+				if ( $orbis_project->has_customer() ) {
 					\printf(
 						'<a href="%s">%s</a>',
-						\esc_attr( \get_permalink( $orbis_project->get_principal_post_id() ) ),
-						\esc_html( $orbis_project->get_principal_name() )
+						\esc_attr( \get_permalink( $orbis_project->get_customer_post_id() ) ),
+						\esc_html( $orbis_project->get_customer_name() )
 					);
 				}
 
@@ -166,7 +166,7 @@ class AdminProjectPostType {
 		$data = [
 			'_orbis_price'                     => self::parse_decimal( self::get_post_value( '_orbis_price' ) ),
 			'_orbis_hourly_rate'               => self::parse_decimal( self::get_post_value( '_orbis_hourly_rate' ) ),
-			'_orbis_project_principal_id'      => self::get_post_value( '_orbis_project_principal_id' ),
+			'_orbis_project_customer_id'       => self::get_post_value( '_orbis_project_customer_id' ),
 			'_orbis_project_agreement_id'      => self::get_post_value( '_orbis_project_agreement_id' ),
 			'_orbis_project_is_finished'       => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_finished' ) ),
 			'_orbis_project_is_invoicable'     => BooleanHelper::from_mixed( self::get_post_value( '_orbis_project_is_invoicable' ) ),
@@ -277,7 +277,7 @@ class AdminProjectPostType {
 		$orbis_id = \get_post_meta( $post_id, '_orbis_project_id', true );
 		$orbis_id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_projects WHERE post_id = %d;", $post_id ) );
 
-		$principal_id   = \get_post_meta( $post_id, '_orbis_project_principal_id', true );
+		$customer_id    = \get_post_meta( $post_id, '_orbis_project_customer_id', true );
 		$is_invoicable  = \get_post_meta( $post_id, '_orbis_project_is_invoicable', true );
 		$billability    = \get_post_meta( $post_id, '_orbis_project_billability', true );
 		$billing_method = \get_post_meta( $post_id, '_orbis_project_billing_method', true );
@@ -294,10 +294,8 @@ class AdminProjectPostType {
 		$data['name'] = $post->post_title;
 		$form['name'] = '%s';
 
-		if ( ! empty( $principal_id ) ) {
-			$data['principal_id'] = $principal_id;
-			$form['principal_id'] = '%d';
-		}
+		$data['customer_id'] = empty( $customer_id ) ? null : (int) $customer_id;
+		$form['customer_id'] = '%d';
 
 		$data['start_date'] = get_the_time( 'Y-m-d', $post );
 		$form['start_date'] = '%s';

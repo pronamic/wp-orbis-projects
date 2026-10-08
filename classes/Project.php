@@ -23,34 +23,38 @@ class Project {
 	}
 
 	/**
-	 * Has principal.
+	 * Has customer.
 	 *
 	 * @return boolean
 	 */
-	public function has_principal() {
-		return isset( $this->post->principal_id );
+	public function has_customer() {
+		return isset( $this->post->customer_id, $this->post->customer_post_id );
 	}
 
 	/**
-	 * Get principal name.
+	 * Get customer name.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function get_principal_name() {
-		if ( isset( $this->post->principal_name ) ) {
-			return $this->post->principal_name;
+	public function get_customer_name() {
+		if ( isset( $this->post->customer_name ) ) {
+			return $this->post->customer_name;
 		}
+
+		return null;
 	}
 
 	/**
-	 * Get principal post ID.
+	 * Get customer post ID.
 	 *
-	 * @return int
+	 * @return int|null
 	 */
-	public function get_principal_post_id() {
-		if ( isset( $this->post->principal_post_id ) ) {
-			return $this->post->principal_post_id;
+	public function get_customer_post_id() {
+		if ( isset( $this->post->customer_post_id ) ) {
+			return (int) $this->post->customer_post_id;
 		}
+
+		return null;
 	}
 
 	/**

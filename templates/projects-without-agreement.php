@@ -28,7 +28,7 @@ if ( $query->have_posts() ) : ?>
 				<tr>
 					<th scope="col"><?php esc_html_e( 'Orbis ID', 'orbis-projects' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Project Manager', 'orbis-projects' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Principal', 'orbis-projects' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Customer', 'orbis-projects' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Title', 'orbis-projects' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Actions', 'orbis-projects' ); ?></th>
 				</tr>
@@ -51,11 +51,11 @@ if ( $query->have_posts() ) : ?>
 
 							global $orbis_project;
 
-							if ( $orbis_project->has_principal() ) {
+							if ( $orbis_project->has_customer() ) {
 								printf(
 									'<a href="%s">%s</a>',
-									esc_attr( get_permalink( $orbis_project->get_principal_post_id() ) ),
-									esc_html( $orbis_project->get_principal_name() )
+									esc_attr( get_permalink( $orbis_project->get_customer_post_id() ) ),
+									esc_html( $orbis_project->get_customer_name() )
 								);
 							}
 

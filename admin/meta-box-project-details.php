@@ -11,7 +11,7 @@ $orbis_project = new Pronamic\Orbis\Projects\Project( $post );
 wp_nonce_field( 'orbis_save_project_details', 'orbis_project_details_meta_box_nonce' );
 
 $orbis_id      = get_post_meta( $post->ID, '_orbis_project_id', true );
-$principal_id  = get_post_meta( $post->ID, '_orbis_project_principal_id', true );
+$customer_id   = get_post_meta( $post->ID, '_orbis_project_customer_id', true );
 $seconds       = get_post_meta( $post->ID, '_orbis_project_seconds_available', true );
 $agreement_id  = get_post_meta( $post->ID, '_orbis_project_agreement_id', true );
 $billability   = get_post_meta( $post->ID, '_orbis_project_billability', true );
@@ -28,16 +28,10 @@ $project = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_projects 
 
 if ( $project ) {
 	$orbis_id       = $project->id;
-	$principal_id   = $project->principal_id;
+	$customer_id    = $project->customer_id;
 	$invoice_number = $project->invoice_number;
 	$seconds        = $project->number_seconds;
 	$billability    = $project->billability;
-}
-
-$principal = null;
-
-if ( isset( $wpdb->orbis_companies ) ) {
-	$principal = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_companies WHERE id= %d;", $principal_id ) );
 }
 
 $hourly_rate = get_post_meta( $post->ID, '_orbis_hourly_rate', true );
@@ -87,14 +81,33 @@ $final_invoice_number = \get_post_meta( $post->ID, '_orbis_project_invoice_numbe
 		</tr>
 		<tr valign="top">
 			<th scope="row">
-				<label for="_orbis_project_principal_id"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></label>
+				<label for="orbis_project_customer"><?php esc_html_e( 'Customer', 'orbis-projects' ); ?></label>
 			</th>
 			<td>
-				<select id="_orbis_project_principal_id" name="_orbis_project_principal_id" class="orbis-id-control orbis_company_id_field regular-text" placeholder="<?php esc_html_e( 'Select Client', 'orbis-projects' ); ?>">
-					<option id="orbis_select2_default" selected="selected" value="<?php echo esc_attr( $principal_id ); ?>">
-						<?php echo esc_attr( $principal ); ?>
-					</option>
-				</select>
+				<?php if ( class_exists( \Pronamic\Orbis\Contacts\ContactSelect2Controller::class ) ) : ?>
+
+					<?php
+
+					$customer_option = empty( $customer_id ) ? null : \Pronamic\Orbis\Contacts\ContactSelect2Controller::get_option_data( (int) $customer_id );
+
+					?>
+					<select id="orbis_project_customer" name="_orbis_project_customer_id" class="orbis-contact-id-control regular-text">
+						<option value=""></option>
+
+						<?php if ( null !== $customer_option ) : ?>
+
+							<option value="<?php echo esc_attr( $customer_option['id'] ); ?>" data-icon="<?php echo esc_attr( $customer_option['icon'] ); ?>" data-type-label="<?php echo esc_attr( $customer_option['type_label'] ); ?>" data-email="<?php echo esc_attr( $customer_option['email'] ?? '' ); ?>" selected="selected"><?php echo esc_html( $customer_option['text'] ); ?></option>
+
+						<?php endif; ?>
+					</select>
+
+				<?php else : ?>
+
+					<p class="description">
+						<?php esc_html_e( 'Activate the Orbis Contacts plugin to link a customer to this project.', 'orbis-projects' ); ?>
+					</p>
+
+				<?php endif; ?>
 			</td>
 		</tr>
 		<tr valign="top">

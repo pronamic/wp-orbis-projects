@@ -16,11 +16,11 @@ The plugin ships a single and an archive project template, modelled after `singl
 
 | Template | Shown on | Content |
 |---|---|---|
-| `templates/archive-orbis_project.php` | Projects archive | Table with client, project, price, time and actions |
+| `templates/archive-orbis_project.php` | Projects archive | Table with customer, project, price, time and actions |
 | `templates/single-orbis_project.php` | Single project | Layout with description, sections, comments, status, details and involved persons |
 | `templates/project-sections.php` | Single project | Tabs from the `orbis_project_sections` filter, the active tab is taken from the `tabs` rewrite endpoint |
 | `templates/project-persons.php` | Single project | Persons connected via `orbis_projects_to_persons` |
-| `templates/search-form-advanced.php` | Projects archive | Advanced search on client and invoice number, through the `get_template_part_templates/filter_advanced` action of the theme search form |
-| `templates/organization-projects.php` | Single organization | Projects of the organization, as a tab through the `orbis_organization_sections` filter |
+| `templates/search-form-advanced.php` | Projects archive | Advanced search on customer and invoice number, through the `get_template_part_templates/filter_advanced` action of the theme search form |
+| `templates/customer-projects.php` | Single organization and person | Projects of the customer (an Orbis contact), as a tab through the `orbis_organization_sections` filter and as a card through the `orbis_after_main_content` action on persons |
 
 Other plugins can add content to the single template with the `orbis_before_main_content`, `orbis_after_main_content`, `orbis_before_side_content` and `orbis_after_side_content` actions.

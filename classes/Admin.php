@@ -44,6 +44,19 @@ class Admin {
 	public function enqueue_scripts() {
 		\wp_enqueue_script( 'orbis-autocomplete' );
 		\wp_enqueue_style( 'select2' );
+
+		$screen = \get_current_screen();
+
+		if ( null === $screen || 'post' !== $screen->base || ! \in_array( $screen->post_type, [ 'orbis_project', 'orbis_project_tmpl' ], true ) ) {
+			return;
+		}
+
+		/**
+		 * The contact picker script is registered by the Orbis Contacts plugin.
+		 */
+		if ( \wp_script_is( 'orbis-contact-select2', 'registered' ) ) {
+			\wp_enqueue_script( 'orbis-contact-select2' );
+		}
 	}
 
 	/**

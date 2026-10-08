@@ -22,6 +22,8 @@ class TemplateController {
 
 		\add_filter( 'orbis_organization_sections', $this->organization_sections( ... ) );
 
+		\add_action( 'orbis_after_main_content', $this->maybe_include_person_projects( ... ) );
+
 		\add_action( 'get_template_part_templates/filter_advanced', $this->search_form_advanced( ... ), 10, 2 );
 	}
 
@@ -75,14 +77,44 @@ class TemplateController {
 	 * @return array
 	 */
 	public function organization_sections( $sections ) {
+		if ( ! \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+			return $sections;
+		}
+
 		$sections[] = [
 			'id'       => 'projects',
 			'name'     => \__( 'Projects', 'orbis-projects' ),
 			'callback' => function (): void {
-				include __DIR__ . '/../templates/organization-projects.php';
+				include __DIR__ . '/../templates/customer-projects.php';
 			},
 		];
 
 		return $sections;
+	}
+
+	/**
+	 * Maybe include person projects.
+	 *
+	 * The person template has no sections filter, so the projects are
+	 * shown in a card after the main content.
+	 *
+	 * @return void
+	 */
+	public function maybe_include_person_projects() {
+		if ( ! \is_singular( 'orbis_person' ) ) {
+			return;
+		}
+
+		if ( ! \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+			return;
+		}
+
+		?>
+		<div class="card mb-3">
+			<div class="card-header"><?php \esc_html_e( 'Projects', 'orbis-projects' ); ?></div>
+
+			<?php include __DIR__ . '/../templates/customer-projects.php'; ?>
+		</div>
+		<?php
 	}
 }

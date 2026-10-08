@@ -125,7 +125,7 @@ class Plugin {
 							return \sprintf(
 								'%s. %s - %s ( %s )',
 								$project_post->project_id,
-								$project_post->principal_name,
+								$project_post->customer_name,
 								$project_post->post_title,
 								isset( $project_post->project_logged_time ) ? ( Duration::try_from_seconds( $project_post->project_logged_time )?->format() ?? '' ) . ' / ' . ( Duration::try_from_seconds( $project_post->project_number_seconds )?->format() ?? '' ) : ( Duration::try_from_seconds( $project_post->project_number_seconds )?->format() ?? '' )
 							);
@@ -143,7 +143,7 @@ class Plugin {
 		$wpdb->orbis_invoices       = $wpdb->prefix . 'orbis_invoices';
 		$wpdb->orbis_invoices_lines = $wpdb->prefix . 'orbis_invoices_lines';
 
-		$version = '1.2.0';
+		$version = '1.3.0';
 
 		if ( \get_option( 'orbis_projects_db_version' ) !== $version ) {
 			$this->install();
@@ -169,7 +169,7 @@ class Plugin {
 				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 				post_id BIGINT(20) UNSIGNED DEFAULT NULL,
 				name VARCHAR(128) NOT NULL,
-				principal_id BIGINT(16) UNSIGNED DEFAULT NULL,
+				customer_id BIGINT(20) UNSIGNED DEFAULT NULL,
 				start_date DATE NOT NULL DEFAULT '0000-00-00',
 				number_seconds INT(16) NOT NULL DEFAULT 0,
 				invoicable BOOLEAN NOT NULL DEFAULT TRUE,
@@ -182,7 +182,7 @@ class Plugin {
 				billing_schedule VARCHAR(32) DEFAULT '',
 				PRIMARY KEY  (id),
 				KEY post_id (post_id),
-				KEY principal_id (principal_id)
+				KEY customer_id (customer_id)
 			) $charset_collate;
 		";
 
@@ -191,6 +191,61 @@ class Plugin {
 		\dbDelta( $sql );
 
 		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_projects );
+
+		$this->add_foreign_keys();
+	}
+
+	/**
+	 * Add foreign keys.
+	 *
+	 * `dbDelta` does not support foreign keys, so they are added separately
+	 * when they do not exist yet. References that would violate a foreign
+	 * key are cleaned up first. The customer foreign key is only added when
+	 * the Orbis Contacts table exists.
+	 *
+	 * @return void
+	 */
+	private function add_foreign_keys() {
+		global $wpdb;
+
+		$table = $wpdb->orbis_projects;
+
+		$contacts_table = $wpdb->prefix . 'orbis_contacts';
+
+		$foreign_keys = [
+			[
+				'name'      => $wpdb->prefix . 'orbis_projects_customer_id',
+				'reference' => $contacts_table,
+				'cleanup'   => "UPDATE $table SET customer_id = NULL WHERE customer_id IS NOT NULL AND customer_id NOT IN ( SELECT id FROM $contacts_table );",
+				'sql'       => "ALTER TABLE $table ADD CONSTRAINT {$wpdb->prefix}orbis_projects_customer_id FOREIGN KEY ( customer_id ) REFERENCES $contacts_table ( id ) ON DELETE SET NULL;",
+			],
+		];
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.PreparedSQL.NotPrepared -- `dbDelta` does not support foreign keys, the queries are built from table names only.
+		foreach ( $foreign_keys as $foreign_key ) {
+			$reference_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s;', $wpdb->esc_like( $foreign_key['reference'] ) ) );
+
+			if ( null === $reference_exists ) {
+				continue;
+			}
+
+			$exists = $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT CONSTRAINT_NAME FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = DATABASE() AND TABLE_NAME = %s AND CONSTRAINT_NAME = %s AND CONSTRAINT_TYPE = 'FOREIGN KEY';",
+					$table,
+					$foreign_key['name']
+				)
+			);
+
+			if ( null !== $exists ) {
+				continue;
+			}
+
+			$wpdb->query( $foreign_key['cleanup'] );
+
+			$wpdb->query( $foreign_key['sql'] );
+		}
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.PreparedSQL.NotPrepared
 	}
 
 	/**

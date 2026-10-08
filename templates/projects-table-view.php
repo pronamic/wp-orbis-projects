@@ -29,7 +29,7 @@ $groups ??= $managers;
 	<table class="table table-striped mb-0">
 		<thead>
 			<tr>
-				<th scope="col"><?php esc_html_e( 'Client', 'orbis-projects' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Customer', 'orbis-projects' ); ?></th>
 				<th scope="col"><?php esc_html_e( 'Project', 'orbis-projects' ); ?></th>
 
 				<?php if ( isset( $orbis_is_projects_to_invoice ) ) : ?>
@@ -65,9 +65,11 @@ $groups ??= $managers;
 
 					<tr>
 						<td>
-							<a href="<?php echo esc_attr( get_permalink( $project->principal_post_id ) ); ?>" style="color: #000;">
-								<?php echo esc_html( $project->principal_name ); ?>
-							</a>
+							<?php if ( isset( $project->customer_post_id ) ) : ?>
+								<a href="<?php echo esc_attr( get_permalink( $project->customer_post_id ) ); ?>" style="color: #000;">
+									<?php echo esc_html( $project->customer_name ); ?>
+								</a>
+							<?php endif; ?>
 						</td>
 						<td>
 							<a href="<?php echo esc_attr( get_permalink( $project->project_post_id ) ); ?>" style="color: #000;">
@@ -81,7 +83,7 @@ $groups ??= $managers;
 								<?php
 
 								$invoice_references = [
-									get_post_meta( $project->principal_post_id, '_orbis_invoice_reference', true ),
+									isset( $project->customer_post_id ) ? get_post_meta( $project->customer_post_id, '_orbis_invoice_reference', true ) : '',
 									get_post_meta( $project->project_post_id, '_orbis_invoice_reference', true ),
 								];
 

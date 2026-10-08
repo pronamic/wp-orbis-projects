@@ -14,17 +14,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$principal      = (string) \get_query_var( 'orbis_project_principal' );
+$customer       = (string) \get_query_var( 'orbis_project_customer' );
 $invoice_number = (string) \get_query_var( 'orbis_project_invoice_number' );
 
 ?>
-<div id="advanced-search" class="<?php echo \esc_attr( '' !== $principal || '' !== $invoice_number ? 'show' : 'collapse' ); ?>">
+<div id="advanced-search" class="<?php echo \esc_attr( '' !== $customer || '' !== $invoice_number ? 'show' : 'collapse' ); ?>">
 	<fieldset>
 		<legend><?php \esc_html_e( 'Advanced Search', 'orbis-projects' ); ?></legend>
 
 		<div class="form-group">
-			<label for="orbis_project_principal"><?php \esc_html_e( 'Client', 'orbis-projects' ); ?></label>
-			<input id="orbis_project_principal" class="form-control" name="orbis_project_principal" value="<?php echo \esc_attr( $principal ); ?>" type="text" placeholder="<?php \esc_attr_e( 'Search on Client', 'orbis-projects' ); ?>">
+			<label for="orbis_project_customer"><?php \esc_html_e( 'Customer', 'orbis-projects' ); ?></label>
+			<input id="orbis_project_customer" class="form-control" name="orbis_project_customer" value="<?php echo \esc_attr( $customer ); ?>" type="text" placeholder="<?php \esc_attr_e( 'Search on Customer', 'orbis-projects' ); ?>">
 		</div>
 
 		<div class="form-group">
