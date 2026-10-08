@@ -21,6 +21,31 @@ class TemplateController {
 		\add_filter( 'template_include', $this->template_include( ... ) );
 
 		\add_filter( 'orbis_organization_sections', $this->organization_sections( ... ) );
+
+		\add_action( 'get_template_part_templates/filter_advanced', $this->search_form_advanced( ... ), 10, 2 );
+	}
+
+	/**
+	 * Search form advanced.
+	 *
+	 * The search form of the Orbis theme requests the `templates/filter_advanced`
+	 * template part with the post type as name, this adds the advanced project
+	 * search fields, unless the theme has its own.
+	 *
+	 * @param string      $slug Slug.
+	 * @param string|null $name Name.
+	 * @return void
+	 */
+	public function search_form_advanced( $slug, $name ) {
+		if ( 'orbis_project' !== $name ) {
+			return;
+		}
+
+		if ( '' !== \locate_template( 'templates/filter_advanced-orbis_project.php' ) ) {
+			return;
+		}
+
+		include __DIR__ . '/../templates/search-form-advanced.php';
 	}
 
 	/**

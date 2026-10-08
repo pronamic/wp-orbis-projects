@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-09-08T12:57:11+00:00\n"
-"PO-Revision-Date: 2026-10-08T07:10:33+00:00\n"
+"PO-Revision-Date: 2026-10-08T07:19:08+00:00\n"
 "Language: nl_NL\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -48,6 +48,7 @@ msgstr "Orbis ID"
 #: admin/meta-box-project-details.php:90
 #: templates/archive-orbis_project.php:35
 #: templates/projects-table-view.php:32
+#: templates/search-form-advanced.php:26
 #: templates/single-orbis_project.php:105
 msgid "Client"
 msgstr "Klant"
@@ -308,7 +309,7 @@ msgstr "Het factureringsoverzicht kan niet worden weergegeven omdat de volgende 
 #: classes/ContentTypes.php:28
 #: classes/ContentTypes.php:30
 #: classes/Plugin.php:229
-#: classes/TemplateController.php:55
+#: classes/TemplateController.php:80
 msgid "Projects"
 msgstr "Projecten"
 
@@ -900,6 +901,30 @@ msgstr "Sorteer op:"
 #: templates/projects.php:155
 msgid "Number"
 msgstr "Nummer"
+
+#: templates/search-form-advanced.php:23
+msgid "Advanced Search"
+msgstr "Geavanceerd zoeken"
+
+#: templates/search-form-advanced.php:27
+msgid "Search on Client"
+msgstr "Zoek op klant"
+
+#: templates/search-form-advanced.php:31
+msgid "Invoice Number"
+msgstr "Factuurnummer"
+
+#: templates/search-form-advanced.php:32
+msgid "Search on Invoice Number"
+msgstr "Zoek op factuurnummer"
+
+#: templates/search-form-advanced.php:36
+msgid "Search"
+msgstr "Zoeken"
+
+#: templates/search-form-advanced.php:37
+msgid "Cancel"
+msgstr "Annuleren"
 
 #: templates/single-orbis_project.php:38
 msgid "Description"

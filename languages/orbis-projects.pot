@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-08T07:10:33+00:00\n"
+"POT-Creation-Date: 2026-10-08T07:19:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: orbis-projects\n"
@@ -49,6 +49,7 @@ msgstr ""
 #: admin/meta-box-project-details.php:90
 #: templates/archive-orbis_project.php:35
 #: templates/projects-table-view.php:32
+#: templates/search-form-advanced.php:26
 #: templates/single-orbis_project.php:105
 msgid "Client"
 msgstr ""
@@ -309,7 +310,7 @@ msgstr ""
 #: classes/ContentTypes.php:28
 #: classes/ContentTypes.php:30
 #: classes/Plugin.php:229
-#: classes/TemplateController.php:55
+#: classes/TemplateController.php:80
 msgid "Projects"
 msgstr ""
 
@@ -900,6 +901,30 @@ msgstr ""
 
 #: templates/projects.php:155
 msgid "Number"
+msgstr ""
+
+#: templates/search-form-advanced.php:23
+msgid "Advanced Search"
+msgstr ""
+
+#: templates/search-form-advanced.php:27
+msgid "Search on Client"
+msgstr ""
+
+#: templates/search-form-advanced.php:31
+msgid "Invoice Number"
+msgstr ""
+
+#: templates/search-form-advanced.php:32
+msgid "Search on Invoice Number"
+msgstr ""
+
+#: templates/search-form-advanced.php:36
+msgid "Search"
+msgstr ""
+
+#: templates/search-form-advanced.php:37
+msgid "Cancel"
 msgstr ""
 
 #: templates/single-orbis_project.php:38
