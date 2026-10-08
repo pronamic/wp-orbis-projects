@@ -254,7 +254,12 @@ class Plugin {
 	 * @param mixed $post
 	 */
 	public function the_post( $post ) {
-		unset( $GLOBALS['orbis_project'] );
+		/**
+		 * Set to `null` instead of `unset()`, unsetting would break
+		 * references from templates that declared `global $orbis_project`
+		 * before the loop.
+		 */
+		$GLOBALS['orbis_project'] = null;
 
 		if ( 'orbis_project' !== \get_post_type( $post ) ) {
 			return;
