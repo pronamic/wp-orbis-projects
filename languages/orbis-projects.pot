@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-08T07:33:51+00:00\n"
+"POT-Creation-Date: 2026-10-08T11:13:48+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: orbis-projects\n"
@@ -52,6 +52,7 @@ msgstr ""
 #: templates/archive-orbis_project.php:35
 #: templates/projects-table-view.php:32
 #: templates/projects-without-agreement.php:31
+#: templates/report-invoices.php:79
 #: templates/search-form-advanced.php:26
 #: templates/single-orbis_project.php:105
 msgid "Customer"
@@ -207,6 +208,7 @@ msgstr ""
 
 #: admin/meta-box-project-details.php:348
 #: templates/projects-table-view.php:43
+#: templates/report-period-filter.php:38
 #: templates/single-orbis_project.php:148
 msgid "Period"
 msgstr ""
@@ -312,18 +314,21 @@ msgstr ""
 #: admin/page-billing.php:139
 #: classes/ContentTypes.php:28
 #: classes/ContentTypes.php:30
-#: classes/Plugin.php:284
-#: classes/TemplateController.php:86
-#: classes/TemplateController.php:114
+#: classes/Plugin.php:289
+#: classes/TemplateController.php:152
+#: classes/TemplateController.php:180
 msgid "Projects"
 msgstr ""
 
 #: admin/page-billing.php:145
 #: classes/ContentTypes.php:31
-#: classes/Plugin.php:287
+#: classes/Plugin.php:292
 #: templates/archive-orbis_project.php:36
 #: templates/customer-projects.php:40
 #: templates/projects-table-view.php:33
+#: templates/report-invoices.php:80
+#: templates/report-over-budget.php:112
+#: templates/report-over-budget.php:146
 msgid "Project"
 msgstr ""
 
@@ -362,6 +367,7 @@ msgstr ""
 #: admin/page-billing.php:165
 #: admin/page-billing.php:173
 #: templates/project-invoices.php:18
+#: templates/report-invoices.php:83
 msgid "Amount"
 msgstr ""
 
@@ -409,6 +415,7 @@ msgstr ""
 #: classes/AdminProjectTemplatePostType.php:74
 #: templates/project-invoices.php:17
 #: templates/projects-table-view.php:41
+#: templates/report-invoices.php:81
 msgid "Date"
 msgstr ""
 
@@ -502,7 +509,7 @@ msgid "Add New"
 msgstr ""
 
 #: classes/ContentTypes.php:33
-#: classes/Plugin.php:292
+#: classes/Plugin.php:297
 msgid "Add New Project"
 msgstr ""
 
@@ -511,7 +518,7 @@ msgid "Edit Project"
 msgstr ""
 
 #: classes/ContentTypes.php:35
-#: classes/Plugin.php:291
+#: classes/Plugin.php:296
 msgid "New Project"
 msgstr ""
 
@@ -528,7 +535,7 @@ msgid "Search Projects"
 msgstr ""
 
 #: classes/ContentTypes.php:39
-#: classes/Plugin.php:289
+#: classes/Plugin.php:294
 #: templates/customer-projects.php:113
 msgid "No projects found."
 msgstr ""
@@ -762,41 +769,49 @@ msgctxt "slug"
 msgid "project-status"
 msgstr ""
 
-#: classes/Plugin.php:283
+#: classes/Plugin.php:288
 #: templates/project-persons.php:33
 msgid "Involved Persons"
 msgstr ""
 
-#: classes/Plugin.php:288
+#: classes/Plugin.php:293
 msgid "Search project"
 msgstr ""
 
-#: classes/Plugin.php:290
+#: classes/Plugin.php:295
 msgid "Add Project"
 msgstr ""
 
-#: classes/Plugin.php:295
+#: classes/Plugin.php:300
 msgid "Person"
 msgstr ""
 
-#: classes/Plugin.php:296
+#: classes/Plugin.php:301
 msgid "Search person"
 msgstr ""
 
-#: classes/Plugin.php:297
+#: classes/Plugin.php:302
 msgid "No persons found."
 msgstr ""
 
-#: classes/Plugin.php:298
+#: classes/Plugin.php:303
 msgid "Add Person"
 msgstr ""
 
-#: classes/Plugin.php:299
+#: classes/Plugin.php:304
 msgid "New Person"
 msgstr ""
 
-#: classes/Plugin.php:300
+#: classes/Plugin.php:305
 msgid "Add New Person"
+msgstr ""
+
+#: classes/TemplateController.php:79
+msgid "Project Invoices"
+msgstr ""
+
+#: classes/TemplateController.php:80
+msgid "Projects Over Budget"
 msgstr ""
 
 #: classes/Theme.php:57
@@ -815,6 +830,7 @@ msgstr ""
 
 #: templates/project-invoices.php:20
 #: templates/projects-table-view.php:37
+#: templates/report-invoices.php:82
 msgid "Invoice"
 msgstr ""
 
@@ -899,6 +915,66 @@ msgstr ""
 
 #: templates/projects.php:157
 msgid "Number"
+msgstr ""
+
+#: templates/report-invoices.php:18
+msgid "You are not allowed to view project invoices."
+msgstr ""
+
+#: templates/report-invoices.php:89
+msgid "Total"
+msgstr ""
+
+#: templates/report-over-budget.php:27
+msgid "The over budget report requires the Orbis Timesheets plugin."
+msgstr ""
+
+#: templates/report-over-budget.php:106
+msgid "Largest overrun"
+msgstr ""
+
+#: templates/report-over-budget.php:113
+msgid "Over budget"
+msgstr ""
+
+#: templates/report-over-budget.php:140
+msgid "Largest loss"
+msgstr ""
+
+#: templates/report-over-budget.php:147
+msgid "Time over budget"
+msgstr ""
+
+#: templates/report-over-budget.php:151
+msgid "Costs"
+msgstr ""
+
+#: templates/report-period-filter.php:20
+msgid "Last week"
+msgstr ""
+
+#: templates/report-period-filter.php:21
+msgid "Last month"
+msgstr ""
+
+#: templates/report-period-filter.php:22
+msgid "Last 3 months"
+msgstr ""
+
+#: templates/report-period-filter.php:23
+msgid "Last 6 months"
+msgstr ""
+
+#: templates/report-period-filter.php:24
+msgid "Last year"
+msgstr ""
+
+#: templates/report-period-filter.php:25
+msgid "All time"
+msgstr ""
+
+#: templates/report-period-filter.php:55
+msgid "Filter"
 msgstr ""
 
 #: templates/search-form-advanced.php:23

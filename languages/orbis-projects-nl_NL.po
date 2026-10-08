@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-09-08T12:57:11+00:00\n"
-"PO-Revision-Date: 2026-10-08T07:33:52+00:00\n"
+"PO-Revision-Date: 2026-10-08T11:13:48+00:00\n"
 "Language: nl_NL\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -51,6 +51,7 @@ msgstr "Orbis ID"
 #: templates/archive-orbis_project.php:35
 #: templates/projects-table-view.php:32
 #: templates/projects-without-agreement.php:31
+#: templates/report-invoices.php:79
 #: templates/search-form-advanced.php:26
 #: templates/single-orbis_project.php:105
 msgid "Customer"
@@ -206,6 +207,7 @@ msgstr "— Selecteer betaalmethode —"
 
 #: admin/meta-box-project-details.php:348
 #: templates/projects-table-view.php:43
+#: templates/report-period-filter.php:38
 #: templates/single-orbis_project.php:148
 msgid "Period"
 msgstr "Periode"
@@ -311,18 +313,21 @@ msgstr "Het factureringsoverzicht kan niet worden weergegeven omdat de volgende 
 #: admin/page-billing.php:139
 #: classes/ContentTypes.php:28
 #: classes/ContentTypes.php:30
-#: classes/Plugin.php:284
-#: classes/TemplateController.php:86
-#: classes/TemplateController.php:114
+#: classes/Plugin.php:289
+#: classes/TemplateController.php:152
+#: classes/TemplateController.php:180
 msgid "Projects"
 msgstr "Projecten"
 
 #: admin/page-billing.php:145
 #: classes/ContentTypes.php:31
-#: classes/Plugin.php:287
+#: classes/Plugin.php:292
 #: templates/archive-orbis_project.php:36
 #: templates/customer-projects.php:40
 #: templates/projects-table-view.php:33
+#: templates/report-invoices.php:80
+#: templates/report-over-budget.php:112
+#: templates/report-over-budget.php:146
 msgid "Project"
 msgstr "Project"
 
@@ -361,6 +366,7 @@ msgstr "Uurtarief"
 #: admin/page-billing.php:165
 #: admin/page-billing.php:173
 #: templates/project-invoices.php:18
+#: templates/report-invoices.php:83
 msgid "Amount"
 msgstr "Bedrag"
 
@@ -408,6 +414,7 @@ msgstr "Reacties"
 #: classes/AdminProjectTemplatePostType.php:74
 #: templates/project-invoices.php:17
 #: templates/projects-table-view.php:41
+#: templates/report-invoices.php:81
 msgid "Date"
 msgstr "Datum"
 
@@ -501,7 +508,7 @@ msgid "Add New"
 msgstr "Nieuw project"
 
 #: classes/ContentTypes.php:33
-#: classes/Plugin.php:292
+#: classes/Plugin.php:297
 msgid "Add New Project"
 msgstr "Nieuw project toevoegen"
 
@@ -510,7 +517,7 @@ msgid "Edit Project"
 msgstr "Project bewerken"
 
 #: classes/ContentTypes.php:35
-#: classes/Plugin.php:291
+#: classes/Plugin.php:296
 msgid "New Project"
 msgstr "Nieuw project"
 
@@ -527,7 +534,7 @@ msgid "Search Projects"
 msgstr "Projecten zoeken"
 
 #: classes/ContentTypes.php:39
-#: classes/Plugin.php:289
+#: classes/Plugin.php:294
 #: templates/customer-projects.php:113
 msgid "No projects found."
 msgstr "Geen projecten gevonden."
@@ -761,42 +768,50 @@ msgctxt "slug"
 msgid "project-status"
 msgstr "project-status"
 
-#: classes/Plugin.php:283
+#: classes/Plugin.php:288
 #: templates/project-persons.php:33
 msgid "Involved Persons"
 msgstr "Betrokken personen"
 
-#: classes/Plugin.php:288
+#: classes/Plugin.php:293
 msgid "Search project"
 msgstr "Zoek project"
 
-#: classes/Plugin.php:290
+#: classes/Plugin.php:295
 msgid "Add Project"
 msgstr "Project toevoegen"
 
-#: classes/Plugin.php:295
+#: classes/Plugin.php:300
 msgid "Person"
 msgstr "Persoon"
 
-#: classes/Plugin.php:296
+#: classes/Plugin.php:301
 msgid "Search person"
 msgstr "Zoek persoon"
 
-#: classes/Plugin.php:297
+#: classes/Plugin.php:302
 msgid "No persons found."
 msgstr "Geen personen gevonden."
 
-#: classes/Plugin.php:298
+#: classes/Plugin.php:303
 msgid "Add Person"
 msgstr "Persoon toevoegen"
 
-#: classes/Plugin.php:299
+#: classes/Plugin.php:304
 msgid "New Person"
 msgstr "Nieuw persoon"
 
-#: classes/Plugin.php:300
+#: classes/Plugin.php:305
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
+
+#: classes/TemplateController.php:79
+msgid "Project Invoices"
+msgstr "Projectfacturen"
+
+#: classes/TemplateController.php:80
+msgid "Projects Over Budget"
+msgstr "Projecten over budget"
 
 #: classes/Theme.php:57
 msgid "invoices"
@@ -814,6 +829,7 @@ msgstr "Uren"
 
 #: templates/project-invoices.php:20
 #: templates/projects-table-view.php:37
+#: templates/report-invoices.php:82
 msgid "Invoice"
 msgstr "Factuur"
 
@@ -899,6 +915,66 @@ msgstr "Sorteer op:"
 #: templates/projects.php:157
 msgid "Number"
 msgstr "Nummer"
+
+#: templates/report-invoices.php:18
+msgid "You are not allowed to view project invoices."
+msgstr "Je hebt geen toestemming om projectfacturen te bekijken."
+
+#: templates/report-invoices.php:89
+msgid "Total"
+msgstr "Totaal"
+
+#: templates/report-over-budget.php:27
+msgid "The over budget report requires the Orbis Timesheets plugin."
+msgstr "Het over-budgetrapport vereist de Orbis Timesheets-plugin."
+
+#: templates/report-over-budget.php:106
+msgid "Largest overrun"
+msgstr "Grootste overschrijding"
+
+#: templates/report-over-budget.php:113
+msgid "Over budget"
+msgstr "Over budget"
+
+#: templates/report-over-budget.php:140
+msgid "Largest loss"
+msgstr "Grootste verlies"
+
+#: templates/report-over-budget.php:147
+msgid "Time over budget"
+msgstr "Tijd over budget"
+
+#: templates/report-over-budget.php:151
+msgid "Costs"
+msgstr "Kosten"
+
+#: templates/report-period-filter.php:20
+msgid "Last week"
+msgstr "Afgelopen week"
+
+#: templates/report-period-filter.php:21
+msgid "Last month"
+msgstr "Afgelopen maand"
+
+#: templates/report-period-filter.php:22
+msgid "Last 3 months"
+msgstr "Afgelopen 3 maanden"
+
+#: templates/report-period-filter.php:23
+msgid "Last 6 months"
+msgstr "Afgelopen 6 maanden"
+
+#: templates/report-period-filter.php:24
+msgid "Last year"
+msgstr "Afgelopen jaar"
+
+#: templates/report-period-filter.php:25
+msgid "All time"
+msgstr "Altijd"
+
+#: templates/report-period-filter.php:55
+msgid "Filter"
+msgstr "Filteren"
 
 #: templates/search-form-advanced.php:23
 msgid "Advanced Search"
