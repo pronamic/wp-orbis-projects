@@ -357,8 +357,8 @@ $data = $wpdb->get_results( $query );
 
 						$url = \add_query_arg(
 							[
-								'orbis_customer_id' => $item->customer_id,
-								'orbis_project_id'  => $item->project_id,
+								'orbis_contact_post_id' => $item->customer_post_id,
+								'orbis_project_id'      => $item->project_id,
 							],
 							home_url( 'moneybird/sales-invoices/new' )
 						);
