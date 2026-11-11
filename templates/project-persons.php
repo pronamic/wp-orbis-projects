@@ -41,51 +41,41 @@ $query = new WP_Query(
 
 				<li class="list-group-item">
 					<div class="d-flex">
-						<div class="flex-shrink-0">
-							<a href="<?php \the_permalink(); ?>">
-								<?php
+						<?php if ( \has_post_thumbnail() ) : ?>
 
-								if ( \has_post_thumbnail() ) {
-									\the_post_thumbnail( 'avatar' );
-								} else {
-									echo \get_avatar( (string) \get_post_meta( (int) \get_the_ID(), '_orbis_email', true ), 60 );
-								}
+							<div class="flex-shrink-0 me-3">
+								<a href="<?php \the_permalink(); ?>">
+									<?php \the_post_thumbnail( 'avatar' ); ?>
+								</a>
+							</div>
 
-								?>
-							</a>
-						</div>
+						<?php endif; ?>
 
-						<div class="flex-grow-1 ms-3">
+						<div class="flex-grow-1">
 							<a href="<?php \the_permalink(); ?>"><?php \the_title(); ?></a><br />
 
 							<?php
 
-							$email = (string) \get_post_meta( (int) \get_the_ID(), '_orbis_email', true );
-
-							if ( '' !== $email ) {
-								\printf(
-									'<a class="text-secondary" style="font-size: .8em" href="%s">%s</a><br />',
-									\esc_url( 'mailto:' . $email ),
-									\esc_html( $email )
-								);
-							}
-
-							$phone_numbers = \array_filter(
+							// The Orbis Contacts blocks take the contact from the current post in the loop.
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Block output is escaped by the block render callback.
+							echo \render_block(
 								[
-									(string) \get_post_meta( (int) \get_the_ID(), '_orbis_phone_number', true ),
-									(string) \get_post_meta( (int) \get_the_ID(), '_orbis_mobile_number', true ),
+									'blockName' => 'orbis-contacts/email-addresses',
+									'attrs'     => [
+										'className' => 'small',
+									],
 								]
 							);
 
-							$phone_number = \reset( $phone_numbers );
-
-							if ( false !== $phone_number ) {
-								\printf(
-									'<a class="text-secondary" style="font-size: .8em" href="%s">%s</a><br />',
-									\esc_url( 'tel:' . $phone_number ),
-									\esc_html( $phone_number )
-								);
-							}
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Block output is escaped by the block render callback.
+							echo \render_block(
+								[
+									'blockName' => 'orbis-contacts/phone-numbers',
+									'attrs'     => [
+										'className' => 'small',
+									],
+								]
+							);
 
 							?>
 						</div>
