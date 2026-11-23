@@ -72,8 +72,8 @@ class ContentTypes {
 		\register_post_type(
 			'orbis_project_tmpl',
 			[
-				'label'        => \__( 'Project Templates', 'orbis-projects' ),
-				'labels'       => [
+				'label'             => \__( 'Project Templates', 'orbis-projects' ),
+				'labels'            => [
 					'name'                  => \__( 'Project Templates', 'orbis-projects' ),
 					'singular_name'         => \__( 'Project Template', 'orbis-projects' ),
 					'add_new'               => \_x( 'Add New', 'orbis_project_tmpl', 'orbis-projects' ),
@@ -95,9 +95,10 @@ class ContentTypes {
 					'items_list_navigation' => \__( 'Project templates list navigation', 'orbis-projects' ),
 					'items_list'            => \__( 'Project templates list', 'orbis-projects' ),
 				],
-				'public'       => true,
-				'show_in_menu' => false,
-				'supports'     => [
+				'public'            => true,
+				'show_in_menu'      => false,
+				'show_in_admin_bar' => true,
+				'supports'          => [
 					'title',
 					'editor',
 					'author',
@@ -107,10 +108,10 @@ class ContentTypes {
 					'orbis-project-details',
 					'orbis_teams',
 				],
-				'has_archive'  => true,
-				'show_in_rest' => true,
-				'rest_base'    => 'orbis/project-templates',
-				'rewrite'      => [
+				'has_archive'       => true,
+				'show_in_rest'      => true,
+				'rest_base'         => 'orbis/project-templates',
+				'rewrite'           => [
 					'slug' => \_x( 'project-templates', 'slug', 'orbis-projects' ),
 				],
 			]
