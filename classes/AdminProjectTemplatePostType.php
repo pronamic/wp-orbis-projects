@@ -196,6 +196,10 @@ class AdminProjectTemplatePostType {
 			return $actions;
 		}
 
+		if ( '' !== \get_post_meta( $post->ID, '_orbis_archived_at', true ) ) {
+			return $actions;
+		}
+
 		$url = \wp_nonce_url(
 			\admin_url( 'admin-post.php?action=orbis_create_project_from_template&post=' . $post->ID ),
 			'orbis_create_project_from_template_' . $post->ID
@@ -226,6 +230,10 @@ class AdminProjectTemplatePostType {
 
 		if ( ! $post instanceof \WP_Post || 'orbis_project_tmpl' !== $post->post_type || 'publish' !== $post->post_status ) {
 			\wp_die( \esc_html__( 'Invalid project template.', 'orbis-projects' ), 400 );
+		}
+
+		if ( '' !== \get_post_meta( $post_id, '_orbis_archived_at', true ) ) {
+			\wp_die( \esc_html__( 'This project template is archived.', 'orbis-projects' ), 400 );
 		}
 
 		$creation_date = \get_post_meta( $post_id, '_orbis_project_template_creation_date', true );

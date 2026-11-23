@@ -112,6 +112,10 @@ class ProjectScheduler {
 			return null;
 		}
 
+		if ( '' !== \get_post_meta( $template->ID, '_orbis_archived_at', true ) ) {
+			return null;
+		}
+
 		if ( \get_post_meta( $template->ID, '_orbis_project_template_creation_date', true ) !== $creation_date ) {
 			return null;
 		}
@@ -257,11 +261,16 @@ class ProjectScheduler {
 			'posts_per_page' => 100,
 			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Scheduler must select templates due today.
 			'meta_query'     => [
+				'relation' => 'AND',
 				[
 					'key'     => '_orbis_project_template_creation_date',
 					'value'   => \wp_date( 'Y-m-d' ),
 					'compare' => '<=',
 					'type'    => 'DATE',
+				],
+				[
+					'key'     => '_orbis_archived_at',
+					'compare' => 'NOT EXISTS',
 				],
 			],
 		];

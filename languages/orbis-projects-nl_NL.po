@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-09-08T12:57:11+00:00\n"
-"PO-Revision-Date: 2026-10-08T11:13:48+00:00\n"
+"PO-Revision-Date: 2026-11-23T11:19:53+00:00\n"
 "Language: nl_NL\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -426,33 +426,37 @@ msgstr "Projectinformatie"
 msgid "Project Template Schedule"
 msgstr "Planning projectsjabloon"
 
-#: classes/AdminProjectTemplatePostType.php:207
+#: classes/AdminProjectTemplatePostType.php:211
 msgid "Create project"
 msgstr "Project aanmaken"
 
-#: classes/AdminProjectTemplatePostType.php:222
+#: classes/AdminProjectTemplatePostType.php:226
 msgid "You are not allowed to do this."
 msgstr "Je hebt hier geen toestemming voor."
 
-#: classes/AdminProjectTemplatePostType.php:228
+#: classes/AdminProjectTemplatePostType.php:232
 msgid "Invalid project template."
 msgstr "Ongeldig projectsjabloon."
 
-#: classes/AdminProjectTemplatePostType.php:234
+#: classes/AdminProjectTemplatePostType.php:236
+msgid "This project template is archived."
+msgstr "Dit projectsjabloon is gearchiveerd."
+
+#: classes/AdminProjectTemplatePostType.php:242
 msgid "This project template has no creation date set."
 msgstr "Voor dit projectsjabloon is geen aanmaakdatum ingesteld."
 
-#: classes/AdminProjectTemplatePostType.php:241
+#: classes/AdminProjectTemplatePostType.php:249
 msgid "No project was created from this template."
 msgstr "Er is geen project aangemaakt vanuit dit sjabloon."
 
 #. translators: %s: link to the created project
-#: classes/AdminProjectTemplatePostType.php:281
+#: classes/AdminProjectTemplatePostType.php:289
 #, php-format
 msgid "Project created from template: %s."
 msgstr "Project aangemaakt vanuit sjabloon: %s."
 
-#: classes/AdminProjectTemplatePostType.php:286
+#: classes/AdminProjectTemplatePostType.php:294
 msgid "Project created from template."
 msgstr "Project aangemaakt vanuit sjabloon."
 
@@ -661,109 +665,109 @@ msgstr "Navigatie projectsjablonenlijst"
 msgid "Project templates list"
 msgstr "Projectsjablonenlijst"
 
-#: classes/ContentTypes.php:114
+#: classes/ContentTypes.php:116
 msgctxt "slug"
 msgid "project-templates"
 msgstr "projectsjablonen"
 
-#: classes/ContentTypes.php:125
+#: classes/ContentTypes.php:127
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr "Categorieën"
 
-#: classes/ContentTypes.php:126
+#: classes/ContentTypes.php:128
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr "Categorie"
 
-#: classes/ContentTypes.php:127
+#: classes/ContentTypes.php:129
 msgid "Search Categories"
 msgstr "Zoek categorieën"
 
-#: classes/ContentTypes.php:128
+#: classes/ContentTypes.php:130
 msgid "All Categories"
 msgstr "Alle categorieën"
 
-#: classes/ContentTypes.php:129
+#: classes/ContentTypes.php:131
 msgid "Parent Category"
 msgstr "Bovenliggende categorie"
 
-#: classes/ContentTypes.php:130
+#: classes/ContentTypes.php:132
 msgid "Parent Category:"
 msgstr "Bovenliggende categorie:"
 
-#: classes/ContentTypes.php:131
+#: classes/ContentTypes.php:133
 msgid "Edit Category"
 msgstr "Categorie bewerken"
 
-#: classes/ContentTypes.php:132
+#: classes/ContentTypes.php:134
 msgid "Update Category"
 msgstr "Categorie bijgewerkt"
 
-#: classes/ContentTypes.php:133
+#: classes/ContentTypes.php:135
 msgid "Add New Category"
 msgstr "Nieuwe categorie"
 
-#: classes/ContentTypes.php:134
+#: classes/ContentTypes.php:136
 msgid "New Category Name"
 msgstr "Nieuwe categorie naam"
 
-#: classes/ContentTypes.php:135
+#: classes/ContentTypes.php:137
 msgid "Categories"
 msgstr "Categorieën"
 
-#: classes/ContentTypes.php:140
+#: classes/ContentTypes.php:142
 msgctxt "slug"
 msgid "project-category"
 msgstr "project-categorie"
 
-#: classes/ContentTypes.php:151
+#: classes/ContentTypes.php:153
 msgctxt "taxonomy general name"
 msgid "Statuses"
 msgstr "Statussen"
 
-#: classes/ContentTypes.php:152
+#: classes/ContentTypes.php:154
 msgctxt "taxonomy singular name"
 msgid "Status"
 msgstr "Status"
 
-#: classes/ContentTypes.php:153
+#: classes/ContentTypes.php:155
 msgid "Search Statuses"
 msgstr "Zoek statussen"
 
-#: classes/ContentTypes.php:154
+#: classes/ContentTypes.php:156
 msgid "All Statuses"
 msgstr "Alle statussen"
 
-#: classes/ContentTypes.php:155
+#: classes/ContentTypes.php:157
 msgid "Parent Status"
 msgstr "Bovenliggende status"
 
-#: classes/ContentTypes.php:156
+#: classes/ContentTypes.php:158
 msgid "Parent Status:"
 msgstr "Bovenliggende status:"
 
-#: classes/ContentTypes.php:157
+#: classes/ContentTypes.php:159
 msgid "Edit Status"
 msgstr "Bewerkt status"
 
-#: classes/ContentTypes.php:158
+#: classes/ContentTypes.php:160
 msgid "Update Status"
 msgstr "Status bijgewerkt"
 
-#: classes/ContentTypes.php:159
+#: classes/ContentTypes.php:161
 msgid "Add New Status"
 msgstr "Nieuwe status"
 
-#: classes/ContentTypes.php:160
+#: classes/ContentTypes.php:162
 msgid "New Status Name"
 msgstr "Nieuwe status naam"
 
-#: classes/ContentTypes.php:161
+#: classes/ContentTypes.php:163
 msgid "Statuses"
 msgstr "Statussen"
 
-#: classes/ContentTypes.php:168
+#: classes/ContentTypes.php:170
 msgctxt "slug"
 msgid "project-status"
 msgstr "project-status"
@@ -857,7 +861,7 @@ msgstr "Totaal:"
 msgid "No invoices found."
 msgstr "Geen facturen gevonden."
 
-#: templates/project-persons.php:104
+#: templates/project-persons.php:94
 msgid "No persons involved."
 msgstr "Geen personen betrokken."
 

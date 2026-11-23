@@ -107,6 +107,7 @@ class ContentTypes {
 					'revisions',
 					'orbis-project-details',
 					'orbis_teams',
+					'orbis-archiving',
 				],
 				'has_archive'       => true,
 				'show_in_rest'      => true,
